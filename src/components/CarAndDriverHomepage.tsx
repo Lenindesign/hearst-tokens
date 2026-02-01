@@ -1,6 +1,7 @@
 'use client';
 
 import { LeftSidebarColumn } from './LeftSidebarColumn';
+import { LatestNewsSidebar } from './LatestNewsSidebar';
 import { BigCard } from './BigCard';
 import { RightSidebarColumn } from './RightSidebarColumn';
 import { SecondLeftSection } from './SecondLeftSection';
@@ -536,24 +537,25 @@ export function CarAndDriverHomepage() {
                 className="flex flex-col lg:flex-row"
                 style={{ gap: tokens.spacing.xl }}
               >
-                {/* Left Column (Col1) - LeftSidebarColumn */}
+                {/* Left Column (Col1) - LatestNewsSidebar (Car and Driver version) */}
                 <div 
                   className="flex flex-col"
                   style={{ 
                     width: '100%',
-                    maxWidth: tokens.layout['2xs'],
+                    maxWidth: 290,
                     gap: tokens.spacing.md,
                   }}
                 >
-                  <LeftSidebarColumn
-                    title="Trending Now"
+                  <LatestNewsSidebar
+                    title="Latest News"
                     stories={[
-                      { id: 1, title: "Why Did Valerie Bertinelli Leave 'Kids Baking Championship'?", timestamp: '2 hours ago' },
-                      { id: 2, title: "The Best New Cars Coming in 2024", timestamp: '3 hours ago' },
-                      { id: 3, title: "10 Kitchen Gadgets That Are Worth the Investment", timestamp: '5 hours ago' },
-                      { id: 4, title: "Celebrity Chef Reveals Secret Recipe", timestamp: '6 hours ago' },
-                      { id: 5, title: "Home Renovation Tips from the Experts", timestamp: '8 hours ago' },
-                      { id: 6, title: "The Most Anticipated Movies of the Year", timestamp: '10 hours ago' },
+                      { id: 1, title: "Tesla Will Kill the Model S and Model X This Year", timestamp: '19 mins ago' },
+                      { id: 2, title: "Genesis Has Sold Some Copies of This Wild Concept", timestamp: '1 hr ago' },
+                      { id: 3, title: "2026 Ineos Grenadier Gets a Black Edition", timestamp: '1 hr ago', showPlayIcon: true },
+                      { id: 4, title: "Cadillac CT5-V Blackwing's New Package Costs $27K", timestamp: '2 hrs ago' },
+                      { id: 5, title: "Hyundai Planning to Drop Santa Cruz Pickup", timestamp: '3 hrs ago', showPlayIcon: true },
+                      { id: 6, title: "Hameedi Venturo's Project Origine Will Have a V-12", timestamp: '6 hrs ago' },
+                      { id: 7, title: "Refreshed S-Class Has Stars in It's Eyes", timestamp: '1 day ago' },
                     ]}
                   />
                 </div>
