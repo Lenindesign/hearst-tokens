@@ -393,9 +393,9 @@ function ComponentPreview({ componentId }: { componentId: string }) {
   switch (componentId) {
     case 'main-navigation':
       return (
-        <div style={{ maxWidth: 1200 }}>
+        <div style={{ width: '100%', margin: '0 -32px', padding: '0' }}>
           <MainNavigation
-            brandName="HEARST"
+            brandName="CAR AND DRIVER"
             utilityLinks={[
               { label: 'Shop' },
               { label: 'US' },
@@ -405,11 +405,11 @@ function ComponentPreview({ componentId }: { componentId: string }) {
             menuLinks={[
               { label: 'News' },
               { label: 'Reviews' },
-              { label: 'Buying Guide' },
+              { label: "Buyer's Guide" },
               { label: 'Features' },
-              { label: 'Motorsports' },
-              { label: 'Videos' },
+              { label: 'Video' },
               { label: 'Podcasts' },
+              { label: 'Motorsports' },
               { label: 'More' },
             ]}
             actionButtons={[
