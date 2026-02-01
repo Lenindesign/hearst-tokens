@@ -31,7 +31,7 @@ export default function FourAcrossGridPage() {
           }}
         >
           <FourAcrossGrid
-            sectionTitle="More Stories"
+            title="More Stories"
             cards={[
               { id: 1, title: 'Best Performance Cars Under $50K' },
               { id: 2, title: 'Electric SUV Comparison Guide' },

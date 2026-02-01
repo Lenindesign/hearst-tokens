@@ -9,7 +9,7 @@ interface TypeSampleProps {
     fontFamily: string;
     fontSize: number;
     fontWeight: number;
-    lineHeight: number;
+    lineHeight: string | number;
     letterSpacing: number;
   };
   tokenPath: string;
@@ -37,7 +37,7 @@ function TypeSample({ name, style, tokenPath }: TypeSampleProps) {
         </div>
         <div style={{ textAlign: 'right' }}>
           <p style={{ ...typography.caption.sm, color: colors.neutral[500], margin: 0 }}>
-            {style.fontSize}px / {style.lineHeight}px
+            {style.fontSize}px / {style.lineHeight}
           </p>
           <p style={{ ...typography.caption.sm, color: colors.neutral[500], margin: 0 }}>
             Weight: {style.fontWeight}
@@ -49,7 +49,7 @@ function TypeSample({ name, style, tokenPath }: TypeSampleProps) {
           fontFamily: style.fontFamily,
           fontSize: style.fontSize,
           fontWeight: style.fontWeight,
-          lineHeight: `${style.lineHeight}px`,
+          lineHeight: style.lineHeight,
           letterSpacing: style.letterSpacing,
           color: colors.neutral.darkest,
           margin: 0,

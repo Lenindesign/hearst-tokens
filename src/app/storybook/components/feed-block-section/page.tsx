@@ -31,13 +31,13 @@ export default function FeedBlockSectionPage() {
           }}
         >
           <FeedBlockSection
-            sectionTitle="Latest News"
-            mainCard={{
+            title="Latest News"
+            bigStory={{
               eyebrow: 'AUTOMOTIVE',
               title: 'The Future of Electric Vehicles Is Here',
               author: 'Auto Editor',
             }}
-            storyCards={[
+            sideCards={[
               { id: 1, title: '2024 Tesla Model S Review', subtitle: 'Still the Best?', description: 'We test the latest Model S.' },
               { id: 2, title: 'Best SUVs of 2024', subtitle: 'Our Top Picks', description: 'The best SUVs you can buy.' },
               { id: 3, title: 'Electric vs Gas', subtitle: 'Cost Comparison', description: 'Which is cheaper to own?' },
@@ -70,24 +70,24 @@ export default function FeedBlockSectionPage() {
             <tbody>
               <tr>
                 <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}` }}>
-                  <code style={{ fontFamily: font.family.mono, fontSize: 13, color: colors.alert.info[700] }}>sectionTitle</code>
+                  <code style={{ fontFamily: font.family.mono, fontSize: 13, color: colors.alert.info[700] }}>title</code>
                 </td>
                 <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}`, fontFamily: font.family.mono, fontSize: 13, color: colors.neutral[600] }}>string</td>
                 <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}`, ...typography.body.sm, color: colors.neutral[600] }}>Section heading text.</td>
               </tr>
               <tr>
                 <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}` }}>
-                  <code style={{ fontFamily: font.family.mono, fontSize: 13, color: colors.alert.info[700] }}>mainCard</code>
+                  <code style={{ fontFamily: font.family.mono, fontSize: 13, color: colors.alert.info[700] }}>bigStory</code>
                 </td>
-                <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}`, fontFamily: font.family.mono, fontSize: 13, color: colors.neutral[600] }}>BigCardProps</td>
-                <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}`, ...typography.body.sm, color: colors.neutral[600] }}>Props for the featured BigCard.</td>
+                <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}`, fontFamily: font.family.mono, fontSize: 13, color: colors.neutral[600] }}>object</td>
+                <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}`, ...typography.body.sm, color: colors.neutral[600] }}>Props for the featured big story card (imageSrc, eyebrow, title, author).</td>
               </tr>
               <tr>
                 <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}` }}>
-                  <code style={{ fontFamily: font.family.mono, fontSize: 13, color: colors.alert.info[700] }}>storyCards</code>
+                  <code style={{ fontFamily: font.family.mono, fontSize: 13, color: colors.alert.info[700] }}>sideCards</code>
                 </td>
-                <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}`, fontFamily: font.family.mono, fontSize: 13, color: colors.neutral[600] }}>Array&lt;StoryCardProps&gt;</td>
-                <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}`, ...typography.body.sm, color: colors.neutral[600] }}>Array of story card data.</td>
+                <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}`, fontFamily: font.family.mono, fontSize: 13, color: colors.neutral[600] }}>Array</td>
+                <td style={{ padding: spacing.md, borderBottom: `1px solid ${colors.neutral[200]}`, ...typography.body.sm, color: colors.neutral[600] }}>Array of side card data (id, imageSrc, title, subtitle, description, timestamp, author).</td>
               </tr>
             </tbody>
           </table>

@@ -32,10 +32,10 @@ export default function LeftSidebarPage() {
           <div style={{ maxWidth: 300 }}>
             <LeftSidebarColumn
               stories={[
-                { title: 'Breaking: New EV Tax Credits Announced', timestamp: '2 hours ago' },
-                { title: 'Tesla Unveils New Model', timestamp: '4 hours ago' },
-                { title: 'Gas Prices Hit Record Low', timestamp: '6 hours ago' },
-                { title: 'Self-Driving Cars: What to Know', timestamp: '8 hours ago' },
+                { id: 1, title: 'Breaking: New EV Tax Credits Announced', timestamp: '2 hours ago' },
+                { id: 2, title: 'Tesla Unveils New Model', timestamp: '4 hours ago' },
+                { id: 3, title: 'Gas Prices Hit Record Low', timestamp: '6 hours ago' },
+                { id: 4, title: 'Self-Driving Cars: What to Know', timestamp: '8 hours ago' },
               ]}
             />
           </div>

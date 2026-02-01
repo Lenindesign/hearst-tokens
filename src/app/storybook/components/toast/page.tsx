@@ -53,7 +53,8 @@ export default function ToastPage() {
               <div style={{ position: 'relative' }}>
                 <Toast
                   message="This is a toast notification message!"
-                  onClose={() => setShowToast(false)}
+                  isVisible={showToast}
+                  onHide={() => setShowToast(false)}
                 />
               </div>
             )}
