@@ -5,7 +5,12 @@
  * Each theme includes colors, typography, and spacing customizations.
  * 
  * Source: https://figma-connector.kubeprod.hearstapps.com/token-studio/tokens
+ * 
+ * IMPORTANT: Brand colors are fetched from the token API.
+ * Base tokens (neutral colors, spacing, etc.) come from designTokens.ts
  */
+
+import { colors as baseColors, spacing, font, border } from './designTokens';
 
 export interface BrandTheme {
   id: string;
@@ -46,356 +51,375 @@ export interface BrandTheme {
   };
 }
 
-// Base theme that all brands extend from
+// Base theme that all brands extend from - uses design tokens
 const baseTheme = {
   typography: {
     fontFamily: {
-      primary: '-apple-system, BlinkMacSystemFont, "SF Pro", "Segoe UI", Roboto, sans-serif',
-      secondary: 'Georgia, "Times New Roman", serif',
-      display: '-apple-system, BlinkMacSystemFont, "SF Pro", "Segoe UI", Roboto, sans-serif',
+      primary: font.family.default,
+      secondary: font.family.serif,
+      display: font.family.default,
     },
-    headerWeight: 700,
-    bodyWeight: 400,
+    headerWeight: font.weight.bold,
+    bodyWeight: font.weight.regular,
   },
   spacing: {
     scale: 1,
   },
   borderRadius: {
-    sm: 4,
-    md: 8,
-    lg: 12,
+    sm: border.radius.sm,
+    md: border.radius.md,
+    lg: border.radius.lg,
   },
+};
+
+// Base neutral colors from design tokens
+const neutralColors = {
+  background: baseColors.neutral.lightest,
+  surface: baseColors.neutral[100],
+  text: baseColors.neutral.darkest,
+  textSecondary: baseColors.neutral[600],
+  border: baseColors.neutral[300],
 };
 
 export const brandThemes: Record<string, BrandTheme> = {
   // Car and Driver - Automotive focus, blue/gray palette
+  // Brand colors from API: #8dafc5, #b1b1b1, #444444, #e2e2e2, #eaeaea, #6abd45, #6f6f6f, #00a4db, #1c5f8b, #f1f7f7, #dbca8b, #607d8b, #dae2e5
   carAndDriver: {
     id: 'carAndDriver',
     name: 'Car and Driver',
     colors: {
-      primary: '#d22329',      // Red accent
-      secondary: '#1c5f8b',    // Dark blue
-      accent: '#6abd45',       // Green
-      background: '#ffffff',
-      surface: '#f5f5f5',
-      text: '#121212',
-      textSecondary: '#757575',
-      headerBg: '#ededed',
-      headerText: '#121212',
+      primary: '#d22329',      // Red accent (strap color)
+      secondary: '#1c5f8b',    // brand.9 - Dark blue
+      accent: '#6abd45',       // brand.6 - Green
+      background: neutralColors.background,
+      surface: neutralColors.surface,
+      text: neutralColors.text,
+      textSecondary: neutralColors.textSecondary,
+      headerBg: baseColors.neutral[200],  // #ededed
+      headerText: neutralColors.text,
       strapBg: '#d22329',
-      strapText: '#ffffff',
-      link: '#1c5f8b',
-      linkHover: '#0d58c9',
-      border: '#d6d6d6',
+      strapText: baseColors.neutral.lightest,
+      link: '#1c5f8b',         // brand.9
+      linkHover: '#00a4db',    // brand.8
+      border: neutralColors.border,
     },
     typography: {
       fontFamily: {
-        primary: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-        secondary: 'Georgia, serif',
-        display: '"Barlow Condensed", -apple-system, sans-serif',
+        primary: 'Inter, ' + font.family.default,
+        secondary: font.family.serif,
+        display: '"Barlow Condensed", ' + font.family.default,
       },
-      headerWeight: 700,
-      bodyWeight: 400,
+      headerWeight: font.weight.bold,
+      bodyWeight: font.weight.regular,
     },
     spacing: { scale: 1 },
     borderRadius: { sm: 0, md: 0, lg: 0 },
   },
 
   // Cosmopolitan - Bold, feminine, pink/red
+  // Brand colors from API: #d70000, #F6D3E5
   cosmopolitan: {
     id: 'cosmopolitan',
     name: 'Cosmopolitan',
     colors: {
-      primary: '#d70000',      // Cosmo red
-      secondary: '#F6D3E5',    // Pink
+      primary: '#d70000',      // brand.1 - Cosmo red
+      secondary: '#F6D3E5',    // brand.2 - Pink
       accent: '#ff69b4',       // Hot pink
-      background: '#ffffff',
+      background: neutralColors.background,
       surface: '#fef7f9',
-      text: '#1a1a1a',
-      textSecondary: '#666666',
+      text: neutralColors.text,
+      textSecondary: neutralColors.textSecondary,
       headerBg: '#d70000',
-      headerText: '#ffffff',
+      headerText: baseColors.neutral.lightest,
       strapBg: '#d70000',
-      strapText: '#ffffff',
+      strapText: baseColors.neutral.lightest,
       link: '#d70000',
       linkHover: '#a00000',
       border: '#f0d4dc',
     },
     typography: {
       fontFamily: {
-        primary: '"Helvetica Neue", Helvetica, Arial, sans-serif',
-        secondary: 'Georgia, serif',
-        display: '"Playfair Display", Georgia, serif',
+        primary: '"Helvetica Neue", ' + font.family.default,
+        secondary: font.family.serif,
+        display: '"Playfair Display", ' + font.family.serif,
       },
-      headerWeight: 700,
-      bodyWeight: 400,
+      headerWeight: font.weight.bold,
+      bodyWeight: font.weight.regular,
     },
     spacing: { scale: 1 },
-    borderRadius: { sm: 4, md: 8, lg: 16 },
+    borderRadius: { sm: border.radius.sm, md: border.radius.md, lg: 16 },
   },
 
   // Esquire - Sophisticated, masculine, navy/orange
+  // Brand colors from API: #ff3a30, #f5f6f8, #15263d, #ff5a52, #e00b00, #ececec, #515150, #161616
   esquire: {
     id: 'esquire',
     name: 'Esquire',
     colors: {
-      primary: '#15263d',      // Navy
-      secondary: '#ff3a30',    // Orange-red
-      accent: '#ff5a52',       // Coral
-      background: '#ffffff',
-      surface: '#f5f6f8',
-      text: '#161616',
-      textSecondary: '#515150',
-      headerBg: '#15263d',
-      headerText: '#ffffff',
-      strapBg: '#ff3a30',
-      strapText: '#ffffff',
+      primary: '#15263d',      // brand.3 - Navy
+      secondary: '#ff3a30',    // brand.1 - Orange-red
+      accent: '#ff5a52',       // brand.4 - Coral
+      background: neutralColors.background,
+      surface: '#f5f6f8',      // brand.2
+      text: '#161616',         // brand.8
+      textSecondary: '#515150', // brand.7
+      headerBg: '#15263d',     // brand.3
+      headerText: baseColors.neutral.lightest,
+      strapBg: '#ff3a30',      // brand.1
+      strapText: baseColors.neutral.lightest,
       link: '#15263d',
       linkHover: '#ff3a30',
-      border: '#ececec',
+      border: '#ececec',       // brand.6
     },
     typography: {
       fontFamily: {
-        primary: '"Chronicle SSm", Georgia, serif',
-        secondary: '"Decimal", -apple-system, sans-serif',
-        display: '"Chronicle Display", Georgia, serif',
+        primary: '"Chronicle SSm", ' + font.family.serif,
+        secondary: '"Decimal", ' + font.family.default,
+        display: '"Chronicle Display", ' + font.family.serif,
       },
-      headerWeight: 600,
-      bodyWeight: 400,
+      headerWeight: font.weight.semibold,
+      bodyWeight: font.weight.regular,
     },
     spacing: { scale: 1.1 },
     borderRadius: { sm: 0, md: 0, lg: 0 },
   },
 
   // Good Housekeeping - Trustworthy, teal/red
+  // Brand colors from API: #53c2be, #198294, #125c68, #f8f3f4, #9e3326, #d24432
   goodHousekeeping: {
     id: 'goodHousekeeping',
     name: 'Good Housekeeping',
     colors: {
-      primary: '#198294',      // Teal
-      secondary: '#53c2be',    // Light teal
-      accent: '#d24432',       // Red accent
-      background: '#ffffff',
-      surface: '#f8f3f4',
-      text: '#125c68',
-      textSecondary: '#666666',
-      headerBg: '#198294',
-      headerText: '#ffffff',
-      strapBg: '#d24432',
-      strapText: '#ffffff',
+      primary: '#198294',      // brand.2 - Teal
+      secondary: '#53c2be',    // brand.1 - Light teal
+      accent: '#d24432',       // brand.6 - Red accent
+      background: neutralColors.background,
+      surface: '#f8f3f4',      // brand.4
+      text: '#125c68',         // brand.3
+      textSecondary: neutralColors.textSecondary,
+      headerBg: '#198294',     // brand.2
+      headerText: baseColors.neutral.lightest,
+      strapBg: '#d24432',      // brand.6
+      strapText: baseColors.neutral.lightest,
       link: '#198294',
       linkHover: '#125c68',
-      border: '#e0e0e0',
+      border: baseColors.neutral[300],
     },
     typography: {
       fontFamily: {
-        primary: '"Proxima Nova", -apple-system, sans-serif',
-        secondary: 'Georgia, serif',
-        display: '"Proxima Nova", -apple-system, sans-serif',
+        primary: '"Proxima Nova", ' + font.family.default,
+        secondary: font.family.serif,
+        display: '"Proxima Nova", ' + font.family.default,
       },
-      headerWeight: 700,
-      bodyWeight: 400,
+      headerWeight: font.weight.bold,
+      bodyWeight: font.weight.regular,
     },
     spacing: { scale: 1 },
-    borderRadius: { sm: 4, md: 8, lg: 12 },
+    borderRadius: { sm: border.radius.sm, md: border.radius.md, lg: border.radius.lg },
   },
 
   // Harper's BAZAAR - High fashion, black/red
+  // Brand colors from API: #000000, #aa0703, #ff0000, #77747b, #ff5e5e
   harpersBazaar: {
     id: 'harpersBazaar',
     name: "Harper's BAZAAR",
     colors: {
-      primary: '#000000',      // Black
-      secondary: '#aa0703',    // Deep red
-      accent: '#ff0000',       // Red
-      background: '#ffffff',
-      surface: '#fafafa',
+      primary: '#000000',      // brand.1 - Black
+      secondary: '#aa0703',    // brand.2 - Deep red
+      accent: '#ff0000',       // brand.3 - Red
+      background: neutralColors.background,
+      surface: baseColors.neutral[100],
       text: '#000000',
-      textSecondary: '#77747b',
+      textSecondary: '#77747b', // brand.4
       headerBg: '#000000',
-      headerText: '#ffffff',
-      strapBg: '#aa0703',
-      strapText: '#ffffff',
+      headerText: baseColors.neutral.lightest,
+      strapBg: '#aa0703',      // brand.2
+      strapText: baseColors.neutral.lightest,
       link: '#000000',
       linkHover: '#aa0703',
-      border: '#e0e0e0',
+      border: baseColors.neutral[300],
     },
     typography: {
       fontFamily: {
-        primary: '"Didot", "Playfair Display", Georgia, serif',
-        secondary: '"Helvetica Neue", sans-serif',
-        display: '"Didot", Georgia, serif',
+        primary: '"Didot", "Playfair Display", ' + font.family.serif,
+        secondary: '"Helvetica Neue", ' + font.family.default,
+        display: '"Didot", ' + font.family.serif,
       },
-      headerWeight: 400,
-      bodyWeight: 400,
+      headerWeight: font.weight.regular,
+      bodyWeight: font.weight.regular,
     },
     spacing: { scale: 1.2 },
     borderRadius: { sm: 0, md: 0, lg: 0 },
   },
 
   // ELLE - Elegant, minimalist, black/cream
+  // Brand colors from API: #000000, #f5f5f4, #f0ede6
   elle: {
     id: 'elle',
     name: 'ELLE',
     colors: {
-      primary: '#000000',      // Black
-      secondary: '#f5f5f4',    // Off-white
-      accent: '#f0ede6',       // Cream
-      background: '#ffffff',
-      surface: '#f5f5f4',
+      primary: '#000000',      // brand.1 - Black
+      secondary: '#f5f5f4',    // brand.2 - Off-white
+      accent: '#f0ede6',       // brand.3 - Cream
+      background: neutralColors.background,
+      surface: '#f5f5f4',      // brand.2
       text: '#000000',
-      textSecondary: '#666666',
+      textSecondary: neutralColors.textSecondary,
       headerBg: '#000000',
-      headerText: '#ffffff',
+      headerText: baseColors.neutral.lightest,
       strapBg: '#000000',
-      strapText: '#ffffff',
+      strapText: baseColors.neutral.lightest,
       link: '#000000',
-      linkHover: '#333333',
-      border: '#e5e5e5',
+      linkHover: baseColors.neutral[800],
+      border: baseColors.neutral[300],
     },
     typography: {
       fontFamily: {
-        primary: '"Didot", Georgia, serif',
-        secondary: '"Helvetica Neue", sans-serif',
-        display: '"Didot", Georgia, serif',
+        primary: '"Didot", ' + font.family.serif,
+        secondary: '"Helvetica Neue", ' + font.family.default,
+        display: '"Didot", ' + font.family.serif,
       },
-      headerWeight: 400,
-      bodyWeight: 400,
+      headerWeight: font.weight.regular,
+      bodyWeight: font.weight.regular,
     },
     spacing: { scale: 1.15 },
     borderRadius: { sm: 0, md: 0, lg: 0 },
   },
 
   // Delish - Fun, colorful, food-focused
+  // Brand colors from API: #004685, #ffc035, #ff553e, #adcf21, #66cecf, #c6e9f0, #ebf7fc, #278090, #343434
   delish: {
     id: 'delish',
     name: 'Delish',
     colors: {
-      primary: '#004685',      // Blue
-      secondary: '#ffc035',    // Yellow
-      accent: '#ff553e',       // Orange-red
-      background: '#ffffff',
-      surface: '#ebf7fc',
-      text: '#343434',
-      textSecondary: '#666666',
-      headerBg: '#004685',
-      headerText: '#ffffff',
-      strapBg: '#ff553e',
-      strapText: '#ffffff',
+      primary: '#004685',      // brand.1 - Blue
+      secondary: '#ffc035',    // brand.2 - Yellow
+      accent: '#ff553e',       // brand.3 - Orange-red
+      background: neutralColors.background,
+      surface: '#ebf7fc',      // brand.7
+      text: '#343434',         // brand.9
+      textSecondary: neutralColors.textSecondary,
+      headerBg: '#004685',     // brand.1
+      headerText: baseColors.neutral.lightest,
+      strapBg: '#ff553e',      // brand.3
+      strapText: baseColors.neutral.lightest,
       link: '#004685',
-      linkHover: '#278090',
-      border: '#c6e9f0',
+      linkHover: '#278090',    // brand.8
+      border: '#c6e9f0',       // brand.6
     },
     typography: {
       fontFamily: {
-        primary: '"Proxima Nova", -apple-system, sans-serif',
-        secondary: 'Georgia, serif',
-        display: '"Proxima Nova", -apple-system, sans-serif',
+        primary: '"Proxima Nova", ' + font.family.default,
+        secondary: font.family.serif,
+        display: '"Proxima Nova", ' + font.family.default,
       },
-      headerWeight: 800,
-      bodyWeight: 400,
+      headerWeight: font.weight.heavy,
+      bodyWeight: font.weight.regular,
     },
     spacing: { scale: 1 },
     borderRadius: { sm: 8, md: 12, lg: 20 },
   },
 
   // Men's Health - Bold, athletic, red/yellow
+  // Brand colors from API: #d2232e, #fff200, #202020, #696969, #878787
   mensHealth: {
     id: 'mensHealth',
     name: "Men's Health",
     colors: {
-      primary: '#d2232e',      // Red
-      secondary: '#fff200',    // Yellow
-      accent: '#202020',       // Dark gray
-      background: '#ffffff',
-      surface: '#f5f5f5',
-      text: '#202020',
-      textSecondary: '#696969',
-      headerBg: '#d2232e',
-      headerText: '#ffffff',
-      strapBg: '#d2232e',
-      strapText: '#ffffff',
+      primary: '#d2232e',      // brand.1 - Red
+      secondary: '#fff200',    // brand.2 - Yellow
+      accent: '#202020',       // brand.3 - Dark gray
+      background: neutralColors.background,
+      surface: neutralColors.surface,
+      text: '#202020',         // brand.3
+      textSecondary: '#696969', // brand.4
+      headerBg: '#d2232e',     // brand.1
+      headerText: baseColors.neutral.lightest,
+      strapBg: '#d2232e',      // brand.1
+      strapText: baseColors.neutral.lightest,
       link: '#d2232e',
       linkHover: '#a01a22',
-      border: '#878787',
+      border: '#878787',       // brand.5
     },
     typography: {
       fontFamily: {
-        primary: '"Trade Gothic", -apple-system, sans-serif',
-        secondary: 'Georgia, serif',
-        display: '"Trade Gothic Bold Condensed", -apple-system, sans-serif',
+        primary: '"Trade Gothic", ' + font.family.default,
+        secondary: font.family.serif,
+        display: '"Trade Gothic Bold Condensed", ' + font.family.default,
       },
-      headerWeight: 700,
-      bodyWeight: 400,
+      headerWeight: font.weight.bold,
+      bodyWeight: font.weight.regular,
     },
     spacing: { scale: 1 },
-    borderRadius: { sm: 0, md: 4, lg: 8 },
+    borderRadius: { sm: 0, md: border.radius.sm, lg: border.radius.md },
   },
 
   // Women's Health - Modern, energetic, blue/green
+  // Brand colors from API: #1d4ed8, #ebff7c, #14b8a6, #e9d5ff, #f9a8d4, #ffedd5, #ef4444, #ec4899, #0d9488
   womensHealth: {
     id: 'womensHealth',
     name: "Women's Health",
     colors: {
-      primary: '#1d4ed8',      // Blue
-      secondary: '#ebff7c',    // Yellow-green
-      accent: '#14b8a6',       // Teal
-      background: '#ffffff',
+      primary: '#1d4ed8',      // brand.1 - Blue
+      secondary: '#ebff7c',    // brand.2 - Yellow-green
+      accent: '#14b8a6',       // brand.3 - Teal
+      background: neutralColors.background,
       surface: '#f8fafc',
-      text: '#1e293b',
-      textSecondary: '#64748b',
-      headerBg: '#1d4ed8',
-      headerText: '#ffffff',
-      strapBg: '#14b8a6',
-      strapText: '#ffffff',
+      text: neutralColors.text,
+      textSecondary: neutralColors.textSecondary,
+      headerBg: '#1d4ed8',     // brand.1
+      headerText: baseColors.neutral.lightest,
+      strapBg: '#14b8a6',      // brand.3
+      strapText: baseColors.neutral.lightest,
       link: '#1d4ed8',
-      linkHover: '#1e40af',
-      border: '#e2e8f0',
+      linkHover: '#0d9488',    // brand.9
+      border: baseColors.neutral[300],
     },
     typography: {
       fontFamily: {
-        primary: '"Proxima Nova", -apple-system, sans-serif',
-        secondary: 'Georgia, serif',
-        display: '"Proxima Nova", -apple-system, sans-serif',
+        primary: '"Proxima Nova", ' + font.family.default,
+        secondary: font.family.serif,
+        display: '"Proxima Nova", ' + font.family.default,
       },
-      headerWeight: 700,
-      bodyWeight: 400,
+      headerWeight: font.weight.bold,
+      bodyWeight: font.weight.regular,
     },
     spacing: { scale: 1 },
-    borderRadius: { sm: 4, md: 8, lg: 16 },
+    borderRadius: { sm: border.radius.sm, md: border.radius.md, lg: 16 },
   },
 
   // Popular Mechanics - Technical, teal/orange
+  // Brand colors from API: #1c6a65, #f04e3e, #fef837, #595959, #414141, #ececec, #f8f8f8
   popularMechanics: {
     id: 'popularMechanics',
     name: 'Popular Mechanics',
     colors: {
-      primary: '#1c6a65',      // Teal
-      secondary: '#f04e3e',    // Orange-red
-      accent: '#fef837',       // Yellow
-      background: '#ffffff',
-      surface: '#f8f8f8',
-      text: '#414141',
-      textSecondary: '#595959',
-      headerBg: '#1c6a65',
-      headerText: '#ffffff',
-      strapBg: '#f04e3e',
-      strapText: '#ffffff',
+      primary: '#1c6a65',      // brand.1 - Teal
+      secondary: '#f04e3e',    // brand.2 - Orange-red
+      accent: '#fef837',       // brand.3 - Yellow
+      background: neutralColors.background,
+      surface: '#f8f8f8',      // brand.7
+      text: '#414141',         // brand.5
+      textSecondary: '#595959', // brand.4
+      headerBg: '#1c6a65',     // brand.1
+      headerText: baseColors.neutral.lightest,
+      strapBg: '#f04e3e',      // brand.2
+      strapText: baseColors.neutral.lightest,
       link: '#1c6a65',
       linkHover: '#145550',
-      border: '#ececec',
+      border: '#ececec',       // brand.6
     },
     typography: {
       fontFamily: {
-        primary: '"Roboto", -apple-system, sans-serif',
-        secondary: '"Roboto Slab", Georgia, serif',
-        display: '"Roboto Condensed", -apple-system, sans-serif',
+        primary: '"Roboto", ' + font.family.default,
+        secondary: '"Roboto Slab", ' + font.family.serif,
+        display: '"Roboto Condensed", ' + font.family.default,
       },
-      headerWeight: 700,
-      bodyWeight: 400,
+      headerWeight: font.weight.bold,
+      bodyWeight: font.weight.regular,
     },
     spacing: { scale: 1 },
-    borderRadius: { sm: 2, md: 4, lg: 8 },
+    borderRadius: { sm: 2, md: border.radius.sm, lg: border.radius.md },
   },
 };
 

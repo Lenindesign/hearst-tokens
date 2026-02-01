@@ -1,0 +1,226 @@
+---
+description: Guidelines for using Hearst Design System tokens in all components
+globs: ["src/**/*.tsx", "src/**/*.ts"]
+alwaysApply: true
+---
+
+# Hearst Design System Token Usage Guidelines
+
+## CRITICAL: Always Use Design Tokens
+
+When creating or modifying any component, storybook page, or style, you MUST use the design tokens from `@/lib/designTokens`. Never hardcode colors, spacing, typography, or other design values.
+
+## Token Import Pattern
+
+Always import tokens at the top of your file:
+
+```typescript
+import { 
+  colors, 
+  spacing, 
+  typography, 
+  font, 
+  border, 
+  layout, 
+  elevation,
+  breakpoints,
+  primitives 
+} from '@/lib/designTokens';
+```
+
+## Token Categories and Usage
+
+### Colors (`colors`)
+- `colors.neutral` - Gray scale (100-1000, lightest, darkest)
+- `colors.brand` - Brand colors (1-14)
+- `colors.primary` - Primary color scale (100-1000)
+- `colors.alert.success/warning/error/info` - Alert colors
+- `colors.content` - Semantic content colors
+
+```typescript
+// ✅ CORRECT
+backgroundColor: colors.neutral[100]
+color: colors.neutral.darkest
+borderColor: colors.neutral[300]
+
+// ❌ WRONG - Never hardcode colors
+backgroundColor: '#f5f5f5'
+color: '#121212'
+```
+
+### Spacing (`spacing`)
+- `spacing.none` = 0
+- `spacing['3xs']` = 2
+- `spacing['2xs']` = 4
+- `spacing.xs` = 8
+- `spacing.sm` = 12
+- `spacing.md` = 16
+- `spacing.lg` = 20
+- `spacing.xl` = 24
+- `spacing['2xl']` = 32
+- `spacing['3xl']` = 48
+- `spacing['4xl']` = 64
+
+```typescript
+// ✅ CORRECT
+padding: spacing.lg
+gap: spacing.md
+margin: `${spacing.xl}px`
+
+// ❌ WRONG
+padding: 20
+gap: 16
+```
+
+### Typography (`typography`, `font`)
+Use typography presets for consistent text styles:
+- `typography.display.lg/md/sm` - Large headlines
+- `typography.heading.xl/lg/md/sm` - Section headings
+- `typography.body.lg/md/sm` - Body text
+- `typography.caption.md/sm` - Small text/labels
+- `typography.button.lg/md/sm` - Button text
+
+```typescript
+// ✅ CORRECT
+<h1 style={{ ...typography.display.md, color: colors.neutral.darkest }}>
+<p style={{ ...typography.body.md, color: colors.neutral[600] }}>
+
+// For individual properties:
+fontSize: font.size.lg
+fontWeight: font.weight.bold
+fontFamily: font.family.default
+```
+
+### Border (`border`)
+- `border.radius.none/sm/md/lg/xl/2xl/full`
+- `border.width.none/thin/medium/thick`
+
+```typescript
+// ✅ CORRECT
+borderRadius: border.radius.md
+border: `${border.width.thin}px solid ${colors.neutral[300]}`
+```
+
+### Layout (`layout`)
+Container and component widths:
+- `layout['4xs']` = 128
+- `layout['3xs']` = 192
+- `layout['2xs']` = 224
+- `layout.xs` = 256
+- `layout.sm` = 320
+- `layout.md` = 384
+- `layout.lg` = 512
+- `layout.xl` = 768
+- `layout['2xl']` = 1024
+- `layout['3xl']` = 1280
+- `layout['4xl']` = 1600
+
+### Breakpoints (`breakpoints`)
+- `breakpoints.sm` = 320
+- `breakpoints.md` = 768
+- `breakpoints.lg` = 1024
+- `breakpoints.xl` = 1440
+- `breakpoints['2xl']` = 1600
+
+### Elevation (`elevation`)
+- `elevation.none/sm/md/lg/xl/2xl`
+
+## Brand-Specific Theming
+
+For brand-specific components, import from `@/lib/brandThemes`:
+
+```typescript
+import { brandThemes, getTheme } from '@/lib/brandThemes';
+
+// Get a specific brand theme
+const theme = getTheme('carAndDriver');
+
+// Use theme colors
+backgroundColor: theme.colors.primary
+color: theme.colors.text
+```
+
+## Component Template
+
+When creating a new component, follow this pattern:
+
+```typescript
+'use client';
+
+import { colors, spacing, typography, border, font } from '@/lib/designTokens';
+
+interface MyComponentProps {
+  // props
+}
+
+export function MyComponent({ ...props }: MyComponentProps) {
+  return (
+    <div
+      style={{
+        padding: spacing.lg,
+        backgroundColor: colors.neutral.lightest,
+        borderRadius: border.radius.md,
+        border: `1px solid ${colors.neutral[300]}`,
+      }}
+    >
+      <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest }}>
+        Title
+      </h2>
+      <p style={{ ...typography.body.md, color: colors.neutral[600] }}>
+        Content
+      </p>
+    </div>
+  );
+}
+```
+
+## Storybook Page Template
+
+When creating a storybook documentation page:
+
+```typescript
+'use client';
+
+import { colors, spacing, typography, border, font } from '@/lib/designTokens';
+import { MyComponent } from '@/components/MyComponent';
+
+export default function MyComponentPage() {
+  return (
+    <div style={{ padding: spacing['3xl'], maxWidth: 1200, margin: '0 auto' }}>
+      {/* Header */}
+      <div style={{ marginBottom: spacing['3xl'] }}>
+        <h1 style={{ ...typography.display.md, color: colors.neutral.darkest, margin: 0 }}>
+          Component Name
+        </h1>
+        <p style={{ ...typography.body.lg, color: colors.neutral[600], margin: `${spacing.md}px 0 0` }}>
+          Component description
+        </p>
+      </div>
+
+      {/* Preview */}
+      <section style={{ marginBottom: spacing['3xl'] }}>
+        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
+          Preview
+        </h2>
+        <div
+          style={{
+            backgroundColor: colors.neutral[200],
+            borderRadius: border.radius.lg,
+            padding: spacing.xl,
+            border: `1px solid ${colors.neutral[300]}`,
+          }}
+        >
+          <MyComponent />
+        </div>
+      </section>
+    </div>
+  );
+}
+```
+
+## Token Source
+
+All tokens are sourced from the Hearst Design System API:
+`https://figma-connector.kubeprod.hearstapps.com/token-studio/tokens`
+
+The resolved values are stored in `src/lib/designTokens.ts`.
