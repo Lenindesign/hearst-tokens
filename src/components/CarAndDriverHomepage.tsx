@@ -9,7 +9,7 @@ import { FourAcrossGrid } from './FourAcrossGrid';
 import { BigStoryCard } from './BigStoryCard';
 import { Footer } from './Footer';
 import { MainNavigation } from './MainNavigation';
-import { TokenPreview } from './TokenPreview';
+import { SeoBlockGrid } from './SeoBlockGrid';
 
 // Import centralized design tokens
 import { 
@@ -693,10 +693,34 @@ export function CarAndDriverHomepage() {
         
         {/* Ad */}
         <AdUnit size="300x250" />
+        
+        {/* SEO Block Grid Section */}
+        <section 
+          className="w-full"
+          style={{ 
+            paddingLeft: tokens.spacing.md,
+            paddingRight: tokens.spacing.md,
+          }}
+        >
+          <SeoBlockGrid
+            title="More From Car and Driver"
+            cards={[
+              { id: 1, title: '2024 Best Performance Cars Under $50K' },
+              { id: 2, title: 'Electric SUV Comparison: Tesla vs Rivian' },
+              { id: 3, title: 'How to Choose the Right Tires for Your Car' },
+              { id: 4, title: 'Top 10 Most Reliable Used Cars in 2024' },
+              { id: 5, title: 'Best Luxury Sedans for Long Road Trips' },
+              { id: 6, title: 'Understanding Your Car\'s Warning Lights' },
+              { id: 7, title: 'First Drive: 2025 Porsche 911 Turbo S' },
+              { id: 8, title: 'Best Car Insurance Companies Ranked' },
+              { id: 9, title: 'How to Negotiate the Best Car Deal' },
+              { id: 10, title: 'Top Picks: Best Family SUVs of 2024' },
+              { id: 11, title: 'EV Charging Guide: Everything You Need' },
+              { id: 12, title: 'Classic Cars Worth Investing In Now' },
+            ]}
+          />
+        </section>
       </main>
-      
-        {/* Token Preview Section */}
-        <TokenPreview />
       
         {/* Footer */}
         <Footer
