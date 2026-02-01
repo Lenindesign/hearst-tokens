@@ -44,9 +44,9 @@ const tokens = {
     contentInnerGap: 4,
   },
   sizes: {
-    sectionWidth: 960,
-    columnWidth: 323,
-    bigImageHeight: 345,
+    sectionWidth: 1200,
+    columnWidth: 360,
+    bigImageHeight: 400,
     smallImageSize: 120, // Square image for sidebar cards
   },
   typography: {

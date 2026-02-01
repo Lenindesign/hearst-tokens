@@ -44,7 +44,7 @@ const tokens = {
     socialIconGap: 32,
   },
   sizes: {
-    containerWidth: 956,
+    containerWidth: 1200,
     logoWidth: 200,
     logoHeight: 24,
     socialIconSize: 24,
@@ -469,18 +469,6 @@ export function Footer({
             gap: tokens.spacing.legalLinksGap,
           }}
         >
-          <span
-            style={{
-              fontFamily: tokens.typography.legalText.fontFamily,
-              fontSize: tokens.typography.legalText.fontSize,
-              fontWeight: tokens.typography.legalText.fontWeight,
-              letterSpacing: tokens.typography.legalText.letterSpacing,
-              lineHeight: tokens.typography.legalText.lineHeight,
-              color: tokens.colors.textBlack,
-            }}
-          >
-            {legalText.company}
-          </span>
           <span
             style={{
               fontFamily: tokens.typography.legalText.fontFamily,

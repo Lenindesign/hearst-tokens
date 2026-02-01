@@ -37,8 +37,8 @@ const tokens = {
     buttonGap: 4,
   },
   sizes: {
-    sectionWidth: 960,
-    imageHeight: 222,
+    sectionWidth: 1200,
+    imageHeight: 260,
   },
   typography: {
     sectionTitle: {
