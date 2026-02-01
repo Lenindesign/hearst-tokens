@@ -10,83 +10,76 @@ import { BigStoryCard } from './BigStoryCard';
 import { Footer } from './Footer';
 import { MainNavigation } from './MainNavigation';
 
+// Import centralized design tokens
+import { 
+  colors, 
+  spacing, 
+  layout, 
+  font,
+  primitives 
+} from '@/lib/designTokens';
+
 /**
  * Car and Driver Homepage Component
  * 
- * Design Tokens Used:
- * - Brand Colors: #8dafc5, #b1b1b1, #444444, #e2e2e2, #eaeaea, #6abd45, #6f6f6f, #00a4db, #1c5f8b, #f1f7f7, #dbca8b, #607d8b, #dae2e5, #aaaaaa
- * - Breakpoints: sm: 320px, md: 768px, lg: 1024px, xl: 1440px, 2xl: 1600px
- * - Layout: 4xs: 128px, 3xs: 192px, 2xs: 224px, xs: 256px, sm: 320px, md: 384px, lg: 512px, xl: 768px, 2xl: 1024px, 3xl: 1280px, 4xl: 1600px
- * - Spacing: none: 0, 3xs: 2px, 2xs: 4px, xs: 8px, sm: 12px, md: 16px, lg: 20px, xl: 24px, 2xl: 32px, 3xl: 48px, 4xl: 64px
- * - Font: SF Pro (mac-default)
+ * This component uses the centralized Hearst Design System tokens from:
+ * src/lib/designTokens.ts
+ * 
+ * Token categories used:
+ * - colors.neutral (gray scale)
+ * - spacing (consistent spacing scale)
+ * - layout (container widths)
+ * - font (typography settings)
  */
 
-// Car and Driver Design Tokens
+// Map design system tokens to component-friendly format
 const tokens = {
   colors: {
-    brand1: '#8dafc5',  // Light blue
-    brand2: '#b1b1b1',  // Gray
-    brand3: '#444444',  // Dark gray
-    brand4: '#e2e2e2',  // Light gray
-    brand5: '#eaeaea',  // Very light gray
-    brand6: '#6abd45',  // Green
-    brand7: '#6f6f6f',  // Medium gray
-    brand8: '#00a4db',  // Cyan/Blue
-    brand9: '#1c5f8b',  // Dark blue
-    brand10: '#f1f7f7', // Off-white
-    brand11: '#dbca8b', // Gold/Tan
-    brand12: '#607d8b', // Blue-gray
-    brand13: '#dae2e5', // Light blue-gray
-    brand14: '#aaaaaa', // Gray
-    // Neutral palette from primitives
-    gray7: '#121212',
-    gray11: '#1c1c1c',
-    gray16: '#292929',
-    gray23: '#3b3b3b',
-    gray34: '#575757',
-    gray46: '#757575',
-    gray58: '#949494',
-    gray74: '#bdbdbd',
-    gray84: '#d6d6d6',
-    gray93: '#ededed',
-    gray96: '#f5f5f5',
-    gray100: '#ffffff',
-  },
-  breakpoints: {
-    sm: 320,
-    md: 768,
-    lg: 1024,
-    xl: 1440,
-    '2xl': 1600,
+    // Brand-specific colors (Car and Driver)
+    brand9: '#1c5f8b',  // Dark blue - primary brand color
+    brand13: '#dae2e5', // Light blue-gray - newsletter bg
+    // Neutral palette from design system
+    gray7: colors.neutral.darkest,      // #121212
+    gray11: colors.neutral[1000],       // #1c1c1c
+    gray16: colors.neutral[900],        // #292929
+    gray23: colors.neutral[800],        // #3b3b3b
+    gray34: colors.neutral[700],        // #575757
+    gray46: colors.neutral[600],        // #757575
+    gray58: colors.neutral[500],        // #949494
+    gray74: colors.neutral[400],        // #bdbdbd
+    gray84: colors.neutral[300],        // #d6d6d6
+    gray93: colors.neutral[200],        // #ededed
+    gray96: colors.neutral[100],        // #f5f5f5
+    gray100: colors.neutral.lightest,   // #ffffff
   },
   layout: {
-    '4xs': 128,
-    '3xs': 192,
-    '2xs': 224,
-    xs: 256,
-    sm: 320,
-    md: 384,
-    lg: 512,
-    xl: 768,
-    '2xl': 1024,
-    '3xl': 1280,
-    '4xl': 1600,
+    '4xs': layout['4xs'],
+    '3xs': layout['3xs'],
+    '2xs': layout['2xs'],
+    xs: layout.xs,
+    sm: layout.sm,
+    md: layout.md,
+    lg: layout.lg,
+    xl: layout.xl,
+    '2xl': layout['2xl'],
+    '3xl': layout['3xl'],
+    '4xl': layout['4xl'],
   },
   spacing: {
-    none: 0,
-    '3xs': 2,
-    '2xs': 4,
-    xs: 8,
-    sm: 12,
-    md: 16,
-    lg: 20,
-    xl: 24,
-    '2xl': 32,
-    '3xl': 48,
-    '4xl': 64,
+    none: spacing.none,
+    '3xs': spacing['3xs'],
+    '2xs': spacing['2xs'],
+    xs: spacing.xs,
+    sm: spacing.sm,
+    md: spacing.md,
+    lg: spacing.lg,
+    xl: spacing.xl,
+    '2xl': spacing['2xl'],
+    '3xl': spacing['3xl'],
+    '4xl': spacing['4xl'],
   },
   font: {
-    family: '-apple-system, BlinkMacSystemFont, "SF Pro", "Segoe UI", Roboto, sans-serif',
+    family: font.family.default,
   },
 };
 
