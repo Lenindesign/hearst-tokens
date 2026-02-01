@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { id: 'components', label: 'Components' },
   { id: 'typography', label: 'Typography' },
   { id: 'spacing', label: 'Spacing & Layout' },
+  { id: 'audit', label: 'Token Audit' },
 ] as const;
 
 interface NavigationProps {
