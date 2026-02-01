@@ -9,6 +9,7 @@ import { FourAcrossGrid } from './FourAcrossGrid';
 import { BigStoryCard } from './BigStoryCard';
 import { Footer } from './Footer';
 import { MainNavigation } from './MainNavigation';
+import { TokenPreview } from './TokenPreview';
 
 // Import centralized design tokens
 import { 
@@ -693,6 +694,9 @@ export function CarAndDriverHomepage() {
         {/* Ad */}
         <AdUnit size="300x250" />
       </main>
+      
+        {/* Token Preview Section */}
+        <TokenPreview />
       
         {/* Footer */}
         <Footer
