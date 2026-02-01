@@ -452,15 +452,13 @@ function ComponentPreview({ componentId }: { componentId: string }) {
             cards={[
               {
                 id: 1,
-                title: 'New EV Technology Breakthrough',
-                description: 'Revolutionary battery tech promises 500-mile range.',
+                description: 'New EV Technology Breakthrough: Revolutionary battery tech promises 500-mile range.',
                 author: 'By Tech Team',
                 showPlayIcon: true,
               },
               {
                 id: 2,
-                title: 'Classic Car Restoration Guide',
-                description: 'Expert tips for bringing vintage vehicles back to life.',
+                description: 'Classic Car Restoration Guide: Expert tips for bringing vintage vehicles back to life.',
                 author: 'By Restoration Desk',
                 showPlayIcon: false,
               },
