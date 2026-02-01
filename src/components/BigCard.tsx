@@ -29,7 +29,7 @@ const tokens = {
     contentGap: 4,
   },
   sizes: {
-    imageHeight: 291,
+    imageHeight: 400,
   },
   typography: {
     eyebrow: {
