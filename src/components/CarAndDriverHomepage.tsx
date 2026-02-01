@@ -471,6 +471,31 @@ export function CarAndDriverHomepage() {
       className="min-h-screen"
       style={{ backgroundColor: tokens.colors.gray100 }}
     >
+      {/* Navigation - Full width background */}
+      <MainNavigation
+        brandName="CAR AND DRIVER"
+        utilityLinks={[
+          { label: 'Shop' },
+          { label: 'US' },
+          { label: 'Newsletter' },
+          { label: 'Sign in' },
+        ]}
+        menuLinks={[
+          { label: 'News' },
+          { label: 'Reviews' },
+          { label: "Buyer's Guide" },
+          { label: 'Features' },
+          { label: 'Video' },
+          { label: 'Podcasts' },
+          { label: 'Motorsports' },
+          { label: 'More' },
+        ]}
+        actionButtons={[
+          { label: 'Sign In', variant: 'ghost' },
+          { label: 'Subscribe', variant: 'filled' },
+        ]}
+      />
+      
       {/* Page Container - 1200px max width */}
       <div
         style={{
@@ -479,30 +504,6 @@ export function CarAndDriverHomepage() {
           width: '100%',
         }}
       >
-        <MainNavigation
-          brandName="CAR AND DRIVER"
-          utilityLinks={[
-            { label: 'Shop' },
-            { label: 'US' },
-            { label: 'Newsletter' },
-            { label: 'Sign in' },
-          ]}
-          menuLinks={[
-            { label: 'News' },
-            { label: 'Reviews' },
-            { label: "Buyer's Guide" },
-            { label: 'Features' },
-            { label: 'Video' },
-            { label: 'Podcasts' },
-            { label: 'Motorsports' },
-            { label: 'More' },
-          ]}
-          actionButtons={[
-            { label: 'Sign In', variant: 'ghost' },
-            { label: 'Subscribe', variant: 'filled' },
-          ]}
-        />
-        
         <main 
           className="flex flex-col"
           style={{ 

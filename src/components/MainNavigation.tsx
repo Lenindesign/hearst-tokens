@@ -390,38 +390,32 @@ export function MainNavigation({
         display: 'flex',
         flexDirection: 'column',
         width: '100%',
+        backgroundColor: tokens.colors.navBarBg,
+        borderBottom: `1px solid ${tokens.colors.navBarBorder}`,
       }}
     >
-      {/* Nav Container */}
+      {/* Nav Content Container - Constrained to 1200px */}
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
+          maxWidth: 1200,
+          margin: '0 auto',
+          padding: `${tokens.spacing.navBarPadding[0]}px ${tokens.spacing.navBarPadding[1]}px`,
         }}
       >
-        {/* Nav Bar */}
+        {/* Action Nav Bar */}
         <div
           style={{
             display: 'flex',
-            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: `${tokens.spacing.actionNavPadding[0]}px ${tokens.spacing.actionNavPadding[1]}px`,
+            gap: tokens.spacing.sectionGap,
             width: '100%',
-            padding: `${tokens.spacing.navBarPadding[0]}px ${tokens.spacing.navBarPadding[1]}px`,
-            backgroundColor: tokens.colors.navBarBg,
-            borderBottom: `1px solid ${tokens.colors.navBarBorder}`,
           }}
         >
-          {/* Action Nav Bar */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: `${tokens.spacing.actionNavPadding[0]}px ${tokens.spacing.actionNavPadding[1]}px`,
-              gap: tokens.spacing.sectionGap,
-              width: '100%',
-            }}
-          >
             {/* Left Side - Search */}
             <div
               style={{
@@ -481,7 +475,6 @@ export function MainNavigation({
             </div>
           </div>
         </div>
-      </div>
     </nav>
   );
 }
