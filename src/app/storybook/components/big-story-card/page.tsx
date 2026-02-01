@@ -31,8 +31,7 @@ export default function BigStoryCardPage() {
         >
           <BigStoryCard
             title="2024 Tesla Model S Review: Still the Best?"
-            subtitle="The flagship sedan gets updates"
-            description="We test the latest Model S to see if it still leads the EV pack."
+            eyebrow="AUTOMOTIVE"
             author="Auto Editor"
           />
         </div>
