@@ -60,9 +60,11 @@ export default function ComponentsPage() {
             newsletterTitle="Sign up for daily tips"
             sectionTitle="Trending Now"
             trendingCards={[
-              { id: 1, title: "I Tried a Workout Designed for Menopausal Women", timestamp: '2 hours ago', author: 'By Fitness Editor', badgeNumber: 1 },
-              { id: 2, title: "The Best Kitchen Gadgets of 2024", timestamp: '3 hours ago', author: 'By Home Editor', badgeNumber: 2 },
-              { id: 3, title: "Celebrity Chef Shares Secret Recipe", timestamp: '5 hours ago', author: 'By Food Editor', badgeNumber: 3 },
+              { id: 1, title: "I Tried a Workout Designed for Menopausal Women" },
+              { id: 2, title: "The Best Kitchen Gadgets of 2024" },
+              { id: 3, title: "Celebrity Chef Shares Secret Recipe" },
+              { id: 4, title: "10 Easy Weeknight Dinner Recipes" },
+              { id: 5, title: "The Ultimate Guide to Spring Cleaning" },
             ]}
           />
         </div>

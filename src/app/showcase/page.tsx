@@ -485,11 +485,13 @@ function ComponentPreview({ componentId }: { componentId: string }) {
       return (
         <div style={{ maxWidth: 640 }}>
           <TrendingSection
-            title="Trending Now"
+            title="TRENDING"
             cards={[
-              { id: 1, badgeNumber: 1, title: 'Best SUVs for Families in 2024' },
-              { id: 2, badgeNumber: 2, title: 'Electric vs Hybrid: Which Is Right?' },
-              { id: 3, badgeNumber: 3, title: 'Top 10 Sports Cars Under $50K' },
+              { id: 1, title: 'Best SUVs for Families in 2024' },
+              { id: 2, title: 'Electric vs Hybrid: Which Is Right?' },
+              { id: 3, title: 'Top 10 Sports Cars Under $50K' },
+              { id: 4, title: '2026 Explorer Tremor Drive Review' },
+              { id: 5, title: 'The Winningest Cars in 10Best History' },
             ]}
           />
         </div>
