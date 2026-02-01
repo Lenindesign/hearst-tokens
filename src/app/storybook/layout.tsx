@@ -85,6 +85,7 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
 
   const tokenPages = [
     { href: '/storybook/tokens/colors', label: 'Colors' },
+    { href: '/storybook/tokens/brand-colors', label: 'Brand Colors' },
     { href: '/storybook/tokens/typography', label: 'Typography' },
     { href: '/storybook/tokens/spacing', label: 'Spacing' },
     { href: '/storybook/tokens/layout', label: 'Layout' },
