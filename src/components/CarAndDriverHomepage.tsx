@@ -471,47 +471,55 @@ export function CarAndDriverHomepage() {
       className="min-h-screen"
       style={{ backgroundColor: tokens.colors.gray100 }}
     >
-      <MainNavigation
-        brandName="CAR AND DRIVER"
-        utilityLinks={[
-          { label: 'Shop' },
-          { label: 'US' },
-          { label: 'Newsletter' },
-          { label: 'Sign in' },
-        ]}
-        menuLinks={[
-          { label: 'News' },
-          { label: 'Reviews' },
-          { label: "Buyer's Guide" },
-          { label: 'Features' },
-          { label: 'Video' },
-          { label: 'Podcasts' },
-          { label: 'Motorsports' },
-          { label: 'More' },
-        ]}
-        actionButtons={[
-          { label: 'Sign In', variant: 'ghost' },
-          { label: 'Subscribe', variant: 'filled' },
-        ]}
-      />
-      
-      <main 
-        className="flex flex-col"
-        style={{ 
-          gap: tokens.spacing['3xl'],
-          paddingBottom: tokens.spacing['3xl'],
+      {/* Page Container - 1200px max width */}
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: '0 auto',
+          width: '100%',
         }}
       >
-        {/* Hero Section */}
-        <section 
-          className="w-full mx-auto"
+        <MainNavigation
+          brandName="CAR AND DRIVER"
+          utilityLinks={[
+            { label: 'Shop' },
+            { label: 'US' },
+            { label: 'Newsletter' },
+            { label: 'Sign in' },
+          ]}
+          menuLinks={[
+            { label: 'News' },
+            { label: 'Reviews' },
+            { label: "Buyer's Guide" },
+            { label: 'Features' },
+            { label: 'Video' },
+            { label: 'Podcasts' },
+            { label: 'Motorsports' },
+            { label: 'More' },
+          ]}
+          actionButtons={[
+            { label: 'Sign In', variant: 'ghost' },
+            { label: 'Subscribe', variant: 'filled' },
+          ]}
+        />
+        
+        <main 
+          className="flex flex-col"
           style={{ 
-            maxWidth: tokens.layout['2xl'],
-            paddingLeft: tokens.spacing.md,
-            paddingRight: tokens.spacing.md,
-            paddingTop: tokens.spacing.xl,
+            gap: tokens.spacing['3xl'],
+            paddingBottom: tokens.spacing['3xl'],
           }}
         >
+          {/* Hero Section */}
+          <section 
+            className="w-full mx-auto"
+            style={{ 
+              maxWidth: '100%',
+              paddingLeft: tokens.spacing.md,
+              paddingRight: tokens.spacing.md,
+              paddingTop: tokens.spacing.xl,
+            }}
+          >
           <div 
             className="flex flex-col lg:flex-row"
             style={{ gap: tokens.spacing.xl }}
@@ -606,11 +614,10 @@ export function CarAndDriverHomepage() {
         
         {/* Feed Block Section - New Component */}
         <section 
-          className="w-full mx-auto"
+          className="w-full"
           style={{ 
-            maxWidth: 1024,
-            paddingLeft: 16,
-            paddingRight: 16,
+            paddingLeft: tokens.spacing.md,
+            paddingRight: tokens.spacing.md,
           }}
         >
           <FeedBlockSection
@@ -631,11 +638,10 @@ export function CarAndDriverHomepage() {
         
         {/* Four Across Grid Section */}
         <section 
-          className="w-full mx-auto"
+          className="w-full"
           style={{ 
-            maxWidth: 1024,
-            paddingLeft: 16,
-            paddingRight: 16,
+            paddingLeft: tokens.spacing.md,
+            paddingRight: tokens.spacing.md,
           }}
         >
           <FourAcrossGrid
@@ -651,11 +657,10 @@ export function CarAndDriverHomepage() {
         
         {/* Big Story Card Section */}
         <section 
-          className="w-full mx-auto"
+          className="w-full"
           style={{ 
-            maxWidth: 1024,
-            paddingLeft: 16,
-            paddingRight: 16,
+            paddingLeft: tokens.spacing.md,
+            paddingRight: tokens.spacing.md,
           }}
         >
           <BigStoryCard
@@ -667,11 +672,10 @@ export function CarAndDriverHomepage() {
         
         {/* Four Across Grid Section - After Big Story */}
         <section 
-          className="w-full mx-auto"
+          className="w-full"
           style={{ 
-            maxWidth: 1024,
-            paddingLeft: 16,
-            paddingRight: 16,
+            paddingLeft: tokens.spacing.md,
+            paddingRight: tokens.spacing.md,
           }}
         >
           <FourAcrossGrid
@@ -689,22 +693,23 @@ export function CarAndDriverHomepage() {
         <AdUnit size="300x250" />
       </main>
       
-      {/* Footer */}
-      <Footer
-        brandName="HEARST"
-        menuColumns={[
-          { sectionTitle: 'News', links: ['Politics', 'World', 'Business', 'Tech', 'Science', 'Health', 'Sports', 'Entertainment'] },
-          { sectionTitle: 'Reviews', links: ['Cars', 'SUVs', 'Trucks', 'Electric', 'Luxury', 'Performance', 'Classic', 'Comparison'] },
-          { sectionTitle: 'Buying Guide', links: ['New Cars', 'Used Cars', 'Financing', 'Insurance', 'Maintenance', 'Recalls', 'Deals', 'Calculator'] },
-          { sectionTitle: 'More', links: ['About Us', 'Careers', 'Advertise', 'Contact', 'Newsletter', 'Subscribe', 'Shop', 'Events'] },
-        ]}
-        legalText={{
-          company: 'A Part of Hearst Digital Media',
-          affiliate: 'Car and Driver participates in various affiliate marketing programs, which means we may get paid commissions on editorially chosen products purchased through our links to retailer sites.',
-          copyright: '©2025 Hearst Magazine Media, Inc. All Rights Reserved.',
-        }}
-        legalLinks={['Privacy Notice', 'CA Notice at Collection', 'Your CA Privacy Rights', 'DAA Industry Opt Out', 'Terms of Use', 'Site Map']}
-      />
+        {/* Footer */}
+        <Footer
+          brandName="HEARST"
+          menuColumns={[
+            { sectionTitle: 'News', links: ['Politics', 'World', 'Business', 'Tech', 'Science', 'Health', 'Sports', 'Entertainment'] },
+            { sectionTitle: 'Reviews', links: ['Cars', 'SUVs', 'Trucks', 'Electric', 'Luxury', 'Performance', 'Classic', 'Comparison'] },
+            { sectionTitle: 'Buying Guide', links: ['New Cars', 'Used Cars', 'Financing', 'Insurance', 'Maintenance', 'Recalls', 'Deals', 'Calculator'] },
+            { sectionTitle: 'More', links: ['About Us', 'Careers', 'Advertise', 'Contact', 'Newsletter', 'Subscribe', 'Shop', 'Events'] },
+          ]}
+          legalText={{
+            company: 'A Part of Hearst Digital Media',
+            affiliate: 'Car and Driver participates in various affiliate marketing programs, which means we may get paid commissions on editorially chosen products purchased through our links to retailer sites.',
+            copyright: '©2025 Hearst Magazine Media, Inc. All Rights Reserved.',
+          }}
+          legalLinks={['Privacy Notice', 'CA Notice at Collection', 'Your CA Privacy Rights', 'DAA Industry Opt Out', 'Terms of Use', 'Site Map']}
+        />
+      </div>
     </div>
   );
 }
