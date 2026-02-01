@@ -177,6 +177,60 @@ export const colors = {
     lightest: primitives.palette.gray[100], // #ffffff
     darkest: primitives.palette.gray[7],    // #121212
   },
+  // Brand colors from token system
+  brand: {
+    1: '#1d4ed8',   // Primary blue
+    2: '#ebff7c',   // Yellow-green accent
+    3: '#14b8a6',   // Teal
+    4: '#e9d5ff',   // Light purple
+    5: '#f9a8d4',   // Pink
+    6: '#ffedd5',   // Light orange
+    7: '#ef4444',   // Red
+    8: '#ec4899',   // Magenta
+    9: '#0d9488',   // Dark teal
+    10: '#ffffff',  // White
+    11: '#ffffff',
+    12: '#ffffff',
+    13: '#ffffff',
+    14: '#ffffff',
+  },
+  // Primary color scale (based on brand.1 blue)
+  primary: {
+    100: '#f0f7ff',
+    200: '#d7e9fe',
+    300: '#aad1fd',
+    400: '#63a8fd',
+    500: '#3689fc',
+    600: '#1d4ed8',  // brand.1
+    700: '#063c98',
+    800: '#052b70',
+    900: '#041d4e',
+    1000: '#03112b',
+  },
+  // Content colors (semantic)
+  content: {
+    default: primitives.palette.gray[7],      // #121212
+    defaultHover: primitives.palette.gray[7],
+    defaultActive: primitives.palette.gray[7],
+    brand: '#1d4ed8',       // primary.600
+    brandHover: '#1d4ed8',
+    brandActive: '#1d4ed8',
+    onBrand: primitives.palette.gray[100],    // #ffffff
+    defaultSubtle: primitives.palette.gray[74], // #bdbdbd
+  },
+  // Danger/Error colors
+  danger: {
+    100: '#feecec',
+    200: '#fed7d7',
+    300: '#fea8a5',
+    400: '#fc7d79',
+    500: '#f4504e',
+    600: '#cc2828',
+    700: '#a81a1f',
+    800: '#7c110e',
+    900: '#580a09',
+    1000: '#360807',
+  },
   alert: {
     success: {
       100: primitives.palette.green[93],
