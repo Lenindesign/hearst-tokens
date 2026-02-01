@@ -424,10 +424,11 @@ function ComponentPreview({ componentId }: { componentId: string }) {
       return (
         <div style={{ maxWidth: 224 }}>
           <LeftSidebarColumn
-            cards={[
-              { id: 1, eyebrow: 'REVIEWS', title: '2024 Tesla Model S Review' },
-              { id: 2, eyebrow: 'NEWS', title: 'Electric Vehicle Sales Surge' },
-              { id: 3, eyebrow: 'FEATURES', title: 'Best Road Trip Cars of 2024' },
+            title="Trending Now"
+            stories={[
+              { id: 1, title: '2024 Tesla Model S Review', timestamp: '2 hours ago' },
+              { id: 2, title: 'Electric Vehicle Sales Surge', timestamp: '3 hours ago' },
+              { id: 3, title: 'Best Road Trip Cars of 2024', timestamp: '5 hours ago' },
             ]}
           />
         </div>
