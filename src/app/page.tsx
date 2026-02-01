@@ -1,5 +1,5 @@
-import { TokenViewer } from '@/components/TokenViewer';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return <TokenViewer />;
+  redirect('/storybook');
 }
