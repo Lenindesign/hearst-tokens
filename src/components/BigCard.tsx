@@ -41,10 +41,10 @@ const tokens = {
     },
     title: {
       fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 48,
+      fontSize: 64, // font.size['6xl'] from design tokens
       fontWeight: 700,
       letterSpacing: -2,
-      lineHeight: 1.08,
+      lineHeight: 1.125,
     },
     author: {
       fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
