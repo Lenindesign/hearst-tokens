@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, ReactNode } from 'react';
 import { Navigation } from './Navigation';
 import { Section } from './Section';
 import { ColorSwatch } from './ColorSwatch';
@@ -12,6 +12,7 @@ import {
   flattenTokens,
   TokenValue,
   TokenData,
+  AnyTokenObject,
 } from '@/lib/tokens';
 
 export function TokenViewer() {
@@ -57,8 +58,8 @@ export function TokenViewer() {
 
   if (!tokens) return null;
 
-  const primitives = tokens.values['Primitives/White Label'];
-  const alias = tokens.values['Alias/White Label'];
+  const primitives = tokens.values['Primitives/White Label'] as AnyTokenObject;
+  const alias = tokens.values['Alias/White Label'] as AnyTokenObject;
 
   // Get flattened tokens
   const flatPrimitives = flattenTokens(primitives || {});
@@ -81,7 +82,7 @@ export function TokenViewer() {
   );
 
   // Get primitive colors
-  const primitiveColors = primitives?._palette || {};
+  const primitiveColors = (primitives?._palette || {}) as Record<string, Record<string, TokenValue>>;
 
   // Get brand themes
   const brandKeys = Object.keys(tokens.values).filter(
@@ -98,13 +99,13 @@ export function TokenViewer() {
             <Section id="colors" title="Color Tokens">
               {/* Primitive Palettes */}
               <h3 className="text-lg font-semibold text-gray-700 mb-4">Primitive Palettes</h3>
-              {Object.entries(primitiveColors).map(([paletteName, colors]) => (
+              {Object.entries(primitiveColors).map(([paletteName, colors]): ReactNode => (
                 <div key={paletteName} className="mb-8">
                   <h4 className="text-md font-medium text-gray-600 mb-3 capitalize">
                     {paletteName}
                   </h4>
                   <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
-                    {Object.entries(colors as Record<string, TokenValue>).map(([shade, token]) => (
+                    {Object.entries(colors).map(([shade, token]) => (
                       <ColorSwatch
                         key={`${paletteName}-${shade}`}
                         name={`${shade}`}
@@ -118,32 +119,34 @@ export function TokenViewer() {
 
               {/* Semantic Colors */}
               <h3 className="text-lg font-semibold text-gray-700 mb-4 mt-12">Semantic Colors</h3>
-              {alias?.palette && Object.entries(alias.palette as Record<string, unknown>).map(([category, values]) => {
-                const flatCategory = flattenTokens({ [category]: values });
-                const colorEntries = Object.entries(flatCategory).filter(
-                  ([_, v]) => v.type === 'color'
-                );
+              {alias?.palette && Object.entries(alias.palette as Record<string, Record<string, unknown>>)
+                .map(([category, values]) => {
+                  const flatCategory = flattenTokens({ [category]: values } as Record<string, unknown>);
+                  const colorEntries = Object.entries(flatCategory).filter(
+                    ([_, v]) => v.type === 'color'
+                  );
 
-                if (colorEntries.length === 0) return null;
+                  if (colorEntries.length === 0) return null;
 
-                return (
-                  <div key={category} className="mb-8">
-                    <h4 className="text-md font-medium text-gray-600 mb-3 capitalize">
-                      {category}
-                    </h4>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
-                      {colorEntries.map(([name, token]) => (
-                        <ColorSwatch
-                          key={name}
-                          name={name.replace(`${category}-`, '')}
-                          value={String(token.value)}
-                          onClick={() => copyToClipboard(String(token.value))}
-                        />
-                      ))}
+                  return (
+                    <div key={category} className="mb-8">
+                      <h4 className="text-md font-medium text-gray-600 mb-3 capitalize">
+                        {category}
+                      </h4>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+                        {colorEntries.map(([name, token]) => (
+                          <ColorSwatch
+                            key={name}
+                            name={name.replace(`${category}-`, '')}
+                            value={String(token.value)}
+                            onClick={() => copyToClipboard(String(token.value))}
+                          />
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })
+                .filter(Boolean)}
             </Section>
           </>
         )}

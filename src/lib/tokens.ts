@@ -10,6 +10,9 @@ export interface TokenData {
   values: Record<string, Record<string, unknown>>;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type AnyTokenObject = Record<string, any>;
+
 // Fetch tokens from the API
 export async function fetchTokens(): Promise<TokenData> {
   const response = await fetch(TOKENS_URL, { next: { revalidate: 3600 } });
