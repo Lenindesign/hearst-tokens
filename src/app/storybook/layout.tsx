@@ -109,6 +109,7 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
 
   const pageExamples = [
     { href: '/storybook/pages/homepage', label: 'Car & Driver Homepage' },
+    { href: '/storybook/pages/themed-homepage', label: 'Themed Homepage Preview' },
   ];
 
   return (
