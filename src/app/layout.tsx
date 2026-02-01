@@ -1,5 +1,21 @@
 import type { Metadata } from "next";
+import { Inter, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
+
+// Load Google Fonts for Car and Driver theme
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-barlow-condensed",
+  weight: ["400", "500", "600", "700", "800"],
+});
 
 export const metadata: Metadata = {
   title: "Hearst Design System - Token Viewer",
@@ -12,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${barlowCondensed.variable}`}>
       <body className="antialiased">
         {children}
       </body>

@@ -84,6 +84,7 @@ const neutralColors = {
 export const brandThemes: Record<string, BrandTheme> = {
   // Car and Driver - Automotive focus, blue/gray palette
   // Brand colors from API: #8dafc5, #b1b1b1, #444444, #e2e2e2, #eaeaea, #6abd45, #6f6f6f, #00a4db, #1c5f8b, #f1f7f7, #dbca8b, #607d8b, #dae2e5
+  // Typography: Inter for headlines/body, Barlow Condensed for section headers and eyebrows
   carAndDriver: {
     id: 'carAndDriver',
     name: 'Car and Driver',
@@ -105,9 +106,12 @@ export const brandThemes: Record<string, BrandTheme> = {
     },
     typography: {
       fontFamily: {
-        primary: 'Inter, ' + font.family.default,
+        // Inter for headlines and body text
+        primary: 'var(--font-inter), Inter, ' + font.family.default,
+        // Georgia for secondary/serif text
         secondary: font.family.serif,
-        display: '"Barlow Condensed", ' + font.family.default,
+        // Barlow Condensed for section headers, eyebrows, and nav elements
+        display: 'var(--font-barlow-condensed), "Barlow Condensed", ' + font.family.default,
       },
       headerWeight: font.weight.bold,
       bodyWeight: font.weight.regular,

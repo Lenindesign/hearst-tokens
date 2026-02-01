@@ -1,5 +1,7 @@
 'use client';
 
+import { font, colors, spacing } from '@/lib/designTokens';
+
 /**
  * BigCard Component (Col2)
  * 
@@ -10,46 +12,53 @@
  *   - Card/Base (vertical layout, gap: 8px, white bg, clip: true, width: fill_container)
  *     - Image (height: 291px, width: fill_container, clip: true)
  *     - Card/Core/Content (vertical layout, gap: 4px, width: fill_container)
- *       - Eyebrow (SF Pro, 13px, normal, #121212, letterSpacing: 0.4, lineHeight: 1.23)
- *       - Title (SF Pro, 48px, bold, #121212, letterSpacing: -2, lineHeight: 1.08)
- *       - Author (SF Pro, 12px, normal, #bdbdbd, letterSpacing: 0.4, lineHeight: 1.33)
+ *       - Eyebrow (Barlow Condensed, 13px, normal, #121212, letterSpacing: 0.4, lineHeight: 1.23)
+ *       - Title (Inter, 64px, bold, #121212, letterSpacing: -2, lineHeight: 1.08)
+ *       - Author (Inter, 12px, normal, #bdbdbd, letterSpacing: 0.4, lineHeight: 1.33)
+ * 
+ * Typography (Car and Driver):
+ * - Barlow Condensed: Eyebrows
+ * - Inter: Headlines and body text
  */
 
-// Design tokens from Pencil
+// Design tokens from Pencil - using centralized tokens
 const tokens = {
   colors: {
-    text: '#121212',
-    textSecondary: '#bdbdbd',
-    background: '#ffffff',
-    imagePlaceholder: '#e5e5e5',
+    text: colors.neutral.darkest,
+    textSecondary: colors.neutral[400],
+    background: colors.neutral.lightest,
+    imagePlaceholder: colors.neutral[300],
   },
   spacing: {
-    containerGap: 10,
-    cardGap: 8,
-    contentGap: 4,
+    containerGap: spacing.xs,
+    cardGap: spacing.xs,
+    contentGap: spacing['2xs'],
   },
   sizes: {
     imageHeight: 400,
   },
   typography: {
     eyebrow: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 13,
-      fontWeight: 400,
+      // Barlow Condensed for eyebrows
+      fontFamily: font.family.barlowCondensed,
+      fontSize: font.size['2xs'],
+      fontWeight: font.weight.regular,
       letterSpacing: 0.4,
       lineHeight: 1.23,
     },
     title: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 64, // font.size['6xl'] from design tokens
-      fontWeight: 700,
+      // Inter for headlines
+      fontFamily: font.family.inter,
+      fontSize: font.size['6xl'],
+      fontWeight: font.weight.bold,
       letterSpacing: -2,
       lineHeight: 1.125,
     },
     author: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 12,
-      fontWeight: 400,
+      // Inter for body text
+      fontFamily: font.family.inter,
+      fontSize: font.size['3xs'],
+      fontWeight: font.weight.regular,
       letterSpacing: 0.4,
       lineHeight: 1.33,
     },

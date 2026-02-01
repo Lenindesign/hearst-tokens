@@ -1,5 +1,7 @@
 'use client';
 
+import { font, colors, spacing } from '@/lib/designTokens';
+
 /**
  * LatestNewsSidebar Component (Car and Driver Version)
  * 
@@ -15,23 +17,27 @@
  *       - Text content (vertical layout, gap: 16px)
  *         - Title (Inter, 16px, bold, #000000, letterSpacing: 0.16, lineHeight: 1.1)
  *         - Timestamp (Inter, 13px, normal, #198294, lineHeight: 1.3)
+ * 
+ * Typography:
+ * - Barlow Condensed: Section header (strap)
+ * - Inter: Headlines and body text
  */
 
-// Design tokens from Pencil (Car and Driver brand)
+// Design tokens from Pencil (Car and Driver brand) - using centralized tokens
 const tokens = {
   colors: {
     strapBackground: '#d22329',  // Car and Driver red
-    strapText: '#ffffff',
-    titleText: '#000000',
+    strapText: colors.neutral.lightest,
+    titleText: colors.neutral.darkest,
     timestampText: '#198294',    // Teal accent
-    imagePlaceholder: '#e5e5e5',
+    imagePlaceholder: colors.neutral[300],
     mediaIconBg: '#ffffffe5',
     mediaIconShadow: '#0000004f',
   },
   spacing: {
-    containerGap: 24,
-    cardGap: 16,
-    strapPadding: 12,
+    containerGap: spacing.xl,
+    cardGap: spacing.md,
+    strapPadding: spacing.sm,
   },
   sizes: {
     containerWidth: 290,
@@ -41,22 +47,25 @@ const tokens = {
   },
   typography: {
     columnTitle: {
-      fontFamily: '"Barlow Condensed", -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: 24,
-      fontWeight: 600,
+      // Barlow Condensed for section headers
+      fontFamily: font.family.barlowCondensed,
+      fontSize: font.size['2xl'],
+      fontWeight: font.weight.semibold,
       lineHeight: 1,
     },
     title: {
-      fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: 16,
-      fontWeight: 700,
+      // Inter for headlines
+      fontFamily: font.family.inter,
+      fontSize: font.size.md,
+      fontWeight: font.weight.bold,
       letterSpacing: 0.16,
       lineHeight: 1.1,
     },
     timestamp: {
-      fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: 13,
-      fontWeight: 400,
+      // Inter for body text
+      fontFamily: font.family.inter,
+      fontSize: font.size['2xs'],
+      fontWeight: font.weight.regular,
       lineHeight: 1.3,
     },
   },

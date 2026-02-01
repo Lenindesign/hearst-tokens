@@ -81,7 +81,14 @@ const tokens = {
     '4xl': spacing['4xl'],
   },
   font: {
-    family: font.family.default,
+    // Car and Driver typography:
+    // - Inter: Headlines and body text
+    // - Barlow Condensed: Section headers, eyebrows, navigation
+    family: {
+      primary: font.family.inter,           // Inter - headlines & body
+      display: font.family.barlowCondensed, // Barlow Condensed - section headers, eyebrows
+      default: font.family.default,         // System fallback
+    },
   },
 };
 
@@ -136,7 +143,7 @@ function StoryCard({ title, eyebrow, author, imageHeight = 160, horizontal = fal
               style={{ 
                 fontSize: 10,
                 color: tokens.colors.gray46,
-                fontFamily: tokens.font.family,
+                fontFamily: tokens.font.family.display, // Barlow Condensed for eyebrows
               }}
             >
               {eyebrow}
@@ -148,7 +155,7 @@ function StoryCard({ title, eyebrow, author, imageHeight = 160, horizontal = fal
               fontSize: titleSizes[size],
               fontWeight: fontWeights[size],
               color: tokens.colors.gray7,
-              fontFamily: tokens.font.family,
+              fontFamily: tokens.font.family.primary, // Inter for headlines
             }}
           >
             {title}
@@ -158,7 +165,7 @@ function StoryCard({ title, eyebrow, author, imageHeight = 160, horizontal = fal
               style={{ 
                 fontSize: 12,
                 color: tokens.colors.gray74,
-                fontFamily: tokens.font.family,
+                fontFamily: tokens.font.family.primary, // Inter for body text
               }}
             >
               {author}
@@ -198,7 +205,7 @@ function StoryCard({ title, eyebrow, author, imageHeight = 160, horizontal = fal
             style={{ 
               fontSize: 10,
               color: tokens.colors.gray46,
-              fontFamily: tokens.font.family,
+              fontFamily: tokens.font.family.display, // Barlow Condensed for eyebrows
             }}
           >
             {eyebrow}
@@ -210,7 +217,7 @@ function StoryCard({ title, eyebrow, author, imageHeight = 160, horizontal = fal
             fontSize: titleSizes[size],
             fontWeight: fontWeights[size],
             color: tokens.colors.gray7,
-            fontFamily: tokens.font.family,
+            fontFamily: tokens.font.family.primary, // Inter for headlines
           }}
         >
           {title}
@@ -220,7 +227,7 @@ function StoryCard({ title, eyebrow, author, imageHeight = 160, horizontal = fal
             style={{ 
               fontSize: 12,
               color: tokens.colors.gray74,
-              fontFamily: tokens.font.family,
+              fontFamily: tokens.font.family.primary, // Inter for body text
             }}
           >
             {author}
@@ -260,7 +267,7 @@ function AdUnit({ size = '300x250' }: { size?: '300x250' | '300x600' }) {
             color: tokens.colors.gray34,
             paddingLeft: tokens.spacing.xs,
             paddingRight: tokens.spacing.xs,
-            fontFamily: tokens.font.family,
+            fontFamily: tokens.font.family.primary,
           }}
         >
           Advertisement - Continue Reading Below
@@ -280,7 +287,7 @@ function AdUnit({ size = '300x250' }: { size?: '300x250' | '300x600' }) {
           style={{ 
             fontSize: 14,
             color: tokens.colors.gray58,
-            fontFamily: tokens.font.family,
+            fontFamily: tokens.font.family.primary,
           }}
         >
           AD<br/>{size}
@@ -309,7 +316,7 @@ function NewsletterPromo() {
           style={{ 
             fontSize: 13,
             color: tokens.colors.gray7,
-            fontFamily: tokens.font.family,
+            fontFamily: tokens.font.family.display, // Barlow Condensed for section label
           }}
         >
           NEWSLETTER
@@ -319,7 +326,7 @@ function NewsletterPromo() {
             fontSize: 18,
             fontWeight: 700,
             color: tokens.colors.gray7,
-            fontFamily: tokens.font.family,
+            fontFamily: tokens.font.family.primary, // Inter for headlines
           }}
         >
           Get the Latest Car News
@@ -328,7 +335,7 @@ function NewsletterPromo() {
           style={{ 
             fontSize: 14,
             color: tokens.colors.gray34,
-            fontFamily: tokens.font.family,
+            fontFamily: tokens.font.family.primary, // Inter for body text
           }}
         >
           Subscribe to get the latest automotive news delivered to your inbox.
@@ -348,7 +355,7 @@ function NewsletterPromo() {
               padding: `${tokens.spacing.xs}px ${tokens.spacing.sm}px`,
               fontSize: 14,
               border: `1px solid ${tokens.colors.gray74}`,
-              fontFamily: tokens.font.family,
+              fontFamily: tokens.font.family.primary,
             }}
           />
           <button 
@@ -358,7 +365,7 @@ function NewsletterPromo() {
               backgroundColor: tokens.colors.brand9,
               color: tokens.colors.gray100,
               fontSize: 14,
-              fontFamily: tokens.font.family,
+              fontFamily: tokens.font.family.display, // Barlow Condensed for buttons
             }}
           >
             Subscribe
@@ -386,7 +393,7 @@ function TrendingSection() {
           fontWeight: 700,
           color: tokens.colors.gray7,
           marginBottom: tokens.spacing.md,
-          fontFamily: tokens.font.family,
+          fontFamily: tokens.font.family.display, // Barlow Condensed for section headers
         }}
       >
         Trending Now
@@ -418,7 +425,7 @@ function TrendingSection() {
                   fontWeight: 700,
                   backgroundColor: tokens.colors.brand9,
                   color: tokens.colors.gray100,
-                  fontFamily: tokens.font.family,
+                  fontFamily: tokens.font.family.display, // Barlow Condensed for numbers
                 }}
               >
                 {i}
