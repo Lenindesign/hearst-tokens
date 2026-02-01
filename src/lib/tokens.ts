@@ -99,6 +99,67 @@ export function getContrastColor(hexColor: string): string {
   return luminance > 0.5 ? '#000000' : '#ffffff';
 }
 
+// Resolve token references like {_palette.gray.96} or {palette.neutral.ui-02}
+export function resolveTokenReference(
+  value: string,
+  primitives: AnyTokenObject,
+  alias: AnyTokenObject,
+  maxDepth = 10
+): string {
+  if (!value || typeof value !== 'string') return value;
+  
+  // Check if value is a reference (wrapped in curly braces)
+  const refMatch = value.match(/^\{(.+)\}$/);
+  if (!refMatch) return value;
+  
+  // Prevent infinite loops
+  if (maxDepth <= 0) return value;
+  
+  const path = refMatch[1];
+  const parts = path.split('.');
+  
+  let resolved: unknown;
+  
+  // Check if it's a primitive reference (starts with _)
+  if (parts[0].startsWith('_')) {
+    resolved = primitives;
+    for (const part of parts) {
+      if (resolved && typeof resolved === 'object' && part in (resolved as object)) {
+        resolved = (resolved as AnyTokenObject)[part];
+      } else {
+        return value; // Path not found, return original
+      }
+    }
+  } else {
+    // It's an alias reference
+    resolved = alias;
+    for (const part of parts) {
+      if (resolved && typeof resolved === 'object' && part in (resolved as object)) {
+        resolved = (resolved as AnyTokenObject)[part];
+      } else {
+        return value; // Path not found, return original
+      }
+    }
+  }
+  
+  // If resolved value is a token object with a value property, extract it
+  if (resolved && typeof resolved === 'object' && 'value' in (resolved as object)) {
+    const tokenValue = (resolved as TokenValue).value;
+    // Recursively resolve if the value is another reference
+    if (typeof tokenValue === 'string' && tokenValue.startsWith('{')) {
+      return resolveTokenReference(tokenValue, primitives, alias, maxDepth - 1);
+    }
+    return String(tokenValue);
+  }
+  
+  // If it's a direct value, return it
+  if (typeof resolved === 'string' || typeof resolved === 'number') {
+    return String(resolved);
+  }
+  
+  return value;
+}
+
 // Brand configurations
 export const BRANDS = [
   'White Label',

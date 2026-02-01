@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 interface ToastProps {
   message: string;
@@ -18,10 +18,10 @@ export function Toast({ message, isVisible, onHide }: ToastProps) {
 
   return (
     <div
-      className={`fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-lg text-sm font-medium shadow-lg transition-all duration-300 ${
+      className={`fixed bottom-8 left-1/2 bg-[#121212] text-white px-6 py-3 rounded-lg text-[0.875rem] z-[1000] transition-all duration-300 ${
         isVisible
-          ? 'translate-y-0 opacity-100'
-          : 'translate-y-4 opacity-0 pointer-events-none'
+          ? '-translate-x-1/2 translate-y-0 opacity-100'
+          : '-translate-x-1/2 translate-y-[100px] opacity-0 pointer-events-none'
       }`}
     >
       {message}
