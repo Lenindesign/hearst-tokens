@@ -556,13 +556,13 @@ export function CarAndDriverHomepage() {
                   <LatestNewsSidebar
                     title="Latest News"
                     stories={[
-                      { id: 1, title: "Tesla Will Kill the Model S and Model X This Year", timestamp: '19 mins ago' },
-                      { id: 2, title: "Genesis Has Sold Some Copies of This Wild Concept", timestamp: '1 hr ago' },
-                      { id: 3, title: "2026 Ineos Grenadier Gets a Black Edition", timestamp: '1 hr ago', showPlayIcon: true },
-                      { id: 4, title: "Cadillac CT5-V Blackwing's New Package Costs $27K", timestamp: '2 hrs ago' },
-                      { id: 5, title: "Hyundai Planning to Drop Santa Cruz Pickup", timestamp: '3 hrs ago', showPlayIcon: true },
-                      { id: 6, title: "Hameedi Venturo's Project Origine Will Have a V-12", timestamp: '6 hrs ago' },
-                      { id: 7, title: "Refreshed S-Class Has Stars in It's Eyes", timestamp: '1 day ago' },
+                      { id: 1, title: "Tesla Will Kill the Model S and Model X This Year", timestamp: '19 mins ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2026-tesla-model-s-plaid-134-68f6610846819.jpg' },
+                      { id: 2, title: "Genesis Has Sold Some Copies of This Wild Concept", timestamp: '1 hr ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/02-x-skorpio-concept-exterior-6978725403776.jpg?crop=1xw:0.9997037914691943xh;center,top&resize=1800:*' },
+                      { id: 3, title: "2026 Ineos Grenadier Gets a Black Edition", timestamp: '1 hr ago', showPlayIcon: true, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/07-my26-grenadier-quartermaster-black-edition-studio-697a27265b491.jpeg?crop=1.00xw:0.754xh;0,0.166xh&resize=1800:*' },
+                      { id: 4, title: "Cadillac CT5-V Blackwing's New Package Costs $27K", timestamp: '2 hrs ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-land-rover-defender-octa-117-6787c5548e855.jpg?crop=1.00xw:0.918xh;0,0.0816xh&resize=980:*' },
+                      { id: 5, title: "Hyundai Planning to Drop Santa Cruz Pickup", timestamp: '3 hrs ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-hyundai-santa-cruz-exterior-113-66042095b2fac.jpg?crop=0.748xw:0.686xh;0.0901xw,0.255xh&resize=980:*', showPlayIcon: true },
+                      { id: 6, title: "Hameedi Venturo's Project Origine Will Have a V-12", timestamp: '6 hrs ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/hameedi-venturo-lead-image-693f91845d5a0.jpg?crop=0.9958746996690693xw:1xh;center,top&resize=1800:*' },
+                      { id: 7, title: "Refreshed S-Class Has Stars in It's Eyes", timestamp: '1 day ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2027-mercedes-benz-s-class-exterior-pr-111-697927a180999.jpg?crop=0.847xw:0.714xh;0.153xw,0.253xh&resize=1800:*' },
                     ]}
                   />
                 </div>
@@ -570,9 +570,12 @@ export function CarAndDriverHomepage() {
                 {/* Center Column (Col2) - BigCard */}
                 <div className="flex-1">
                   <BigCard
-                    eyebrow="FEATURED"
-                    title="Big Card Title Goes Here. Will be Two Lines"
-                    author="By Author Name"
+                    imageSrc="https://hips.hearstapps.com/hmg-prod/images/2026-honda-pilot-101-6978de7b7c09b.jpg"
+                    imageAlt="2026 Honda Pilot"
+                    eyebrow="FIRST DRIVE"
+                    title="2026 Pilot Does Just Enough to Stay Afloat"
+                    description="The upgraded Pilot's extra equipment and freshened look help it remain a solid, if unexciting, choice in this competitive segment."
+                    author="Reviewed By Joey Capparella"
                   />
                 </div>
               </div>
@@ -581,11 +584,13 @@ export function CarAndDriverHomepage() {
               <SecondLeftSection
                 newsletterEyebrow="Car and Driver Newsletter"
                 newsletterTitle="Get the latest automotive news"
-                sectionTitle="Popular Stories"
+                sectionTitle="TRENDING"
                 trendingCards={[
-                  { id: 1, title: "I Tried a Workout Designed for Menopausal Women", timestamp: '2 hours ago', author: 'By Fitness Editor', badgeNumber: 1 },
-                  { id: 2, title: "The Best Kitchen Gadgets of 2024", timestamp: '3 hours ago', author: 'By Home Editor', badgeNumber: 2 },
-                  { id: 3, title: "Celebrity Chef Shares Secret Recipe", timestamp: '5 hours ago', author: 'By Food Editor', badgeNumber: 3 },
+                  { id: 1, title: "2026 Explorer Tremor Drive: Big Power, Big Bucks" },
+                  { id: 2, title: "The Winningest Cars in 10Best History" },
+                  { id: 3, title: "View Interior Photos of the 2027 Mercedes S-Class" },
+                  { id: 4, title: "Ezra Dyer: The Altima Secretly Thirsts for Mayhem" },
+                  { id: 5, title: "Revealed! 591-HP Donkervoort P24 RS Is Super Light" },
                 ]}
               />
             </div>
@@ -603,18 +608,27 @@ export function CarAndDriverHomepage() {
                 cards={[
                   { 
                     id: 1, 
-                    description: "The cell company rolls out Gen Z influencers and fan experiences.", 
-                    author: 'By Marketing Team' 
+                    sectionLabel: 'ESSENTIAL READS',
+                    title: "Mercedes Design Boss Gorden Wagener Picks His Faves",
+                    dek: "Retiring after 30 years Wagener chooses his favorite Benz creations.",
+                    author: 'By Brett Berk',
+                    imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/25c0255-057-source-6978d8ab61150.jpg?resize=1800:*',
                   },
                   { 
                     id: 2, 
-                    description: "New electric vehicles are changing the automotive landscape forever.", 
-                    author: 'By Auto Desk' 
+                    sectionLabel: 'ESSENTIAL READS',
+                    title: "An F1 Fan's First Daytona 24 Hours",
+                    dek: "A lifelong F1 fan attends his first 24-hour endurance race.",
+                    author: 'By Samantha MacAvoy',
+                    showPlayIcon: true,
+                    imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/gettyimages-2258128426-6978ed1a82c20.jpg?crop=0.663xw:0.559xh;0.306xw,0.441xh&resize=1800:*',
                   },
                   { 
                     id: 3, 
-                    description: "Celebrity chefs share their favorite kitchen gadgets for home cooks.", 
-                    author: 'By Food Editor' 
+                    sectionLabel: 'ESSENTIAL READS',
+                    title: "Every New Car You Can Still Buy with a Stick Shift",
+                    dek: "The cars on this list keep the #SaveTheManuals mission alive.",
+                    author: 'By Greg S. Fink and Joey Capparella',
                   },
                 ]}
               />
@@ -639,9 +653,9 @@ export function CarAndDriverHomepage() {
               author: 'By Auto Editor',
             }}
             sideCards={[
-              { id: 1, title: '2024 Tesla Model S Review: Still the Best?', subtitle: '{subtitle}', description: '{description}', timestamp: '2 hours ago', author: 'By John Smith', showDescription: true },
-              { id: 2, title: 'Ford Mustang Mach-E Gets Major Update', subtitle: '{subtitle}', timestamp: '3 hours ago', author: 'By Sarah Johnson', showDescription: false },
-              { id: 3, title: 'Best SUVs for Families in 2024', subtitle: '{subtitle}', timestamp: '5 hours ago', author: 'By Mike Davis', showDescription: false },
+              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-hyundai-santa-cruz-exterior-113-66042095b2fac.jpg?crop=0.748xw:0.686xh;0.0901xw,0.255xh&resize=980:*', title: '2024 Tesla Model S Review: Still the Best?', subtitle: '{subtitle}', description: '{description}', timestamp: '2 hours ago', author: 'By John Smith', showDescription: true },
+              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-land-rover-defender-octa-117-6787c5548e855.jpg?crop=1.00xw:0.918xh;0,0.0816xh&resize=980:*', title: 'Ford Mustang Mach-E Gets Major Update', subtitle: '{subtitle}', timestamp: '3 hours ago', author: 'By Sarah Johnson', showDescription: false },
+              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2027-mercedes-benz-s-class-exterior-pr-111-697927a180999.jpg?crop=0.847xw:0.714xh;0.153xw,0.253xh&resize=1800:*', title: 'Best SUVs for Families in 2024', subtitle: '{subtitle}', timestamp: '5 hours ago', author: 'By Mike Davis', showDescription: false },
               { id: 4, title: 'Porsche 911 GT3 RS Track Test', subtitle: '{subtitle}', timestamp: '6 hours ago', author: 'By Racing Desk', showDescription: false },
             ]}
           />
