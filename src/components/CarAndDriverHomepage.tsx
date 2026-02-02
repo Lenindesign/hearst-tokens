@@ -783,23 +783,23 @@ export function CarAndDriverHomepage() {
           />
         </section>
       </main>
-      
-        {/* Footer */}
-        <Footer
-          menuColumns={[
-            { sectionTitle: 'About Us', links: ['Contact Us', 'How We Test Cars', 'How We Rate Cars', 'Hearst Autos', "What's My Car Worth?"] },
-            { sectionTitle: 'Research Cars', links: ['Expert Reviews', 'Stories and Features', 'Expert-Tested Gear', 'Compare Cars', 'Shop Cars for Sale'] },
-            { sectionTitle: 'All Car Rankings', links: ['Best SUVs', 'Best 3-Row SUVs', 'Best Hybrid SUVs', 'Best EVs'] },
-            { sectionTitle: 'News', links: ['Newsletter', 'RSS Feed', 'Subscribe', 'Customer Service'] },
-          ]}
-          legalText={{
-            company: 'A Part of Hearst Digital Media',
-            affiliate: 'We may earn a commission for purchases made through our links.',
-            copyright: '©2026 Hearst Autos, Inc. All Rights Reserved.',
-          }}
-          legalLinks={['Privacy Notice', 'CA Notice at Collection', 'Your CA Privacy Rights/Shine the Light', 'DAA Industry Opt Out', 'Terms of Use', 'Site Map']}
-        />
       </div>
+      
+      {/* Footer - Outside container for full-width background */}
+      <Footer
+        menuColumns={[
+          { sectionTitle: 'About Us', links: ['Contact Us', 'How We Test Cars', 'How We Rate Cars', 'Hearst Autos', "What's My Car Worth?"] },
+          { sectionTitle: 'Research Cars', links: ['Expert Reviews', 'Stories and Features', 'Expert-Tested Gear', 'Compare Cars', 'Shop Cars for Sale'] },
+          { sectionTitle: 'All Car Rankings', links: ['Best SUVs', 'Best 3-Row SUVs', 'Best Hybrid SUVs', 'Best EVs'] },
+          { sectionTitle: 'News', links: ['Newsletter', 'RSS Feed', 'Subscribe', 'Customer Service'] },
+        ]}
+        legalText={{
+          company: 'A Part of Hearst Digital Media',
+          affiliate: 'We may earn a commission for purchases made through our links.',
+          copyright: '©2026 Hearst Autos, Inc. All Rights Reserved.',
+        }}
+        legalLinks={['Privacy Notice', 'CA Notice at Collection', 'Your CA Privacy Rights/Shine the Light', 'DAA Industry Opt Out', 'Terms of Use', 'Site Map']}
+      />
     </div>
   );
 }
