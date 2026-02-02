@@ -430,7 +430,7 @@ export function MainNavigation({
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
-          maxWidth: 1440,
+          maxWidth: 1200,
           margin: '0 auto',
           padding: `${tokens.spacing.navBarPadding[0]}px ${tokens.spacing.navBarPadding[1]}px`,
         }}

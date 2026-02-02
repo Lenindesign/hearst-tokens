@@ -154,9 +154,38 @@ function ExternalLinkIcon({ size = 16 }: { size?: number }) {
 
 // Social Icons
 function SocialIcon({ type }: { type: 'x' | 'tiktok' | 'youtube' | 'facebook' | 'instagram' | 'pinterest' }) {
+  // TikTok uses a different viewBox, so we handle it separately
+  if (type === 'tiktok') {
+    return (
+      <div
+        style={{
+          width: tokens.sizes.socialIconSize,
+          height: tokens.sizes.socialIconSize,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          cursor: 'pointer',
+        }}
+      >
+        <svg
+          width={20}
+          height={20}
+          viewBox="0 0 50 58"
+          fill={tokens.colors.textBlack}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path 
+            fillRule="evenodd" 
+            clipRule="evenodd"
+            d="M42.53 11.49A13.72 13.72 0 0 1 36.3 0h-9.86l-.02 39.5a8.28 8.28 0 1 1-5.82-8.21V21.22A18.16 18.16 0 0 0 0 39.2a18.17 18.17 0 0 0 18.14 18.14c10 0 18.14-8.14 18.14-18.14V19.15c4 2.88 8.8 4.42 13.72 4.42V13.7c-2.65 0-5.25-.77-7.47-2.22Z" 
+          />
+        </svg>
+      </div>
+    );
+  }
+
   const iconPaths: Record<string, string> = {
     x: 'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z',
-    tiktok: 'M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5',
     youtube: 'M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z M9.75 15.02l5.75-3.27-5.75-3.27v6.54z',
     facebook: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z',
     instagram: 'M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z M17.5 6.5h.01 M7.5 2h9a5.5 5.5 0 0 1 5.5 5.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2z',
@@ -274,7 +303,7 @@ function MenuWidget({ sectionTitle, links, viewAllText = 'View all sections' }: 
       
       {/* Links */}
       {links.map((link, index) => (
-        <MenuLink key={index} text={link} />
+        <MenuLink key={index} text={link} showExternalIcon={false} />
       ))}
       
       {/* View All */}
@@ -422,7 +451,7 @@ export function Footer({
           }}
         >
           <SocialIcon type="x" />
-          <SocialIcon type="youtube" />
+          <SocialIcon type="tiktok" />
           <SocialIcon type="facebook" />
           <SocialIcon type="instagram" />
           <SocialIcon type="pinterest" />
