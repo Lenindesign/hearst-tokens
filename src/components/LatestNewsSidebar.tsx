@@ -36,13 +36,12 @@ const tokens = {
     containerGap: 24,
     cardGap: 16,
     textGap: 16,
-    strapPaddingX: 12,
+    strapPadding: 8,  // Match FIRST DRIVE padding
     textPaddingTop: 2,
   },
   sizes: {
     containerWidth: 290,
     imageSize: 80,
-    strapHeight: 36,
     mediaIconSize: 32,
     mediaIconRadius: 16,
     mediaIconX: 4,
@@ -51,8 +50,9 @@ const tokens = {
   typography: {
     columnTitle: {
       fontFamily: font.family.barlowCondensed,
-      fontSize: 24,
-      fontWeight: 600,
+      fontSize: 16,  // Match FIRST DRIVE font size
+      fontWeight: 500,  // Match FIRST DRIVE font weight
+      letterSpacing: 0.16,  // Match FIRST DRIVE letter spacing
       lineHeight: 1,
     },
     title: {
@@ -270,18 +270,13 @@ export function LatestNewsSidebar({
         width: tokens.sizes.containerWidth,
       }}
     >
-      {/* Strap Header - matches Pencil node 8sq8G */}
-      {/* Width: hug content, Height: 36px fixed, Padding: 0 12px */}
+      {/* Strap Header - styled to match FIRST DRIVE label */}
       <div
         style={{
           display: 'inline-flex',
           alignItems: 'center',
-          justifyContent: 'center',
-          height: tokens.sizes.strapHeight,
-          paddingLeft: tokens.spacing.strapPaddingX,
-          paddingRight: tokens.spacing.strapPaddingX,
+          padding: tokens.spacing.strapPadding,
           backgroundColor: tokens.colors.strapBackground,
-          boxSizing: 'border-box',
           alignSelf: 'flex-start',
         }}
       >
@@ -290,10 +285,10 @@ export function LatestNewsSidebar({
             fontFamily: tokens.typography.columnTitle.fontFamily,
             fontSize: tokens.typography.columnTitle.fontSize,
             fontWeight: tokens.typography.columnTitle.fontWeight,
+            letterSpacing: tokens.typography.columnTitle.letterSpacing,
             lineHeight: tokens.typography.columnTitle.lineHeight,
             color: tokens.colors.strapText,
             textTransform: 'uppercase',
-            whiteSpace: 'nowrap',
           }}
         >
           {title}

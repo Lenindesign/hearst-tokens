@@ -416,7 +416,7 @@ export function MainNavigation({
             width: '100%',
           }}
         >
-            {/* Left Side - Search */}
+            {/* Left Side - Logo */}
             <div
               style={{
                 display: 'flex',
@@ -424,11 +424,20 @@ export function MainNavigation({
                 gap: tokens.spacing.inputGap,
               }}
             >
-              <SearchInput placeholder="Search..." />
+              <Logo brandName={brandName} />
             </div>
 
-            {/* Center - Logo */}
-            <Logo brandName={brandName} />
+            {/* Center - Search */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flex: 1,
+              }}
+            >
+              <SearchInput placeholder="Search..." />
+            </div>
 
             {/* Right Side - Action Buttons */}
             <div
