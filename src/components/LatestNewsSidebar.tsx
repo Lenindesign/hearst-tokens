@@ -27,7 +27,7 @@ const tokens = {
     strapBackground: '#d22329',  // Car and Driver red
     strapText: '#ffffff',
     titleText: '#000000',
-    timestampText: '#198294',    // Teal accent
+    timestampText: '#1c5f8b',    // Car and Driver blue
     imagePlaceholder: '#e5e5e5',
     mediaIconBg: '#ffffffe5',    // White with 90% opacity
     mediaIconShadow: '0 2px 4px #0000004f',

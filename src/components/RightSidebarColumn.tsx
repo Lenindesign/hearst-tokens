@@ -27,6 +27,7 @@ const tokens = {
   colors: {
     text: '#000000',
     textSecondary: '#666666',
+    sectionLabel: '#1c5f8b',  // Car and Driver blue
     background: '#ffffff',
     border: '#000000',
     imagePlaceholder: '#e5e5e5',
@@ -196,7 +197,7 @@ function SupportingFeatureCard({
                 fontSize: tokens.typography.sectionLabel.fontSize,
                 fontWeight: tokens.typography.sectionLabel.fontWeight,
                 lineHeight: tokens.typography.sectionLabel.lineHeight,
-                color: tokens.colors.text,
+                color: tokens.colors.sectionLabel,
                 width: '100%',
                 textTransform: 'uppercase',
               }}
