@@ -713,10 +713,10 @@ export function CarAndDriverHomepage() {
           <FourAcrossGrid
             title="Reviews"
             cards={[
-              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mazda-mx-5-miata-red-white-in-motion-65b3c9d045b5a.jpg?crop=0.420xw:0.356xh;0.322xw,0.577xh&resize=700:*', title: '2024 BMW M3 Competition', author: 'By Auto Editor', buttonLabel: 'Read Review', showButton: true },
-              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mercedes-amg-gt63-643-66b52543c907c.jpg?crop=0.647xw:0.545xh;0.112xw,0.355xh&resize=1200:*', title: '2024 Mercedes-AMG GT', author: 'By Car Expert', buttonLabel: 'Read Review', showButton: true },
-              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1200:*', title: '2024 Porsche 911 Turbo S', author: 'By Racing Desk', buttonLabel: 'Read Review', showButton: true },
-              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-audi-rs7-performance-motion-front-2-1669663936.jpg?crop=0.729xw:0.615xh;0.255xw,0.300xh&resize=1200:*', title: '2024 Audi RS7 Sportback', author: 'By Test Driver', buttonLabel: 'Read Review', showButton: true },
+              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mazda-mx-5-miata-red-white-in-motion-65b3c9d045b5a.jpg?crop=0.420xw:0.356xh;0.322xw,0.577xh&resize=700:*', title: '2024 BMW M3 Competition', author: 'By Auto Editor' },
+              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mercedes-amg-gt63-643-66b52543c907c.jpg?crop=0.647xw:0.545xh;0.112xw,0.355xh&resize=1200:*', title: '2024 Mercedes-AMG GT', author: 'By Car Expert' },
+              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1200:*', title: '2024 Porsche 911 Turbo S', author: 'By Racing Desk' },
+              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-audi-rs7-performance-motion-front-2-1669663936.jpg?crop=0.729xw:0.615xh;0.255xw,0.300xh&resize=1200:*', title: '2024 Audi RS7 Sportback', author: 'By Test Driver' },
             ]}
           />
         </section>
@@ -748,10 +748,10 @@ export function CarAndDriverHomepage() {
           <FourAcrossGrid
             title="More Stories"
             cards={[
-              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-audi-a3-sedan-front-three-quarters-65ef2c5450bd0.jpg?crop=0.580xw:0.506xh;0.324xw,0.385xh&resize=700:*', title: 'Best Luxury Sedans of 2025', author: 'By Luxury Desk', buttonLabel: 'Read More', showButton: true },
-              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2026-hyundai-palisade-hybrid-428-690e25d21d13f.jpg?crop=0.881xw:0.746xh;0.119xw,0.161xh&resize=700:*', title: 'Top 10 Family SUVs Ranked', author: 'By Family Auto', buttonLabel: 'Read More', showButton: true },
-              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-rivian-r1t-tri-motor-286-685c20551a09b.jpg?crop=0.832xw:0.702xh;0.0897xw,0.267xh&resize=700:*', title: 'Electric Trucks Comparison', author: 'By EV Team', buttonLabel: 'Read More', showButton: true },
-              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2023-chevrolet-corvette-stingray-convertible-3lt-z51-681-1665496990.jpg?crop=0.686xw:0.578xh;0.268xw,0.422xh&resize=700:*', title: 'Sports Car Buying Guide', author: 'By Performance', buttonLabel: 'Read More', showButton: true },
+              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-audi-a3-sedan-front-three-quarters-65ef2c5450bd0.jpg?crop=0.580xw:0.506xh;0.324xw,0.385xh&resize=700:*', title: 'Best Luxury Sedans of 2025', author: 'By Luxury Desk' },
+              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2026-hyundai-palisade-hybrid-428-690e25d21d13f.jpg?crop=0.881xw:0.746xh;0.119xw,0.161xh&resize=700:*', title: 'Top 10 Family SUVs Ranked', author: 'By Family Auto' },
+              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-rivian-r1t-tri-motor-286-685c20551a09b.jpg?crop=0.832xw:0.702xh;0.0897xw,0.267xh&resize=700:*', title: 'Electric Trucks Comparison', author: 'By EV Team' },
+              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2023-chevrolet-corvette-stingray-convertible-3lt-z51-681-1665496990.jpg?crop=0.686xw:0.578xh;0.268xw,0.422xh&resize=700:*', title: 'Sports Car Buying Guide', author: 'By Performance' },
             ]}
           />
         </section>

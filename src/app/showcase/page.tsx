@@ -111,31 +111,47 @@ const tokens = {
 export default function ComponentShowcase() {
   const [activeComponent, setActiveComponent] = useState<string>(components[0].id);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
+  const isScrollingRef = useRef<boolean>(false);
 
   // Scroll to component section
   const scrollToComponent = (id: string) => {
     const element = sectionRefs.current[id];
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Disable scroll handler during programmatic scroll
+      isScrollingRef.current = true;
       setActiveComponent(id);
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Re-enable scroll handler after animation completes
+      setTimeout(() => {
+        isScrollingRef.current = false;
+      }, 1000);
     }
   };
 
   // Update active component on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100;
+      // Skip if we're programmatically scrolling
+      if (isScrollingRef.current) return;
+      
+      const navHeight = 110; // Height of fixed nav
+      
+      // Find the component that is currently most visible in the viewport
+      let currentComponent = components[0].id;
       
       for (const component of components) {
         const element = sectionRefs.current[component.id];
         if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveComponent(component.id);
-            break;
+          const rect = element.getBoundingClientRect();
+          // Check if the top of the section is at or above the nav area
+          if (rect.top <= navHeight + 50) {
+            currentComponent = component.id;
           }
         }
       }
+      
+      setActiveComponent(currentComponent);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -570,10 +586,10 @@ function ComponentPreview({ componentId }: { componentId: string }) {
           <FourAcrossGrid
             title="Reviews"
             cards={[
-              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-bmw-m3-110-1674509061.jpg?crop=0.760xw:0.642xh;0.0641xw,0.243xh&resize=1200:*', title: '2024 BMW M3 Competition', author: 'By Auto Editor', buttonLabel: 'Read Review', showButton: true },
-              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2027-mercedes-benz-s-class-exterior-pr-111-697927a180999.jpg?crop=0.847xw:0.714xh;0.153xw,0.253xh&resize=1200:*', title: '2024 Mercedes-AMG GT', author: 'By Car Expert', buttonLabel: 'Read Review', showButton: true },
-              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1200:*', title: '2024 Porsche 911 Turbo S', author: 'By Racing Desk', buttonLabel: 'Read Review', showButton: true },
-              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-hyundai-santa-cruz-exterior-113-66042095b2fac.jpg?crop=0.748xw:0.686xh;0.0901xw,0.255xh&resize=1200:*', title: '2024 Audi RS7 Sportback', author: 'By Test Driver', buttonLabel: 'Read Review', showButton: true },
+              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-bmw-m3-110-1674509061.jpg?crop=0.760xw:0.642xh;0.0641xw,0.243xh&resize=1200:*', title: '2024 BMW M3 Competition', author: 'By Auto Editor' },
+              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2027-mercedes-benz-s-class-exterior-pr-111-697927a180999.jpg?crop=0.847xw:0.714xh;0.153xw,0.253xh&resize=1200:*', title: '2024 Mercedes-AMG GT', author: 'By Car Expert' },
+              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1200:*', title: '2024 Porsche 911 Turbo S', author: 'By Racing Desk' },
+              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-hyundai-santa-cruz-exterior-113-66042095b2fac.jpg?crop=0.748xw:0.686xh;0.0901xw,0.255xh&resize=1200:*', title: '2024 Audi RS7 Sportback', author: 'By Test Driver' },
             ]}
           />
         </div>

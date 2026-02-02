@@ -206,18 +206,16 @@ export interface FourAcrossGridProps {
     imageSrc?: string;
     title: string;
     author?: string;
-    buttonLabel?: string;
-    showButton?: boolean;
   }>;
 }
 
 export function FourAcrossGrid({
   title = 'H2 Headline',
   cards = [
-    { id: 1, title: '{title}', author: '{author}', buttonLabel: 'Label', showButton: true },
-    { id: 2, title: '{title}', author: '{author}', buttonLabel: 'Label', showButton: true },
-    { id: 3, title: '{title}', author: '{author}', buttonLabel: 'Label', showButton: true },
-    { id: 4, title: '{title}', author: '{author}', buttonLabel: 'Label', showButton: true },
+    { id: 1, title: '{title}', author: '{author}' },
+    { id: 2, title: '{title}', author: '{author}' },
+    { id: 3, title: '{title}', author: '{author}' },
+    { id: 4, title: '{title}', author: '{author}' },
   ],
 }: FourAcrossGridProps) {
   return (
@@ -289,8 +287,6 @@ export function FourAcrossGrid({
             imageSrc={card.imageSrc}
             title={card.title}
             author={card.author}
-            buttonLabel={card.buttonLabel}
-            showButton={card.showButton !== false}
           />
         ))}
       </div>
