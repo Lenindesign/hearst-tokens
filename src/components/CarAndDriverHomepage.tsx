@@ -577,17 +577,16 @@ export function CarAndDriverHomepage() {
               className="flex-1 flex flex-col"
               style={{ gap: tokens.spacing['2xl'] }}
             >
-              {/* Top Row: Col1 + Col2 */}
+              {/* Top Row: Col1 + Col2 - Always side by side on tablet and up */}
               <div 
-                className="flex flex-col lg:flex-row"
+                className="hero-row flex"
                 style={{ gap: tokens.spacing.xl }}
               >
                 {/* Left Column (Col1) - LatestNewsSidebar (Car and Driver version) */}
                 <div 
-                  className="flex flex-col"
+                  className="hero-sidebar flex flex-col flex-shrink-0"
                   style={{ 
-                    width: '100%',
-                    maxWidth: 290,
+                    width: 220,
                     gap: tokens.spacing.md,
                   }}
                 >
@@ -606,7 +605,7 @@ export function CarAndDriverHomepage() {
                 </div>
                 
                 {/* Center Column (Col2) - BigCard */}
-                <div className="flex-1">
+                <div className="hero-main flex-1 min-w-0">
                   <BigCard
                     imageSrc="https://hips.hearstapps.com/hmg-prod/images/2026-honda-pilot-101-6978de7b7c09b.jpg"
                     imageAlt="2026 Honda Pilot"
@@ -635,10 +634,9 @@ export function CarAndDriverHomepage() {
             
             {/* Right Column (Col3) - RightSidebarColumn */}
             <div 
-              className="flex flex-col"
+              className="hidden lg:flex flex-col flex-shrink-0"
               style={{ 
-                width: '100%',
-                maxWidth: tokens.layout.sm - 16,
+                width: 304,
                 gap: tokens.spacing.xl,
               }}
             >

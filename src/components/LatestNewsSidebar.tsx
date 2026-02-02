@@ -138,6 +138,7 @@ interface StoryCardProps {
 function StoryCard({ imageSrc, title, timestamp, showPlayIcon = false }: StoryCardProps) {
   return (
     <div
+      className="sidebar-story-card"
       style={{
         display: 'flex',
         flexDirection: 'row',
@@ -148,41 +149,34 @@ function StoryCard({ imageSrc, title, timestamp, showPlayIcon = false }: StoryCa
       {/* Image */}
       {imageSrc ? (
         <div 
+          className="sidebar-story-image"
           style={{ 
             position: 'relative', 
-            width: tokens.sizes.imageSize,
-            height: tokens.sizes.imageSize,
-            minWidth: tokens.sizes.imageSize,
             flexShrink: 0,
           }}
         >
           <img
             src={imageSrc}
             alt={title}
+            className="sidebar-story-img"
             style={{
-              width: tokens.sizes.imageSize,
-              height: tokens.sizes.imageSize,
               objectFit: 'cover',
             }}
           />
           {showPlayIcon && (
             <div
+              className="sidebar-play-icon"
               style={{
                 position: 'absolute',
-                top: tokens.sizes.mediaIconY,
-                left: tokens.sizes.mediaIconX,
-                width: tokens.sizes.mediaIconSize,
-                height: tokens.sizes.mediaIconSize,
-                borderRadius: tokens.sizes.mediaIconRadius,
                 backgroundColor: tokens.colors.mediaIconBg,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 boxShadow: tokens.colors.mediaIconShadow,
-                paddingLeft: 3,
+                paddingLeft: 2,
               }}
             >
-              <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
+              <svg className="sidebar-play-svg" viewBox="0 0 12 14" fill="none">
                 <path d="M0 0L12 7L0 14V0Z" fill="#000000" />
               </svg>
             </div>
@@ -197,20 +191,20 @@ function StoryCard({ imageSrc, title, timestamp, showPlayIcon = false }: StoryCa
         style={{
           display: 'flex',
           flexDirection: 'column',
-          gap: tokens.spacing.textGap,
+          gap: 8,
           paddingTop: tokens.spacing.textPaddingTop,
           flex: 1,
           minWidth: 0,
         }}
       >
-        {/* Title - Inter, 16px, 700, line-height 110%, letter-spacing 1% */}
+        {/* Title - Inter, responsive size, 700, line-height 110%, letter-spacing 1% */}
         <span
+          className="sidebar-story-title"
           style={{
             fontFamily: tokens.typography.title.fontFamily,
-            fontSize: tokens.typography.title.fontSize,
             fontWeight: tokens.typography.title.fontWeight,
-            letterSpacing: '0.01em',  // 1% = 0.01em
-            lineHeight: 1.1,          // 110%
+            letterSpacing: '0.01em',
+            lineHeight: 1.1,
             color: tokens.colors.titleText,
             display: 'block',
           }}
@@ -218,14 +212,14 @@ function StoryCard({ imageSrc, title, timestamp, showPlayIcon = false }: StoryCa
           {title}
         </span>
 
-        {/* Timestamp - Inter, 13px, 400, line-height 130%, letter-spacing 0% */}
+        {/* Timestamp - Inter, responsive size, 400, line-height 130%, letter-spacing 0% */}
         <span
+          className="sidebar-story-timestamp"
           style={{
             fontFamily: tokens.typography.timestamp.fontFamily,
-            fontSize: tokens.typography.timestamp.fontSize,
             fontWeight: tokens.typography.timestamp.fontWeight,
-            lineHeight: 1.3,          // 130%
-            letterSpacing: 0,         // 0%
+            lineHeight: 1.3,
+            letterSpacing: 0,
             color: tokens.colors.timestampText,
             display: 'block',
           }}
@@ -263,11 +257,10 @@ export function LatestNewsSidebar({
 }: LatestNewsSidebarProps) {
   return (
     <div
+      className="latest-news-sidebar"
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: tokens.spacing.containerGap,
-        width: tokens.sizes.containerWidth,
       }}
     >
       {/* Strap Header - styled to match FIRST DRIVE label */}
