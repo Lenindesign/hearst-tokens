@@ -33,14 +33,16 @@ export default function FeedBlockSectionPage() {
           <FeedBlockSection
             title="Latest News"
             bigStory={{
+              imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/afeela-prototype-2026-3-695d25d188596.jpg?crop=0.838xw:0.909xh;0.0577xw,0.00604xh',
               eyebrow: 'AUTOMOTIVE',
-              title: 'The Future of Electric Vehicles Is Here',
-              author: 'Auto Editor',
+              title: 'The Future of Electric Vehicles Is Here. Everything You Need to Know About the Latest EV Technology.',
+              author: 'By Auto Editor',
             }}
             sideCards={[
-              { id: 1, title: '2024 Tesla Model S Review', subtitle: 'Still the Best?', description: 'We test the latest Model S.' },
-              { id: 2, title: 'Best SUVs of 2024', subtitle: 'Our Top Picks', description: 'The best SUVs you can buy.' },
-              { id: 3, title: 'Electric vs Gas', subtitle: 'Cost Comparison', description: 'Which is cheaper to own?' },
+              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-bmw-m3-110-1674509061.jpg?crop=0.760xw:0.642xh;0.0641xw,0.243xh&resize=1200:*', title: '2024 Tesla Model S Review: Still the Best?', subtitle: 'Electric Sedan', timestamp: '2 hours ago', author: 'By John Smith', showDescription: true },
+              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-land-rover-defender-octa-117-6787c5548e855.jpg?crop=1.00xw:0.918xh;0,0.0816xh&resize=980:*', title: 'Ford Mustang Mach-E Gets Major Update', subtitle: 'Electric SUV', timestamp: '3 hours ago', author: 'By Sarah Johnson', showDescription: false },
+              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2027-mercedes-benz-s-class-exterior-pr-111-697927a180999.jpg?crop=0.847xw:0.714xh;0.153xw,0.253xh&resize=1800:*', title: 'Best SUVs for Families in 2024', subtitle: 'Family Vehicles', timestamp: '5 hours ago', author: 'By Mike Davis', showDescription: false },
+              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1800:*', title: 'Porsche 911 GT3 RS Track Test', subtitle: 'Sports Car', timestamp: '6 hours ago', author: 'By Racing Desk', showDescription: false },
             ]}
           />
         </div>

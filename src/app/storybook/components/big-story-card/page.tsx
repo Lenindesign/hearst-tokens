@@ -30,9 +30,10 @@ export default function BigStoryCardPage() {
           }}
         >
           <BigStoryCard
-            title="2024 Tesla Model S Review: Still the Best?"
-            eyebrow="AUTOMOTIVE"
-            author="Auto Editor"
+            imageSrc="https://hips.hearstapps.com/hmg-prod/images/afeela-prototype-2026-3-695d25d188596.jpg?crop=0.838xw:0.909xh;0.0577xw,0.00604xh"
+            title="The All-New 2025 Porsche 911 GT3 RS Sets a New Standard for Track Performance"
+            eyebrow="FEATURED"
+            author="By Racing Editor"
           />
         </div>
       </section>

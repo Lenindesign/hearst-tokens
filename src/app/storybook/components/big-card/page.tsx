@@ -29,11 +29,14 @@ export default function BigCardPage() {
             border: `1px solid ${colors.neutral[300]}`,
           }}
         >
-          <div style={{ maxWidth: 600 }}>
+          <div style={{ maxWidth: 610 }}>
             <BigCard
-              eyebrow="AUTOMOTIVE"
-              title="Big Card Title Goes Here. Will be Two Lines"
-              author="By Auto Editor"
+              imageSrc="https://hips.hearstapps.com/hmg-prod/images/2026-honda-pilot-101-6978de7b7c09b.jpg"
+              imageAlt="2026 Honda Pilot"
+              eyebrow="FIRST DRIVE"
+              title="2026 Pilot Does Just Enough to Stay Afloat"
+              description="The upgraded Pilot's extra equipment and freshened look help it remain a solid, if unexciting, choice in this competitive segment."
+              author="Reviewed By Joey Capparella"
             />
           </div>
         </div>

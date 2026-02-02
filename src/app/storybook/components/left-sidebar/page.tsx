@@ -1,7 +1,7 @@
 'use client';
 
 import { colors, spacing, typography, border, font } from '@/lib/designTokens';
-import { LeftSidebarColumn } from '@/components/LeftSidebarColumn';
+import { LatestNewsSidebar } from '@/components/LatestNewsSidebar';
 
 export default function LeftSidebarPage() {
   return (
@@ -9,10 +9,10 @@ export default function LeftSidebarPage() {
       {/* Header */}
       <div style={{ marginBottom: spacing['3xl'] }}>
         <h1 style={{ ...typography.display.md, color: colors.neutral.darkest, margin: 0 }}>
-          LeftSidebarColumn
+          LatestNewsSidebar
         </h1>
         <p style={{ ...typography.body.lg, color: colors.neutral[600], margin: `${spacing.md}px 0 0`, maxWidth: 600 }}>
-          A sidebar column component for displaying a list of story links.
+          A sidebar column component for displaying the latest news stories with images and timestamps (Car and Driver style).
         </p>
       </div>
 
@@ -29,13 +29,15 @@ export default function LeftSidebarPage() {
             border: `1px solid ${colors.neutral[300]}`,
           }}
         >
-          <div style={{ maxWidth: 300 }}>
-            <LeftSidebarColumn
+          <div style={{ maxWidth: 290 }}>
+            <LatestNewsSidebar
+              title="Latest News"
               stories={[
-                { id: 1, title: 'Breaking: New EV Tax Credits Announced', timestamp: '2 hours ago' },
-                { id: 2, title: 'Tesla Unveils New Model', timestamp: '4 hours ago' },
-                { id: 3, title: 'Gas Prices Hit Record Low', timestamp: '6 hours ago' },
-                { id: 4, title: 'Self-Driving Cars: What to Know', timestamp: '8 hours ago' },
+                { id: 1, title: "Tesla Will Kill the Model S and Model X This Year", timestamp: '19 mins ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2026-tesla-model-s-plaid-134-68f6610846819.jpg' },
+                { id: 2, title: "Genesis Has Sold Some Copies of This Wild Concept", timestamp: '1 hr ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/02-x-skorpio-concept-exterior-6978725403776.jpg?crop=1xw:0.9997037914691943xh;center,top&resize=1800:*' },
+                { id: 3, title: "2026 Ineos Grenadier Gets a Black Edition", timestamp: '1 hr ago', showPlayIcon: true, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/07-my26-grenadier-quartermaster-black-edition-studio-697a27265b491.jpeg?crop=1.00xw:0.754xh;0,0.166xh&resize=1800:*' },
+                { id: 4, title: "Cadillac CT5-V Blackwing's New Package Costs $27K", timestamp: '2 hrs ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-land-rover-defender-octa-117-6787c5548e855.jpg?crop=1.00xw:0.918xh;0,0.0816xh&resize=980:*' },
+                { id: 5, title: "Hyundai Planning to Drop Santa Cruz Pickup", timestamp: '3 hrs ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-hyundai-santa-cruz-exterior-113-66042095b2fac.jpg?crop=0.748xw:0.686xh;0.0901xw,0.255xh&resize=980:*', showPlayIcon: true },
               ]}
             />
           </div>
@@ -99,12 +101,13 @@ export default function LeftSidebarPage() {
             marginTop: spacing.lg,
           }}
         >
-{`import { LeftSidebarColumn } from '@/components/LeftSidebarColumn';
+{`import { LatestNewsSidebar } from '@/components/LatestNewsSidebar';
 
-<LeftSidebarColumn
+<LatestNewsSidebar
+  title="Latest News"
   stories={[
-    { title: 'Story Title 1', timestamp: '2 hours ago' },
-    { title: 'Story Title 2', timestamp: '4 hours ago' },
+    { id: 1, title: 'Story Title', timestamp: '2 hours ago', imageSrc: '/path/to/image.jpg' },
+    { id: 2, title: 'Another Story', timestamp: '4 hours ago', imageSrc: '/path/to/image.jpg', showPlayIcon: true },
   ]}
 />`}
         </pre>

@@ -32,9 +32,9 @@ export default function RightSidebarPage() {
           <div style={{ maxWidth: 300 }}>
             <RightSidebarColumn
               cards={[
-                { id: 1, sectionLabel: 'ESSENTIAL READS', title: 'Best SUVs of 2024: Our Top Picks', dek: 'Our editors pick the top SUVs for every budget.', author: 'By Auto Editor' },
-                { id: 2, sectionLabel: 'ESSENTIAL READS', title: 'Electric vs Gas: Cost Comparison', dek: 'Breaking down the true cost of ownership.', author: 'By Tech Writer' },
-                { id: 3, sectionLabel: 'ESSENTIAL READS', title: 'How to Save on Car Insurance', dek: 'Expert tips to lower your premiums.', author: 'By Finance Expert' },
+                { id: 1, sectionLabel: 'ESSENTIAL READS', title: "Mercedes Design Boss Gorden Wagener Picks His Faves", dek: "Retiring after 30 years Wagener chooses his favorite Benz creations.", author: 'By Brett Berk', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/25c0255-057-source-6978d8ab61150.jpg?resize=1800:*' },
+                { id: 2, sectionLabel: 'ESSENTIAL READS', title: "An F1 Fan's First Daytona 24 Hours", dek: "A lifelong F1 fan attends his first 24-hour endurance race.", author: 'By Samantha MacAvoy', showPlayIcon: true, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/gettyimages-2258128426-6978ed1a82c20.jpg?crop=0.663xw:0.559xh;0.306xw,0.441xh&resize=1800:*' },
+                { id: 3, sectionLabel: 'ESSENTIAL READS', title: "Every New Car You Can Still Buy with a Stick Shift", dek: "The cars on this list keep the #SaveTheManuals mission alive.", author: 'By Greg S. Fink and Joey Capparella', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/honda-civic-type-r-101-654e4f5880cc4.jpg?crop=0.573xw:0.485xh;0.250xw,0.304xh' },
               ]}
             />
           </div>

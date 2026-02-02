@@ -177,10 +177,121 @@ export default function TypographyPage() {
         </p>
       </div>
 
-      {/* Font Families */}
+      {/* Car and Driver Brand Fonts */}
       <section style={{ marginBottom: spacing['3xl'] }}>
         <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
-          Font Families
+          Car and Driver Brand Fonts
+        </h2>
+        <p style={{ ...typography.body.md, color: colors.neutral[600], marginBottom: spacing.lg }}>
+          Car and Driver uses two primary typefaces: <strong>Inter</strong> for headlines and body text, and <strong>Barlow Condensed</strong> for section headers, eyebrows, and navigation elements.
+        </p>
+        
+        {/* Inter */}
+        <div
+          style={{
+            padding: spacing.xl,
+            backgroundColor: colors.neutral.lightest,
+            borderRadius: border.radius.md,
+            border: `1px solid ${colors.neutral[300]}`,
+            marginBottom: spacing.md,
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: spacing.md }}>
+            <div>
+              <h3 style={{ fontFamily: font.family.inter, fontSize: font.size['2xl'], fontWeight: font.weight.bold, color: colors.neutral.darkest, margin: 0 }}>
+                Inter
+              </h3>
+              <code style={{ fontSize: font.size['2xs'], color: colors.neutral[600], fontFamily: font.family.mono }}>
+                font.family.inter
+              </code>
+            </div>
+            <span style={{ 
+              backgroundColor: '#dbc98f', 
+              padding: `${spacing['2xs']}px ${spacing.sm}px`, 
+              fontSize: font.size['2xs'],
+              fontFamily: font.family.barlowCondensed,
+              fontWeight: font.weight.medium,
+              textTransform: 'uppercase',
+              letterSpacing: 0.16,
+            }}>
+              Headlines & Body
+            </span>
+          </div>
+          <p style={{ fontFamily: font.family.inter, fontSize: font.size['5xl'], fontWeight: font.weight.heavy, color: colors.neutral.darkest, margin: 0, lineHeight: 1.05, letterSpacing: -2 }}>
+            2026 Pilot Does Just Enough to Stay Afloat
+          </p>
+          <p style={{ fontFamily: font.family.inter, fontSize: font.size.xl, fontWeight: font.weight.regular, color: colors.neutral.darkest, margin: `${spacing.md}px 0 0`, lineHeight: 1.4 }}>
+            The upgraded Pilot's extra equipment and freshened look help it remain a solid, if unexciting, choice in this competitive segment.
+          </p>
+          <p style={{ fontFamily: font.family.inter, fontSize: font.size['2xs'], fontWeight: font.weight.medium, color: colors.neutral[600], margin: `${spacing.md}px 0 0` }}>
+            Reviewed By Joey Capparella
+          </p>
+        </div>
+
+        {/* Barlow Condensed */}
+        <div
+          style={{
+            padding: spacing.xl,
+            backgroundColor: colors.neutral.lightest,
+            borderRadius: border.radius.md,
+            border: `1px solid ${colors.neutral[300]}`,
+            marginBottom: spacing.md,
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: spacing.md }}>
+            <div>
+              <h3 style={{ fontFamily: font.family.barlowCondensed, fontSize: font.size['2xl'], fontWeight: font.weight.bold, color: colors.neutral.darkest, margin: 0 }}>
+                Barlow Condensed
+              </h3>
+              <code style={{ fontSize: font.size['2xs'], color: colors.neutral[600], fontFamily: font.family.mono }}>
+                font.family.barlowCondensed
+              </code>
+            </div>
+            <span style={{ 
+              backgroundColor: '#dbc98f', 
+              padding: `${spacing['2xs']}px ${spacing.sm}px`, 
+              fontSize: font.size['2xs'],
+              fontFamily: font.family.barlowCondensed,
+              fontWeight: font.weight.medium,
+              textTransform: 'uppercase',
+              letterSpacing: 0.16,
+            }}>
+              Section Headers & Eyebrows
+            </span>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing.md }}>
+            <div>
+              <p style={{ fontFamily: font.family.barlowCondensed, fontSize: font.size.md, fontWeight: font.weight.medium, color: colors.neutral.darkest, margin: 0, textTransform: 'uppercase', letterSpacing: 0.16 }}>
+                FIRST DRIVE
+              </p>
+              <p style={{ ...typography.caption.sm, color: colors.neutral[500], margin: `${spacing['2xs']}px 0 0` }}>
+                Eyebrow / Section Label (16px, 500 weight, uppercase)
+              </p>
+            </div>
+            <div>
+              <p style={{ fontFamily: font.family.barlowCondensed, fontSize: font.size.lg, fontWeight: font.weight.bold, color: colors.neutral.darkest, margin: 0 }}>
+                TRENDING NOW
+              </p>
+              <p style={{ ...typography.caption.sm, color: colors.neutral[500], margin: `${spacing['2xs']}px 0 0` }}>
+                Section Header (18px, 700 weight)
+              </p>
+            </div>
+            <div>
+              <p style={{ fontFamily: font.family.barlowCondensed, fontSize: font.size.sm, fontWeight: font.weight.medium, color: colors.neutral.darkest, margin: 0, textTransform: 'uppercase', letterSpacing: 0.2 }}>
+                News • Reviews • Buyer's Guide • Features • Video
+              </p>
+              <p style={{ ...typography.caption.sm, color: colors.neutral[500], margin: `${spacing['2xs']}px 0 0` }}>
+                Navigation Links (15px, 500 weight, uppercase)
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* All Font Families */}
+      <section style={{ marginBottom: spacing['3xl'] }}>
+        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
+          All Font Families
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing.md }}>
           {Object.entries(font.family).map(([key, value]) => (
