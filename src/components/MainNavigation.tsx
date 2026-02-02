@@ -422,6 +422,9 @@ export function MainNavigation({
         width: '100%',
         backgroundColor: tokens.colors.navBarBg,
         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+        position: 'sticky',
+        top: 0,
+        zIndex: 1000,
       }}
     >
       {/* Nav Content Container - Constrained to max width */}
