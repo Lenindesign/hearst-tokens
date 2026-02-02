@@ -515,7 +515,7 @@ export function MainNavigation({
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 32,
+              justifyContent: 'space-between',
               width: '100%',
               height: '100%',
             }}
