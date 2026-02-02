@@ -370,13 +370,15 @@ function SubscribeButton({ label = 'SUBSCRIBE', onClick }: { label?: string; onC
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '10px 20px',
+        width: 104,
+        height: 38,
+        padding: 0,
         backgroundColor: tokens.colors.buttonFilled,
         border: 'none',
         borderRadius: 4,
         cursor: 'pointer',
         fontFamily: tokens.typography.button.fontFamily,
-        fontSize: tokens.typography.button.fontSize,
+        fontSize: 12,
         fontWeight: tokens.typography.button.fontWeight,
         lineHeight: tokens.typography.button.lineHeight,
         color: tokens.colors.textWhite,
@@ -419,6 +421,7 @@ export function MainNavigation({
         flexDirection: 'column',
         width: '100%',
         backgroundColor: tokens.colors.navBarBg,
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
       }}
     >
       {/* Nav Content Container - Constrained to max width */}
