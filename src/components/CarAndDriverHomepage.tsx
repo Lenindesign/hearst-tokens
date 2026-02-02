@@ -786,19 +786,18 @@ export function CarAndDriverHomepage() {
       
         {/* Footer */}
         <Footer
-          brandName="HEARST"
           menuColumns={[
-            { sectionTitle: 'News', links: ['Politics', 'World', 'Business', 'Tech', 'Science', 'Health', 'Sports', 'Entertainment'] },
-            { sectionTitle: 'Reviews', links: ['Cars', 'SUVs', 'Trucks', 'Electric', 'Luxury', 'Performance', 'Classic', 'Comparison'] },
-            { sectionTitle: 'Buying Guide', links: ['New Cars', 'Used Cars', 'Financing', 'Insurance', 'Maintenance', 'Recalls', 'Deals', 'Calculator'] },
-            { sectionTitle: 'More', links: ['About Us', 'Careers', 'Advertise', 'Contact', 'Newsletter', 'Subscribe', 'Shop', 'Events'] },
+            { sectionTitle: 'About Us', links: ['Contact Us', 'How We Test Cars', 'How We Rate Cars', 'Hearst Autos', "What's My Car Worth?"] },
+            { sectionTitle: 'Research Cars', links: ['Expert Reviews', 'Stories and Features', 'Expert-Tested Gear', 'Compare Cars', 'Shop Cars for Sale'] },
+            { sectionTitle: 'All Car Rankings', links: ['Best SUVs', 'Best 3-Row SUVs', 'Best Hybrid SUVs', 'Best EVs'] },
+            { sectionTitle: 'News', links: ['Newsletter', 'RSS Feed', 'Subscribe', 'Customer Service'] },
           ]}
           legalText={{
             company: 'A Part of Hearst Digital Media',
-            affiliate: 'Car and Driver participates in various affiliate marketing programs, which means we may get paid commissions on editorially chosen products purchased through our links to retailer sites.',
-            copyright: '©2025 Hearst Magazine Media, Inc. All Rights Reserved.',
+            affiliate: 'We may earn a commission for purchases made through our links.',
+            copyright: '©2026 Hearst Autos, Inc. All Rights Reserved.',
           }}
-          legalLinks={['Privacy Notice', 'CA Notice at Collection', 'Your CA Privacy Rights', 'DAA Industry Opt Out', 'Terms of Use', 'Site Map']}
+          legalLinks={['Privacy Notice', 'CA Notice at Collection', 'Your CA Privacy Rights/Shine the Light', 'DAA Industry Opt Out', 'Terms of Use', 'Site Map']}
         />
       </div>
     </div>
