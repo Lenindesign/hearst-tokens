@@ -473,6 +473,39 @@ function SupportingStoryCard() {
   );
 }
 
+// Top Ad Banner Component
+function TopAdBanner({ imageSrc }: { imageSrc: string }) {
+  return (
+    <div 
+      className="w-full"
+      style={{ 
+        backgroundColor: tokens.colors.gray7,
+      }}
+    >
+      <a 
+        href="#" 
+        className="block w-full"
+        style={{ 
+          maxWidth: 1440,
+          margin: '0 auto',
+        }}
+      >
+        <img 
+          src={imageSrc}
+          alt="Advertisement"
+          style={{
+            width: '100%',
+            height: 'auto',
+            maxHeight: 292,
+            objectFit: 'cover',
+            display: 'block',
+          }}
+        />
+      </a>
+    </div>
+  );
+}
+
 // Main Homepage Component
 export function CarAndDriverHomepage() {
   return (
@@ -480,6 +513,9 @@ export function CarAndDriverHomepage() {
       className="min-h-screen"
       style={{ backgroundColor: tokens.colors.gray100 }}
     >
+      {/* Top Ad Banner - Full width */}
+      <TopAdBanner imageSrc="https://pub-4345f0f77c424370b4354c6a404ac802.r2.dev/4fbe118138d25dacf069f118fa39c265b4374c2e.jpg" />
+      
       {/* Navigation - Full width background */}
       <MainNavigation
         brandName="CAR AND DRIVER"

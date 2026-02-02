@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 
 // Import all custom components we created
-import { LeftSidebarColumn } from '@/components/LeftSidebarColumn';
+import { LatestNewsSidebar } from '@/components/LatestNewsSidebar';
 import { BigCard } from '@/components/BigCard';
 import { RightSidebarColumn } from '@/components/RightSidebarColumn';
 import { NewsletterPromo } from '@/components/NewsletterPromo';
@@ -24,9 +24,9 @@ const components = [
   },
   {
     id: 'left-sidebar-column',
-    name: 'LeftSidebarColumn',
+    name: 'LatestNewsSidebar',
     pencilNode: '802fn',
-    description: 'Left sidebar with category labels and story card headlines',
+    description: 'Latest news sidebar with images, timestamps, and play icons (Car and Driver style)',
   },
   {
     id: 'big-card',
@@ -422,13 +422,15 @@ function ComponentPreview({ componentId }: { componentId: string }) {
 
     case 'left-sidebar-column':
       return (
-        <div style={{ maxWidth: 224 }}>
-          <LeftSidebarColumn
-            title="Trending Now"
+        <div style={{ maxWidth: 290 }}>
+          <LatestNewsSidebar
+            title="Latest News"
             stories={[
-              { id: 1, title: '2024 Tesla Model S Review', timestamp: '2 hours ago' },
-              { id: 2, title: 'Electric Vehicle Sales Surge', timestamp: '3 hours ago' },
-              { id: 3, title: 'Best Road Trip Cars of 2024', timestamp: '5 hours ago' },
+              { id: 1, title: "Tesla Will Kill the Model S and Model X This Year", timestamp: '19 mins ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2026-tesla-model-s-plaid-134-68f6610846819.jpg' },
+              { id: 2, title: "Genesis Has Sold Some Copies of This Wild Concept", timestamp: '1 hr ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/02-x-skorpio-concept-exterior-6978725403776.jpg?crop=1xw:0.9997037914691943xh;center,top&resize=1800:*' },
+              { id: 3, title: "2026 Ineos Grenadier Gets a Black Edition", timestamp: '1 hr ago', showPlayIcon: true, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/07-my26-grenadier-quartermaster-black-edition-studio-697a27265b491.jpeg?crop=1.00xw:0.754xh;0,0.166xh&resize=1800:*' },
+              { id: 4, title: "Cadillac CT5-V Blackwing's New Package Costs $27K", timestamp: '2 hrs ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-land-rover-defender-octa-117-6787c5548e855.jpg?crop=1.00xw:0.918xh;0,0.0816xh&resize=980:*' },
+              { id: 5, title: "Hyundai Planning to Drop Santa Cruz Pickup", timestamp: '3 hrs ago', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-hyundai-santa-cruz-exterior-113-66042095b2fac.jpg?crop=0.748xw:0.686xh;0.0901xw,0.255xh&resize=980:*', showPlayIcon: true },
             ]}
           />
         </div>
@@ -436,11 +438,14 @@ function ComponentPreview({ componentId }: { componentId: string }) {
 
     case 'big-card':
       return (
-        <div style={{ maxWidth: 500 }}>
+        <div style={{ maxWidth: 610 }}>
           <BigCard
-            eyebrow="FEATURED"
-            title="The Future of Automotive Design: A Deep Dive"
-            author="By Design Editor"
+            imageSrc="https://hips.hearstapps.com/hmg-prod/images/2026-honda-pilot-101-6978de7b7c09b.jpg"
+            imageAlt="2026 Honda Pilot"
+            eyebrow="FIRST DRIVE"
+            title="2026 Pilot Does Just Enough to Stay Afloat"
+            description="The upgraded Pilot's extra equipment and freshened look help it remain a solid, if unexciting, choice in this competitive segment."
+            author="Reviewed By Joey Capparella"
           />
         </div>
       );
@@ -453,18 +458,27 @@ function ComponentPreview({ componentId }: { componentId: string }) {
               {
                 id: 1,
                 sectionLabel: 'ESSENTIAL READS',
-                title: 'New EV Technology Breakthrough',
-                dek: 'Revolutionary battery tech promises 500-mile range.',
-                author: 'By Tech Team',
-                showPlayIcon: true,
+                title: "Mercedes Design Boss Gorden Wagener Picks His Faves",
+                dek: "Retiring after 30 years Wagener chooses his favorite Benz creations.",
+                author: 'By Brett Berk',
+                imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/25c0255-057-source-6978d8ab61150.jpg?resize=1800:*',
               },
               {
                 id: 2,
                 sectionLabel: 'ESSENTIAL READS',
-                title: 'Classic Car Restoration Guide',
-                dek: 'Expert tips for bringing vintage vehicles back to life.',
-                author: 'By Restoration Desk',
-                showPlayIcon: false,
+                title: "An F1 Fan's First Daytona 24 Hours",
+                dek: "A lifelong F1 fan attends his first 24-hour endurance race.",
+                author: 'By Samantha MacAvoy',
+                showPlayIcon: true,
+                imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/gettyimages-2258128426-6978ed1a82c20.jpg?crop=0.663xw:0.559xh;0.306xw,0.441xh&resize=1800:*',
+              },
+              {
+                id: 3,
+                sectionLabel: 'ESSENTIAL READS',
+                title: "Every New Car You Can Still Buy with a Stick Shift",
+                dek: "The cars on this list keep the #SaveTheManuals mission alive.",
+                author: 'By Greg S. Fink and Joey Capparella',
+                imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/honda-civic-type-r-101-654e4f5880cc4.jpg?crop=0.573xw:0.485xh;0.250xw,0.304xh',
               },
             ]}
           />
@@ -487,11 +501,11 @@ function ComponentPreview({ componentId }: { componentId: string }) {
           <TrendingSection
             title="TRENDING"
             cards={[
-              { id: 1, title: 'Best SUVs for Families in 2024' },
-              { id: 2, title: 'Electric vs Hybrid: Which Is Right?' },
-              { id: 3, title: 'Top 10 Sports Cars Under $50K' },
-              { id: 4, title: '2026 Explorer Tremor Drive Review' },
-              { id: 5, title: 'The Winningest Cars in 10Best History' },
+              { id: 1, title: "2026 Explorer Tremor Drive: Big Power, Big Bucks", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/2026-ford-explorer-tremor-108-69779a008b74c.jpg?crop=0.903xw:0.762xh;0.0697xw,0.118xh&resize=1800:*" },
+              { id: 2, title: "The Winningest Cars in 10Best History", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/2024-chevrolet-corvette-02-656dfe74cae6f.jpg?crop=0.774xw:0.582xh;0.0577xw,0.370xh&resize=1800:*" },
+              { id: 3, title: "View Interior Photos of the 2027 Mercedes S-Class", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/2027-mercedes-benz-s-class-interior-pr-105-6979283bd56bf.jpg?crop=1.00xw:1.00xh;0,0&resize=1800:*" },
+              { id: 4, title: "Ezra Dyer: The Altima Secretly Thirsts for Mayhem", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/ezra-dyer-column-sept-oct-2025-104-68af525872973.jpg?crop=1xw:0.9995555555555555xh;center,top&resize=980:*" },
+              { id: 5, title: "Revealed! 591-HP Donkervoort P24 RS Is Super Light", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/donkervoort-p24-rs-2-6977d57b09a09.jpg?crop=1.00xw:1.00xh;0,0&resize=1800:*" },
             ]}
           />
         </div>
@@ -499,28 +513,51 @@ function ComponentPreview({ componentId }: { componentId: string }) {
 
     case 'feed-block-section':
       return (
-        <div style={{ maxWidth: 960 }}>
+        <div style={{ maxWidth: 1200 }}>
           <FeedBlockSection
             title="Latest News"
             bigStory={{
+              imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/afeela-prototype-2026-3-695d25d188596.jpg?crop=0.838xw:0.909xh;0.0577xw,0.00604xh',
               eyebrow: 'AUTOMOTIVE',
-              title: 'The Future of Electric Vehicles Is Here',
+              title: 'The Future of Electric Vehicles Is Here. Everything You Need to Know About the Latest EV Technology.',
               author: 'By Auto Editor',
             }}
             sideCards={[
               {
                 id: 1,
-                title: '2024 BMW M3 Competition Review',
-                subtitle: 'Full Review',
+                imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-bmw-m3-110-1674509061.jpg?crop=0.760xw:0.642xh;0.0641xw,0.243xh&resize=1200:*',
+                title: '2024 Tesla Model S Review: Still the Best?',
+                subtitle: 'Electric Sedan',
                 timestamp: '2 hours ago',
                 author: 'By John Smith',
+                showDescription: true,
               },
               {
                 id: 2,
-                title: 'Mercedes-AMG GT First Drive',
-                subtitle: 'First Look',
-                timestamp: '4 hours ago',
-                author: 'By Jane Doe',
+                imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-land-rover-defender-octa-117-6787c5548e855.jpg?crop=1.00xw:0.918xh;0,0.0816xh&resize=980:*',
+                title: 'Ford Mustang Mach-E Gets Major Update',
+                subtitle: 'Electric SUV',
+                timestamp: '3 hours ago',
+                author: 'By Sarah Johnson',
+                showDescription: false,
+              },
+              {
+                id: 3,
+                imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2027-mercedes-benz-s-class-exterior-pr-111-697927a180999.jpg?crop=0.847xw:0.714xh;0.153xw,0.253xh&resize=1800:*',
+                title: 'Best SUVs for Families in 2024',
+                subtitle: 'Family Vehicles',
+                timestamp: '5 hours ago',
+                author: 'By Mike Davis',
+                showDescription: false,
+              },
+              {
+                id: 4,
+                imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1800:*',
+                title: 'Porsche 911 GT3 RS Track Test',
+                subtitle: 'Sports Car',
+                timestamp: '6 hours ago',
+                author: 'By Racing Desk',
+                showDescription: false,
               },
             ]}
           />
@@ -529,14 +566,14 @@ function ComponentPreview({ componentId }: { componentId: string }) {
 
     case 'four-across-grid':
       return (
-        <div style={{ maxWidth: 960 }}>
+        <div style={{ maxWidth: 1200 }}>
           <FourAcrossGrid
             title="Reviews"
             cards={[
-              { id: 1, title: '2024 BMW M3 Competition', author: 'By Auto Editor', buttonLabel: 'Read Review' },
-              { id: 2, title: '2024 Mercedes-AMG GT', author: 'By Car Expert', buttonLabel: 'Read Review' },
-              { id: 3, title: '2024 Porsche 911 Turbo S', author: 'By Racing Desk', buttonLabel: 'Read Review' },
-              { id: 4, title: '2024 Audi RS7 Sportback', author: 'By Test Driver', buttonLabel: 'Read Review' },
+              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-bmw-m3-110-1674509061.jpg?crop=0.760xw:0.642xh;0.0641xw,0.243xh&resize=1200:*', title: '2024 BMW M3 Competition', author: 'By Auto Editor', buttonLabel: 'Read Review', showButton: true },
+              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2027-mercedes-benz-s-class-exterior-pr-111-697927a180999.jpg?crop=0.847xw:0.714xh;0.153xw,0.253xh&resize=1200:*', title: '2024 Mercedes-AMG GT', author: 'By Car Expert', buttonLabel: 'Read Review', showButton: true },
+              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1200:*', title: '2024 Porsche 911 Turbo S', author: 'By Racing Desk', buttonLabel: 'Read Review', showButton: true },
+              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-hyundai-santa-cruz-exterior-113-66042095b2fac.jpg?crop=0.748xw:0.686xh;0.0901xw,0.255xh&resize=1200:*', title: '2024 Audi RS7 Sportback', author: 'By Test Driver', buttonLabel: 'Read Review', showButton: true },
             ]}
           />
         </div>
@@ -544,10 +581,11 @@ function ComponentPreview({ componentId }: { componentId: string }) {
 
     case 'big-story-card':
       return (
-        <div style={{ maxWidth: 800 }}>
+        <div style={{ maxWidth: 1000 }}>
           <BigStoryCard
+            imageSrc="https://hips.hearstapps.com/hmg-prod/images/afeela-prototype-2026-3-695d25d188596.jpg?crop=0.838xw:0.909xh;0.0577xw,0.00604xh"
             eyebrow="FEATURED"
-            title="The All-New 2025 Porsche 911 GT3 RS Sets a New Standard"
+            title="The All-New 2025 Porsche 911 GT3 RS Sets a New Standard for Track Performance"
             author="By Racing Editor"
           />
         </div>
