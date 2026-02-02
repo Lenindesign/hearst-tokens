@@ -649,15 +649,16 @@ export function CarAndDriverHomepage() {
           <FeedBlockSection
             title="Latest News"
             bigStory={{
+              imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/afeela-prototype-2026-3-695d25d188596.jpg?crop=0.838xw:0.909xh;0.0577xw,0.00604xh',
               eyebrow: 'AUTOMOTIVE',
               title: 'The Future of Electric Vehicles Is Here. Everything You Need to Know About the Latest EV Technology.',
               author: 'By Auto Editor',
             }}
             sideCards={[
-              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-hyundai-santa-cruz-exterior-113-66042095b2fac.jpg?crop=0.748xw:0.686xh;0.0901xw,0.255xh&resize=980:*', title: '2024 Tesla Model S Review: Still the Best?', subtitle: '{subtitle}', description: '{description}', timestamp: '2 hours ago', author: 'By John Smith', showDescription: true },
-              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-land-rover-defender-octa-117-6787c5548e855.jpg?crop=1.00xw:0.918xh;0,0.0816xh&resize=980:*', title: 'Ford Mustang Mach-E Gets Major Update', subtitle: '{subtitle}', timestamp: '3 hours ago', author: 'By Sarah Johnson', showDescription: false },
+              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-bmw-m3-110-1674509061.jpg?crop=0.760xw:0.642xh;0.0641xw,0.243xh&resize=1200:*', title: '2024 Tesla Model S Review: Still the Best?', subtitle: '{subtitle}', description: '{description}', timestamp: '2 hours ago', author: 'By John Smith', showDescription: true },
+              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mercedes-amg-gt63-643-66b52543c907c.jpg?crop=0.647xw:0.545xh;0.112xw,0.355xh&resize=1200:*', title: 'Ford Mustang Mach-E Gets Major Update', subtitle: '{subtitle}', timestamp: '3 hours ago', author: 'By Sarah Johnson', showDescription: false },
               { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2027-mercedes-benz-s-class-exterior-pr-111-697927a180999.jpg?crop=0.847xw:0.714xh;0.153xw,0.253xh&resize=1800:*', title: 'Best SUVs for Families in 2024', subtitle: '{subtitle}', timestamp: '5 hours ago', author: 'By Mike Davis', showDescription: false },
-              { id: 4, title: 'Porsche 911 GT3 RS Track Test', subtitle: '{subtitle}', timestamp: '6 hours ago', author: 'By Racing Desk', showDescription: false },
+              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1800:*', title: 'Porsche 911 GT3 RS Track Test', subtitle: '{subtitle}', timestamp: '6 hours ago', author: 'By Racing Desk', showDescription: false },
             ]}
           />
         </section>
@@ -673,10 +674,10 @@ export function CarAndDriverHomepage() {
           <FourAcrossGrid
             title="Reviews"
             cards={[
-              { id: 1, title: '2024 BMW M3 Competition', author: 'By Auto Editor', buttonLabel: 'Read Review', showButton: true },
-              { id: 2, title: '2024 Mercedes-AMG GT', author: 'By Car Expert', buttonLabel: 'Read Review', showButton: true },
-              { id: 3, title: '2024 Porsche 911 Turbo S', author: 'By Racing Desk', buttonLabel: 'Read Review', showButton: true },
-              { id: 4, title: '2024 Audi RS7 Sportback', author: 'By Test Driver', buttonLabel: 'Read Review', showButton: true },
+              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-bmw-m3-110-1674509061.jpg?crop=0.760xw:0.642xh;0.0641xw,0.243xh&resize=1200:*', title: '2024 BMW M3 Competition', author: 'By Auto Editor', buttonLabel: 'Read Review', showButton: true },
+              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mercedes-amg-gt63-643-66b52543c907c.jpg?crop=0.647xw:0.545xh;0.112xw,0.355xh&resize=1200:*', title: '2024 Mercedes-AMG GT', author: 'By Car Expert', buttonLabel: 'Read Review', showButton: true },
+              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1200:*', title: '2024 Porsche 911 Turbo S', author: 'By Racing Desk', buttonLabel: 'Read Review', showButton: true },
+              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-audi-rs7-performance-motion-front-2-1669663936.jpg?crop=0.729xw:0.615xh;0.255xw,0.300xh&resize=1200:*', title: '2024 Audi RS7 Sportback', author: 'By Test Driver', buttonLabel: 'Read Review', showButton: true },
             ]}
           />
         </section>
@@ -690,6 +691,7 @@ export function CarAndDriverHomepage() {
           }}
         >
           <BigStoryCard
+            imageSrc="https://hips.hearstapps.com/hmg-prod/images/afeela-prototype-2026-3-695d25d188596.jpg?crop=0.838xw:0.909xh;0.0577xw,0.00604xh"
             eyebrow="FEATURED"
             title="The All-New 2025 Porsche 911 GT3 RS Sets a New Standard for Track Performance"
             author="By Racing Editor"
@@ -707,10 +709,10 @@ export function CarAndDriverHomepage() {
           <FourAcrossGrid
             title="More Stories"
             cards={[
-              { id: 1, title: 'Best Luxury Sedans of 2025', author: 'By Luxury Desk', buttonLabel: 'Read More', showButton: true },
-              { id: 2, title: 'Top 10 Family SUVs Ranked', author: 'By Family Auto', buttonLabel: 'Read More', showButton: true },
-              { id: 3, title: 'Electric Trucks Comparison', author: 'By EV Team', buttonLabel: 'Read More', showButton: true },
-              { id: 4, title: 'Sports Car Buying Guide', author: 'By Performance', buttonLabel: 'Read More', showButton: true },
+              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-audi-a3-sedan-front-three-quarters-65ef2c5450bd0.jpg?crop=0.580xw:0.506xh;0.324xw,0.385xh&resize=700:*', title: 'Best Luxury Sedans of 2025', author: 'By Luxury Desk', buttonLabel: 'Read More', showButton: true },
+              { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2026-hyundai-palisade-hybrid-428-690e25d21d13f.jpg?crop=0.881xw:0.746xh;0.119xw,0.161xh&resize=700:*', title: 'Top 10 Family SUVs Ranked', author: 'By Family Auto', buttonLabel: 'Read More', showButton: true },
+              { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-rivian-r1t-tri-motor-286-685c20551a09b.jpg?crop=0.832xw:0.702xh;0.0897xw,0.267xh&resize=700:*', title: 'Electric Trucks Comparison', author: 'By EV Team', buttonLabel: 'Read More', showButton: true },
+              { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2023-chevrolet-corvette-stingray-convertible-3lt-z51-681-1665496990.jpg?crop=0.686xw:0.578xh;0.268xw,0.422xh&resize=700:*', title: 'Sports Car Buying Guide', author: 'By Performance', buttonLabel: 'Read More', showButton: true },
             ]}
           />
         </section>
