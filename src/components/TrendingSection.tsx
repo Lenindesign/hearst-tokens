@@ -355,11 +355,11 @@ export interface TrendingSectionProps {
 export function TrendingSection({ 
   title = 'TRENDING',
   cards = [
-    { id: 1, title: "2026 Explorer Tremor Drive: Big Power, Big Bucks", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/2026-ford-explorer-tremor-108-69779a008b74c.jpg?crop=0.903xw:0.762xh;0.0697xw,0.118xh&resize=1800:*" },
-    { id: 2, title: "The Winningest Cars in 10Best History", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/2024-chevrolet-corvette-02-656dfe74cae6f.jpg?crop=0.774xw:0.582xh;0.0577xw,0.370xh&resize=1800:*" },
-    { id: 3, title: "View Interior Photos of the 2027 Mercedes S-Class", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/2024-chevrolet-corvette-02-656dfe74cae6f.jpg?crop=0.774xw:0.582xh;0.0577xw,0.370xh&resize=1800:*" },
-    { id: 4, title: "Ezra Dyer: The Altima Secretly Thirsts for Mayhem", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/2024-chevrolet-corvette-02-656dfe74cae6f.jpg?crop=0.774xw:0.582xh;0.0577xw,0.370xh&resize=1800:*" },
-    { id: 5, title: "Revealed! 591-HP Donkervoort P24 RS Is Super Light", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/2024-chevrolet-corvette-02-656dfe74cae6f.jpg?crop=0.774xw:0.582xh;0.0577xw,0.370xh&resize=1800:*" },
+    { id: 1, title: "2026 Explorer Tremor Drive: Big Power, Big Bucks" },
+    { id: 2, title: "The Winningest Cars in 10Best History" },
+    { id: 3, title: "View Interior Photos of the 2027 Mercedes S-Class" },
+    { id: 4, title: "Ezra Dyer: The Altima Secretly Thirsts for Mayhem" },
+    { id: 5, title: "Revealed! 591-HP Donkervoort P24 RS Is Super Light" },
   ]
 }: TrendingSectionProps) {
   return (

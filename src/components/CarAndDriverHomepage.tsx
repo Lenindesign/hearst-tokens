@@ -241,7 +241,7 @@ function StoryCard({ title, eyebrow, author, imageHeight = 160, horizontal = fal
 // Big Card Component - Using imported BigCard from ./BigCard
 
 // Ad Unit Component
-function AdUnit({ size = '300x250' }: { size?: '300x250' | '300x600' }) {
+function AdUnit({ size = '300x250', imageSrc }: { size?: '300x250' | '300x600' | '728x90'; imageSrc?: string }) {
   const [width, height] = size.split('x').map(Number);
   
   return (
@@ -279,19 +279,32 @@ function AdUnit({ size = '300x250' }: { size?: '300x250' | '300x600' }) {
         style={{ 
           width, 
           height,
-          backgroundColor: tokens.colors.gray96,
+          backgroundColor: imageSrc ? 'transparent' : tokens.colors.gray96,
         }}
       >
-        <span 
-          className="text-center"
-          style={{ 
-            fontSize: 14,
-            color: tokens.colors.gray58,
-            fontFamily: tokens.font.family.primary,
-          }}
-        >
-          AD<br/>{size}
-        </span>
+        {imageSrc ? (
+          <img 
+            src={imageSrc}
+            alt="Advertisement"
+            style={{
+              width,
+              height,
+              objectFit: 'cover',
+              display: 'block',
+            }}
+          />
+        ) : (
+          <span 
+            className="text-center"
+            style={{ 
+              fontSize: 14,
+              color: tokens.colors.gray58,
+              fontFamily: tokens.font.family.primary,
+            }}
+          >
+            AD<br/>{size}
+          </span>
+        )}
       </div>
       <div className="w-full" style={{ height: 1, backgroundColor: tokens.colors.gray84 }} />
     </div>
@@ -519,25 +532,14 @@ export function CarAndDriverHomepage() {
       {/* Navigation - Full width background */}
       <MainNavigation
         brandName="CAR AND DRIVER"
-        utilityLinks={[
-          { label: 'Shop' },
-          { label: 'US' },
-          { label: 'Newsletter' },
-          { label: 'Sign in' },
-        ]}
         menuLinks={[
-          { label: 'News' },
-          { label: 'Reviews' },
-          { label: "Buyer's Guide" },
-          { label: 'Features' },
-          { label: 'Video' },
-          { label: 'Podcasts' },
-          { label: 'Motorsports' },
-          { label: 'More' },
-        ]}
-        actionButtons={[
-          { label: 'Sign In', variant: 'ghost' },
-          { label: 'Subscribe', variant: 'filled' },
+          { label: 'SHOP NEW CARS' },
+          { label: 'SHOP USED CARS' },
+          { label: 'RESEARCH CARS' },
+          { label: 'EXPERT REVIEWS' },
+          { label: "WHAT'S MY CAR WORTH?" },
+          { label: 'EXPERT-TESTED GEAR' },
+          { label: 'NEWS + STORIES' },
         ]}
       />
       
@@ -619,7 +621,7 @@ export function CarAndDriverHomepage() {
               {/* Second Left Section - Newsletter Promo + Trending Cards */}
               <SecondLeftSection
                 newsletterEyebrow="Car and Driver Newsletter"
-                newsletterTitle="Get the latest automotive news"
+                newsletterTitle="GET THE LATEST NEWS"
                 sectionTitle="TRENDING"
                 trendingCards={[
                   { id: 1, title: "2026 Explorer Tremor Drive: Big Power, Big Bucks", imageSrc: "https://hips.hearstapps.com/hmg-prod/images/2026-ford-explorer-tremor-108-69779a008b74c.jpg?crop=0.903xw:0.762xh;0.0697xw,0.118xh&resize=1800:*" },
@@ -669,7 +671,7 @@ export function CarAndDriverHomepage() {
                   },
                 ]}
               />
-              <AdUnit size="300x250" />
+              <AdUnit size="300x600" imageSrc="https://pub-4345f0f77c424370b4354c6a404ac802.r2.dev/ef73c64adb64cd518143fd362dabee21e03eb061.png" />
             </div>
           </div>
         </section>
@@ -710,7 +712,7 @@ export function CarAndDriverHomepage() {
           <FourAcrossGrid
             title="Reviews"
             cards={[
-              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-bmw-m3-110-1674509061.jpg?crop=0.760xw:0.642xh;0.0641xw,0.243xh&resize=1200:*', title: '2024 BMW M3 Competition', author: 'By Auto Editor', buttonLabel: 'Read Review', showButton: true },
+              { id: 1, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mazda-mx-5-miata-red-white-in-motion-65b3c9d045b5a.jpg?crop=0.420xw:0.356xh;0.322xw,0.577xh&resize=700:*', title: '2024 BMW M3 Competition', author: 'By Auto Editor', buttonLabel: 'Read Review', showButton: true },
               { id: 2, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mercedes-amg-gt63-643-66b52543c907c.jpg?crop=0.647xw:0.545xh;0.112xw,0.355xh&resize=1200:*', title: '2024 Mercedes-AMG GT', author: 'By Car Expert', buttonLabel: 'Read Review', showButton: true },
               { id: 3, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1200:*', title: '2024 Porsche 911 Turbo S', author: 'By Racing Desk', buttonLabel: 'Read Review', showButton: true },
               { id: 4, imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-audi-rs7-performance-motion-front-2-1669663936.jpg?crop=0.729xw:0.615xh;0.255xw,0.300xh&resize=1200:*', title: '2024 Audi RS7 Sportback', author: 'By Test Driver', buttonLabel: 'Read Review', showButton: true },
@@ -754,7 +756,7 @@ export function CarAndDriverHomepage() {
         </section>
         
         {/* Ad */}
-        <AdUnit size="300x250" />
+        <AdUnit size="728x90" imageSrc="https://pub-4345f0f77c424370b4354c6a404ac802.r2.dev/image%202.jpg" />
         
         {/* SEO Block Grid Section */}
         <section 
@@ -767,18 +769,18 @@ export function CarAndDriverHomepage() {
           <SeoBlockGrid
             title="More From Car and Driver"
             cards={[
-              { id: 1, title: '2024 Best Performance Cars Under $50K' },
-              { id: 2, title: 'Electric SUV Comparison: Tesla vs Rivian' },
-              { id: 3, title: 'How to Choose the Right Tires for Your Car' },
-              { id: 4, title: 'Top 10 Most Reliable Used Cars in 2024' },
-              { id: 5, title: 'Best Luxury Sedans for Long Road Trips' },
-              { id: 6, title: 'Understanding Your Car\'s Warning Lights' },
-              { id: 7, title: 'First Drive: 2025 Porsche 911 Turbo S' },
-              { id: 8, title: 'Best Car Insurance Companies Ranked' },
-              { id: 9, title: 'How to Negotiate the Best Car Deal' },
-              { id: 10, title: 'Top Picks: Best Family SUVs of 2024' },
-              { id: 11, title: 'EV Charging Guide: Everything You Need' },
-              { id: 12, title: 'Classic Cars Worth Investing In Now' },
+              { id: 1, title: '2024 Best Performance Cars Under $50K', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mazda-mx-5-miata-red-white-in-motion-65b3c9d045b5a.jpg?crop=0.420xw:0.356xh;0.322xw,0.577xh&resize=700:*' },
+              { id: 2, title: 'Electric SUV Comparison: Tesla vs Rivian', imageSrc: 'https://www.usnews.com/object/image/00000191-e1a3-d4fa-a9b3-e9afe6100000/modelx-63-1.jpg?update-time=1745511030616&size=responsive970' },
+              { id: 3, title: 'How to Choose the Right Tires for Your Car', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/pile-of-tires-on-white-background-royalty-free-image-672151801-1561751929.jpg?resize=2048:*'},
+              { id: 4, title: 'Top 10 Most Reliable Used Cars in 2024', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2019-group-10best-1574285577.jpg?crop=1.00xw:0.751xh;0,0.199xh' },
+              { id: 5, title: 'Best Luxury Sedans for Long Road Trips', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-honda-civic-hybrid-hatchback-103-66e8b084b901e.jpg?crop=0.643xw:0.685xh;0.210xw,0.212xh&resize=700:*' },
+              { id: 6, title: 'Understanding Your Car\'s Warning Lights', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/adobestock-121798525-1616195640.jpeg?crop=1.00xw:1.00xh;0,0' },
+              { id: 7, title: 'First Drive: 2025 Porsche 911 Turbo S', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-porsche-911-gt3-rs-112-64ecdc018c917.jpg?crop=0.740xw:0.625xh;0.179xw,0.281xh&resize=1200:*' },
+              { id: 8, title: 'Best Car Insurance Companies Ranked', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/cropped-hands-photographing-damaged-car-with-smart-royalty-free-image-1589573927.jpg' },
+              { id: 9, title: 'How to Negotiate the Best Car Deal', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/toyota-dealership-is-seen-on-november-19-2025-in-austin-news-photo-1767796356.pjpeg?crop=1.00xw:0.847xh;0,0.153xh&resize=980:*' },
+              { id: 10, title: 'Top Picks: Best Family SUVs of 2024', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2026-honda-cr-v-trailsport-107-680fdb057f4fd.jpg?crop=0.780xw:0.662xh;0.131xw,0.192xh&resize=700:*' },
+              { id: 11, title: 'EV Charging Guide: Everything You Need', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/tesla-charging-1560371738.jpg?crop=0.468xw:0.624xh;0.478xw,0.249xh' },
+              { id: 12, title: 'Classic Cars Worth Investing In Now', imageSrc: 'https://hips.hearstapps.com/hmg-prod/amv-prod-cad-assets/wp-content/uploads/2015/10/classics.png?fill=2:1' },
             ]}
           />
         </section>

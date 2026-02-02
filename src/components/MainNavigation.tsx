@@ -26,61 +26,61 @@
  *         - menu (horizontal, gap: 36, 8 link items)
  */
 
-// Design tokens from Pencil
+// Design tokens from Pencil - Updated for Car and Driver style
 const tokens = {
   colors: {
     utilitiesBg: '#121212',
-    navBarBg: '#ededed',
-    navBarBorder: '#757575',
+    navBarBg: '#ffffff',
+    navBarBorder: '#e5e5e5',
     textWhite: '#ffffff',
     textDark: '#121212',
-    textMuted: '#111218',
-    buttonFilled: '#1c1c1c',
+    textMuted: '#6b7280',
+    buttonFilled: '#1c5f8b', // Car and Driver teal/blue
     buttonGhost: 'rgba(255, 255, 255, 0.04)',
-    inputBg: '#ffffff',
-    inputBorder: '#1c1c1c',
+    inputBg: '#f5f5f5',
+    inputBorder: '#d1d5db',
   },
   spacing: {
-    navBarPadding: [4, 8] as [number, number],
+    navBarPadding: [0, 24] as [number, number],
     utilitiesPadding: [4, 8] as [number, number],
-    buttonPadding: [6, 12] as [number, number],
-    iconButtonPadding: 4,
+    buttonPadding: [10, 20] as [number, number],
+    iconButtonPadding: 8,
     actionNavPadding: [16, 0] as [number, number],
-    menuGap: 36,
+    menuGap: 0,
     buttonGap: 4,
-    sectionGap: 10,
+    sectionGap: 24,
     inputGap: 8,
   },
   sizes: {
     utilitiesHeight: 32,
     menuHeight: 48,
-    inputWidth: 256,
-    inputHeight: 32,
+    inputWidth: 500,
+    inputHeight: 44,
     iconSize: 20,
     largeIconSize: 24,
-    logoWidth: 133,
-    logoHeight: 16,
+    logoWidth: 180,
+    logoHeight: 32,
   },
   typography: {
     button: {
       fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 16,
-      fontWeight: 400,
+      fontSize: 14,
+      fontWeight: 600,
       lineHeight: 1.25,
     },
     link: {
       fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 14,
-      fontWeight: 400,
-      letterSpacing: 0.4,
+      fontSize: 12,
+      fontWeight: 500,
+      letterSpacing: 0.5,
       lineHeight: 1.14,
     },
     input: {
       fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 13,
+      fontSize: 14,
       fontWeight: 400,
-      letterSpacing: 0.4,
-      lineHeight: 1.23,
+      letterSpacing: 0,
+      lineHeight: 1.5,
     },
   },
 };
@@ -245,17 +245,18 @@ function MenuLink({ label, href = '#', showIcon = false, onClick }: MenuLinkProp
   );
 }
 
-// Search Input Component
-function SearchInput({ placeholder = 'Search...' }: { placeholder?: string }) {
+// Search Input Component - Car and Driver style with wide search bar
+function SearchInput({ placeholder = 'e.g. 2025 Toyota RAV4' }: { placeholder?: string }) {
   return (
     <div
       style={{
         display: 'flex',
         alignItems: 'center',
         gap: tokens.spacing.inputGap,
-        width: tokens.sizes.inputWidth,
+        flex: 1,
+        maxWidth: 700,
         height: tokens.sizes.inputHeight,
-        padding: '4px 12px',
+        padding: '8px 16px',
         backgroundColor: tokens.colors.inputBg,
         border: `1px solid ${tokens.colors.inputBorder}`,
         borderRadius: 1024,
@@ -278,8 +279,18 @@ function SearchInput({ placeholder = 'Search...' }: { placeholder?: string }) {
           color: tokens.colors.textMuted,
         }}
       />
-      <SearchIcon />
+      <SearchIcon color={tokens.colors.textMuted} />
     </div>
+  );
+}
+
+// User Icon Component
+function UserIcon({ color = tokens.colors.textDark }: { color?: string }) {
+  return (
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="8" r="4" stroke={color} strokeWidth="1.5" />
+      <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
   );
 }
 
@@ -350,6 +361,35 @@ function Logo({ brandName = 'HEARST' }: { brandName?: string }) {
   );
 }
 
+// Subscribe Button Component - Car and Driver teal style
+function SubscribeButton({ label = 'SUBSCRIBE', onClick }: { label?: string; onClick?: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '10px 20px',
+        backgroundColor: tokens.colors.buttonFilled,
+        border: 'none',
+        borderRadius: 4,
+        cursor: 'pointer',
+        fontFamily: tokens.typography.button.fontFamily,
+        fontSize: tokens.typography.button.fontSize,
+        fontWeight: tokens.typography.button.fontWeight,
+        lineHeight: tokens.typography.button.lineHeight,
+        color: tokens.colors.textWhite,
+        textTransform: 'uppercase',
+        letterSpacing: 0.5,
+        whiteSpace: 'nowrap',
+      }}
+    >
+      {label}
+    </button>
+  );
+}
+
 // Main Navigation Component
 export interface MainNavigationProps {
   brandName?: string;
@@ -362,27 +402,15 @@ export interface MainNavigationProps {
 
 export function MainNavigation({
   brandName = 'HEARST',
-  utilityLinks = [
-    { label: 'Shop' },
-    { label: 'US' },
-    { label: 'Newsletter' },
-    { label: 'Sign in' },
-  ],
   menuLinks = [
-    { label: 'Link Text' },
-    { label: 'Link Text' },
-    { label: 'Link Text' },
-    { label: 'Link Text' },
-    { label: 'Link Text' },
-    { label: 'Link Text' },
-    { label: 'Link Text' },
-    { label: 'Link Text' },
+    { label: 'SHOP NEW CARS' },
+    { label: 'SHOP USED CARS' },
+    { label: 'RESEARCH CARS' },
+    { label: 'EXPERT REVIEWS' },
+    { label: "WHAT'S MY CAR WORTH?" },
+    { label: 'EXPERT-TESTED GEAR' },
+    { label: 'NEWS + STORIES' },
   ],
-  actionButtons = [
-    { label: 'Label', variant: 'ghost' as const },
-    { label: 'Label', variant: 'filled' as const },
-  ],
-  onMenuClick,
 }: MainNavigationProps) {
   return (
     <nav
@@ -391,99 +419,126 @@ export function MainNavigation({
         flexDirection: 'column',
         width: '100%',
         backgroundColor: tokens.colors.navBarBg,
-        borderBottom: `1px solid ${tokens.colors.navBarBorder}`,
       }}
     >
-      {/* Nav Content Container - Constrained to 1200px */}
+      {/* Nav Content Container - Constrained to max width */}
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
-          maxWidth: 1200,
+          maxWidth: 1440,
           margin: '0 auto',
           padding: `${tokens.spacing.navBarPadding[0]}px ${tokens.spacing.navBarPadding[1]}px`,
         }}
       >
-        {/* Action Nav Bar */}
+        {/* Top Row - Logo, Search, Subscribe, User */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: `${tokens.spacing.actionNavPadding[0]}px ${tokens.spacing.actionNavPadding[1]}px`,
+            padding: '16px 0',
             gap: tokens.spacing.sectionGap,
             width: '100%',
           }}
         >
-            {/* Left Side - Logo */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: tokens.spacing.inputGap,
-              }}
-            >
-              <Logo brandName={brandName} />
-            </div>
+          {/* Left Side - Logo */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <Logo brandName={brandName} />
+          </div>
 
-            {/* Center - Search */}
-            <div
+          {/* Center - Wide Search Bar */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flex: 1,
+              padding: '0 24px',
+            }}
+          >
+            <SearchInput placeholder="e.g. 2025 Toyota RAV4" />
+          </div>
+
+          {/* Right Side - Subscribe Button and User Icon */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 16,
+              flexShrink: 0,
+            }}
+          >
+            <SubscribeButton label="SUBSCRIBE" />
+            <button
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                flex: 1,
+                padding: 8,
+                backgroundColor: 'transparent',
+                border: 'none',
+                cursor: 'pointer',
               }}
             >
-              <SearchInput placeholder="Search..." />
-            </div>
-
-            {/* Right Side - Action Buttons */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: tokens.spacing.inputGap,
-                height: tokens.sizes.inputHeight,
-                justifyContent: 'flex-end',
-                overflow: 'hidden',
-              }}
-            >
-              {actionButtons.map((button, index) => (
-                <ActionButton key={index} label={button.label} variant={button.variant} />
-              ))}
-            </div>
+              <UserIcon color={tokens.colors.textDark} />
+            </button>
           </div>
+        </div>
 
-          {/* Menu Item Bar */}
+        {/* Bottom Row - Navigation Links */}
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-start',
+            height: tokens.sizes.menuHeight,
+            width: '100%',
+            borderTop: `1px solid ${tokens.colors.navBarBorder}`,
+          }}
+        >
+          {/* Menu Links */}
           <div
             style={{
               display: 'flex',
-              justifyContent: 'space-between',
-              height: tokens.sizes.menuHeight,
+              alignItems: 'center',
+              gap: 32,
               width: '100%',
-              borderBottom: '1px solid transparent',
+              height: '100%',
             }}
           >
-            {/* Menu */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: tokens.spacing.menuGap,
-                justifyContent: 'space-between',
-                width: '100%',
-                height: tokens.sizes.menuHeight,
-                overflow: 'hidden',
-              }}
-            >
-              {menuLinks.map((link, index) => (
-                <MenuLink key={index} label={link.label} href={link.href} />
-              ))}
-            </div>
+            {menuLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.href || '#'}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  textDecoration: 'none',
+                  cursor: 'pointer',
+                  fontFamily: tokens.typography.link.fontFamily,
+                  fontSize: tokens.typography.link.fontSize,
+                  fontWeight: tokens.typography.link.fontWeight,
+                  letterSpacing: tokens.typography.link.letterSpacing,
+                  lineHeight: tokens.typography.link.lineHeight,
+                  color: tokens.colors.textDark,
+                  textTransform: 'uppercase',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
         </div>
+      </div>
     </nav>
   );
 }
