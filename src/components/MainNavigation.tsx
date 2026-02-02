@@ -35,7 +35,7 @@ const tokens = {
     textWhite: '#ffffff',
     textDark: '#121212',
     textMuted: '#6b7280',
-    buttonFilled: '#1c5f8b', // Car and Driver teal/blue
+    buttonFilled: '#1B5F8A', // Car and Driver blue
     buttonGhost: 'rgba(255, 255, 255, 0.04)',
     inputBg: '#f5f5f5',
     inputBorder: '#d1d5db',

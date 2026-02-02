@@ -27,7 +27,7 @@ const tokens = {
   colors: {
     text: '#000000',
     textSecondary: '#666666',
-    sectionLabel: '#1c5f8b',  // Car and Driver blue
+    sectionLabel: '#1B5F8A',  // Car and Driver blue
     background: '#ffffff',
     border: '#000000',
     imagePlaceholder: '#e5e5e5',

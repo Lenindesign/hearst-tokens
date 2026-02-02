@@ -617,7 +617,7 @@ export function Footer({
           >
             {/* Privacy Icon - Toggle style */}
             <svg width="30" height="14" viewBox="0 0 30 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="0.5" y="0.5" width="29" height="13" rx="6.5" fill="#1c5f8b" stroke="#1c5f8b"/>
+              <rect x="0.5" y="0.5" width="29" height="13" rx="6.5" fill="#1B5F8A" stroke="#1B5F8A"/>
               <circle cx="7" cy="7" r="5" fill="#ffffff"/>
               <path d="M19 4L21 7L19 10" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"/>
               <path d="M23 4L25 7L23 10" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"/>

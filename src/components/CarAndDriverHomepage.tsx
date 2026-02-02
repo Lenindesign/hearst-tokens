@@ -38,7 +38,7 @@ import {
 const tokens = {
   colors: {
     // Brand-specific colors (Car and Driver)
-    brand9: '#1c5f8b',  // Dark blue - primary brand color
+    brand9: '#1B5F8A',  // Dark blue - primary brand color
     brand13: '#dae2e5', // Light blue-gray - newsletter bg
     // Neutral palette from design system
     gray7: colors.neutral.darkest,      // #121212

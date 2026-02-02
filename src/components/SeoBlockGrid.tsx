@@ -139,8 +139,7 @@ function SeoBlockCard({ imageSrc, title }: SeoBlockCardProps) {
         <div
           style={{
             display: 'flex',
-            alignItems: 'center',
-            padding: tokens.spacing.titlePadding,
+            alignItems: 'flex-start',
             width: '100%',
           }}
         >
@@ -153,6 +152,7 @@ function SeoBlockCard({ imageSrc, title }: SeoBlockCardProps) {
               lineHeight: tokens.typography.cardTitle.lineHeight,
               color: tokens.colors.text,
               width: '100%',
+              textAlign: 'left',
             }}
           >
             {title}

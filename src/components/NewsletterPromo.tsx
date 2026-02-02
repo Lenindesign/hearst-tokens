@@ -44,7 +44,7 @@ export const newsletterPromoTokens = {
   colors: {
     text: '#ffffff',
     background: '#121212',
-    buttonBg: '#1c5f8b', // Car and Driver blue
+    buttonBg: '#1B5F8A', // Car and Driver blue
   },
   spacing: {
     contentGap: 12,

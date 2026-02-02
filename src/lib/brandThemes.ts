@@ -83,14 +83,14 @@ const neutralColors = {
 
 export const brandThemes: Record<string, BrandTheme> = {
   // Car and Driver - Automotive focus, blue/gray palette
-  // Brand colors from API: #8dafc5, #b1b1b1, #444444, #e2e2e2, #eaeaea, #6abd45, #6f6f6f, #00a4db, #1c5f8b, #f1f7f7, #dbca8b, #607d8b, #dae2e5
+  // Brand colors from API: #8dafc5, #b1b1b1, #444444, #e2e2e2, #eaeaea, #6abd45, #6f6f6f, #00a4db, #1B5F8A, #f1f7f7, #dbca8b, #607d8b, #dae2e5
   // Typography: Inter for headlines/body, Barlow Condensed for section headers and eyebrows
   carAndDriver: {
     id: 'carAndDriver',
     name: 'Car and Driver',
     colors: {
       primary: '#d22329',      // Red accent (strap color)
-      secondary: '#1c5f8b',    // brand.9 - Dark blue
+      secondary: '#1B5F8A',    // Dark Blue - official brand color
       accent: '#6abd45',       // brand.6 - Green
       background: neutralColors.background,
       surface: neutralColors.surface,
@@ -100,7 +100,7 @@ export const brandThemes: Record<string, BrandTheme> = {
       headerText: neutralColors.text,
       strapBg: '#d22329',
       strapText: baseColors.neutral.lightest,
-      link: '#1c5f8b',         // brand.9
+      link: '#1B5F8A',         // Dark Blue - official brand color
       linkHover: '#00a4db',    // brand.8
       border: neutralColors.border,
     },

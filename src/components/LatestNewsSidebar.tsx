@@ -24,10 +24,10 @@ import { font, colors } from '@/lib/designTokens';
 // Exact design tokens from Pencil (Car and Driver brand)
 const tokens = {
   colors: {
-    strapBackground: '#d22329',  // Car and Driver red
+    strapBackground: '#222222',  // Car and Driver dark grey
     strapText: '#ffffff',
     titleText: '#000000',
-    timestampText: '#1c5f8b',    // Car and Driver blue
+    timestampText: '#1B5F8A',    // Car and Driver blue
     imagePlaceholder: '#e5e5e5',
     mediaIconBg: '#ffffffe5',    // White with 90% opacity
     mediaIconShadow: '0 2px 4px #0000004f',
@@ -142,6 +142,7 @@ function StoryCard({ imageSrc, title, timestamp, showPlayIcon = false }: StoryCa
       style={{
         display: 'flex',
         flexDirection: 'row',
+        alignItems: 'flex-start',
         gap: tokens.spacing.cardGap,
         width: '100%',
       }}
@@ -192,7 +193,6 @@ function StoryCard({ imageSrc, title, timestamp, showPlayIcon = false }: StoryCa
           display: 'flex',
           flexDirection: 'column',
           gap: 8,
-          paddingTop: tokens.spacing.textPaddingTop,
           flex: 1,
           minWidth: 0,
         }}
@@ -206,7 +206,11 @@ function StoryCard({ imageSrc, title, timestamp, showPlayIcon = false }: StoryCa
             letterSpacing: '0.01em',
             lineHeight: 1.1,
             color: tokens.colors.titleText,
-            display: 'block',
+            display: '-webkit-box',
+            WebkitLineClamp: 4,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
           }}
         >
           {title}
