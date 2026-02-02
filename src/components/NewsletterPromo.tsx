@@ -67,7 +67,7 @@ export const newsletterPromoTokens = {
     title: {
       fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
       fontSize: 42,
-      fontWeight: 700,
+      fontWeight: 800,
       letterSpacing: 0.4,
       lineHeight: 1.1,
     },
