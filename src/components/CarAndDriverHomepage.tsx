@@ -729,7 +729,7 @@ export function CarAndDriverHomepage() {
           }}
         >
           <BigStoryCard
-            imageSrc="https://hips.hearstapps.com/hmg-prod/images/afeela-prototype-2026-3-695d25d188596.jpg?crop=0.838xw:0.909xh;0.0577xw,0.00604xh"
+            imageSrc="https://hips.hearstapps.com/mtg-prod/6712b4229c4b0b00082ee450/2025porsche911gt3sportscar-1.jpg"
             eyebrow="FEATURED"
             title="The All-New 2025 Porsche 911 GT3 RS Sets a New Standard for Track Performance"
             author="By Racing Editor"
