@@ -102,6 +102,50 @@ body {
 
 /* Responsive Layout Utilities */
 
+/* Navigation - Default show desktop, hide mobile */
+.nav-mobile {
+  display: none;
+}
+
+.nav-desktop {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navigation menu links - always justify to full width */
+.nav-menu-links {
+  justify-content: space-between !important;
+}
+
+/* Hide nav links progressively from right to left on smaller screens */
+/* At 1100px, hide 7th link (NEWS + STORIES) */
+@media (max-width: 1100px) {
+  .nav-link-7 {
+    display: none !important;
+  }
+}
+
+/* At 1000px, hide 6th link (EXPERT-TESTED GEAR) */
+@media (max-width: 1000px) {
+  .nav-link-6 {
+    display: none !important;
+  }
+}
+
+/* At 900px, hide 5th link (WHAT'S MY CAR WORTH?) */
+@media (max-width: 900px) {
+  .nav-link-5 {
+    display: none !important;
+  }
+}
+
+/* At 850px, hide 4th link (EXPERT REVIEWS) */
+@media (max-width: 850px) {
+  .nav-link-4 {
+    display: none !important;
+  }
+}
+
 /* Latest News Sidebar - Default (Desktop) */
 .latest-news-sidebar {
   width: 220px;
@@ -146,6 +190,16 @@ body {
 
 /* Mobile (< 768px): Single column, stacked layout */
 @media (max-width: 767px) {
+  /* Mobile navigation */
+  .nav-mobile {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .nav-desktop {
+    display: none !important;
+  }
+  
   .hero-row {
     flex-direction: column-reverse !important;
   }
@@ -193,6 +247,16 @@ body {
 
 /* Tablet (768px - 1023px): Two columns, smaller sidebar */
 @media (min-width: 768px) and (max-width: 1023px) {
+  /* Desktop navigation on tablet */
+  .nav-mobile {
+    display: none;
+  }
+  
+  .nav-desktop {
+    display: flex;
+    flex-direction: column;
+  }
+  
   .hero-row {
     flex-direction: row !important;
   }
@@ -260,6 +324,16 @@ body {
 
 /* Desktop (>= 1024px): Three columns with right sidebar */
 @media (min-width: 1024px) {
+  /* Desktop navigation */
+  .nav-mobile {
+    display: none;
+  }
+  
+  .nav-desktop {
+    display: flex;
+    flex-direction: column;
+  }
+  
   .hero-row {
     flex-direction: row !important;
   }

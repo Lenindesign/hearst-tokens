@@ -392,6 +392,68 @@ function SubscribeButton({ label = 'SUBSCRIBE', onClick }: { label?: string; onC
   );
 }
 
+// Mobile Search Input Component - Full width with search button
+function MobileSearchInput({ placeholder = 'e.g. 2025 Toyota RAV4' }: { placeholder?: string }) {
+  return (
+    <div
+      className="mobile-search-container"
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+        width: '100%',
+        padding: '0 16px 16px 16px',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          flex: 1,
+          height: 44,
+          padding: '8px 16px',
+          backgroundColor: tokens.colors.inputBg,
+          border: `1px solid ${tokens.colors.inputBorder}`,
+          borderRadius: 1024,
+          overflow: 'hidden',
+        }}
+      >
+        <input
+          type="text"
+          placeholder={placeholder}
+          style={{
+            flex: 1,
+            border: 'none',
+            outline: 'none',
+            backgroundColor: 'transparent',
+            fontFamily: tokens.typography.input.fontFamily,
+            fontSize: 14,
+            fontWeight: tokens.typography.input.fontWeight,
+            fontStyle: 'italic',
+            color: tokens.colors.textMuted,
+          }}
+        />
+      </div>
+      <button
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: 44,
+          height: 44,
+          backgroundColor: tokens.colors.buttonFilled,
+          border: 'none',
+          borderRadius: '50%',
+          cursor: 'pointer',
+          flexShrink: 0,
+        }}
+      >
+        <SearchIcon color={tokens.colors.textWhite} />
+      </button>
+    </div>
+  );
+}
+
 // Main Navigation Component
 export interface MainNavigationProps {
   brandName?: string;
@@ -427,121 +489,187 @@ export function MainNavigation({
         zIndex: 1000,
       }}
     >
-      {/* Nav Content Container - Constrained to max width */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          maxWidth: 1200,
-          margin: '0 auto',
-          padding: `${tokens.spacing.navBarPadding[0]}px ${tokens.spacing.navBarPadding[1]}px`,
-        }}
-      >
-        {/* Top Row - Logo, Search, Subscribe, User */}
+      {/* Mobile Navigation - Hidden on tablet and desktop */}
+      <div className="nav-mobile">
+        {/* Mobile Top Row - Hamburger, Logo, User */}
         <div
           style={{
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '16px 0',
-            gap: tokens.spacing.sectionGap,
+            padding: '12px 16px',
             width: '100%',
           }}
         >
-          {/* Left Side - Logo */}
-          <div
+          {/* Hamburger Menu */}
+          <button
             style={{
               display: 'flex',
               alignItems: 'center',
-              flexShrink: 0,
+              justifyContent: 'center',
+              padding: 8,
+              backgroundColor: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
             }}
           >
-            <Logo brandName={brandName} />
-          </div>
+            <HamburgerIcon color={tokens.colors.textDark} />
+          </button>
 
-          {/* Center - Wide Search Bar */}
+          {/* Centered Logo */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               flex: 1,
-              padding: '0 24px',
             }}
           >
-            <SearchInput placeholder="e.g. 2025 Toyota RAV4" />
+            <Logo brandName={brandName} />
           </div>
 
-          {/* Right Side - Subscribe Button and User Icon */}
-          <div
+          {/* User Icon */}
+          <button
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 16,
-              flexShrink: 0,
+              justifyContent: 'center',
+              padding: 8,
+              backgroundColor: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
             }}
           >
-            <SubscribeButton label="SUBSCRIBE" />
-            <button
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: 8,
-                backgroundColor: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-            >
-              <UserIcon color={tokens.colors.textDark} />
-            </button>
-          </div>
+            <UserIcon color={tokens.colors.textDark} />
+          </button>
         </div>
 
-        {/* Bottom Row - Navigation Links */}
+        {/* Mobile Search Bar */}
+        <MobileSearchInput placeholder="e.g. 2025 Toyota RAV4" />
+      </div>
+
+      {/* Desktop/Tablet Navigation - Hidden on mobile */}
+      <div className="nav-desktop">
+        {/* Nav Content Container - Constrained to max width */}
         <div
           style={{
             display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-start',
-            height: tokens.sizes.menuHeight,
+            flexDirection: 'column',
             width: '100%',
-            borderTop: `1px solid ${tokens.colors.navBarBorder}`,
+            maxWidth: 1200,
+            margin: '0 auto',
+            padding: `${tokens.spacing.navBarPadding[0]}px ${tokens.spacing.navBarPadding[1]}px`,
           }}
         >
-          {/* Menu Links */}
+          {/* Top Row - Logo, Search, Subscribe, User */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
+              padding: '16px 0',
+              gap: tokens.spacing.sectionGap,
               width: '100%',
-              height: '100%',
             }}
           >
-            {menuLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href || '#'}
+            {/* Left Side - Logo */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                flexShrink: 0,
+              }}
+            >
+              <Logo brandName={brandName} />
+            </div>
+
+            {/* Center - Wide Search Bar */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flex: 1,
+                padding: '0 24px',
+              }}
+            >
+              <SearchInput placeholder="e.g. 2025 Toyota RAV4" />
+            </div>
+
+            {/* Right Side - Subscribe Button and User Icon */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 16,
+                flexShrink: 0,
+              }}
+            >
+              <SubscribeButton label="SUBSCRIBE" />
+              <button
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  textDecoration: 'none',
+                  justifyContent: 'center',
+                  padding: 8,
+                  backgroundColor: 'transparent',
+                  border: 'none',
                   cursor: 'pointer',
-                  fontFamily: tokens.typography.link.fontFamily,
-                  fontSize: tokens.typography.link.fontSize,
-                  fontWeight: tokens.typography.link.fontWeight,
-                  letterSpacing: tokens.typography.link.letterSpacing,
-                  lineHeight: tokens.typography.link.lineHeight,
-                  color: tokens.colors.textDark,
-                  textTransform: 'uppercase',
-                  whiteSpace: 'nowrap',
                 }}
               >
-                {link.label}
-              </a>
-            ))}
+                <UserIcon color={tokens.colors.textDark} />
+              </button>
+            </div>
+          </div>
+
+          {/* Bottom Row - Navigation Links */}
+          <div
+            className="nav-menu-row"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              height: tokens.sizes.menuHeight,
+              width: '100%',
+              borderTop: `1px solid ${tokens.colors.navBarBorder}`,
+              overflow: 'hidden',
+            }}
+          >
+            {/* Menu Links */}
+            <div
+              className="nav-menu-links"
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              {menuLinks.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href || '#'}
+                  className={`nav-link nav-link-${index + 1}`}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    textDecoration: 'none',
+                    cursor: 'pointer',
+                    fontFamily: tokens.typography.link.fontFamily,
+                    fontSize: tokens.typography.link.fontSize,
+                    fontWeight: tokens.typography.link.fontWeight,
+                    letterSpacing: tokens.typography.link.letterSpacing,
+                    lineHeight: tokens.typography.link.lineHeight,
+                    color: tokens.colors.textDark,
+                    textTransform: 'uppercase',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
