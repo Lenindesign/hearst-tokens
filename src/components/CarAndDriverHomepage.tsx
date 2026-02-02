@@ -730,7 +730,7 @@ export function CarAndDriverHomepage() {
           }}
         >
           <BigStoryCard
-            imageSrc="https://hips.hearstapps.com/mtg-prod/6712b4229c4b0b00082ee450/2025porsche911gt3sportscar-1.jpg"
+            imageSrc="https://images.ctfassets.net/s699s7kh1jys/252RSF4efvadqYtH1MF8BJ/e56224f0573ec1ec0d6bdf8003c8b2ed/Porche_911_GT3_RS_parked_on_racetrack_wallpaper_desktop_1.jpg"
             eyebrow="FEATURED"
             title="The All-New 2025 Porsche 911 GT3 RS Sets a New Standard for Track Performance"
             author="By Racing Editor"
@@ -772,7 +772,7 @@ export function CarAndDriverHomepage() {
             cards={[
               { id: 1, title: '2024 Best Performance Cars Under $50K', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mazda-mx-5-miata-red-white-in-motion-65b3c9d045b5a.jpg?crop=0.420xw:0.356xh;0.322xw,0.577xh&resize=700:*' },
               { id: 2, title: 'Electric SUV Comparison: Tesla vs Rivian', imageSrc: 'https://www.usnews.com/object/image/00000191-e1a3-d4fa-a9b3-e9afe6100000/modelx-63-1.jpg?update-time=1745511030616&size=responsive970' },
-              { id: 3, title: 'How to Choose the Right Tires for Your Car', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/pile-of-tires-on-white-background-royalty-free-image-672151801-1561751929.jpg?resize=2048:*'},
+              { id: 3, title: 'How to Choose the Right Tires for Your Car', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-tire-test-led-01-67f81d12df802.jpg?crop=1.00xw:0.446xh;0,0.301xh&resize=2048:*'},
               { id: 4, title: 'Top 10 Most Reliable Used Cars in 2024', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2019-group-10best-1574285577.jpg?crop=1.00xw:0.751xh;0,0.199xh' },
               { id: 5, title: 'Best Luxury Sedans for Long Road Trips', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2025-honda-civic-hybrid-hatchback-103-66e8b084b901e.jpg?crop=0.643xw:0.685xh;0.210xw,0.212xh&resize=700:*' },
               { id: 6, title: 'Understanding Your Car\'s Warning Lights', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/adobestock-121798525-1616195640.jpeg?crop=1.00xw:1.00xh;0,0' },

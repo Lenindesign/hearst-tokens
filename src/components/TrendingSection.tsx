@@ -56,7 +56,7 @@ export const trendingSectionTokens = {
     },
     cardTitle: {
       fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
-      fontSize: 13,
+      fontSize: 16,
       fontWeight: 700,
       lineHeight: 1.25,
     },
