@@ -524,7 +524,10 @@ export function CarAndDriverHomepage() {
   return (
     <div 
       className="min-h-screen"
-      style={{ backgroundColor: tokens.colors.gray100 }}
+      style={{ 
+        backgroundColor: tokens.colors.gray100,
+        minWidth: 360,
+      }}
     >
       {/* Top Ad Banner - Full width */}
       <TopAdBanner imageSrc="https://pub-4345f0f77c424370b4354c6a404ac802.r2.dev/4fbe118138d25dacf069f118fa39c265b4374c2e.jpg" />
@@ -683,7 +686,7 @@ export function CarAndDriverHomepage() {
           }}
         >
           <FeedBlockSection
-            title="Latest News"
+            title="Buyer's Guide"
             bigStory={{
               imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/afeela-prototype-2026-3-695d25d188596.jpg?crop=0.838xw:0.909xh;0.0577xw,0.00604xh',
               eyebrow: 'AUTOMOTIVE',
@@ -765,7 +768,7 @@ export function CarAndDriverHomepage() {
           }}
         >
           <SeoBlockGrid
-            title="More From Car and Driver"
+            title="For the Car-Obsessed"
             cards={[
               { id: 1, title: '2024 Best Performance Cars Under $50K', imageSrc: 'https://hips.hearstapps.com/hmg-prod/images/2024-mazda-mx-5-miata-red-white-in-motion-65b3c9d045b5a.jpg?crop=0.420xw:0.356xh;0.322xw,0.577xh&resize=700:*' },
               { id: 2, title: 'Electric SUV Comparison: Tesla vs Rivian', imageSrc: 'https://www.usnews.com/object/image/00000191-e1a3-d4fa-a9b3-e9afe6100000/modelx-63-1.jpg?update-time=1745511030616&size=responsive970' },

@@ -50,7 +50,7 @@ const tokens = {
     },
     cardTitle: {
       fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 13,
+      fontSize: 20,
       fontWeight: 700,
       letterSpacing: 0.4,
       lineHeight: 1.23,
@@ -109,16 +109,12 @@ interface GridCardProps {
   imageSrc?: string;
   title: string;
   author?: string;
-  buttonLabel?: string;
-  showButton?: boolean;
 }
 
 function GridCard({ 
   imageSrc, 
   title = '{title}', 
   author = '{author}',
-  buttonLabel = 'Label',
-  showButton = true,
 }: GridCardProps) {
   return (
     <div
@@ -197,36 +193,6 @@ function GridCard({
           </span>
         </div>
         
-        {/* Button */}
-        {showButton && (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: tokens.spacing.buttonGap,
-              backgroundColor: tokens.colors.buttonBg,
-              paddingTop: tokens.spacing.buttonPaddingV,
-              paddingBottom: tokens.spacing.buttonPaddingV,
-              paddingLeft: tokens.spacing.buttonPaddingH,
-              paddingRight: tokens.spacing.buttonPaddingH,
-              alignSelf: 'flex-start',
-            }}
-          >
-            <span
-              style={{
-                fontFamily: tokens.typography.button.fontFamily,
-                fontSize: tokens.typography.button.fontSize,
-                fontWeight: tokens.typography.button.fontWeight,
-                letterSpacing: tokens.typography.button.letterSpacing,
-                lineHeight: tokens.typography.button.lineHeight,
-                color: tokens.colors.buttonText,
-              }}
-            >
-              {buttonLabel}
-            </span>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -265,26 +231,46 @@ export function FourAcrossGrid({
         maxWidth: tokens.sizes.sectionWidth,
       }}
     >
-      {/* Section Title */}
+      {/* Section Title - Centered with lines on both sides */}
       <div
         style={{
           display: 'flex',
+          flexDirection: 'row',
           alignItems: 'center',
           width: '100%',
+          gap: 16,
         }}
       >
+        {/* Left Line */}
+        <div
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: tokens.colors.text,
+          }}
+        />
         <span
           style={{
-            fontFamily: tokens.typography.sectionTitle.fontFamily,
-            fontSize: tokens.typography.sectionTitle.fontSize,
-            fontWeight: tokens.typography.sectionTitle.fontWeight,
-            letterSpacing: tokens.typography.sectionTitle.letterSpacing,
+            fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
+            fontSize: 40,
+            fontWeight: 600,
+            letterSpacing: 0,
             lineHeight: tokens.typography.sectionTitle.lineHeight,
             color: tokens.colors.text,
+            whiteSpace: 'nowrap',
+            textTransform: 'uppercase',
           }}
         >
           {title}
         </span>
+        {/* Right Line */}
+        <div
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: tokens.colors.text,
+          }}
+        />
       </div>
       
       {/* Content - 4 Across Grid */}
@@ -292,7 +278,7 @@ export function FourAcrossGrid({
         style={{
           display: 'flex',
           flexDirection: 'row',
-          alignItems: 'center',
+          alignItems: 'flex-start',
           gap: tokens.spacing.contentGap,
           width: '100%',
         }}

@@ -51,7 +51,7 @@ export const trendingSectionTokens = {
     strapTitle: {
       fontFamily: '"Barlow Condensed", Barlow, -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
       fontSize: 20,
-      fontWeight: 700,
+      fontWeight: 600,
       lineHeight: 1,
     },
     cardTitle: {
@@ -371,16 +371,24 @@ export function TrendingSection({
         width: '100%',
       }}
     >
-      {/* Strap (Header) */}
+      {/* Strap (Header) - Centered with lines on both sides */}
       <div
         style={{
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: 'row',
+          alignItems: 'center',
           width: '100%',
-          height: trendingSectionTokens.sizes.strapHeight,
-          borderBottom: `${trendingSectionTokens.sizes.strapBorderWidth}px solid ${trendingSectionTokens.colors.strapBorder}`,
+          gap: 16,
         }}
       >
+        {/* Left Line */}
+        <div
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: trendingSectionTokens.colors.text,
+          }}
+        />
         {/* Column Title */}
         <span
           style={{
@@ -389,11 +397,19 @@ export function TrendingSection({
             fontWeight: trendingSectionTokens.typography.strapTitle.fontWeight,
             lineHeight: trendingSectionTokens.typography.strapTitle.lineHeight,
             color: trendingSectionTokens.colors.text,
-            width: '100%',
+            whiteSpace: 'nowrap',
           }}
         >
           {title}
         </span>
+        {/* Right Line */}
+        <div
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: trendingSectionTokens.colors.text,
+          }}
+        />
       </div>
       
       {/* Trending Cards Row */}

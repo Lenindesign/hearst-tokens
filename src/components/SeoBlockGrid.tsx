@@ -200,26 +200,47 @@ export function SeoBlockGrid({
         maxWidth: tokens.sizes.sectionWidth,
       }}
     >
-      {/* Section Title */}
+      {/* Section Title - Centered with lines on both sides */}
       <div
         style={{
           display: 'flex',
+          flexDirection: 'row',
           alignItems: 'center',
+          justifyContent: 'center',
           width: '100%',
+          gap: 16,
         }}
       >
+        {/* Left Line */}
+        <div
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: tokens.colors.text,
+          }}
+        />
         <span
           style={{
-            fontFamily: tokens.typography.sectionTitle.fontFamily,
-            fontSize: tokens.typography.sectionTitle.fontSize,
-            fontWeight: tokens.typography.sectionTitle.fontWeight,
-            letterSpacing: tokens.typography.sectionTitle.letterSpacing,
+            fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
+            fontSize: 40,
+            fontWeight: 600,
+            letterSpacing: 0,
             lineHeight: tokens.typography.sectionTitle.lineHeight,
             color: tokens.colors.text,
+            whiteSpace: 'nowrap',
+            textTransform: 'uppercase',
           }}
         >
           {title}
         </span>
+        {/* Right Line */}
+        <div
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: tokens.colors.text,
+          }}
+        />
       </div>
 
       {/* Card Grid - 4 columns */}

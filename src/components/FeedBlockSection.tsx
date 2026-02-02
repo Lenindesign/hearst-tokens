@@ -371,50 +371,6 @@ function SmallCard({
           </span>
         </div>
         
-        {/* Subtitle */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.smallCardSubtitle.fontFamily,
-              fontSize: tokens.typography.smallCardSubtitle.fontSize,
-              fontWeight: tokens.typography.smallCardSubtitle.fontWeight,
-              letterSpacing: tokens.typography.smallCardSubtitle.letterSpacing,
-              lineHeight: tokens.typography.smallCardSubtitle.lineHeight,
-              color: tokens.colors.text,
-            }}
-          >
-            {subtitle}
-          </span>
-        </div>
-        
-        {/* Description (optional) */}
-        {showDescription && (
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            <span
-              style={{
-                fontFamily: tokens.typography.smallCardSubtitle.fontFamily,
-                fontSize: tokens.typography.smallCardSubtitle.fontSize,
-                fontWeight: tokens.typography.smallCardSubtitle.fontWeight,
-                letterSpacing: tokens.typography.smallCardSubtitle.letterSpacing,
-                lineHeight: tokens.typography.smallCardSubtitle.lineHeight,
-                color: tokens.colors.text,
-              }}
-            >
-              {description}
-            </span>
-          </div>
-        )}
-        
         {/* Timestamp */}
         <div
           style={{
@@ -508,26 +464,46 @@ export function FeedBlockSection({
         maxWidth: tokens.sizes.sectionWidth,
       }}
     >
-      {/* Section Title */}
+      {/* Section Title - Centered with lines on both sides */}
       <div
         style={{
           display: 'flex',
+          flexDirection: 'row',
           alignItems: 'center',
           width: '100%',
+          gap: 16,
         }}
       >
+        {/* Left Line */}
+        <div
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: tokens.colors.text,
+          }}
+        />
         <span
           style={{
-            fontFamily: tokens.typography.sectionTitle.fontFamily,
-            fontSize: tokens.typography.sectionTitle.fontSize,
-            fontWeight: tokens.typography.sectionTitle.fontWeight,
-            letterSpacing: tokens.typography.sectionTitle.letterSpacing,
+            fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
+            fontSize: 40,
+            fontWeight: 600,
+            letterSpacing: 0,
             lineHeight: tokens.typography.sectionTitle.lineHeight,
             color: tokens.colors.text,
+            whiteSpace: 'nowrap',
+            textTransform: 'uppercase',
           }}
         >
           {title}
         </span>
+        {/* Right Line */}
+        <div
+          style={{
+            flex: 1,
+            height: 1,
+            backgroundColor: tokens.colors.text,
+          }}
+        />
       </div>
       
       {/* Content */}

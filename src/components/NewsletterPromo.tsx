@@ -101,6 +101,22 @@ export function NewsletterPromo({
         position: 'relative',
       }}
     >
+      {/* Background Watermark Image */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: 'url(https://hips.hearstapps.com/hmg-prod/images/2019-group-10best-1574285577.jpg?crop=1.00xw:0.751xh;0,0.199xh)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.15,
+          pointerEvents: 'none',
+        }}
+      />
       {/* Card Content */}
       <div
         style={{
@@ -108,6 +124,8 @@ export function NewsletterPromo({
           flexDirection: 'column',
           gap: newsletterPromoTokens.spacing.contentGap,
           width: '100%',
+          position: 'relative',
+          zIndex: 1,
         }}
       >
         {/* Eyebrow */}
