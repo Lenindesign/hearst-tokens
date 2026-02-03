@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { brandThemes } from '@/lib/brandThemes';
@@ -178,6 +179,90 @@ export default function ShadcnDemoPage() {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+        </div>
+      </section>
+
+      {/* Carousel Section */}
+      <section className="mb-12">
+        <h2 className="text-xl font-semibold mb-4" style={{ color: 'var(--foreground)' }}>Carousel</h2>
+        
+        {/* Default Carousel */}
+        <div 
+          className="p-6 rounded-lg mb-6"
+          style={{
+            backgroundColor: 'var(--card)',
+            border: '1px solid var(--border)',
+          }}
+        >
+          <h3 className="text-sm font-medium mb-4" style={{ color: 'var(--muted-foreground)' }}>Default</h3>
+          <div className="mx-auto" style={{ maxWidth: 400, paddingLeft: 48, paddingRight: 48 }}>
+            <Carousel className="w-full">
+              <CarouselContent>
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <CarouselItem key={index}>
+                    <div className="p-1">
+                      <Card>
+                        <CardContent 
+                          className="flex items-center justify-center p-6"
+                          style={{ aspectRatio: '1 / 1' }}
+                        >
+                          <span 
+                            className="text-4xl font-semibold"
+                            style={{ color: 'var(--foreground)' }}
+                          >
+                            {index + 1}
+                          </span>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+        </div>
+
+        {/* Sizes - Multiple Items */}
+        <div 
+          className="p-6 rounded-lg"
+          style={{
+            backgroundColor: 'var(--card)',
+            border: '1px solid var(--border)',
+          }}
+        >
+          <h3 className="text-sm font-medium mb-2" style={{ color: 'var(--muted-foreground)' }}>Sizes</h3>
+          <p className="text-sm mb-4" style={{ color: 'var(--muted-foreground)' }}>
+            To set the size of the items, you can use the <code style={{ backgroundColor: 'var(--muted)', padding: '2px 6px', borderRadius: 4, fontSize: 12 }}>basis</code> utility class on the <code style={{ backgroundColor: 'var(--muted)', padding: '2px 6px', borderRadius: 4, fontSize: 12 }}>&lt;CarouselItem /&gt;</code>.
+          </p>
+          <div className="mx-auto" style={{ maxWidth: 500, paddingLeft: 48, paddingRight: 48 }}>
+            <Carousel className="w-full">
+              <CarouselContent>
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <CarouselItem key={index} className="basis-1/3">
+                    <div className="p-1">
+                      <Card>
+                        <CardContent 
+                          className="flex items-center justify-center p-6"
+                          style={{ aspectRatio: '1 / 1' }}
+                        >
+                          <span 
+                            className="text-3xl font-semibold"
+                            style={{ color: 'var(--foreground)' }}
+                          >
+                            {index + 1}
+                          </span>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
         </div>
       </section>
 
