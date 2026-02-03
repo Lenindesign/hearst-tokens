@@ -16,13 +16,13 @@
  *           - Title (SF Pro, 20px, bold, #121212, letterSpacing: -0.2, lineHeight: 1.2)
  */
 
-// Design tokens from Pencil
+// Design tokens from Pencil - using official Car and Driver brand colors
 const tokens = {
   colors: {
-    text: '#121212',
-    textSecondary: '#bdbdbd',
-    background: '#ffffff',
-    imagePlaceholder: '#f6f5f5',
+    text: '#222222',           // Dark Grey - official C&D primary
+    textSecondary: '#A59143',  // Dark Gold - official C&D secondary
+    background: '#ffffff',     // White
+    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
   },
   spacing: {
     sectionGap: 36,

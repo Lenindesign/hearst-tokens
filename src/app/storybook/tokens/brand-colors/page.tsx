@@ -23,7 +23,7 @@ const hearstBrands = {
   },
   carAndDriver: {
     name: 'Car and Driver',
-    colors: ['#8dafc5', '#b1b1b1', '#444444', '#e2e2e2', '#eaeaea', '#6abd45', '#6f6f6f', '#00a4db', '#1B5F8A', '#f1f7f7', '#dbca8b', '#607d8b', '#dae2e5'],
+    colors: ['#222222', '#1B5F8A', '#DBCA8B', '#F7E4CA', '#F5F5F5', '#D2232A', '#26870D', '#A59143', '#F1F7F7', '#FFFFFF'],
   },
   cosmopolitan: {
     name: 'Cosmopolitan',

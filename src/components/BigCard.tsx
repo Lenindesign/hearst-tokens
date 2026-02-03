@@ -22,15 +22,16 @@ import { font, colors, spacing } from '@/lib/designTokens';
  */
 
 // Design tokens from Pencil (Car and Driver brand) - node Bmqs6
+// Using official Car and Driver brand colors
 const tokens = {
   colors: {
-    text: '#000000',
-    textSecondary: '#666666',
-    textMuted: '#515150',
-    background: colors.neutral.lightest,
-    imagePlaceholder: colors.neutral[300],
-    sectionLabelBg: '#dbc98f',  // Gold/tan color
-    sectionLabelText: '#000000',
+    text: '#222222',           // Dark Grey - official C&D primary
+    textSecondary: '#A59143',  // Dark Gold - official C&D secondary
+    textMuted: '#A59143',      // Dark Gold
+    background: '#FFFFFF',     // White
+    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
+    sectionLabelBg: '#DBCA8B', // Gold - official C&D
+    sectionLabelText: '#222222', // Dark Grey
   },
   spacing: {
     containerGap: 16,

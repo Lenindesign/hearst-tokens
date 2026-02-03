@@ -17,15 +17,15 @@
  *         - Button "Label" (black bg, white text, padding: 4px 8px)
  */
 
-// Design tokens from Pencil
+// Design tokens from Pencil - using official Car and Driver brand colors
 const tokens = {
   colors: {
-    text: '#121212',
-    textSecondary: '#bdbdbd',
-    background: '#ffffff',
-    buttonBg: '#1c1c1c',
-    buttonText: '#ffffff',
-    imagePlaceholder: '#e5e5e5',
+    text: '#222222',           // Dark Grey - official C&D primary
+    textSecondary: '#A59143',  // Dark Gold - official C&D secondary
+    background: '#ffffff',     // White
+    buttonBg: '#222222',       // Dark Grey - official C&D primary
+    buttonText: '#ffffff',     // White
+    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
   },
   spacing: {
     sectionGap: 40,

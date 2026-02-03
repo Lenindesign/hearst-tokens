@@ -35,24 +35,35 @@ import {
  */
 
 // Map design system tokens to component-friendly format
+// Using official Car and Driver brand colors
 const tokens = {
   colors: {
-    // Brand-specific colors (Car and Driver)
-    brand9: '#1B5F8A',  // Dark blue - primary brand color
-    brand13: '#dae2e5', // Light blue-gray - newsletter bg
-    // Neutral palette from design system
-    gray7: colors.neutral.darkest,      // #121212
-    gray11: colors.neutral[1000],       // #1c1c1c
-    gray16: colors.neutral[900],        // #292929
-    gray23: colors.neutral[800],        // #3b3b3b
-    gray34: colors.neutral[700],        // #575757
-    gray46: colors.neutral[600],        // #757575
-    gray58: colors.neutral[500],        // #949494
-    gray74: colors.neutral[400],        // #bdbdbd
-    gray84: colors.neutral[300],        // #d6d6d6
-    gray93: colors.neutral[200],        // #ededed
-    gray96: colors.neutral[100],        // #f5f5f5
-    gray100: colors.neutral.lightest,   // #ffffff
+    // Official Car and Driver Brand Colors
+    darkGrey: '#222222',       // Primary dark color
+    darkBlue: '#1B5F8A',       // Primary brand blue
+    gold: '#DBCA8B',           // Signature gold
+    lightOrange: '#F7E4CA',    // Warm background
+    lightGrey: '#F5F5F5',      // Light background
+    red: '#D2232A',            // Alert/emphasis
+    green: '#26870D',          // Success states
+    darkGold: '#A59143',       // Secondary accent
+    lightBlue: '#F1F7F7',      // Subtle blue tint
+    white: '#FFFFFF',          // Pure white
+    // Legacy mappings for compatibility
+    brand9: '#1B5F8A',         // Dark Blue
+    brand13: '#F1F7F7',        // Light Blue - newsletter bg
+    gray7: '#222222',          // Dark Grey
+    gray11: '#222222',         // Dark Grey
+    gray16: '#222222',         // Dark Grey
+    gray23: '#222222',         // Dark Grey
+    gray34: '#A59143',         // Dark Gold
+    gray46: '#A59143',         // Dark Gold
+    gray58: '#A59143',         // Dark Gold
+    gray74: '#DBCA8B',         // Gold
+    gray84: '#F5F5F5',         // Light Grey
+    gray93: '#F5F5F5',         // Light Grey
+    gray96: '#F5F5F5',         // Light Grey
+    gray100: '#FFFFFF',        // White
   },
   layout: {
     '4xs': layout['4xs'],

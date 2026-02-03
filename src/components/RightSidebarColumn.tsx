@@ -23,14 +23,15 @@ import { font, colors } from '@/lib/designTokens';
  */
 
 // Design tokens from Pencil (Car and Driver brand) - node OZWRf
+// Using official Car and Driver brand colors
 const tokens = {
   colors: {
-    text: '#000000',
-    textSecondary: '#666666',
-    sectionLabel: '#1B5F8A',  // Car and Driver blue
-    background: '#ffffff',
-    border: '#000000',
-    imagePlaceholder: '#e5e5e5',
+    text: '#222222',           // Dark Grey - official C&D primary
+    textSecondary: '#A59143',  // Dark Gold - official C&D secondary
+    sectionLabel: '#1B5F8A',   // Dark Blue - official C&D
+    background: '#ffffff',     // White
+    border: '#222222',         // Dark Grey
+    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
     mediaIconBg: '#ffffffe5',
   },
   spacing: {

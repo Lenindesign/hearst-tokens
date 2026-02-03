@@ -82,27 +82,29 @@ const neutralColors = {
 };
 
 export const brandThemes: Record<string, BrandTheme> = {
-  // Car and Driver - Automotive focus, blue/gray palette
-  // Brand colors from API: #8dafc5, #b1b1b1, #444444, #e2e2e2, #eaeaea, #6abd45, #6f6f6f, #00a4db, #1B5F8A, #f1f7f7, #dbca8b, #607d8b, #dae2e5
+  // Car and Driver - Automotive focus
+  // Official Brand Colors:
+  // Primary: Dark Grey #222222, Dark Blue #1B5F8A, Gold #DBCA8B, Light Orange #F7E4CA, Light Grey #F5F5F5
+  // Secondary: Red #D2232A, Green #26870D, Dark Gold #A59143, Light Blue #F1F7F7, White #FFFFFF
   // Typography: Inter for headlines/body, Barlow Condensed for section headers and eyebrows
   carAndDriver: {
     id: 'carAndDriver',
     name: 'Car and Driver',
     colors: {
-      primary: '#d22329',      // Red accent (strap color)
+      primary: '#222222',      // Dark Grey - primary brand color
       secondary: '#1B5F8A',    // Dark Blue - official brand color
-      accent: '#6abd45',       // brand.6 - Green
-      background: neutralColors.background,
-      surface: neutralColors.surface,
-      text: neutralColors.text,
-      textSecondary: neutralColors.textSecondary,
-      headerBg: baseColors.neutral[200],  // #ededed
-      headerText: neutralColors.text,
-      strapBg: '#d22329',
-      strapText: baseColors.neutral.lightest,
+      accent: '#DBCA8B',       // Gold - signature accent
+      background: '#FFFFFF',   // White
+      surface: '#F5F5F5',      // Light Grey
+      text: '#222222',         // Dark Grey
+      textSecondary: '#A59143', // Dark Gold
+      headerBg: '#F5F5F5',     // Light Grey
+      headerText: '#222222',   // Dark Grey
+      strapBg: '#D2232A',      // Red - for alerts/emphasis
+      strapText: '#FFFFFF',    // White
       link: '#1B5F8A',         // Dark Blue - official brand color
-      linkHover: '#00a4db',    // brand.8
-      border: neutralColors.border,
+      linkHover: '#A59143',    // Dark Gold
+      border: '#F5F5F5',       // Light Grey
     },
     typography: {
       fontFamily: {

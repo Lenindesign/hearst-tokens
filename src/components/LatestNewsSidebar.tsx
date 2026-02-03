@@ -22,13 +22,14 @@ import { font, colors } from '@/lib/designTokens';
  */
 
 // Exact design tokens from Pencil (Car and Driver brand)
+// Using official Car and Driver brand colors
 const tokens = {
   colors: {
-    strapBackground: '#222222',  // Car and Driver dark grey
-    strapText: '#ffffff',
-    titleText: '#000000',
-    timestampText: '#1B5F8A',    // Car and Driver blue
-    imagePlaceholder: '#e5e5e5',
+    strapBackground: '#222222',  // Dark Grey - official C&D primary
+    strapText: '#ffffff',        // White
+    titleText: '#222222',        // Dark Grey - official C&D primary
+    timestampText: '#1B5F8A',    // Dark Blue - official C&D
+    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
     mediaIconBg: '#ffffffe5',    // White with 90% opacity
     mediaIconShadow: '0 2px 4px #0000004f',
   },

@@ -27,18 +27,19 @@
  */
 
 // Design tokens from Pencil - Updated for Car and Driver style
+// Using official Car and Driver brand colors
 const tokens = {
   colors: {
-    utilitiesBg: '#121212',
-    navBarBg: '#ffffff',
-    navBarBorder: '#e5e5e5',
-    textWhite: '#ffffff',
-    textDark: '#121212',
-    textMuted: '#6b7280',
-    buttonFilled: '#1B5F8A', // Car and Driver blue
+    utilitiesBg: '#222222',    // Dark Grey - official C&D primary
+    navBarBg: '#ffffff',       // White
+    navBarBorder: '#F5F5F5',   // Light Grey - official C&D
+    textWhite: '#ffffff',      // White
+    textDark: '#222222',       // Dark Grey - official C&D primary
+    textMuted: '#A59143',      // Dark Gold - official C&D secondary
+    buttonFilled: '#1B5F8A',   // Dark Blue - official C&D
     buttonGhost: 'rgba(255, 255, 255, 0.04)',
-    inputBg: '#f5f5f5',
-    inputBorder: '#d1d5db',
+    inputBg: '#F5F5F5',        // Light Grey - official C&D
+    inputBorder: '#F5F5F5',    // Light Grey - official C&D
   },
   spacing: {
     navBarPadding: [0, 24] as [number, number],

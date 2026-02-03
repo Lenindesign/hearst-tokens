@@ -23,15 +23,16 @@
  */
 
 // Design tokens from Pencil - Car and Driver dark footer
+// Using official Car and Driver brand colors
 const tokens = {
   colors: {
-    text: '#ffffff',
-    textMuted: '#a0a0a0',
-    textBlack: '#000000',
-    background: '#121212',
-    border: '#333333',
-    logoBlue: '#4c759f',
-    logoGray: '#99989d',
+    text: '#ffffff',           // White
+    textMuted: '#A59143',      // Dark Gold - official C&D secondary
+    textBlack: '#222222',      // Dark Grey - official C&D primary
+    background: '#222222',     // Dark Grey - official C&D primary
+    border: '#A59143',         // Dark Gold - official C&D secondary
+    logoBlue: '#1B5F8A',       // Dark Blue - official C&D
+    logoGray: '#A59143',       // Dark Gold - official C&D secondary
   },
   spacing: {
     containerPadding: 32,

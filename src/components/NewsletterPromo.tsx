@@ -39,12 +39,12 @@ function CarAndDriverLogo({ color = '#ffffff' }: { color?: string }) {
   );
 }
 
-// Design tokens from Pencil
+// Design tokens from Pencil - using official Car and Driver brand colors
 export const newsletterPromoTokens = {
   colors: {
-    text: '#ffffff',
-    background: '#121212',
-    buttonBg: '#1B5F8A', // Car and Driver blue
+    text: '#ffffff',           // White
+    background: '#222222',     // Dark Grey - official C&D primary
+    buttonBg: '#1B5F8A',       // Dark Blue - official C&D
   },
   spacing: {
     contentGap: 12,

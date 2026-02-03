@@ -16,13 +16,13 @@
  *         - Timestamp (SF Pro, 12px, normal, #121212, letterSpacing: 0.4, lineHeight: 1.33)
  */
 
-// Design tokens from Pencil
+// Design tokens from Pencil - using official Car and Driver brand colors
 const tokens = {
   colors: {
-    text: '#121212',
-    textSecondary: '#bdbdbd',
-    background: '#ffffff',
-    mediaBg: '#d9d9d9',
+    text: '#222222',           // Dark Grey - official C&D primary
+    textSecondary: '#A59143',  // Dark Gold - official C&D secondary
+    background: '#ffffff',     // White
+    mediaBg: '#F5F5F5',        // Light Grey - official C&D
     iconBg: 'rgba(255, 255, 255, 0.04)',
   },
   spacing: {
