@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, ReactNode } from 'react';
 import { BrandTheme, brandThemes, defaultTheme, getTheme } from './brandThemes';
 
 interface ThemeContextType {
@@ -17,9 +17,24 @@ interface ThemeProviderProps {
   initialThemeId?: string;
 }
 
+/**
+ * Convert camelCase theme ID to kebab-case for CSS data-theme attribute
+ * e.g., "carAndDriver" -> "car-and-driver"
+ */
+function toKebabCase(str: string): string {
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+}
+
 export function ThemeProvider({ children, initialThemeId = 'carAndDriver' }: ThemeProviderProps) {
   const [themeId, setThemeId] = useState(initialThemeId);
   const [theme, setTheme] = useState<BrandTheme>(getTheme(initialThemeId));
+
+  // Update the data-theme attribute on the document when theme changes
+  // This enables shadcn/ui CSS variable theming
+  useEffect(() => {
+    const kebabThemeId = toKebabCase(themeId);
+    document.documentElement.setAttribute('data-theme', kebabThemeId);
+  }, [themeId]);
 
   const setThemeById = useCallback((id: string) => {
     const newTheme = getTheme(id);
