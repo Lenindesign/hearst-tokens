@@ -56,9 +56,9 @@ const tokens = {
     gray11: '#222222',         // Dark Grey
     gray16: '#222222',         // Dark Grey
     gray23: '#222222',         // Dark Grey
-    gray34: '#A59143',         // Dark Gold
-    gray46: '#A59143',         // Dark Gold
-    gray58: '#A59143',         // Dark Gold
+    gray34: '#222222',         // Dark Grey - for bylines and timestamps
+    gray46: '#222222',         // Dark Grey - for bylines and timestamps
+    gray58: '#222222',         // Dark Grey - for bylines and timestamps
     gray74: '#DBCA8B',         // Gold
     gray84: '#F5F5F5',         // Light Grey
     gray93: '#F5F5F5',         // Light Grey
@@ -556,6 +556,24 @@ export function CarAndDriverHomepage() {
           { label: 'NEWS + STORIES' },
         ]}
       />
+      
+      {/* Full-width Banner under Navigation */}
+      <div 
+        style={{ 
+          width: '100%',
+          backgroundColor: tokens.colors.darkGrey,
+        }}
+      >
+        <img 
+          src="https://pub-4345f0f77c424370b4354c6a404ac802.r2.dev/Group%2037421.png"
+          alt="Banner"
+          style={{
+            width: '100%',
+            height: 'auto',
+            display: 'block',
+          }}
+        />
+      </div>
       
       {/* Page Container - 1200px max width */}
       <div

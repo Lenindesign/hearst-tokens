@@ -26,8 +26,8 @@ import { font, colors, spacing } from '@/lib/designTokens';
 const tokens = {
   colors: {
     text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#A59143',  // Dark Gold - official C&D secondary
-    textMuted: '#A59143',      // Dark Gold
+    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
+    textMuted: '#222222',      // Dark Grey - for bylines and timestamps
     background: '#FFFFFF',     // White
     imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
     sectionLabelBg: '#DBCA8B', // Gold - official C&D

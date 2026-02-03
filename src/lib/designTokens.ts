@@ -340,11 +340,12 @@ export const font = {
   family: {
     default: '-apple-system, BlinkMacSystemFont, "SF Pro", "Segoe UI", Roboto, sans-serif',
     sansSerif: '-apple-system, BlinkMacSystemFont, "SF Pro", "Segoe UI", Roboto, sans-serif',
-    serif: 'Georgia, "Times New Roman", serif',
+    serif: 'var(--font-lora), Lora, Georgia, serif',
     mono: 'SF Mono, Monaco, Consolas, monospace',
     // Brand-specific fonts (loaded via Google Fonts)
     inter: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
     barlowCondensed: 'var(--font-barlow-condensed), "Barlow Condensed", -apple-system, sans-serif',
+    lora: 'var(--font-lora), Lora, Georgia, serif',
   },
   size: {
     '3xs': 12,

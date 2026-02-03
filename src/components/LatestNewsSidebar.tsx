@@ -28,7 +28,7 @@ const tokens = {
     strapBackground: '#222222',  // Dark Grey - official C&D primary
     strapText: '#ffffff',        // White
     titleText: '#222222',        // Dark Grey - official C&D primary
-    timestampText: '#1B5F8A',    // Dark Blue - official C&D
+    timestampText: '#222222',    // Dark Grey - official C&D primary
     imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
     mediaIconBg: '#ffffffe5',    // White with 90% opacity
     mediaIconShadow: '0 2px 4px #0000004f',
@@ -268,24 +268,25 @@ export function LatestNewsSidebar({
         flexDirection: 'column',
       }}
     >
-      {/* Strap Header - styled to match FIRST DRIVE label */}
+      {/* Strap Header - styled with bottom border */}
       <div
         style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          padding: tokens.spacing.strapPadding,
-          backgroundColor: tokens.colors.strapBackground,
-          alignSelf: 'flex-start',
+          display: 'flex',
+          flexDirection: 'column',
+          width: '100%',
+          borderBottom: '5px solid #000000',
+          paddingBottom: 8,
         }}
       >
         <span
           style={{
-            fontFamily: tokens.typography.columnTitle.fontFamily,
-            fontSize: tokens.typography.columnTitle.fontSize,
-            fontWeight: tokens.typography.columnTitle.fontWeight,
-            letterSpacing: tokens.typography.columnTitle.letterSpacing,
-            lineHeight: tokens.typography.columnTitle.lineHeight,
-            color: tokens.colors.strapText,
+            fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
+            fontSize: 24,
+            fontWeight: 600,
+            letterSpacing: 0,
+            lineHeight: 1,
+            color: '#000000',
+            whiteSpace: 'nowrap',
             textTransform: 'uppercase',
           }}
         >

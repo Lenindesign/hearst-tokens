@@ -20,7 +20,7 @@
 const tokens = {
   colors: {
     text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#A59143',  // Dark Gold - official C&D secondary
+    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
     background: '#ffffff',     // White
     imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
   },
@@ -200,47 +200,30 @@ export function SeoBlockGrid({
         maxWidth: tokens.sizes.sectionWidth,
       }}
     >
-      {/* Section Title - Centered with lines on both sides */}
+      {/* Section Title - Strap style with bottom border */}
       <div
         style={{
           display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
+          flexDirection: 'column',
           width: '100%',
-          gap: 16,
+          borderBottom: '5px solid #000000',
+          paddingBottom: 8,
         }}
       >
-        {/* Left Line */}
-        <div
-          style={{
-            flex: 1,
-            height: 1,
-            backgroundColor: tokens.colors.text,
-          }}
-        />
         <span
           style={{
             fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
-            fontSize: 40,
+            fontSize: 30,
             fontWeight: 600,
             letterSpacing: 0,
-            lineHeight: tokens.typography.sectionTitle.lineHeight,
-            color: tokens.colors.text,
+            lineHeight: 1,
+            color: '#000000',
             whiteSpace: 'nowrap',
             textTransform: 'uppercase',
           }}
         >
           {title}
         </span>
-        {/* Right Line */}
-        <div
-          style={{
-            flex: 1,
-            height: 1,
-            backgroundColor: tokens.colors.text,
-          }}
-        />
       </div>
 
       {/* Card Grid - 4 columns */}

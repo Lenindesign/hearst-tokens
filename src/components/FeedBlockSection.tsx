@@ -31,7 +31,7 @@
 const tokens = {
   colors: {
     text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#A59143',  // Dark Gold - official C&D secondary
+    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
     background: '#ffffff',     // White
     imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
   },
@@ -58,56 +58,58 @@ const tokens = {
       lineHeight: 1.125,
     },
     bigStoryEyebrow: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
+      fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
       fontSize: 15,
-      fontWeight: 400,
+      fontWeight: 500,
       letterSpacing: 0.2,
       lineHeight: 1.07,
+      textTransform: 'uppercase' as const,
     },
     bigStoryTitle: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
+      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
       fontSize: 32,
       fontWeight: 700,
       letterSpacing: -1,
       lineHeight: 1.125,
     },
     bigStoryAuthor: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
+      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
       fontSize: 15,
       fontWeight: 400,
       letterSpacing: 0.2,
       lineHeight: 1.07,
     },
     smallCardEyebrow: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
+      fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
       fontSize: 13,
-      fontWeight: 400,
+      fontWeight: 500,
       letterSpacing: 0.4,
       lineHeight: 1.23,
+      textTransform: 'uppercase' as const,
     },
     smallCardTitle: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
+      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
       fontSize: 16,
       fontWeight: 700,
       letterSpacing: 0,
       lineHeight: 1.25,
     },
     smallCardSubtitle: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
+      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
       fontSize: 14,
       fontWeight: 400,
       letterSpacing: 0.4,
       lineHeight: 1.14,
     },
     smallCardTimestamp: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
+      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
       fontSize: 12,
       fontWeight: 400,
       letterSpacing: 0.4,
       lineHeight: 1.33,
     },
     smallCardAuthor: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
+      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
       fontSize: 12,
       fontWeight: 400,
       letterSpacing: 0.4,
@@ -213,6 +215,7 @@ function BigStoryCard({
               fontWeight: tokens.typography.bigStoryEyebrow.fontWeight,
               letterSpacing: tokens.typography.bigStoryEyebrow.letterSpacing,
               lineHeight: tokens.typography.bigStoryEyebrow.lineHeight,
+              textTransform: tokens.typography.bigStoryEyebrow.textTransform,
               color: tokens.colors.text,
               width: '100%',
             }}
@@ -464,46 +467,30 @@ export function FeedBlockSection({
         maxWidth: tokens.sizes.sectionWidth,
       }}
     >
-      {/* Section Title - Centered with lines on both sides */}
+      {/* Section Title - Strap style with bottom border */}
       <div
         style={{
           display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
+          flexDirection: 'column',
           width: '100%',
-          gap: 16,
+          borderBottom: '5px solid #000000',
+          paddingBottom: 8,
         }}
       >
-        {/* Left Line */}
-        <div
-          style={{
-            flex: 1,
-            height: 1,
-            backgroundColor: tokens.colors.text,
-          }}
-        />
         <span
           style={{
             fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
-            fontSize: 40,
+            fontSize: 30,
             fontWeight: 600,
             letterSpacing: 0,
-            lineHeight: tokens.typography.sectionTitle.lineHeight,
-            color: tokens.colors.text,
+            lineHeight: 1,
+            color: '#000000',
             whiteSpace: 'nowrap',
             textTransform: 'uppercase',
           }}
         >
           {title}
         </span>
-        {/* Right Line */}
-        <div
-          style={{
-            flex: 1,
-            height: 1,
-            backgroundColor: tokens.colors.text,
-          }}
-        />
       </div>
       
       {/* Content */}

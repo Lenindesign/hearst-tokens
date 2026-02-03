@@ -21,13 +21,13 @@ import { font, colors, spacing } from '@/lib/designTokens';
  * - Inter: Headlines and body text
  */
 
-// Design tokens from Pencil - using centralized tokens
+// Design tokens from Pencil - using official Car and Driver brand colors and fonts
 const tokens = {
   colors: {
-    text: colors.neutral.darkest,
-    textSecondary: colors.neutral[400],
-    background: colors.neutral.lightest,
-    imagePlaceholder: colors.neutral[300],
+    text: '#222222',             // Dark Grey - official C&D primary
+    textSecondary: '#222222',    // Dark Grey - for bylines and timestamps
+    background: '#FFFFFF',       // White
+    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
   },
   spacing: {
     containerGap: spacing['2xl'],
@@ -40,15 +40,16 @@ const tokens = {
   typography: {
     eyebrow: {
       // Barlow Condensed for eyebrows
-      fontFamily: font.family.barlowCondensed,
+      fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
       fontSize: font.size.sm,
-      fontWeight: font.weight.regular,
+      fontWeight: font.weight.medium,
       letterSpacing: 0.2,
       lineHeight: 1.067,
+      textTransform: 'uppercase' as const,
     },
     title: {
       // Inter for headlines
-      fontFamily: font.family.inter,
+      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
       fontSize: font.size['5xl'],
       fontWeight: font.weight.bold,
       letterSpacing: -2,
@@ -56,7 +57,7 @@ const tokens = {
     },
     author: {
       // Inter for body text
-      fontFamily: font.family.inter,
+      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
       fontSize: font.size.sm,
       fontWeight: font.weight.regular,
       letterSpacing: 0.2,
@@ -175,6 +176,7 @@ export function BigStoryCard({
                   fontWeight: tokens.typography.eyebrow.fontWeight,
                   letterSpacing: tokens.typography.eyebrow.letterSpacing,
                   lineHeight: tokens.typography.eyebrow.lineHeight,
+                  textTransform: tokens.typography.eyebrow.textTransform,
                   color: tokens.colors.text,
                   width: '100%',
                 }}

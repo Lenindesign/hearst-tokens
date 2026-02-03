@@ -166,44 +166,168 @@ function ThemeInfoCard({ theme }: { theme: BrandTheme }) {
         </span>
       </div>
       
-      {/* Color Palette */}
-      <div style={{ display: 'flex', gap: spacing.md, flexWrap: 'wrap', marginBottom: spacing.md }}>
-        {[
-          { name: 'Primary', color: theme.colors.primary },
-          { name: 'Secondary', color: theme.colors.secondary },
-          { name: 'Strap', color: theme.colors.strapBg },
-          { name: 'Header', color: theme.colors.headerBg },
-          { name: 'Link', color: theme.colors.link },
-        ].map((item) => (
-          <div key={item.name} style={{ textAlign: 'center' }}>
-            <div
-              style={{
-                width: 40,
-                height: 40,
-                backgroundColor: item.color,
-                borderRadius: border.radius.sm,
-                border: `1px solid ${colors.neutral[300]}`,
-                marginBottom: spacing['2xs'],
-              }}
-            />
-            <span style={{ fontSize: 10, color: colors.neutral[600] }}>{item.name}</span>
-          </div>
-        ))}
+      {/* Color Palette - All Official Car and Driver Brand Colors */}
+      <div style={{ marginBottom: spacing.md }}>
+        <span style={{ fontSize: 10, color: colors.neutral[500], textTransform: 'uppercase', display: 'block', marginBottom: spacing.xs }}>
+          Primary Colors
+        </span>
+        <div style={{ display: 'flex', gap: spacing.sm, flexWrap: 'wrap', marginBottom: spacing.md }}>
+          {[
+            { name: 'Dark Grey', color: '#222222' },
+            { name: 'Dark Blue', color: '#1B5F8A' },
+            { name: 'Gold', color: '#DBCA8B' },
+            { name: 'Light Orange', color: '#F7E4CA' },
+            { name: 'Light Grey', color: '#F5F5F5' },
+          ].map((item) => (
+            <div key={item.name} style={{ textAlign: 'center' }}>
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  backgroundColor: item.color,
+                  borderRadius: border.radius.sm,
+                  border: `1px solid ${colors.neutral[300]}`,
+                  marginBottom: spacing['2xs'],
+                }}
+                title={item.color}
+              />
+              <span style={{ fontSize: 9, color: colors.neutral[600], display: 'block' }}>{item.name}</span>
+              <span style={{ fontSize: 8, color: colors.neutral[500], fontFamily: 'monospace' }}>{item.color}</span>
+            </div>
+          ))}
+        </div>
+        
+        <span style={{ fontSize: 10, color: colors.neutral[500], textTransform: 'uppercase', display: 'block', marginBottom: spacing.xs }}>
+          Secondary Colors
+        </span>
+        <div style={{ display: 'flex', gap: spacing.sm, flexWrap: 'wrap' }}>
+          {[
+            { name: 'Red', color: '#D2232A' },
+            { name: 'Green', color: '#26870D' },
+            { name: 'Dark Gold', color: '#A59143' },
+            { name: 'Light Blue', color: '#F1F7F7' },
+            { name: 'White', color: '#FFFFFF' },
+          ].map((item) => (
+            <div key={item.name} style={{ textAlign: 'center' }}>
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  backgroundColor: item.color,
+                  borderRadius: border.radius.sm,
+                  border: `1px solid ${colors.neutral[300]}`,
+                  marginBottom: spacing['2xs'],
+                }}
+                title={item.color}
+              />
+              <span style={{ fontSize: 9, color: colors.neutral[600], display: 'block' }}>{item.name}</span>
+              <span style={{ fontSize: 8, color: colors.neutral[500], fontFamily: 'monospace' }}>{item.color}</span>
+            </div>
+          ))}
+        </div>
       </div>
       
-      {/* Typography */}
-      <div style={{ display: 'flex', gap: spacing['2xl'] }}>
-        <div>
-          <span style={{ fontSize: 10, color: colors.neutral[500], textTransform: 'uppercase' }}>Primary Font</span>
-          <p style={{ fontFamily: theme.typography.fontFamily.primary, fontSize: 14, margin: `${spacing['2xs']}px 0 0`, color: colors.neutral.darkest }}>
-            Headlines & Body
-          </p>
-        </div>
-        <div>
-          <span style={{ fontSize: 10, color: colors.neutral[500], textTransform: 'uppercase' }}>Display Font</span>
-          <p style={{ fontFamily: theme.typography.fontFamily.display, fontSize: 16, fontWeight: theme.typography.headerWeight, margin: `${spacing['2xs']}px 0 0`, color: colors.neutral.darkest }}>
-            Section Headers
-          </p>
+      {/* Typography - Car and Driver Fonts */}
+      <div>
+        <span style={{ fontSize: 10, color: colors.neutral[500], textTransform: 'uppercase', display: 'block', marginBottom: spacing.sm }}>
+          Typography
+        </span>
+        <div style={{ display: 'flex', gap: spacing['2xl'], flexWrap: 'wrap' }}>
+          {/* Inter - Headlines & Body */}
+          <div style={{ 
+            padding: spacing.md, 
+            backgroundColor: colors.neutral[100], 
+            borderRadius: border.radius.md,
+            minWidth: 200,
+          }}>
+            <span style={{ fontSize: 10, color: colors.neutral[500], textTransform: 'uppercase', display: 'block', marginBottom: spacing.xs }}>
+              Inter
+            </span>
+            <p style={{ 
+              fontFamily: 'var(--font-inter), Inter, -apple-system, sans-serif', 
+              fontSize: 24, 
+              fontWeight: 700, 
+              margin: 0, 
+              color: colors.neutral.darkest,
+              lineHeight: 1.2,
+            }}>
+              Headlines & Body
+            </p>
+            <p style={{ 
+              fontFamily: 'var(--font-inter), Inter, -apple-system, sans-serif', 
+              fontSize: 14, 
+              fontWeight: 400, 
+              margin: `${spacing.xs}px 0 0`, 
+              color: colors.neutral[600],
+            }}>
+              Used for article titles, body text, and UI elements
+            </p>
+          </div>
+          
+          {/* Barlow Condensed - Section Headers & Eyebrows */}
+          <div style={{ 
+            padding: spacing.md, 
+            backgroundColor: colors.neutral[100], 
+            borderRadius: border.radius.md,
+            minWidth: 200,
+          }}>
+            <span style={{ fontSize: 10, color: colors.neutral[500], textTransform: 'uppercase', display: 'block', marginBottom: spacing.xs }}>
+              Barlow Condensed
+            </span>
+            <p style={{ 
+              fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", sans-serif', 
+              fontSize: 28, 
+              fontWeight: 600, 
+              margin: 0, 
+              color: colors.neutral.darkest,
+              textTransform: 'uppercase',
+              letterSpacing: '0.02em',
+              lineHeight: 1,
+            }}>
+              Section Headers
+            </p>
+            <p style={{ 
+              fontFamily: 'var(--font-inter), Inter, -apple-system, sans-serif', 
+              fontSize: 14, 
+              fontWeight: 400, 
+              margin: `${spacing.xs}px 0 0`, 
+              color: colors.neutral[600],
+            }}>
+              Used for section titles, eyebrows, and navigation
+            </p>
+          </div>
+          
+          {/* Lora - Serif/Secondary */}
+          <div style={{ 
+            padding: spacing.md, 
+            backgroundColor: colors.neutral[100], 
+            borderRadius: border.radius.md,
+            minWidth: 200,
+          }}>
+            <span style={{ fontSize: 10, color: colors.neutral[500], textTransform: 'uppercase', display: 'block', marginBottom: spacing.xs }}>
+              Lora
+            </span>
+            <p style={{ 
+              fontFamily: 'var(--font-lora), Lora, Georgia, serif', 
+              fontSize: 22, 
+              fontWeight: 400, 
+              fontStyle: 'italic',
+              margin: 0, 
+              color: colors.neutral.darkest,
+              lineHeight: 1.3,
+            }}>
+              Editorial & Quotes
+            </p>
+            <p style={{ 
+              fontFamily: 'var(--font-inter), Inter, -apple-system, sans-serif', 
+              fontSize: 14, 
+              fontWeight: 400, 
+              margin: `${spacing.xs}px 0 0`, 
+              color: colors.neutral[600],
+            }}>
+              Used for pull quotes and editorial content
+            </p>
+          </div>
         </div>
       </div>
     </div>

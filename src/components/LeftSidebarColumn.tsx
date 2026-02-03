@@ -20,7 +20,7 @@
 const tokens = {
   colors: {
     text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#A59143',  // Dark Gold - official C&D secondary
+    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
     background: '#ffffff',     // White
     mediaBg: '#F5F5F5',        // Light Grey - official C&D
     iconBg: 'rgba(255, 255, 255, 0.04)',

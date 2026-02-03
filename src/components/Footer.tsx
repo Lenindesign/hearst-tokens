@@ -27,12 +27,12 @@
 const tokens = {
   colors: {
     text: '#ffffff',           // White
-    textMuted: '#A59143',      // Dark Gold - official C&D secondary
+    textMuted: '#ffffff',      // White - for muted text on dark background
     textBlack: '#222222',      // Dark Grey - official C&D primary
     background: '#222222',     // Dark Grey - official C&D primary
-    border: '#A59143',         // Dark Gold - official C&D secondary
+    border: '#ffffff',         // White - for borders on dark background
     logoBlue: '#1B5F8A',       // Dark Blue - official C&D
-    logoGray: '#A59143',       // Dark Gold - official C&D secondary
+    logoGray: '#ffffff',       // White - for logo on dark background
   },
   spacing: {
     containerPadding: 32,

@@ -277,10 +277,10 @@ function SearchInput({ placeholder = 'e.g. 2025 Toyota RAV4' }: { placeholder?: 
           fontWeight: tokens.typography.input.fontWeight,
           letterSpacing: tokens.typography.input.letterSpacing,
           lineHeight: tokens.typography.input.lineHeight,
-          color: tokens.colors.textMuted,
+          color: 'rgba(0, 0, 0, 0.5)',
         }}
       />
-      <SearchIcon color={tokens.colors.textMuted} />
+      <SearchIcon color="rgba(0, 0, 0, 0.5)" />
     </div>
   );
 }
@@ -431,7 +431,7 @@ function MobileSearchInput({ placeholder = 'e.g. 2025 Toyota RAV4' }: { placehol
             fontSize: 14,
             fontWeight: tokens.typography.input.fontWeight,
             fontStyle: 'italic',
-            color: tokens.colors.textMuted,
+            color: 'rgba(0, 0, 0, 0.5)',
           }}
         />
       </div>

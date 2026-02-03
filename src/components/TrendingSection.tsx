@@ -26,7 +26,7 @@
 export const trendingSectionTokens = {
   colors: {
     text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#A59143',  // Dark Gold - official C&D secondary
+    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
     background: '#ffffff',     // White
     strapBorder: '#1B5F8A',    // Dark Blue - official C&D brand color
     badgeBg: '#ffffff',        // White
@@ -77,42 +77,33 @@ export const trendingSectionTokens = {
   },
 };
 
-// Diamond Badge Component
+// Circle Badge Component
 function DiamondBadge({ number }: { number: number }) {
   return (
     <div
       style={{
         position: 'absolute',
-        top: 0,
-        left: 0,
+        top: -8,
+        left: -8,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        width: 24,
-        height: 26,
+        width: 32,
+        height: 32,
+        backgroundColor: '#1B5F8A',
+        border: '2px solid #ffffff',
+        borderRadius: '50%',
       }}
     >
-      {/* Rotated diamond background */}
-      <div
-        style={{
-          position: 'absolute',
-          width: trendingSectionTokens.sizes.badgeSize,
-          height: trendingSectionTokens.sizes.badgeSize,
-          backgroundColor: trendingSectionTokens.colors.badgeBg,
-          border: `1px solid ${trendingSectionTokens.colors.badgeBorder}`,
-          transform: 'rotate(45deg)',
-        }}
-      />
       {/* Number */}
       <span
         style={{
-          position: 'relative',
-          fontFamily: trendingSectionTokens.typography.badge.fontFamily,
-          fontSize: trendingSectionTokens.typography.badge.fontSize,
-          fontWeight: trendingSectionTokens.typography.badge.fontWeight,
-          letterSpacing: trendingSectionTokens.typography.badge.letterSpacing,
-          lineHeight: trendingSectionTokens.typography.badge.lineHeight,
-          color: trendingSectionTokens.colors.text,
+          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
+          fontSize: 16,
+          fontWeight: 800,
+          letterSpacing: -0.5,
+          lineHeight: 1,
+          color: '#ffffff',
           textAlign: 'center',
         }}
       >
@@ -372,45 +363,30 @@ export function TrendingSection({
         width: '100%',
       }}
     >
-      {/* Strap (Header) - Centered with lines on both sides */}
+      {/* Strap (Header) - styled with bottom border */}
       <div
         style={{
           display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
+          flexDirection: 'column',
           width: '100%',
-          gap: 16,
+          borderBottom: '5px solid #000000',
+          paddingBottom: 8,
         }}
       >
-        {/* Left Line */}
-        <div
-          style={{
-            flex: 1,
-            height: 1,
-            backgroundColor: trendingSectionTokens.colors.text,
-          }}
-        />
-        {/* Column Title */}
         <span
           style={{
-            fontFamily: trendingSectionTokens.typography.strapTitle.fontFamily,
-            fontSize: trendingSectionTokens.typography.strapTitle.fontSize,
-            fontWeight: trendingSectionTokens.typography.strapTitle.fontWeight,
-            lineHeight: trendingSectionTokens.typography.strapTitle.lineHeight,
-            color: trendingSectionTokens.colors.text,
+            fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
+            fontSize: 30,
+            fontWeight: 600,
+            letterSpacing: 0,
+            lineHeight: 1,
+            color: '#000000',
             whiteSpace: 'nowrap',
+            textTransform: 'uppercase',
           }}
         >
           {title}
         </span>
-        {/* Right Line */}
-        <div
-          style={{
-            flex: 1,
-            height: 1,
-            backgroundColor: trendingSectionTokens.colors.text,
-          }}
-        />
       </div>
       
       {/* Trending Cards Row */}
