@@ -1,78 +1,10 @@
 'use client';
 
-import { font, colors, spacing } from '@/lib/designTokens';
+import { cn } from '@/lib/utils';
 
 /**
- * BigCard Component (Car and Driver)
- * 
- * Based on Pencil design node: Bmqs6
- * Pixel-perfect implementation from canvas.pen
- * 
- * Structure:
- * - Container: width 610px, vertical layout, gap 16px, height fill
- * - Image Group:
- *   - Image: 612x457px
- *   - Section Label: positioned at bottom-left of image
- *     - Background: #dbc98f (gold), padding 8px
- *     - Text: Barlow Condensed, 16px, 500 weight, black, letterSpacing 0.16
- * - Text Section: vertical layout, gap 8px
- *   - Title: Inter, 48px, 800 weight (Extra Bold), black, lineHeight 1.05
- *   - Dek/Description: Inter, 22px, normal, black, lineHeight 1.4
- *   - Author: Inter, 13px, 500 weight, #666666
+ * BigCard Component - Migrated to Tailwind CSS
  */
-
-// Design tokens from Pencil (Car and Driver brand) - node Bmqs6
-// Using official Car and Driver brand colors
-const tokens = {
-  colors: {
-    text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
-    textMuted: '#222222',      // Dark Grey - for bylines and timestamps
-    background: '#FFFFFF',     // White
-    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
-    sectionLabelBg: '#DBCA8B', // Gold - official C&D
-    sectionLabelText: '#222222', // Dark Grey
-  },
-  spacing: {
-    containerGap: 16,
-    textSectionGap: 8,
-    dekBylineGap: 18,
-    authorDateGap: 16,
-    sectionLabelPadding: 8,
-  },
-  sizes: {
-    containerWidth: 610,
-    imageWidth: 612,
-    imageHeight: 457,
-  },
-  typography: {
-    sectionLabel: {
-      fontFamily: font.family.barlowCondensed,
-      fontSize: 16,
-      fontWeight: 500,
-      letterSpacing: 0.16,
-      lineHeight: 1,
-    },
-    title: {
-      fontFamily: font.family.inter,
-      fontSize: 48,
-      fontWeight: 800,  // Extra Bold
-      lineHeight: 1.05,
-    },
-    dek: {
-      fontFamily: font.family.inter,
-      fontSize: 22,
-      fontWeight: 400,
-      lineHeight: 1.4,
-    },
-    author: {
-      fontFamily: font.family.inter,
-      fontSize: 13,
-      fontWeight: 500,
-      lineHeight: 1.3,
-    },
-  },
-};
 
 // Image with Section Label overlay
 interface ImageWithLabelProps {
@@ -83,36 +15,19 @@ interface ImageWithLabelProps {
 
 function ImageWithLabel({ src, alt = '', sectionLabel }: ImageWithLabelProps) {
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: '100%',
-      }}
-    >
+    <div className="relative w-full">
       {/* Image */}
-      <div
-        style={{
-          width: '100%',
-          height: tokens.sizes.imageHeight,
-          overflow: 'hidden',
-        }}
-      >
+      <div className="w-full h-[457px] overflow-hidden">
         {src ? (
           <img
             src={src}
             alt={alt}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
+            className="w-full h-full object-cover"
           />
         ) : (
-          // Placeholder pattern (checkered)
           <div
+            className="w-full h-full bg-neutral-200"
             style={{
-              width: '100%',
-              height: '100%',
               backgroundImage: `
                 linear-gradient(45deg, #d5d5d5 25%, transparent 25%),
                 linear-gradient(-45deg, #d5d5d5 25%, transparent 25%),
@@ -121,36 +36,15 @@ function ImageWithLabel({ src, alt = '', sectionLabel }: ImageWithLabelProps) {
               `,
               backgroundSize: '20px 20px',
               backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
-              backgroundColor: tokens.colors.imagePlaceholder,
             }}
           />
         )}
       </div>
       
-      {/* Section Label - positioned at bottom-left */}
+      {/* Section Label */}
       {sectionLabel && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            display: 'inline-flex',
-            alignItems: 'center',
-            padding: tokens.spacing.sectionLabelPadding,
-            backgroundColor: tokens.colors.sectionLabelBg,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.sectionLabel.fontFamily,
-              fontSize: tokens.typography.sectionLabel.fontSize,
-              fontWeight: tokens.typography.sectionLabel.fontWeight,
-              letterSpacing: tokens.typography.sectionLabel.letterSpacing,
-              lineHeight: tokens.typography.sectionLabel.lineHeight,
-              color: tokens.colors.sectionLabelText,
-              textTransform: 'uppercase',
-            }}
-          >
+        <div className="absolute bottom-0 left-0 inline-flex items-center p-2 bg-accent">
+          <span className="font-display text-base font-medium tracking-wide leading-none text-neutral-900 uppercase">
             {sectionLabel}
           </span>
         </div>
@@ -163,11 +57,12 @@ function ImageWithLabel({ src, alt = '', sectionLabel }: ImageWithLabelProps) {
 export interface BigCardProps {
   imageSrc?: string;
   imageAlt?: string;
-  eyebrow?: string;  // Section label (e.g., "FIRST DRIVE")
+  eyebrow?: string;
   title?: string;
-  description?: string;  // Dek
+  description?: string;
   author?: string;
   showDescription?: boolean;
+  className?: string;
 }
 
 export function BigCard({
@@ -178,16 +73,10 @@ export function BigCard({
   description = "The upgraded Pilot's extra equipment and freshened look help it remain a solid, if unexciting, choice in this competitive segment.",
   author = 'Reviewed By Joey Capparella',
   showDescription = true,
+  className,
 }: BigCardProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: tokens.spacing.containerGap,
-        width: '100%',
-      }}
-    >
+    <div className={cn("flex flex-col gap-4 w-full", className)}>
       {/* Image with Section Label */}
       <ImageWithLabel 
         src={imageSrc} 
@@ -196,65 +85,20 @@ export function BigCard({
       />
       
       {/* Text Section */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: tokens.spacing.textSectionGap,
-          width: '100%',
-        }}
-      >
+      <div className="flex flex-col gap-2 w-full">
         {/* Title */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingBottom: 4,
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.title.fontFamily,
-              fontSize: tokens.typography.title.fontSize,
-              fontWeight: tokens.typography.title.fontWeight,
-              lineHeight: tokens.typography.title.lineHeight,
-              color: tokens.colors.text,
-              width: '100%',
-            }}
-          >
+        <div className="flex items-center justify-center pb-1">
+          <span className="font-sans text-5xl font-extrabold leading-none text-neutral-900 w-full">
             {title}
           </span>
         </div>
         
         {/* Dek and Byline Section */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: tokens.spacing.dekBylineGap,
-            width: '100%',
-          }}
-        >
+        <div className="flex flex-col gap-4 w-full">
           {/* Description/Dek */}
           {showDescription && description && (
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: tokens.typography.dek.fontFamily,
-                  fontSize: tokens.typography.dek.fontSize,
-                  fontWeight: tokens.typography.dek.fontWeight,
-                  lineHeight: tokens.typography.dek.lineHeight,
-                  color: tokens.colors.text,
-                  width: '100%',
-                }}
-              >
+            <div className="flex items-center justify-center">
+              <span className="font-sans text-[22px] font-normal leading-relaxed text-neutral-900 w-full">
                 {description}
               </span>
             </div>
@@ -262,39 +106,14 @@ export function BigCard({
           
           {/* Author */}
           {author && (
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                height: 16,
-              }}
-            >
-              {/* Verified icon placeholder */}
-              <div
-                style={{
-                  width: 16,
-                  height: 16,
-                  borderRadius: '50%',
-                  backgroundColor: '#1d9bf0',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                }}
-              >
+            <div className="flex items-center gap-2 h-4">
+              {/* Verified icon */}
+              <div className="w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="white">
                   <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
                 </svg>
               </div>
-              <span
-                style={{
-                  fontFamily: tokens.typography.author.fontFamily,
-                  fontSize: tokens.typography.author.fontSize,
-                  fontWeight: tokens.typography.author.fontWeight,
-                  lineHeight: tokens.typography.author.lineHeight,
-                  color: tokens.colors.textSecondary,
-                }}
-              >
+              <span className="font-sans text-xs font-medium leading-normal text-neutral-900">
                 {author}
               </span>
             </div>
@@ -304,6 +123,3 @@ export function BigCard({
     </div>
   );
 }
-
-// Export tokens for use in other components
-export { tokens as bigCardTokens };

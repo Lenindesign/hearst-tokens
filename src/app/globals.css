@@ -483,6 +483,9 @@
    TAILWIND THEME INTEGRATION
    ============================================ */
 @theme inline {
+  /* ============================================
+     SEMANTIC COLORS (from CSS variables)
+     ============================================ */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -503,56 +506,86 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   
-  /* Hearst Design System Colors */
-  --color-gray-7: #121212;
-  --color-gray-11: #1c1c1c;
-  --color-gray-16: #292929;
-  --color-gray-23: #3b3b3b;
-  --color-gray-34: #575757;
-  --color-gray-46: #757575;
-  --color-gray-58: #949494;
-  --color-gray-74: #bdbdbd;
-  --color-gray-84: #d6d6d6;
-  --color-gray-93: #ededed;
-  --color-gray-96: #f5f5f5;
-  --color-gray-100: #ffffff;
+  /* Brand colors (from CSS variables) */
+  --color-brand-dark: var(--brand-dark);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-gold: var(--brand-gold);
+  --color-brand-red: var(--brand-red);
   
-  --color-blue-500: #3689fc;
-  --color-blue-600: #0d58c9;
+  /* ============================================
+     NEUTRAL GRAY SCALE
+     ============================================ */
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #f5f5f5;
+  --color-neutral-300: #ededed;
+  --color-neutral-400: #d6d6d6;
+  --color-neutral-500: #bdbdbd;
+  --color-neutral-600: #949494;
+  --color-neutral-700: #757575;
+  --color-neutral-800: #575757;
+  --color-neutral-900: #222222;
+  --color-neutral-1000: #121212;
   
-  /* Font Sizes */
-  --font-size-3xs: 0.75rem;
-  --font-size-2xs: 0.8125rem;
-  --font-size-xs: 0.875rem;
-  --font-size-sm: 0.9375rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.75rem;
-  --font-size-4xl: 2rem;
+  /* ============================================
+     FONT FAMILIES
+     ============================================ */
+  --font-family-sans: var(--font-primary, -apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif);
+  --font-family-display: var(--font-display, "Barlow Condensed", sans-serif);
+  --font-family-serif: var(--font-serif, Lora, Georgia, serif);
   
-  /* Spacing */
-  --spacing-none: 0px;
-  --spacing-3xs: 2px;
-  --spacing-2xs: 4px;
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  --spacing-lg: 20px;
-  --spacing-xl: 24px;
-  --spacing-2xl: 32px;
-  --spacing-3xl: 48px;
-  --spacing-4xl: 64px;
+  /* ============================================
+     FONT SIZES
+     ============================================ */
+  --font-size-3xs: 0.625rem;   /* 10px */
+  --font-size-2xs: 0.75rem;    /* 12px */
+  --font-size-xs: 0.8125rem;   /* 13px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.75rem;    /* 28px */
+  --font-size-4xl: 2rem;       /* 32px */
+  --font-size-5xl: 2.5rem;     /* 40px */
+  --font-size-6xl: 3rem;       /* 48px */
   
-  /* Border Radius - uses theme variable */
-  --radius-square: 0px;
-  --radius-2xs: 4px;
-  --radius-xs: 8px;
-  --radius-sm: 12px;
-  --radius-md: 16px;
-  --radius-lg: 20px;
-  --radius-rounded: 1024px;
+  /* ============================================
+     SPACING SCALE
+     ============================================ */
+  --spacing-0: 0px;
+  --spacing-0_5: 2px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+  
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+  
+  /* ============================================
+     LAYOUT WIDTHS
+     ============================================ */
+  --width-sidebar: 220px;
+  --width-sidebar-sm: 180px;
+  --width-content: 1200px;
+  --width-content-sm: 768px;
+  --width-content-lg: 1440px;
 }
 
 body {

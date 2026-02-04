@@ -1,97 +1,18 @@
 'use client';
 
-import { font, colors } from '@/lib/designTokens';
+import { cn } from '@/lib/utils';
 
 /**
- * RightSidebarColumn Component (Car and Driver)
- * 
- * Based on Pencil design node: OZWRf
- * Pixel-perfect implementation from canvas.pen
- * 
- * Structure:
- * - Container: width 300px, vertical layout, gap 24px
- * - Each "Story Card Supporting Feature" card:
- *   - Top border: 1px black line
- *   - Story section: vertical layout, gap 12px
- *     - Section Label: "ESSENTIAL READS" - Barlow Condensed, 16px, 500 weight, black
- *     - Title: Inter, 20px, 700 weight, black, lineHeight 1.2
- *   - Image + Dek section: horizontal layout, gap 20px
- *     - Text column: vertical layout, gap 20px
- *       - Dek: Inter, 16px, normal, black, lineHeight 1.3
- *       - Author: Barlow, 13px, 500 weight, #666666
- *     - Image: 120x120px on the right
+ * RightSidebarColumn Component - Migrated to Tailwind CSS
  */
 
-// Design tokens from Pencil (Car and Driver brand) - node OZWRf
-// Using official Car and Driver brand colors
-const tokens = {
-  colors: {
-    text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
-    sectionLabel: '#1B5F8A',   // Dark Blue - official C&D
-    background: '#ffffff',     // White
-    border: '#222222',         // Dark Grey
-    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
-    mediaIconBg: '#ffffffe5',
-  },
-  spacing: {
-    containerGap: 24,
-    cardGap: 16,
-    storyGap: 12,
-    sectionHeadlineGap: 8,
-    imageDekGap: 20,
-    dekAuthorGap: 20,
-  },
-  sizes: {
-    containerWidth: 300,
-    imageSize: 120,
-    mediaIconSize: 32,
-  },
-  typography: {
-    sectionLabel: {
-      fontFamily: font.family.barlowCondensed,
-      fontSize: 16,
-      fontWeight: 500,
-      lineHeight: 1,
-    },
-    title: {
-      fontFamily: font.family.inter,
-      fontSize: 20,
-      fontWeight: 700,
-      lineHeight: 1.2,
-    },
-    dek: {
-      fontFamily: font.family.inter,
-      fontSize: 16,
-      fontWeight: 400,
-      lineHeight: 1.3,
-    },
-    author: {
-      fontFamily: 'Barlow, ' + font.family.default,
-      fontSize: 13,
-      fontWeight: 500,
-      lineHeight: 1.3,
-    },
-  },
-};
-
 // Image placeholder with optional play icon
-function ImagePlaceholder({ size, showPlayIcon = false }: { size: number; showPlayIcon?: boolean }) {
+function ImagePlaceholder({ showPlayIcon = false, className }: { showPlayIcon?: boolean; className?: string }) {
   return (
-    <div
-      style={{
-        width: size,
-        height: size,
-        minWidth: size,
-        minHeight: size,
-        position: 'relative',
-        flexShrink: 0,
-      }}
-    >
+    <div className={cn("relative shrink-0", className)}>
       <div
+        className="w-full h-full bg-neutral-200"
         style={{
-          width: '100%',
-          height: '100%',
           backgroundImage: `
             linear-gradient(45deg, #d5d5d5 25%, transparent 25%),
             linear-gradient(-45deg, #d5d5d5 25%, transparent 25%),
@@ -100,26 +21,10 @@ function ImagePlaceholder({ size, showPlayIcon = false }: { size: number; showPl
           `,
           backgroundSize: '16px 16px',
           backgroundPosition: '0 0, 0 8px, 8px -8px, -8px 0px',
-          backgroundColor: tokens.colors.imagePlaceholder,
         }}
       />
       {showPlayIcon && (
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 4,
-            left: 4,
-            width: tokens.sizes.mediaIconSize,
-            height: tokens.sizes.mediaIconSize,
-            borderRadius: 16,
-            backgroundColor: tokens.colors.mediaIconBg,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
-            paddingLeft: 3,
-          }}
-        >
+        <div className="absolute bottom-1 left-1 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shadow-md pl-0.5">
           <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
             <path d="M0 0L12 7L0 14V0Z" fill="#000000" />
           </svg>
@@ -148,141 +53,44 @@ function SupportingFeatureCard({
   showPlayIcon = false,
 }: SupportingFeatureCardProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: tokens.spacing.cardGap,
-        width: tokens.sizes.containerWidth,
-      }}
-    >
+    <div className="flex flex-col gap-4 w-[300px]">
       {/* Top border line */}
-      <div
-        style={{
-          width: '100%',
-          height: 0,
-          borderTop: `1px solid ${tokens.colors.border}`,
-        }}
-      />
+      <div className="w-full h-0 border-t border-neutral-900" />
       
       {/* Story section */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: tokens.spacing.storyGap,
-          width: '100%',
-        }}
-      >
+      <div className="flex flex-col gap-3 w-full">
         {/* Section Label and Headline */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: tokens.spacing.sectionHeadlineGap,
-            width: '100%',
-          }}
-        >
+        <div className="flex flex-col gap-2 w-full">
           {/* Section Label */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '100%',
-            }}
-          >
-            <span
-              style={{
-                fontFamily: tokens.typography.sectionLabel.fontFamily,
-                fontSize: tokens.typography.sectionLabel.fontSize,
-                fontWeight: tokens.typography.sectionLabel.fontWeight,
-                lineHeight: tokens.typography.sectionLabel.lineHeight,
-                color: tokens.colors.sectionLabel,
-                width: '100%',
-                textTransform: 'uppercase',
-              }}
-            >
+          <div className="flex items-center justify-center w-full">
+            <span className="font-display text-base font-medium leading-none text-brand-blue w-full uppercase">
               {sectionLabel}
             </span>
           </div>
           
           {/* Title */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              paddingBottom: 4,
-              width: '100%',
-            }}
-          >
-            <span
-              style={{
-                fontFamily: tokens.typography.title.fontFamily,
-                fontSize: tokens.typography.title.fontSize,
-                fontWeight: tokens.typography.title.fontWeight,
-                lineHeight: tokens.typography.title.lineHeight,
-                color: tokens.colors.text,
-                width: '100%',
-              }}
-            >
+          <div className="flex items-center justify-center pb-1 w-full">
+            <span className="font-sans text-xl font-bold leading-tight text-neutral-900 w-full">
               {title}
             </span>
           </div>
         </div>
         
         {/* Image + Dek section */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            gap: tokens.spacing.imageDekGap,
-            width: '100%',
-          }}
-        >
+        <div className="flex flex-row gap-5 w-full">
           {/* Text column (Dek + Author) */}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: tokens.spacing.dekAuthorGap,
-              flex: 1,
-              justifyContent: 'center',
-            }}
-          >
+          <div className="flex flex-col gap-5 flex-1 justify-center">
             {/* Dek */}
             {dek && (
-              <span
-                style={{
-                  fontFamily: tokens.typography.dek.fontFamily,
-                  fontSize: tokens.typography.dek.fontSize,
-                  fontWeight: tokens.typography.dek.fontWeight,
-                  lineHeight: tokens.typography.dek.lineHeight,
-                  color: tokens.colors.text,
-                }}
-              >
+              <span className="font-sans text-base font-normal leading-normal text-neutral-900">
                 {dek}
               </span>
             )}
             
             {/* Author */}
             {author && (
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: tokens.typography.author.fontFamily,
-                    fontSize: tokens.typography.author.fontSize,
-                    fontWeight: tokens.typography.author.fontWeight,
-                    lineHeight: tokens.typography.author.lineHeight,
-                    color: tokens.colors.textSecondary,
-                  }}
-                >
+              <div className="flex items-center">
+                <span className="font-sans text-xs font-medium leading-normal text-neutral-900">
                   {author}
                 </span>
               </div>
@@ -291,41 +99,14 @@ function SupportingFeatureCard({
           
           {/* Image */}
           {imageSrc ? (
-            <div
-              style={{
-                width: tokens.sizes.imageSize,
-                height: tokens.sizes.imageSize,
-                minWidth: tokens.sizes.imageSize,
-                position: 'relative',
-                flexShrink: 0,
-              }}
-            >
+            <div className="w-[120px] h-[120px] min-w-[120px] relative shrink-0">
               <img
                 src={imageSrc}
                 alt={title}
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
+                className="w-full h-full object-cover"
               />
               {showPlayIcon && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: 4,
-                    left: 4,
-                    width: tokens.sizes.mediaIconSize,
-                    height: tokens.sizes.mediaIconSize,
-                    borderRadius: 16,
-                    backgroundColor: tokens.colors.mediaIconBg,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    boxShadow: '0 2px 4px rgba(0,0,0,0.3)',
-                    paddingLeft: 3,
-                  }}
-                >
+                <div className="absolute bottom-1 left-1 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center shadow-md pl-0.5">
                   <svg width="12" height="14" viewBox="0 0 12 14" fill="none">
                     <path d="M0 0L12 7L0 14V0Z" fill="#000000" />
                   </svg>
@@ -333,7 +114,7 @@ function SupportingFeatureCard({
               )}
             </div>
           ) : (
-            <ImagePlaceholder size={tokens.sizes.imageSize} showPlayIcon={showPlayIcon} />
+            <ImagePlaceholder showPlayIcon={showPlayIcon} className="w-[120px] h-[120px] min-w-[120px]" />
           )}
         </div>
       </div>
@@ -352,6 +133,7 @@ export interface RightSidebarColumnProps {
     imageSrc?: string;
     showPlayIcon?: boolean;
   }>;
+  className?: string;
 }
 
 export function RightSidebarColumn({ 
@@ -379,17 +161,11 @@ export function RightSidebarColumn({
       dek: "The cars on this list keep the #SaveTheManuals mission alive.",
       author: 'By Greg S. Fink and Joey Capparella',
     },
-  ]
+  ],
+  className,
 }: RightSidebarColumnProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: tokens.spacing.containerGap,
-        width: tokens.sizes.containerWidth,
-      }}
-    >
+    <div className={cn("flex flex-col gap-6 w-[300px]", className)}>
       {cards.map((card) => (
         <SupportingFeatureCard
           key={card.id}
@@ -405,5 +181,5 @@ export function RightSidebarColumn({
   );
 }
 
-// Export individual components and tokens
-export { SupportingFeatureCard, tokens as rightSidebarTokens };
+// Export individual components
+export { SupportingFeatureCard };

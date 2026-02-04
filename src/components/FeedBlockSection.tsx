@@ -1,140 +1,21 @@
 'use client';
 
+import { cn } from '@/lib/utils';
+
 /**
- * FeedBlockSection Component
- * 
- * Based on Pencil design node: EWnG9
- * 
- * Structure:
- * - Frame: Feed block (vertical layout, width: 960px, gap: 40px)
- *   - Card/Core/Content/Title: H2 Headline (SF Pro, 64px, bold, #121212, letterSpacing: -2, lineHeight: 1.125)
- *   - content (horizontal layout, gap: 24px, width: fill_container)
- *     - big story (horizontal layout, gap: 32px, width: fill_container)
- *       - Card/Base (vertical, gap: 8px, white bg, width: fill_container)
- *         - Image (height: 344.8125px)
- *         - Card/Core/Content (vertical, gap: 4px)
- *           - Eyebrow (SF Pro, 15px, normal, #121212, letterSpacing: 0.2, lineHeight: 1.07)
- *           - Title (SF Pro, 32px, bold, #121212, letterSpacing: -1, lineHeight: 1.125)
- *           - Author (SF Pro, 15px, normal, #bdbdbd, letterSpacing: 0.2, lineHeight: 1.07)
- *     - column (vertical layout, gap: 24px, width: 323px)
- *       - 4x Card/Base (vertical, gap: 8px, white bg)
- *         - Image (height: 157.5px)
- *         - Card/Core/Content (vertical, gap: 4px)
- *           - Eyebrow (SF Pro, 13px, normal, #121212, letterSpacing: 0.4, lineHeight: 1.23)
- *           - Title (SF Pro, 16px, bold, #121212, lineHeight: 1.25)
- *           - Subtitle (SF Pro, 14px, normal, #121212, letterSpacing: 0.4, lineHeight: 1.14)
- *           - Timestamp (SF Pro, 12px, normal, #121212, letterSpacing: 0.4, lineHeight: 1.33)
- *           - Author (SF Pro, 12px, normal, #bdbdbd, letterSpacing: 0.4, lineHeight: 1.33)
+ * FeedBlockSection Component - Migrated to Tailwind CSS
  */
 
-// Design tokens from Pencil - using official Car and Driver brand colors
-const tokens = {
-  colors: {
-    text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
-    background: '#ffffff',     // White
-    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
-  },
-  spacing: {
-    sectionGap: 40,
-    contentGap: 24,
-    bigStoryGap: 32,
-    columnGap: 24,
-    cardGap: 8,
-    contentInnerGap: 4,
-  },
-  sizes: {
-    sectionWidth: 1200,
-    columnWidth: 360,
-    bigImageHeight: 400,
-    smallImageSize: 120, // Square image for sidebar cards
-  },
-  typography: {
-    sectionTitle: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 64,
-      fontWeight: 700,
-      letterSpacing: -2,
-      lineHeight: 1.125,
-    },
-    bigStoryEyebrow: {
-      fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
-      fontSize: 15,
-      fontWeight: 500,
-      letterSpacing: 0.2,
-      lineHeight: 1.07,
-      textTransform: 'uppercase' as const,
-    },
-    bigStoryTitle: {
-      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: 32,
-      fontWeight: 700,
-      letterSpacing: -1,
-      lineHeight: 1.125,
-    },
-    bigStoryAuthor: {
-      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: 15,
-      fontWeight: 400,
-      letterSpacing: 0.2,
-      lineHeight: 1.07,
-    },
-    smallCardEyebrow: {
-      fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
-      fontSize: 13,
-      fontWeight: 500,
-      letterSpacing: 0.4,
-      lineHeight: 1.23,
-      textTransform: 'uppercase' as const,
-    },
-    smallCardTitle: {
-      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: 16,
-      fontWeight: 700,
-      letterSpacing: 0,
-      lineHeight: 1.25,
-    },
-    smallCardSubtitle: {
-      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: 14,
-      fontWeight: 400,
-      letterSpacing: 0.4,
-      lineHeight: 1.14,
-    },
-    smallCardTimestamp: {
-      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: 12,
-      fontWeight: 400,
-      letterSpacing: 0.4,
-      lineHeight: 1.33,
-    },
-    smallCardAuthor: {
-      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: 12,
-      fontWeight: 400,
-      letterSpacing: 0.4,
-      lineHeight: 1.33,
-    },
-  },
-};
-
 // Image Placeholder Component
-function ImagePlaceholder({ height }: { height: number }) {
+function ImagePlaceholder({ height, className }: { height: number; className?: string }) {
   return (
     <div
-      style={{
-        width: '100%',
-        height,
-        overflow: 'hidden',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+      className={cn("w-full overflow-hidden flex justify-center items-center", className)}
+      style={{ height }}
     >
       <div
+        className="w-full h-full bg-neutral-200"
         style={{
-          width: '100%',
-          height: '100%',
           backgroundImage: `
             linear-gradient(45deg, #d5d5d5 25%, transparent 25%),
             linear-gradient(-45deg, #d5d5d5 25%, transparent 25%),
@@ -143,7 +24,6 @@ function ImagePlaceholder({ height }: { height: number }) {
           `,
           backgroundSize: '20px 20px',
           backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
-          backgroundColor: tokens.colors.imagePlaceholder,
         }}
       />
     </div>
@@ -165,105 +45,37 @@ function BigStoryCard({
   author = '{author}' 
 }: BigStoryCardProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: tokens.spacing.cardGap,
-        backgroundColor: tokens.colors.background,
-        width: '100%',
-        overflow: 'hidden',
-      }}
-    >
+    <div className="flex flex-col gap-2 bg-neutral-100 w-full overflow-hidden">
       {/* Image */}
       {imageSrc ? (
         <img
           src={imageSrc}
           alt={title}
-          style={{
-            width: '100%',
-            height: tokens.sizes.bigImageHeight,
-            objectFit: 'cover',
-          }}
+          className="w-full h-[400px] object-cover"
         />
       ) : (
-        <ImagePlaceholder height={tokens.sizes.bigImageHeight} />
+        <ImagePlaceholder height={400} />
       )}
       
       {/* Card Content */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: tokens.spacing.contentInnerGap,
-          width: '100%',
-        }}
-      >
+      <div className="flex flex-col gap-1 w-full">
         {/* Eyebrow */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.bigStoryEyebrow.fontFamily,
-              fontSize: tokens.typography.bigStoryEyebrow.fontSize,
-              fontWeight: tokens.typography.bigStoryEyebrow.fontWeight,
-              letterSpacing: tokens.typography.bigStoryEyebrow.letterSpacing,
-              lineHeight: tokens.typography.bigStoryEyebrow.lineHeight,
-              textTransform: tokens.typography.bigStoryEyebrow.textTransform,
-              color: tokens.colors.text,
-              width: '100%',
-            }}
-          >
+        <div className="flex items-center justify-center w-full">
+          <span className="font-display text-[15px] font-medium tracking-wide leading-tight uppercase text-neutral-900 w-full">
             {eyebrow}
           </span>
         </div>
         
         {/* Title */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.bigStoryTitle.fontFamily,
-              fontSize: tokens.typography.bigStoryTitle.fontSize,
-              fontWeight: tokens.typography.bigStoryTitle.fontWeight,
-              letterSpacing: tokens.typography.bigStoryTitle.letterSpacing,
-              lineHeight: tokens.typography.bigStoryTitle.lineHeight,
-              color: tokens.colors.text,
-              width: '100%',
-            }}
-          >
+        <div className="flex items-center w-full">
+          <span className="font-sans text-[32px] font-bold tracking-tight leading-tight text-neutral-900 w-full">
             {title}
           </span>
         </div>
         
         {/* Author */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.bigStoryAuthor.fontFamily,
-              fontSize: tokens.typography.bigStoryAuthor.fontSize,
-              fontWeight: tokens.typography.bigStoryAuthor.fontWeight,
-              letterSpacing: tokens.typography.bigStoryAuthor.letterSpacing,
-              lineHeight: tokens.typography.bigStoryAuthor.lineHeight,
-              color: tokens.colors.textSecondary,
-            }}
-          >
+        <div className="flex items-center">
+          <span className="font-sans text-[15px] font-normal tracking-wide leading-tight text-neutral-900">
             {author}
           </span>
         </div>
@@ -272,7 +84,7 @@ function BigStoryCard({
   );
 }
 
-// Small Card Component - Horizontal layout (image left, content right)
+// Small Card Component - Horizontal layout
 interface SmallCardProps {
   imageSrc?: string;
   title: string;
@@ -286,47 +98,23 @@ interface SmallCardProps {
 function SmallCard({ 
   imageSrc, 
   title, 
-  subtitle = '{subtitle}',
-  description = '{description}',
   timestamp = '{timestamp}', 
   author = '{author}',
-  showDescription = false,
 }: SmallCardProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        gap: tokens.spacing.cardGap,
-        backgroundColor: tokens.colors.background,
-        width: '100%',
-        overflow: 'hidden',
-      }}
-    >
+    <div className="flex flex-row gap-2 bg-neutral-100 w-full overflow-hidden">
       {/* Image - Left Side (Square) */}
-      <div
-        style={{
-          width: tokens.sizes.smallImageSize,
-          height: tokens.sizes.smallImageSize,
-          flexShrink: 0,
-          overflow: 'hidden',
-        }}
-      >
+      <div className="w-[120px] h-[120px] shrink-0 overflow-hidden">
         {imageSrc ? (
           <img
             src={imageSrc}
             alt={title}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
+            className="w-full h-full object-cover"
           />
         ) : (
           <div
+            className="w-full h-full bg-neutral-200"
             style={{
-              width: '100%',
-              height: '100%',
               backgroundImage: `
                 linear-gradient(45deg, #d5d5d5 25%, transparent 25%),
                 linear-gradient(-45deg, #d5d5d5 25%, transparent 25%),
@@ -335,85 +123,30 @@ function SmallCard({
               `,
               backgroundSize: '20px 20px',
               backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
-              backgroundColor: tokens.colors.imagePlaceholder,
             }}
           />
         )}
       </div>
       
       {/* Card Content - Right Side */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: tokens.spacing.contentInnerGap,
-          flex: 1,
-          justifyContent: 'center',
-        }}
-      >
+      <div className="flex flex-col gap-1 flex-1 justify-center">
         {/* Title */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.smallCardTitle.fontFamily,
-              fontSize: tokens.typography.smallCardTitle.fontSize,
-              fontWeight: tokens.typography.smallCardTitle.fontWeight,
-              letterSpacing: tokens.typography.smallCardTitle.letterSpacing,
-              lineHeight: tokens.typography.smallCardTitle.lineHeight,
-              color: tokens.colors.text,
-              width: '100%',
-            }}
-          >
+        <div className="flex items-center w-full">
+          <span className="font-sans text-base font-bold leading-tight text-neutral-900 w-full">
             {title}
           </span>
         </div>
         
         {/* Timestamp */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.smallCardTimestamp.fontFamily,
-              fontSize: tokens.typography.smallCardTimestamp.fontSize,
-              fontWeight: tokens.typography.smallCardTimestamp.fontWeight,
-              letterSpacing: tokens.typography.smallCardTimestamp.letterSpacing,
-              lineHeight: tokens.typography.smallCardTimestamp.lineHeight,
-              color: tokens.colors.text,
-            }}
-          >
+        <div className="flex items-center">
+          <span className="font-sans text-xs font-normal tracking-wide leading-normal text-neutral-900">
             {timestamp}
           </span>
         </div>
         
         {/* Author */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.smallCardAuthor.fontFamily,
-              fontSize: tokens.typography.smallCardAuthor.fontSize,
-              fontWeight: tokens.typography.smallCardAuthor.fontWeight,
-              letterSpacing: tokens.typography.smallCardAuthor.letterSpacing,
-              lineHeight: tokens.typography.smallCardAuthor.lineHeight,
-              color: tokens.colors.textSecondary,
-              width: '100%',
-            }}
-          >
+        <div className="flex items-center w-full">
+          <span className="font-sans text-xs font-normal tracking-wide leading-normal text-neutral-900 w-full">
             {author}
           </span>
         </div>
@@ -441,6 +174,7 @@ export interface FeedBlockSectionProps {
     author?: string;
     showDescription?: boolean;
   }>;
+  className?: string;
 }
 
 export function FeedBlockSection({
@@ -456,62 +190,21 @@ export function FeedBlockSection({
     { id: 3, title: 'Big Card Title Goes Here. Will be Three Lines', subtitle: '{subtitle}', timestamp: '{timestamp}', author: '{author}', showDescription: false },
     { id: 4, title: 'Big Card Title Goes Here. Will be Three Lines', subtitle: '{subtitle}', timestamp: '{timestamp}', author: '{author}', showDescription: false },
   ],
+  className,
 }: FeedBlockSectionProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: tokens.spacing.sectionGap,
-        width: '100%',
-        maxWidth: tokens.sizes.sectionWidth,
-      }}
-    >
-      {/* Section Title - Strap style with bottom border */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          borderBottom: '5px solid #000000',
-          paddingBottom: 8,
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
-            fontSize: 30,
-            fontWeight: 600,
-            letterSpacing: 0,
-            lineHeight: 1,
-            color: '#000000',
-            whiteSpace: 'nowrap',
-            textTransform: 'uppercase',
-          }}
-        >
+    <div className={cn("flex flex-col gap-10 w-full max-w-[1200px]", className)}>
+      {/* Section Title - Strap style */}
+      <div className="flex flex-col w-full border-b-[5px] border-black pb-2">
+        <span className="font-display text-[30px] font-semibold leading-none text-black whitespace-nowrap uppercase">
           {title}
         </span>
       </div>
       
       {/* Content */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: tokens.spacing.contentGap,
-          width: '100%',
-        }}
-      >
+      <div className="flex flex-row gap-6 w-full">
         {/* Big Story */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            gap: tokens.spacing.bigStoryGap,
-            flex: 1,
-            justifyContent: 'space-between',
-          }}
-        >
+        <div className="flex flex-row gap-8 flex-1 justify-between">
           <BigStoryCard
             imageSrc={bigStory.imageSrc}
             eyebrow={bigStory.eyebrow}
@@ -521,15 +214,7 @@ export function FeedBlockSection({
         </div>
         
         {/* Side Column */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: tokens.spacing.columnGap,
-            width: tokens.sizes.columnWidth,
-            flexShrink: 0,
-          }}
-        >
+        <div className="flex flex-col gap-6 w-[360px] shrink-0">
           {sideCards.map((card) => (
             <SmallCard
               key={card.id}
@@ -548,5 +233,15 @@ export function FeedBlockSection({
   );
 }
 
-// Export individual components and tokens
-export { BigStoryCard, SmallCard, tokens as feedBlockTokens };
+// Export individual components
+export { BigStoryCard, SmallCard };
+
+// Export tokens for backward compatibility
+export const feedBlockTokens = {
+  colors: {
+    text: '#222222',
+    textSecondary: '#222222',
+    background: '#ffffff',
+    imagePlaceholder: '#F5F5F5',
+  },
+};

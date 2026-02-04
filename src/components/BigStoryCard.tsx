@@ -1,88 +1,21 @@
 'use client';
 
-import { font, colors, spacing } from '@/lib/designTokens';
+import { cn } from '@/lib/utils';
 
 /**
- * BigStoryCard Component
- * 
- * Based on Pencil design node: KnvvB
- * 
- * Structure:
- * - Frame: big story (horizontal layout, gap: 32px, width: fill_container)
- *   - Card/Base (vertical layout, gap: 8px, white bg, width: fill_container)
- *     - Image (height: 540px, width: fill_container)
- *     - Card/Core/Content (vertical layout, gap: 4px, width: fill_container)
- *       - Eyebrow (Barlow Condensed, 15px, normal, #121212, letterSpacing: 0.2, lineHeight: 1.067)
- *       - Title (Inter, 48px, bold, #121212, letterSpacing: -2, lineHeight: 1.083)
- *       - Author (Inter, 15px, normal, #bdbdbd, letterSpacing: 0.2, lineHeight: 1.067)
- * 
- * Typography (Car and Driver):
- * - Barlow Condensed: Eyebrows
- * - Inter: Headlines and body text
+ * BigStoryCard Component - Migrated to Tailwind CSS
  */
-
-// Design tokens from Pencil - using official Car and Driver brand colors and fonts
-const tokens = {
-  colors: {
-    text: '#222222',             // Dark Grey - official C&D primary
-    textSecondary: '#222222',    // Dark Grey - for bylines and timestamps
-    background: '#FFFFFF',       // White
-    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
-  },
-  spacing: {
-    containerGap: spacing['2xl'],
-    cardGap: spacing.xs,
-    contentGap: spacing['2xs'],
-  },
-  sizes: {
-    imageHeight: 540,
-  },
-  typography: {
-    eyebrow: {
-      // Barlow Condensed for eyebrows
-      fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
-      fontSize: font.size.sm,
-      fontWeight: font.weight.medium,
-      letterSpacing: 0.2,
-      lineHeight: 1.067,
-      textTransform: 'uppercase' as const,
-    },
-    title: {
-      // Inter for headlines
-      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: font.size['5xl'],
-      fontWeight: font.weight.bold,
-      letterSpacing: -2,
-      lineHeight: 1.083,
-    },
-    author: {
-      // Inter for body text
-      fontFamily: 'var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-      fontSize: font.size.sm,
-      fontWeight: font.weight.regular,
-      letterSpacing: 0.2,
-      lineHeight: 1.067,
-    },
-  },
-};
 
 // Image Placeholder Component
 function ImagePlaceholder({ height }: { height: number }) {
   return (
     <div
-      style={{
-        width: '100%',
-        height,
-        overflow: 'hidden',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+      className="w-full overflow-hidden flex justify-center items-center"
+      style={{ height }}
     >
       <div
+        className="w-full h-full bg-neutral-200"
         style={{
-          width: '100%',
-          height: '100%',
           backgroundImage: `
             linear-gradient(45deg, #d5d5d5 25%, transparent 25%),
             linear-gradient(-45deg, #d5d5d5 25%, transparent 25%),
@@ -91,7 +24,6 @@ function ImagePlaceholder({ height }: { height: number }) {
           `,
           backgroundSize: '20px 20px',
           backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
-          backgroundColor: tokens.colors.imagePlaceholder,
         }}
       />
     </div>
@@ -106,6 +38,7 @@ export interface BigStoryCardProps {
   author?: string;
   showEyebrow?: boolean;
   showAuthor?: boolean;
+  className?: string;
 }
 
 export function BigStoryCard({
@@ -115,118 +48,45 @@ export function BigStoryCard({
   author = '{author}',
   showEyebrow = true,
   showAuthor = true,
+  className,
 }: BigStoryCardProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        gap: tokens.spacing.containerGap,
-        width: '100%',
-      }}
-    >
+    <div className={cn("flex flex-row gap-8 w-full", className)}>
       {/* Card/Base */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: tokens.spacing.cardGap,
-          backgroundColor: tokens.colors.background,
-          width: '100%',
-          overflow: 'hidden',
-        }}
-      >
+      <div className="flex flex-col gap-2 bg-neutral-100 w-full overflow-hidden">
         {/* Image */}
         {imageSrc ? (
           <img
             src={imageSrc}
             alt={title}
-            style={{
-              width: '100%',
-              height: tokens.sizes.imageHeight,
-              objectFit: 'cover',
-            }}
+            className="w-full h-[540px] object-cover"
           />
         ) : (
-          <ImagePlaceholder height={tokens.sizes.imageHeight} />
+          <ImagePlaceholder height={540} />
         )}
         
         {/* Card/Core/Content */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: tokens.spacing.contentGap,
-            width: '100%',
-          }}
-        >
+        <div className="flex flex-col gap-1 w-full">
           {/* Eyebrow */}
           {showEyebrow && (
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                width: '100%',
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: tokens.typography.eyebrow.fontFamily,
-                  fontSize: tokens.typography.eyebrow.fontSize,
-                  fontWeight: tokens.typography.eyebrow.fontWeight,
-                  letterSpacing: tokens.typography.eyebrow.letterSpacing,
-                  lineHeight: tokens.typography.eyebrow.lineHeight,
-                  textTransform: tokens.typography.eyebrow.textTransform,
-                  color: tokens.colors.text,
-                  width: '100%',
-                }}
-              >
+            <div className="flex flex-col w-full">
+              <span className="font-display text-sm font-medium tracking-wide leading-tight uppercase text-neutral-900 w-full">
                 {eyebrow}
               </span>
             </div>
           )}
           
           {/* Title */}
-          <div
-            style={{
-              display: 'flex',
-              width: '100%',
-            }}
-          >
-            <span
-              style={{
-                fontFamily: tokens.typography.title.fontFamily,
-                fontSize: tokens.typography.title.fontSize,
-                fontWeight: tokens.typography.title.fontWeight,
-                letterSpacing: tokens.typography.title.letterSpacing,
-                lineHeight: tokens.typography.title.lineHeight,
-                color: tokens.colors.text,
-                width: '100%',
-              }}
-            >
+          <div className="flex w-full">
+            <span className="font-sans text-5xl font-bold tracking-tight leading-tight text-neutral-900 w-full">
               {title}
             </span>
           </div>
           
           {/* Author */}
           {showAuthor && (
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: tokens.typography.author.fontFamily,
-                  fontSize: tokens.typography.author.fontSize,
-                  fontWeight: tokens.typography.author.fontWeight,
-                  letterSpacing: tokens.typography.author.letterSpacing,
-                  lineHeight: tokens.typography.author.lineHeight,
-                  color: tokens.colors.textSecondary,
-                  width: '100%',
-                }}
-              >
+            <div className="flex w-full">
+              <span className="font-sans text-sm font-normal tracking-wide leading-tight text-neutral-900 w-full">
                 {author}
               </span>
             </div>
@@ -236,6 +96,3 @@ export function BigStoryCard({
     </div>
   );
 }
-
-// Export tokens for reuse
-export { tokens as bigStoryCardTokens };

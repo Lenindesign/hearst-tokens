@@ -1,136 +1,19 @@
 'use client';
 
+import { cn } from '@/lib/utils';
+
 /**
- * TrendingSection Component (Car and Driver)
- * 
- * Based on Pencil design node: 1FgAE (Trending)
- * Adjusted to fit 5 cards in a responsive container
- * 
- * Structure:
- * - Container: 100% width, vertical layout, gap 16px
- * - Strap (header):
- *   - "TRENDING" text: Barlow Condensed, 20px, 700 weight, black
- *   - Bottom border: 4px solid #0061af
- * - Trending Cards row: horizontal, gap 16px, justify space-between
- *   - 5x Story Card Trending (flexible width):
- *     - Image group with diamond badge overlay
- *       - Image: 120x120px
- *       - Diamond badge: rotated 45deg white square with black border, number inside
- *     - Head and Dek section:
- *       - Title: Inter, 13px, 700 weight, lineHeight 1.2
- *       - Comments/Time to read row
+ * TrendingSection Component - Migrated to Tailwind CSS
  */
 
-// Design tokens - adjusted for 5 cards in smaller container
-// Using official Car and Driver brand colors
-export const trendingSectionTokens = {
-  colors: {
-    text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
-    background: '#ffffff',     // White
-    strapBorder: '#1B5F8A',    // Dark Blue - official C&D brand color
-    badgeBg: '#ffffff',        // White
-    badgeBorder: '#222222',    // Dark Grey
-    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
-  },
-  spacing: {
-    containerGap: 16,
-    cardsGap: 12,
-    cardGap: 8,
-    headDekGap: 8,
-    headlineGap: 4,
-  },
-  sizes: {
-    strapHeight: 28,
-    strapBorderWidth: 4,
-    cardWidth: 140,
-    imageSize: 120,
-    headDekHeight: 70,
-    badgeSize: 24,
-  },
-  typography: {
-    strapTitle: {
-      fontFamily: '"Barlow Condensed", Barlow, -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
-      fontSize: 20,
-      fontWeight: 600,
-      lineHeight: 1,
-    },
-    cardTitle: {
-      fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
-      fontSize: 16,
-      fontWeight: 700,
-      lineHeight: 1.25,
-    },
-    badge: {
-      fontFamily: '"Barlow Condensed", Barlow, -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
-      fontSize: 16,
-      fontWeight: 500,
-      letterSpacing: -0.5,
-      lineHeight: 1.08,
-    },
-    meta: {
-      fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
-      fontSize: 10,
-      fontWeight: 400,
-      lineHeight: 1.3,
-    },
-  },
-};
-
 // Circle Badge Component
-function DiamondBadge({ number }: { number: number }) {
+function CircleBadge({ number }: { number: number }) {
   return (
-    <div
-      style={{
-        position: 'absolute',
-        top: -8,
-        left: -8,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 32,
-        height: 32,
-        backgroundColor: '#1B5F8A',
-        border: '2px solid #ffffff',
-        borderRadius: '50%',
-      }}
-    >
-      {/* Number */}
-      <span
-        style={{
-          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
-          fontSize: 16,
-          fontWeight: 800,
-          letterSpacing: -0.5,
-          lineHeight: 1,
-          color: '#ffffff',
-          textAlign: 'center',
-        }}
-      >
+    <div className="absolute -top-2 -left-2 flex items-center justify-center w-8 h-8 bg-brand-blue border-2 border-white rounded-full">
+      <span className="font-sans text-base font-extrabold tracking-tight leading-none text-white text-center">
         {number}
       </span>
     </div>
-  );
-}
-
-// Image Placeholder Component
-function ImagePlaceholder({ size }: { size: number }) {
-  return (
-    <div
-      style={{
-        width: size,
-        height: size,
-        backgroundImage: `
-          linear-gradient(45deg, #d5d5d5 25%, transparent 25%),
-          linear-gradient(-45deg, #d5d5d5 25%, transparent 25%),
-          linear-gradient(45deg, transparent 75%, #d5d5d5 75%),
-          linear-gradient(-45deg, transparent 75%, #d5d5d5 75%)
-        `,
-        backgroundSize: '12px 12px',
-        backgroundPosition: '0 0, 0 6px, 6px -6px, -6px 0px',
-        backgroundColor: trendingSectionTokens.colors.imagePlaceholder,
-      }}
-    />
   );
 }
 
@@ -149,40 +32,20 @@ export function StoryCardTrending({
   showPlayIcon = false,
 }: StoryCardTrendingProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'stretch',
-        gap: trendingSectionTokens.spacing.cardGap,
-        flex: '1 1 0',
-        minWidth: 0,
-      }}
-    >
+    <div className="flex flex-col items-stretch gap-2 flex-1 min-w-0">
       {/* Image Group with Badge */}
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          aspectRatio: '1 / 1',
-        }}
-      >
+      <div className="relative w-full aspect-square">
         {/* Image */}
         {imageSrc ? (
           <img
             src={imageSrc}
             alt={title}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
+            className="w-full h-full object-cover"
           />
         ) : (
           <div 
-            style={{ 
-              width: '100%', 
-              height: '100%',
+            className="w-full h-full bg-neutral-200"
+            style={{
               backgroundImage: `
                 linear-gradient(45deg, #d5d5d5 25%, transparent 25%),
                 linear-gradient(-45deg, #d5d5d5 25%, transparent 25%),
@@ -191,136 +54,52 @@ export function StoryCardTrending({
               `,
               backgroundSize: '12px 12px',
               backgroundPosition: '0 0, 0 6px, 6px -6px, -6px 0px',
-              backgroundColor: trendingSectionTokens.colors.imagePlaceholder,
             }} 
           />
         )}
         
         {/* Play Icon (optional) */}
         {showPlayIcon && (
-          <div
-            style={{
-              position: 'absolute',
-              bottom: 4,
-              left: 4,
-              width: 24,
-              height: 24,
-              borderRadius: 12,
-              backgroundColor: 'rgba(255, 255, 255, 0.9)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.3)',
-              paddingLeft: 2,
-            }}
-          >
+          <div className="absolute bottom-1 left-1 w-6 h-6 rounded-full bg-white/90 flex items-center justify-center shadow-md pl-0.5">
             <svg width="10" height="12" viewBox="0 0 12 14" fill="none">
               <path d="M0 0L12 7L0 14V0Z" fill="#198294" />
             </svg>
           </div>
         )}
         
-        {/* Diamond Badge */}
-        <DiamondBadge number={badgeNumber} />
+        {/* Circle Badge */}
+        <CircleBadge number={badgeNumber} />
       </div>
       
       {/* Head and Dek Section */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          gap: trendingSectionTokens.spacing.headDekGap,
-          width: '100%',
-          minHeight: trendingSectionTokens.sizes.headDekHeight,
-          paddingLeft: 4,
-          borderBottom: '1px solid #e5e5e5',
-        }}
-      >
+      <div className="flex flex-col justify-between gap-2 w-full min-h-[70px] pl-1 border-b border-neutral-300">
         {/* Headline */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: trendingSectionTokens.spacing.headlineGap,
-            width: '100%',
-          }}
-        >
+        <div className="flex flex-col gap-1 w-full">
           {/* Title */}
-          <span
-            style={{
-              fontFamily: trendingSectionTokens.typography.cardTitle.fontFamily,
-              fontSize: trendingSectionTokens.typography.cardTitle.fontSize,
-              fontWeight: trendingSectionTokens.typography.cardTitle.fontWeight,
-              lineHeight: trendingSectionTokens.typography.cardTitle.lineHeight,
-              color: trendingSectionTokens.colors.text,
-              width: '100%',
-              overflow: 'hidden',
-              display: '-webkit-box',
-              WebkitLineClamp: 3,
-              WebkitBoxOrient: 'vertical',
-            }}
-          >
+          <span className="font-sans text-base font-bold leading-tight text-neutral-900 w-full overflow-hidden line-clamp-3">
             {title}
           </span>
         </div>
         
         {/* Comments and Time to Read Row */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            gap: 12,
-            width: '100%',
-            paddingBottom: 6,
-          }}
-        >
+        <div className="flex flex-row gap-3 w-full pb-1.5">
           {/* Comments */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4,
-            }}
-          >
+          <div className="flex items-center gap-1">
             <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
               <path d="M1 3C1 1.89543 1.89543 1 3 1H11C12.1046 1 13 1.89543 13 3V8C13 9.10457 12.1046 10 11 10H8L5 13V10H3C1.89543 10 1 9.10457 1 8V3Z" stroke="#666666" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span
-              style={{
-                fontFamily: trendingSectionTokens.typography.meta.fontFamily,
-                fontSize: trendingSectionTokens.typography.meta.fontSize,
-                fontWeight: trendingSectionTokens.typography.meta.fontWeight,
-                lineHeight: trendingSectionTokens.typography.meta.lineHeight,
-                color: trendingSectionTokens.colors.textSecondary,
-              }}
-            >
+            <span className="font-sans text-[10px] font-normal leading-normal text-neutral-900">
               12
             </span>
           </div>
           
           {/* Time to Read */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 4,
-              flex: 1,
-            }}
-          >
+          <div className="flex items-center gap-1 flex-1">
             <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
               <circle cx="7" cy="7" r="6" stroke="#666666" strokeWidth="1.5"/>
               <path d="M7 4V7L9 9" stroke="#666666" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
-            <span
-              style={{
-                fontFamily: trendingSectionTokens.typography.meta.fontFamily,
-                fontSize: trendingSectionTokens.typography.meta.fontSize,
-                fontWeight: trendingSectionTokens.typography.meta.fontWeight,
-                lineHeight: trendingSectionTokens.typography.meta.lineHeight,
-                color: trendingSectionTokens.colors.textSecondary,
-              }}
-            >
+            <span className="font-sans text-[10px] font-normal leading-normal text-neutral-900">
               3 min
             </span>
           </div>
@@ -342,6 +121,7 @@ export interface TrendingCardData {
 export interface TrendingSectionProps {
   title?: string;
   cards?: TrendingCardData[];
+  className?: string;
 }
 
 export function TrendingSection({ 
@@ -352,53 +132,20 @@ export function TrendingSection({
     { id: 3, title: "View Interior Photos of the 2027 Mercedes S-Class" },
     { id: 4, title: "Ezra Dyer: The Altima Secretly Thirsts for Mayhem" },
     { id: 5, title: "Revealed! 591-HP Donkervoort P24 RS Is Super Light" },
-  ]
+  ],
+  className,
 }: TrendingSectionProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: trendingSectionTokens.spacing.containerGap,
-        width: '100%',
-      }}
-    >
-      {/* Strap (Header) - styled with bottom border */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          borderBottom: '5px solid #000000',
-          paddingBottom: 8,
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
-            fontSize: 30,
-            fontWeight: 600,
-            letterSpacing: 0,
-            lineHeight: 1,
-            color: '#000000',
-            whiteSpace: 'nowrap',
-            textTransform: 'uppercase',
-          }}
-        >
+    <div className={cn("flex flex-col gap-4 w-full", className)}>
+      {/* Strap (Header) */}
+      <div className="flex flex-col w-full border-b-[5px] border-black pb-2">
+        <span className="font-display text-[30px] font-semibold leading-none text-black whitespace-nowrap uppercase">
           {title}
         </span>
       </div>
       
       {/* Trending Cards Row */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: trendingSectionTokens.spacing.cardsGap,
-          justifyContent: 'space-between',
-          width: '100%',
-        }}
-      >
+      <div className="flex flex-row gap-3 justify-between w-full">
         {cards.map((card, index) => (
           <StoryCardTrending
             key={card.id}
@@ -412,3 +159,16 @@ export function TrendingSection({
     </div>
   );
 }
+
+// Export tokens for backward compatibility
+export const trendingSectionTokens = {
+  colors: {
+    text: '#222222',
+    textSecondary: '#222222',
+    background: '#ffffff',
+    strapBorder: '#1B5F8A',
+    badgeBg: '#ffffff',
+    badgeBorder: '#222222',
+    imagePlaceholder: '#F5F5F5',
+  },
+};

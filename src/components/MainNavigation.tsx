@@ -1,307 +1,47 @@
 'use client';
 
+import { cn } from '@/lib/utils';
+
 /**
- * MainNavigation Component
- * 
- * Based on Pencil design node: PHdoW (Nav Bar)
- * 
- * Structure:
- * - Nav Bar (vertical layout, full width)
- *   - Nav container
- *     - nav bar (vertical, padding: [4,8], fill: #ededed, border-bottom: #757575)
- *       - utilities bar (horizontal, height: 32px, fill: #121212, padding: [4,8], gap: 4)
- *         - left side (horizontal, gap: 4, fill container)
- *           - Shop button (white text, padding: [6,12])
- *           - US button
- *           - Newsletter button
- *           - Sign in button
- *           - Hamburger icon button (24x24, padding: 4)
- *         - right side (horizontal, gap: 4, justify: end)
- *           - Subscribe button
- *       - action nav bar (horizontal, justify: space-between, padding: [16,0], gap: 10)
- *         - Left Side (search input 256px wide, rounded full)
- *         - Logo (Hearst, centered)
- *         - Right Side (Label button ghost, Label button filled)
- *       - menu item bar (horizontal, height: 48px, border-bottom: 1px, justify: space-between)
- *         - menu (horizontal, gap: 36, 8 link items)
+ * MainNavigation Component - Migrated to Tailwind CSS
  */
 
-// Design tokens from Pencil - Updated for Car and Driver style
-// Using official Car and Driver brand colors
-const tokens = {
-  colors: {
-    utilitiesBg: '#222222',    // Dark Grey - official C&D primary
-    navBarBg: '#ffffff',       // White
-    navBarBorder: '#F5F5F5',   // Light Grey - official C&D
-    textWhite: '#ffffff',      // White
-    textDark: '#222222',       // Dark Grey - official C&D primary
-    textMuted: '#A59143',      // Dark Gold - official C&D secondary
-    buttonFilled: '#1B5F8A',   // Dark Blue - official C&D
-    buttonGhost: 'rgba(255, 255, 255, 0.04)',
-    inputBg: '#F5F5F5',        // Light Grey - official C&D
-    inputBorder: '#F5F5F5',    // Light Grey - official C&D
-  },
-  spacing: {
-    navBarPadding: [0, 24] as [number, number],
-    utilitiesPadding: [4, 8] as [number, number],
-    buttonPadding: [10, 20] as [number, number],
-    iconButtonPadding: 8,
-    actionNavPadding: [16, 0] as [number, number],
-    menuGap: 0,
-    buttonGap: 4,
-    sectionGap: 24,
-    inputGap: 8,
-  },
-  sizes: {
-    utilitiesHeight: 32,
-    menuHeight: 48,
-    inputWidth: 500,
-    inputHeight: 44,
-    iconSize: 20,
-    largeIconSize: 24,
-    logoWidth: 180,
-    logoHeight: 32,
-  },
-  typography: {
-    button: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 14,
-      fontWeight: 600,
-      lineHeight: 1.25,
-    },
-    link: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 12,
-      fontWeight: 500,
-      letterSpacing: 0.5,
-      lineHeight: 1.14,
-    },
-    input: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 14,
-      fontWeight: 400,
-      letterSpacing: 0,
-      lineHeight: 1.5,
-    },
-  },
-};
-
 // Hamburger Menu Icon
-function HamburgerIcon({ color = tokens.colors.textWhite }: { color?: string }) {
+function HamburgerIcon({ className }: { className?: string }) {
   return (
-    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3 12h18M3 6h18M3 18h18" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className={className}>
+      <path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
 
 // Search Icon
-function SearchIcon({ color = tokens.colors.textDark }: { color?: string }) {
+function SearchIcon({ className }: { className?: string }) {
   return (
-    <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="9" cy="9" r="6" stroke={color} strokeWidth="1.5" />
-      <path d="M13.5 13.5L17 17" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    <svg width={20} height={20} viewBox="0 0 20 20" fill="none" className={className}>
+      <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M13.5 13.5L17 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
 }
 
-// External Link Icon
-function ExternalLinkIcon({ color = tokens.colors.textDark }: { color?: string }) {
+// User Icon
+function UserIcon({ className }: { className?: string }) {
   return (
-    <svg width={16} height={16} viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M12 8.66667V12.6667C12 13.0203 11.8595 13.3594 11.6095 13.6095C11.3594 13.8595 11.0203 14 10.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V5.33333C2 4.97971 2.14048 4.64057 2.39052 4.39052C2.64057 4.14048 2.97971 4 3.33333 4H7.33333"
-        stroke={color}
-        strokeWidth="1.33"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path d="M10 2H14V6" stroke={color} strokeWidth="1.33" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M6.66699 9.33333L14.0003 2" stroke={color} strokeWidth="1.33" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-// Utility Button Component (for top bar)
-interface UtilityButtonProps {
-  label: string;
-  onClick?: () => void;
-}
-
-function UtilityButton({ label, onClick }: UtilityButtonProps) {
-  return (
-    <button
-      onClick={onClick}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: tokens.spacing.buttonGap,
-        padding: `${tokens.spacing.buttonPadding[0]}px ${tokens.spacing.buttonPadding[1]}px`,
-        backgroundColor: tokens.colors.utilitiesBg,
-        border: `1px solid ${tokens.colors.buttonFilled}`,
-        cursor: 'pointer',
-        fontFamily: tokens.typography.button.fontFamily,
-        fontSize: tokens.typography.button.fontSize,
-        fontWeight: tokens.typography.button.fontWeight,
-        lineHeight: tokens.typography.button.lineHeight,
-        color: tokens.colors.textWhite,
-      }}
-    >
-      {label}
-    </button>
-  );
-}
-
-// Icon Button Component (for hamburger menu)
-interface IconButtonProps {
-  icon: React.ReactNode;
-  onClick?: () => void;
-  variant?: 'dark' | 'light';
-}
-
-function IconButton({ icon, onClick, variant = 'dark' }: IconButtonProps) {
-  return (
-    <button
-      onClick={onClick}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: tokens.spacing.iconButtonPadding,
-        backgroundColor: variant === 'dark' ? tokens.colors.utilitiesBg : 'transparent',
-        border: variant === 'dark' ? `1px solid ${tokens.colors.buttonFilled}` : 'none',
-        cursor: 'pointer',
-      }}
-    >
-      {icon}
-    </button>
-  );
-}
-
-// Action Button Component (for action nav bar)
-interface ActionButtonProps {
-  label: string;
-  variant?: 'ghost' | 'filled';
-  onClick?: () => void;
-}
-
-function ActionButton({ label, variant = 'ghost', onClick }: ActionButtonProps) {
-  const isGhost = variant === 'ghost';
-  return (
-    <button
-      onClick={onClick}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: tokens.spacing.buttonGap,
-        padding: `${tokens.spacing.buttonPadding[0]}px ${tokens.spacing.buttonPadding[1]}px`,
-        backgroundColor: isGhost ? tokens.colors.buttonGhost : tokens.colors.buttonFilled,
-        border: isGhost ? 'none' : `1px solid ${tokens.colors.buttonFilled}`,
-        cursor: 'pointer',
-        fontFamily: tokens.typography.button.fontFamily,
-        fontSize: tokens.typography.button.fontSize,
-        fontWeight: tokens.typography.button.fontWeight,
-        lineHeight: tokens.typography.button.lineHeight,
-        color: isGhost ? tokens.colors.textDark : tokens.colors.textWhite,
-      }}
-    >
-      {label}
-    </button>
-  );
-}
-
-// Menu Link Component
-interface MenuLinkProps {
-  label: string;
-  href?: string;
-  showIcon?: boolean;
-  onClick?: () => void;
-}
-
-function MenuLink({ label, href = '#', showIcon = false, onClick }: MenuLinkProps) {
-  return (
-    <a
-      href={href}
-      onClick={onClick}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: tokens.spacing.buttonGap,
-        textDecoration: 'none',
-        cursor: 'pointer',
-        fontFamily: tokens.typography.link.fontFamily,
-        fontSize: tokens.typography.link.fontSize,
-        fontWeight: tokens.typography.link.fontWeight,
-        letterSpacing: tokens.typography.link.letterSpacing,
-        lineHeight: tokens.typography.link.lineHeight,
-        color: tokens.colors.textDark,
-      }}
-    >
-      {label}
-      {showIcon && <ExternalLinkIcon />}
-    </a>
-  );
-}
-
-// Search Input Component - Car and Driver style with wide search bar
-function SearchInput({ placeholder = 'e.g. 2025 Toyota RAV4' }: { placeholder?: string }) {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: tokens.spacing.inputGap,
-        flex: 1,
-        maxWidth: 700,
-        height: tokens.sizes.inputHeight,
-        padding: '8px 16px',
-        backgroundColor: tokens.colors.inputBg,
-        border: `1px solid ${tokens.colors.inputBorder}`,
-        borderRadius: 1024,
-        overflow: 'hidden',
-      }}
-    >
-      <input
-        type="text"
-        placeholder={placeholder}
-        style={{
-          flex: 1,
-          border: 'none',
-          outline: 'none',
-          backgroundColor: 'transparent',
-          fontFamily: tokens.typography.input.fontFamily,
-          fontSize: tokens.typography.input.fontSize,
-          fontWeight: tokens.typography.input.fontWeight,
-          letterSpacing: tokens.typography.input.letterSpacing,
-          lineHeight: tokens.typography.input.lineHeight,
-          color: 'rgba(0, 0, 0, 0.5)',
-        }}
-      />
-      <SearchIcon color="rgba(0, 0, 0, 0.5)" />
-    </div>
-  );
-}
-
-// User Icon Component
-function UserIcon({ color = tokens.colors.textDark }: { color?: string }) {
-  return (
-    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="8" r="4" stroke={color} strokeWidth="1.5" />
-      <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    <svg width={24} height={24} viewBox="0 0 24 24" fill="none" className={className}>
+      <circle cx="12" cy="8" r="4" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M4 20c0-4 4-6 8-6s8 2 8 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
 }
 
 // Car and Driver Logo Component
-function CarAndDriverLogo() {
+function CarAndDriverLogo({ className }: { className?: string }) {
   return (
     <svg 
       viewBox="0 0 1364 262" 
       xmlns="http://www.w3.org/2000/svg"
-      style={{ height: 32, width: 'auto' }}
+      className={cn("h-8 w-auto", className)}
     >
       <path fill="currentColor" d="M68.022 210.901C74.858 210.901 76.91 205.432 76.91 197.571V146.641H132.626V199.276C132.626 231.41 116.903 261.83 72.468 261.83H62.554C15.04 261.83 0 233.462 0 194.496V65.289C0 28.712 16.408 0 62.213 0H72.468C117.588 0 132.626 25.978 132.626 59.473V101.177H76.91V61.869C76.91 53.667 74.858 49.222 67.682 49.222C60.502 49.222 58.452 52.982 58.452 61.869V197.571C58.452 206.114 60.846 210.901 68.022 210.901Z"/>
       <path fill="currentColor" d="M272.324 257.729H217.63L213.53 220.47H187.551L183.791 257.729H134.911L167.384 3.41907H236.774L272.324 257.729ZM192.681 170.223H208.402L200.54 92.9747L192.681 170.223Z"/>
@@ -323,133 +63,62 @@ function CarAndDriverLogo() {
 
 // Logo Component
 function Logo({ brandName = 'HEARST' }: { brandName?: string }) {
-  // If brandName contains "CAR AND DRIVER", use the SVG logo
   if (brandName.toUpperCase().includes('CAR AND DRIVER') || brandName.toUpperCase().includes('CAR & DRIVER')) {
     return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: tokens.colors.textDark,
-        }}
-      >
+      <div className="flex items-center justify-center text-neutral-900">
         <CarAndDriverLogo />
       </div>
     );
   }
   
   return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <span
-        style={{
-          fontFamily: tokens.typography.button.fontFamily,
-          fontSize: 20,
-          fontWeight: 700,
-          letterSpacing: 6,
-          color: tokens.colors.textDark,
-        }}
-      >
+    <div className="flex items-center justify-center">
+      <span className="font-sans text-xl font-bold tracking-[6px] text-neutral-900">
         {brandName}
       </span>
     </div>
   );
 }
 
-// Subscribe Button Component - Car and Driver teal style
+// Search Input Component
+function SearchInput({ placeholder = 'e.g. 2025 Toyota RAV4' }: { placeholder?: string }) {
+  return (
+    <div className="flex items-center gap-2 flex-1 max-w-[700px] h-11 px-4 bg-neutral-200 border border-neutral-200 rounded-full overflow-hidden">
+      <input
+        type="text"
+        placeholder={placeholder}
+        className="flex-1 border-none outline-none bg-transparent font-sans text-sm text-black/50 placeholder:text-black/50"
+      />
+      <SearchIcon className="text-black/50" />
+    </div>
+  );
+}
+
+// Subscribe Button Component
 function SubscribeButton({ label = 'SUBSCRIBE', onClick }: { label?: string; onClick?: () => void }) {
   return (
     <button
       onClick={onClick}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 104,
-        height: 38,
-        padding: 0,
-        backgroundColor: tokens.colors.buttonFilled,
-        border: 'none',
-        borderRadius: 4,
-        cursor: 'pointer',
-        fontFamily: tokens.typography.button.fontFamily,
-        fontSize: 12,
-        fontWeight: tokens.typography.button.fontWeight,
-        lineHeight: tokens.typography.button.lineHeight,
-        color: tokens.colors.textWhite,
-        textTransform: 'uppercase',
-        letterSpacing: 0.5,
-        whiteSpace: 'nowrap',
-      }}
+      className="flex items-center justify-center w-[104px] h-[38px] bg-brand-blue border-none rounded-sm cursor-pointer font-sans text-xs font-semibold text-neutral-100 uppercase tracking-wide whitespace-nowrap hover:opacity-90 transition-opacity"
     >
       {label}
     </button>
   );
 }
 
-// Mobile Search Input Component - Full width with search button
+// Mobile Search Input Component
 function MobileSearchInput({ placeholder = 'e.g. 2025 Toyota RAV4' }: { placeholder?: string }) {
   return (
-    <div
-      className="mobile-search-container"
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 8,
-        width: '100%',
-        padding: '0 16px 16px 16px',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          flex: 1,
-          height: 44,
-          padding: '8px 16px',
-          backgroundColor: tokens.colors.inputBg,
-          border: `1px solid ${tokens.colors.inputBorder}`,
-          borderRadius: 1024,
-          overflow: 'hidden',
-        }}
-      >
+    <div className="mobile-search-container flex items-center gap-2 w-full px-4 pb-4">
+      <div className="flex items-center flex-1 h-11 px-4 bg-neutral-200 border border-neutral-200 rounded-full overflow-hidden">
         <input
           type="text"
           placeholder={placeholder}
-          style={{
-            flex: 1,
-            border: 'none',
-            outline: 'none',
-            backgroundColor: 'transparent',
-            fontFamily: tokens.typography.input.fontFamily,
-            fontSize: 14,
-            fontWeight: tokens.typography.input.fontWeight,
-            fontStyle: 'italic',
-            color: 'rgba(0, 0, 0, 0.5)',
-          }}
+          className="flex-1 border-none outline-none bg-transparent font-sans text-sm italic text-black/50 placeholder:text-black/50"
         />
       </div>
-      <button
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: 44,
-          height: 44,
-          backgroundColor: tokens.colors.buttonFilled,
-          border: 'none',
-          borderRadius: '50%',
-          cursor: 'pointer',
-          flexShrink: 0,
-        }}
-      >
-        <SearchIcon color={tokens.colors.textWhite} />
+      <button className="flex items-center justify-center w-11 h-11 bg-brand-blue border-none rounded-full cursor-pointer shrink-0">
+        <SearchIcon className="text-neutral-100" />
       </button>
     </div>
   );
@@ -463,6 +132,7 @@ export interface MainNavigationProps {
   actionButtons?: Array<{ label: string; variant: 'ghost' | 'filled' }>;
   onMenuClick?: () => void;
   onSearch?: (query: string) => void;
+  className?: string;
 }
 
 export function MainNavigation({
@@ -476,72 +146,32 @@ export function MainNavigation({
     { label: 'EXPERT-TESTED GEAR' },
     { label: 'NEWS + STORIES' },
   ],
+  className,
 }: MainNavigationProps) {
   return (
     <nav
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '100%',
-        backgroundColor: tokens.colors.navBarBg,
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-      }}
+      className={cn(
+        "flex flex-col w-full bg-neutral-100 shadow-md sticky top-0 z-[1000]",
+        className
+      )}
     >
-      {/* Mobile Navigation - Hidden on tablet and desktop */}
+      {/* Mobile Navigation */}
       <div className="nav-mobile">
-        {/* Mobile Top Row - Hamburger, Logo, User */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '12px 16px',
-            width: '100%',
-          }}
-        >
+        {/* Mobile Top Row */}
+        <div className="flex items-center justify-between px-4 py-3 w-full">
           {/* Hamburger Menu */}
-          <button
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 8,
-              backgroundColor: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            <HamburgerIcon color={tokens.colors.textDark} />
+          <button className="flex items-center justify-center p-2 bg-transparent border-none cursor-pointer">
+            <HamburgerIcon className="text-neutral-900" />
           </button>
 
           {/* Centered Logo */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flex: 1,
-            }}
-          >
+          <div className="flex items-center justify-center flex-1">
             <Logo brandName={brandName} />
           </div>
 
           {/* User Icon */}
-          <button
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 8,
-              backgroundColor: 'transparent',
-              border: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            <UserIcon color={tokens.colors.textDark} />
+          <button className="flex items-center justify-center p-2 bg-transparent border-none cursor-pointer">
+            <UserIcon className="text-neutral-900" />
           </button>
         </div>
 
@@ -549,123 +179,45 @@ export function MainNavigation({
         <MobileSearchInput placeholder="e.g. 2025 Toyota RAV4" />
       </div>
 
-      {/* Desktop/Tablet Navigation - Hidden on mobile */}
+      {/* Desktop/Tablet Navigation */}
       <div className="nav-desktop">
-        {/* Nav Content Container - Constrained to max width */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: '100%',
-            maxWidth: 1200,
-            margin: '0 auto',
-            padding: `${tokens.spacing.navBarPadding[0]}px ${tokens.spacing.navBarPadding[1]}px`,
-          }}
-        >
+        {/* Nav Content Container */}
+        <div className="flex flex-col w-full max-w-[1200px] mx-auto px-6">
           {/* Top Row - Logo, Search, Subscribe, User */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              padding: '16px 0',
-              gap: tokens.spacing.sectionGap,
-              width: '100%',
-            }}
-          >
+          <div className="flex items-center justify-between py-4 gap-6 w-full">
             {/* Left Side - Logo */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                flexShrink: 0,
-              }}
-            >
+            <div className="flex items-center shrink-0">
               <Logo brandName={brandName} />
             </div>
 
             {/* Center - Wide Search Bar */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flex: 1,
-                padding: '0 24px',
-              }}
-            >
+            <div className="flex items-center justify-center flex-1 px-6">
               <SearchInput placeholder="e.g. 2025 Toyota RAV4" />
             </div>
 
             {/* Right Side - Subscribe Button and User Icon */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 16,
-                flexShrink: 0,
-              }}
-            >
+            <div className="flex items-center gap-4 shrink-0">
               <SubscribeButton label="SUBSCRIBE" />
-              <button
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  padding: 8,
-                  backgroundColor: 'transparent',
-                  border: 'none',
-                  cursor: 'pointer',
-                }}
-              >
-                <UserIcon color={tokens.colors.textDark} />
+              <button className="flex items-center justify-center p-2 bg-transparent border-none cursor-pointer">
+                <UserIcon className="text-neutral-900" />
               </button>
             </div>
           </div>
 
           {/* Bottom Row - Navigation Links */}
           <div
-            className="nav-menu-row"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              height: tokens.sizes.menuHeight,
-              width: '100%',
-              borderTop: `1px solid ${tokens.colors.navBarBorder}`,
-              overflow: 'hidden',
-            }}
+            className="nav-menu-row flex items-center justify-start h-12 w-full border-t border-neutral-200 overflow-hidden"
           >
             {/* Menu Links */}
-            <div
-              className="nav-menu-links"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-                height: '100%',
-              }}
-            >
+            <div className="nav-menu-links flex items-center justify-between w-full h-full">
               {menuLinks.map((link, index) => (
                 <a
                   key={index}
                   href={link.href || '#'}
-                  className={`nav-link nav-link-${index + 1}`}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    textDecoration: 'none',
-                    cursor: 'pointer',
-                    fontFamily: tokens.typography.link.fontFamily,
-                    fontSize: tokens.typography.link.fontSize,
-                    fontWeight: tokens.typography.link.fontWeight,
-                    letterSpacing: tokens.typography.link.letterSpacing,
-                    lineHeight: tokens.typography.link.lineHeight,
-                    color: tokens.colors.textDark,
-                    textTransform: 'uppercase',
-                    whiteSpace: 'nowrap',
-                  }}
+                  className={cn(
+                    "nav-link flex items-center no-underline cursor-pointer font-sans text-xs font-medium tracking-wide text-neutral-900 uppercase whitespace-nowrap hover:text-brand-blue transition-colors",
+                    `nav-link-${index + 1}`
+                  )}
                 >
                   {link.label}
                 </a>
@@ -677,6 +229,3 @@ export function MainNavigation({
     </nav>
   );
 }
-
-// Export tokens for reuse
-export { tokens as mainNavigationTokens };

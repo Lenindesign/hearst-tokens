@@ -1,58 +1,10 @@
 'use client';
 
-/**
- * SeoBlockGrid Component
- * 
- * Based on Pencil design node: cstYQ
- * 
- * Structure:
- * - Frame: Feed block (vertical layout, width: 960px, gap: 36px)
- *   - Card/Core/Content/Title: H2 Headline (SF Pro, 64px, bold, #121212, letterSpacing: -2, lineHeight: 1.125)
- *   - Frame 37491 (grid layout, 4 columns, 3 rows)
- *     - 12x SEO BLOCK cards (width: 222px each)
- *       - Card/Base (vertical, gap: 8px, white bg, clip: true)
- *         - Image (height: 166.5px)
- *         - Card/Core/Content (vertical, gap: 4px)
- *           - Title (SF Pro, 20px, bold, #121212, letterSpacing: -0.2, lineHeight: 1.2)
- */
+import { cn } from '@/lib/utils';
 
-// Design tokens from Pencil - using official Car and Driver brand colors
-const tokens = {
-  colors: {
-    text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
-    background: '#ffffff',     // White
-    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
-  },
-  spacing: {
-    sectionGap: 36,
-    cardGap: 8,
-    contentGap: 4,
-    gridGap: 24,
-    titlePadding: 4,
-  },
-  sizes: {
-    sectionWidth: 1200,
-    cardWidth: 280, // Adjusted for 1200px width (4 columns with gaps)
-    imageHeight: 180, // Slightly taller for 1200px layout
-  },
-  typography: {
-    sectionTitle: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 64,
-      fontWeight: 700,
-      letterSpacing: -2,
-      lineHeight: 1.125,
-    },
-    cardTitle: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 20,
-      fontWeight: 700,
-      letterSpacing: -0.2,
-      lineHeight: 1.2,
-    },
-  },
-};
+/**
+ * SeoBlockGrid Component - Migrated to Tailwind CSS
+ */
 
 // Card Image Component
 interface CardImageProps {
@@ -62,32 +14,17 @@ interface CardImageProps {
 
 function CardImage({ src, alt = '' }: CardImageProps) {
   return (
-    <div
-      style={{
-        width: '100%',
-        height: tokens.sizes.imageHeight,
-        overflow: 'hidden',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: tokens.colors.imagePlaceholder,
-      }}
-    >
+    <div className="w-full h-[180px] overflow-hidden flex justify-center items-center bg-neutral-200">
       {src ? (
         <img
           src={src}
           alt={alt}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-          }}
+          className="w-full h-full object-cover"
         />
       ) : (
         <div
+          className="w-full h-full"
           style={{
-            width: '100%',
-            height: '100%',
             backgroundImage: `
               linear-gradient(45deg, #d5d5d5 25%, transparent 25%),
               linear-gradient(-45deg, #d5d5d5 25%, transparent 25%),
@@ -96,7 +33,6 @@ function CardImage({ src, alt = '' }: CardImageProps) {
             `,
             backgroundSize: '20px 20px',
             backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
-            backgroundColor: tokens.colors.imagePlaceholder,
           }}
         />
       )}
@@ -112,49 +48,15 @@ interface SeoBlockCardProps {
 
 function SeoBlockCard({ imageSrc, title }: SeoBlockCardProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: tokens.spacing.cardGap,
-        backgroundColor: tokens.colors.background,
-        overflow: 'hidden',
-        flex: 1,
-        minWidth: 0,
-      }}
-    >
+    <div className="flex flex-col gap-2 bg-neutral-100 overflow-hidden flex-1 min-w-0">
       {/* Image */}
       <CardImage src={imageSrc} alt={title} />
       
       {/* Card Content */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: tokens.spacing.contentGap,
-          width: '100%',
-        }}
-      >
+      <div className="flex flex-col gap-1 w-full">
         {/* Title */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            width: '100%',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.cardTitle.fontFamily,
-              fontSize: tokens.typography.cardTitle.fontSize,
-              fontWeight: tokens.typography.cardTitle.fontWeight,
-              letterSpacing: tokens.typography.cardTitle.letterSpacing,
-              lineHeight: tokens.typography.cardTitle.lineHeight,
-              color: tokens.colors.text,
-              width: '100%',
-              textAlign: 'left',
-            }}
-          >
+        <div className="flex items-start w-full">
+          <span className="font-sans text-xl font-bold tracking-tight leading-tight text-neutral-900 w-full text-left">
             {title}
           </span>
         </div>
@@ -171,6 +73,7 @@ export interface SeoBlockGridProps {
     imageSrc?: string;
     title: string;
   }>;
+  className?: string;
 }
 
 export function SeoBlockGrid({
@@ -189,52 +92,19 @@ export function SeoBlockGrid({
     { id: 11, title: 'Card sample title card base vertical card component' },
     { id: 12, title: 'Card sample title card base vertical card component' },
   ],
+  className,
 }: SeoBlockGridProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: tokens.spacing.sectionGap,
-        width: '100%',
-        maxWidth: tokens.sizes.sectionWidth,
-      }}
-    >
-      {/* Section Title - Strap style with bottom border */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          borderBottom: '5px solid #000000',
-          paddingBottom: 8,
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
-            fontSize: 30,
-            fontWeight: 600,
-            letterSpacing: 0,
-            lineHeight: 1,
-            color: '#000000',
-            whiteSpace: 'nowrap',
-            textTransform: 'uppercase',
-          }}
-        >
+    <div className={cn("flex flex-col gap-9 w-full max-w-[1200px]", className)}>
+      {/* Section Title - Strap style */}
+      <div className="flex flex-col w-full border-b-[5px] border-black pb-2">
+        <span className="font-display text-[30px] font-semibold leading-none text-black whitespace-nowrap uppercase">
           {title}
         </span>
       </div>
 
       {/* Card Grid - 4 columns */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-          gap: tokens.spacing.gridGap,
-          width: '100%',
-        }}
-      >
+      <div className="grid grid-cols-4 gap-6 w-full">
         {cards.map((card) => (
           <SeoBlockCard
             key={card.id}
@@ -246,6 +116,3 @@ export function SeoBlockGrid({
     </div>
   );
 }
-
-// Export tokens for reuse
-export { tokens as seoBlockGridTokens };

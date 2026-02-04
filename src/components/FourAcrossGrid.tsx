@@ -1,94 +1,21 @@
 'use client';
 
-/**
- * FourAcrossGrid Component
- * 
- * Based on Pencil design node: nfOyj
- * 
- * Structure:
- * - Frame: Feed block (vertical layout, width: 960px, gap: 40px, justifyContent: center)
- *   - Card/Core/Content/Title: H2 Headline (SF Pro, 64px, bold, #121212, letterSpacing: -2, lineHeight: 1.125)
- *   - content (horizontal layout, gap: 24px, width: fill_container, alignItems: center)
- *     - 4x Card/Base (vertical layout, gap: 8px, white bg, width: fill_container)
- *       - Image (height: 222px, width: fill_container)
- *       - Card/Core/Content (vertical layout, gap: 4px)
- *         - Title (SF Pro, 13px, bold, #121212, letterSpacing: 0.4, lineHeight: 1.23)
- *         - Author (SF Pro, 12px, normal, #bdbdbd, letterSpacing: 0.4, lineHeight: 1.33)
- *         - Button "Label" (black bg, white text, padding: 4px 8px)
- */
+import { cn } from '@/lib/utils';
 
-// Design tokens from Pencil - using official Car and Driver brand colors
-const tokens = {
-  colors: {
-    text: '#222222',           // Dark Grey - official C&D primary
-    textSecondary: '#222222',  // Dark Grey - for bylines and timestamps
-    background: '#ffffff',     // White
-    buttonBg: '#222222',       // Dark Grey - official C&D primary
-    buttonText: '#ffffff',     // White
-    imagePlaceholder: '#F5F5F5', // Light Grey - official C&D
-  },
-  spacing: {
-    sectionGap: 40,
-    contentGap: 24,
-    cardGap: 8,
-    contentInnerGap: 4,
-    buttonPaddingV: 4,
-    buttonPaddingH: 8,
-    buttonGap: 4,
-  },
-  sizes: {
-    sectionWidth: 1200,
-    imageHeight: 260,
-  },
-  typography: {
-    sectionTitle: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 64,
-      fontWeight: 700,
-      letterSpacing: -2,
-      lineHeight: 1.125,
-    },
-    cardTitle: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 20,
-      fontWeight: 700,
-      letterSpacing: 0.4,
-      lineHeight: 1.23,
-    },
-    cardAuthor: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 12,
-      fontWeight: 400,
-      letterSpacing: 0.4,
-      lineHeight: 1.33,
-    },
-    button: {
-      fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro", system-ui, sans-serif',
-      fontSize: 13,
-      fontWeight: 400,
-      letterSpacing: 0.4,
-      lineHeight: 1.23,
-    },
-  },
-};
+/**
+ * FourAcrossGrid Component - Migrated to Tailwind CSS
+ */
 
 // Image Placeholder Component
 function ImagePlaceholder({ height }: { height: number }) {
   return (
     <div
-      style={{
-        width: '100%',
-        height,
-        overflow: 'hidden',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
+      className="w-full overflow-hidden flex justify-center items-center"
+      style={{ height }}
     >
       <div
+        className="w-full h-full bg-neutral-200"
         style={{
-          width: '100%',
-          height: '100%',
           backgroundImage: `
             linear-gradient(45deg, #d5d5d5 25%, transparent 25%),
             linear-gradient(-45deg, #d5d5d5 25%, transparent 25%),
@@ -97,7 +24,6 @@ function ImagePlaceholder({ height }: { height: number }) {
           `,
           backgroundSize: '20px 20px',
           backgroundPosition: '0 0, 0 10px, 10px -10px, -10px 0px',
-          backgroundColor: tokens.colors.imagePlaceholder,
         }}
       />
     </div>
@@ -117,82 +43,33 @@ function GridCard({
   author = '{author}',
 }: GridCardProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: tokens.spacing.cardGap,
-        backgroundColor: tokens.colors.background,
-        width: '100%',
-        overflow: 'hidden',
-      }}
-    >
+    <div className="flex flex-col gap-2 bg-neutral-100 w-full overflow-hidden">
       {/* Image */}
       {imageSrc ? (
         <img
           src={imageSrc}
           alt={title}
-          style={{
-            width: '100%',
-            height: tokens.sizes.imageHeight,
-            objectFit: 'cover',
-          }}
+          className="w-full h-[260px] object-cover"
         />
       ) : (
-        <ImagePlaceholder height={tokens.sizes.imageHeight} />
+        <ImagePlaceholder height={260} />
       )}
       
       {/* Card Content */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: tokens.spacing.contentInnerGap,
-          width: '100%',
-        }}
-      >
+      <div className="flex flex-col gap-1 w-full">
         {/* Title */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.cardTitle.fontFamily,
-              fontSize: tokens.typography.cardTitle.fontSize,
-              fontWeight: tokens.typography.cardTitle.fontWeight,
-              letterSpacing: tokens.typography.cardTitle.letterSpacing,
-              lineHeight: tokens.typography.cardTitle.lineHeight,
-              color: tokens.colors.text,
-            }}
-          >
+        <div className="flex items-center">
+          <span className="font-sans text-xl font-bold tracking-wide leading-tight text-neutral-900">
             {title}
           </span>
         </div>
         
         {/* Author */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: tokens.typography.cardAuthor.fontFamily,
-              fontSize: tokens.typography.cardAuthor.fontSize,
-              fontWeight: tokens.typography.cardAuthor.fontWeight,
-              letterSpacing: tokens.typography.cardAuthor.letterSpacing,
-              lineHeight: tokens.typography.cardAuthor.lineHeight,
-              color: tokens.colors.textSecondary,
-            }}
-          >
+        <div className="flex items-center">
+          <span className="font-sans text-xs font-normal tracking-wide leading-normal text-neutral-900">
             {author}
           </span>
         </div>
-        
       </div>
     </div>
   );
@@ -207,6 +84,7 @@ export interface FourAcrossGridProps {
     title: string;
     author?: string;
   }>;
+  className?: string;
 }
 
 export function FourAcrossGrid({
@@ -217,54 +95,19 @@ export function FourAcrossGrid({
     { id: 3, title: '{title}', author: '{author}' },
     { id: 4, title: '{title}', author: '{author}' },
   ],
+  className,
 }: FourAcrossGridProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        gap: tokens.spacing.sectionGap,
-        width: '100%',
-        maxWidth: tokens.sizes.sectionWidth,
-      }}
-    >
-      {/* Section Title - Strap style with bottom border */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          width: '100%',
-          borderBottom: '5px solid #000000',
-          paddingBottom: 8,
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-barlow-condensed), "Barlow Condensed", Barlow, -apple-system, sans-serif',
-            fontSize: 30,
-            fontWeight: 600,
-            letterSpacing: 0,
-            lineHeight: 1,
-            color: '#000000',
-            whiteSpace: 'nowrap',
-            textTransform: 'uppercase',
-          }}
-        >
+    <div className={cn("flex flex-col justify-center gap-10 w-full max-w-[1200px]", className)}>
+      {/* Section Title - Strap style */}
+      <div className="flex flex-col w-full border-b-[5px] border-black pb-2">
+        <span className="font-display text-[30px] font-semibold leading-none text-black whitespace-nowrap uppercase">
           {title}
         </span>
       </div>
       
       {/* Content - 4 Across Grid */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'flex-start',
-          gap: tokens.spacing.contentGap,
-          width: '100%',
-        }}
-      >
+      <div className="flex flex-row items-start gap-6 w-full">
         {cards.map((card) => (
           <GridCard
             key={card.id}
@@ -278,5 +121,17 @@ export function FourAcrossGrid({
   );
 }
 
-// Export individual components and tokens
-export { GridCard, tokens as fourAcrossGridTokens };
+// Export individual components
+export { GridCard };
+
+// Export tokens for backward compatibility
+export const fourAcrossGridTokens = {
+  colors: {
+    text: '#222222',
+    textSecondary: '#222222',
+    background: '#ffffff',
+    buttonBg: '#222222',
+    buttonText: '#ffffff',
+    imagePlaceholder: '#F5F5F5',
+  },
+};

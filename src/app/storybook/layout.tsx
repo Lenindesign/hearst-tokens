@@ -117,6 +117,7 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
 
   const guidePages = [
     { href: '/storybook/guides/token-pipeline', label: 'Token Pipeline Setup' },
+    { href: '/storybook/guides/tailwind-migration', label: 'Tailwind Migration' },
   ];
 
   return (
