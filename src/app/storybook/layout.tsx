@@ -77,6 +77,7 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
     tokens: true,
     components: true,
     pages: true,
+    guides: true,
   });
 
   const toggleSection = (section: keyof typeof openSections) => {
@@ -112,6 +113,10 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
   const pageExamples = [
     { href: '/storybook/pages/homepage', label: 'Car & Driver Homepage' },
     { href: '/storybook/pages/themed-homepage', label: 'Themed Homepage Preview' },
+  ];
+
+  const guidePages = [
+    { href: '/storybook/guides/token-pipeline', label: 'Token Pipeline Setup' },
   ];
 
   return (
@@ -225,6 +230,28 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
             {openSections.pages && (
               <div style={{ marginTop: spacing['2xs'] }}>
                 {pageExamples.map(page => (
+                  <NavItem
+                    key={page.href}
+                    href={page.href}
+                    label={page.label}
+                    isActive={pathname === page.href}
+                    indent
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Guides Section */}
+          <div style={{ marginBottom: spacing.sm }}>
+            <SectionHeader
+              title="Guides"
+              isOpen={openSections.guides}
+              onClick={() => toggleSection('guides')}
+            />
+            {openSections.guides && (
+              <div style={{ marginTop: spacing['2xs'] }}>
+                {guidePages.map(page => (
                   <NavItem
                     key={page.href}
                     href={page.href}
