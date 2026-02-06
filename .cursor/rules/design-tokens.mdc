@@ -1,172 +1,158 @@
 ---
-description: Guidelines for using Hearst Design System tokens in all components
+description: Guidelines for using Hearst Design System tokens via Tailwind CSS
 globs: ["src/**/*.tsx", "src/**/*.ts"]
 alwaysApply: true
 ---
 
-# Hearst Design System Token Usage Guidelines
+# Hearst Design System - Tailwind CSS Approach
 
-## CRITICAL: Always Use Design Tokens
+## CRITICAL: Use Tailwind Classes with CSS Variables
 
-When creating or modifying any component, storybook page, or style, you MUST use the design tokens from `@/lib/designTokens`. Never hardcode colors, spacing, typography, or other design values.
+When creating or modifying any component, use **Tailwind CSS classes** that reference our design tokens defined in `globals.css`. This enables automatic theme switching via the `data-theme` attribute.
 
-## Token Import Pattern
+## Preferred Approach: Tailwind Classes
 
-Always import tokens at the top of your file:
+```tsx
+// ✅ CORRECT - Use Tailwind classes
+<div className="bg-neutral-200 p-5 rounded-lg border border-neutral-400">
+  <h1 className="text-2xl font-bold text-neutral-1000">Title</h1>
+  <p className="text-base text-neutral-700">Content</p>
+</div>
 
-```typescript
-import { 
-  colors, 
-  spacing, 
-  typography, 
-  font, 
-  border, 
-  layout, 
-  elevation,
-  breakpoints,
-  primitives 
-} from '@/lib/designTokens';
+// ❌ AVOID - Inline styles with designTokens (legacy)
+<div style={{ backgroundColor: colors.neutral[200], padding: spacing.lg }}>
 ```
 
-## Token Categories and Usage
+## Available Tailwind Token Classes
 
-### Colors (`colors`)
-- `colors.neutral` - Gray scale (100-1000, lightest, darkest)
-- `colors.brand` - Brand colors (1-14)
-- `colors.primary` - Primary color scale (100-1000)
-- `colors.alert.success/warning/error/info` - Alert colors
-- `colors.content` - Semantic content colors
+### Colors (Theme-Aware)
+These colors change automatically when `data-theme` changes:
 
-```typescript
-// ✅ CORRECT
-backgroundColor: colors.neutral[100]
-color: colors.neutral.darkest
-borderColor: colors.neutral[300]
+```tsx
+// Semantic colors (theme-aware)
+className="bg-background text-foreground"
+className="bg-primary text-primary-foreground"
+className="bg-secondary text-secondary-foreground"
+className="bg-muted text-muted-foreground"
+className="bg-accent text-accent-foreground"
+className="bg-destructive text-destructive-foreground"
+className="bg-card text-card-foreground"
+className="border-border"
 
-// ❌ WRONG - Never hardcode colors
-backgroundColor: '#f5f5f5'
-color: '#121212'
+// Brand colors (theme-aware)
+className="bg-brand-dark text-brand-blue"
+className="bg-brand-gold bg-brand-red"
 ```
 
-### Spacing (`spacing`)
-- `spacing.none` = 0
-- `spacing['3xs']` = 2
-- `spacing['2xs']` = 4
-- `spacing.xs` = 8
-- `spacing.sm` = 12
-- `spacing.md` = 16
-- `spacing.lg` = 20
-- `spacing.xl` = 24
-- `spacing['2xl']` = 32
-- `spacing['3xl']` = 48
-- `spacing['4xl']` = 64
+### Neutral Gray Scale (Static)
+```tsx
+className="bg-neutral-100"   // #ffffff
+className="bg-neutral-200"   // #f5f5f5
+className="bg-neutral-300"   // #ededed
+className="bg-neutral-400"   // #d6d6d6
+className="bg-neutral-500"   // #bdbdbd
+className="bg-neutral-600"   // #949494
+className="bg-neutral-700"   // #757575
+className="bg-neutral-800"   // #575757
+className="bg-neutral-900"   // #222222
+className="bg-neutral-1000"  // #121212
 
-```typescript
-// ✅ CORRECT
-padding: spacing.lg
-gap: spacing.md
-margin: `${spacing.xl}px`
-
-// ❌ WRONG
-padding: 20
-gap: 16
+// Text colors
+className="text-neutral-700" // body text
+className="text-neutral-1000" // headings
 ```
 
-### Typography (`typography`, `font`)
-Use typography presets for consistent text styles:
-- `typography.display.lg/md/sm` - Large headlines
-- `typography.heading.xl/lg/md/sm` - Section headings
-- `typography.body.lg/md/sm` - Body text
-- `typography.caption.md/sm` - Small text/labels
-- `typography.button.lg/md/sm` - Button text
+### Spacing
+```tsx
+className="p-0"    // 0px
+className="p-0.5"  // 2px
+className="p-1"    // 4px
+className="p-2"    // 8px
+className="p-3"    // 12px
+className="p-4"    // 16px
+className="p-5"    // 20px
+className="p-6"    // 24px
+className="p-8"    // 32px
+className="p-10"   // 40px
+className="p-12"   // 48px
+className="p-16"   // 64px
 
-```typescript
-// ✅ CORRECT
-<h1 style={{ ...typography.display.md, color: colors.neutral.darkest }}>
-<p style={{ ...typography.body.md, color: colors.neutral[600] }}>
-
-// For individual properties:
-fontSize: font.size.lg
-fontWeight: font.weight.bold
-fontFamily: font.family.default
+// Also works with m-, gap-, etc.
+className="m-4 gap-5 px-6 py-3"
 ```
 
-### Border (`border`)
-- `border.radius.none/sm/md/lg/xl/2xl/full`
-- `border.width.none/thin/medium/thick`
+### Typography
+```tsx
+// Font sizes
+className="text-3xs"  // 10px
+className="text-2xs"  // 12px
+className="text-xs"   // 13px
+className="text-sm"   // 14px
+className="text-base" // 16px
+className="text-lg"   // 18px
+className="text-xl"   // 20px
+className="text-2xl"  // 24px
+className="text-3xl"  // 28px
+className="text-4xl"  // 32px
+className="text-5xl"  // 40px
+className="text-6xl"  // 48px
 
-```typescript
-// ✅ CORRECT
-borderRadius: border.radius.md
-border: `${border.width.thin}px solid ${colors.neutral[300]}`
+// Font families
+className="font-sans"     // Primary font (Inter, system)
+className="font-display"  // Display font (Barlow Condensed)
+className="font-serif"    // Serif font (Lora)
+
+// Font weights
+className="font-normal"    // 400
+className="font-medium"    // 500
+className="font-semibold"  // 600
+className="font-bold"      // 700
+className="font-extrabold" // 800
 ```
 
-### Layout (`layout`)
-Container and component widths:
-- `layout['4xs']` = 128
-- `layout['3xs']` = 192
-- `layout['2xs']` = 224
-- `layout.xs` = 256
-- `layout.sm` = 320
-- `layout.md` = 384
-- `layout.lg` = 512
-- `layout.xl` = 768
-- `layout['2xl']` = 1024
-- `layout['3xl']` = 1280
-- `layout['4xl']` = 1600
-
-### Breakpoints (`breakpoints`)
-- `breakpoints.sm` = 320
-- `breakpoints.md` = 768
-- `breakpoints.lg` = 1024
-- `breakpoints.xl` = 1440
-- `breakpoints['2xl']` = 1600
-
-### Elevation (`elevation`)
-- `elevation.none/sm/md/lg/xl/2xl`
-
-## Brand-Specific Theming
-
-For brand-specific components, import from `@/lib/brandThemes`:
-
-```typescript
-import { brandThemes, getTheme } from '@/lib/brandThemes';
-
-// Get a specific brand theme
-const theme = getTheme('carAndDriver');
-
-// Use theme colors
-backgroundColor: theme.colors.primary
-color: theme.colors.text
+### Border Radius
+```tsx
+className="rounded-none"  // 0px
+className="rounded-sm"    // 4px
+className="rounded-md"    // 8px
+className="rounded-lg"    // 12px
+className="rounded-xl"    // 16px
+className="rounded-2xl"   // 20px
+className="rounded-full"  // 9999px
 ```
 
-## Component Template
+### Shadows
+```tsx
+className="shadow-none"
+className="shadow-sm"
+className="shadow-md"
+className="shadow-lg"
+className="shadow-xl"
+className="shadow-2xl"
+```
 
-When creating a new component, follow this pattern:
+## Component Template (New Approach)
 
-```typescript
+```tsx
 'use client';
 
-import { colors, spacing, typography, border, font } from '@/lib/designTokens';
+import { cn } from '@/lib/utils';
 
 interface MyComponentProps {
-  // props
+  className?: string;
+  // other props
 }
 
-export function MyComponent({ ...props }: MyComponentProps) {
+export function MyComponent({ className, ...props }: MyComponentProps) {
   return (
-    <div
-      style={{
-        padding: spacing.lg,
-        backgroundColor: colors.neutral.lightest,
-        borderRadius: border.radius.md,
-        border: `1px solid ${colors.neutral[300]}`,
-      }}
-    >
-      <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest }}>
+    <div className={cn(
+      "p-5 bg-neutral-100 rounded-lg border border-neutral-400",
+      className
+    )}>
+      <h2 className="text-2xl font-bold text-neutral-1000">
         Title
       </h2>
-      <p style={{ ...typography.body.md, color: colors.neutral[600] }}>
+      <p className="text-base text-neutral-700 mt-2">
         Content
       </p>
     </div>
@@ -176,40 +162,30 @@ export function MyComponent({ ...props }: MyComponentProps) {
 
 ## Storybook Page Template
 
-When creating a storybook documentation page:
-
-```typescript
+```tsx
 'use client';
 
-import { colors, spacing, typography, border, font } from '@/lib/designTokens';
 import { MyComponent } from '@/components/MyComponent';
 
 export default function MyComponentPage() {
   return (
-    <div style={{ padding: spacing['3xl'], maxWidth: 1200, margin: '0 auto' }}>
+    <div className="p-12 max-w-[1200px] mx-auto">
       {/* Header */}
-      <div style={{ marginBottom: spacing['3xl'] }}>
-        <h1 style={{ ...typography.display.md, color: colors.neutral.darkest, margin: 0 }}>
+      <div className="mb-12">
+        <h1 className="text-5xl font-bold text-neutral-1000 m-0">
           Component Name
         </h1>
-        <p style={{ ...typography.body.lg, color: colors.neutral[600], margin: `${spacing.md}px 0 0` }}>
+        <p className="text-lg text-neutral-700 mt-4">
           Component description
         </p>
       </div>
 
       {/* Preview */}
-      <section style={{ marginBottom: spacing['3xl'] }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
           Preview
         </h2>
-        <div
-          style={{
-            backgroundColor: colors.neutral[200],
-            borderRadius: border.radius.lg,
-            padding: spacing.xl,
-            border: `1px solid ${colors.neutral[300]}`,
-          }}
-        >
+        <div className="bg-neutral-200 rounded-lg p-6 border border-neutral-400">
           <MyComponent />
         </div>
       </section>
@@ -218,9 +194,42 @@ export default function MyComponentPage() {
 }
 ```
 
-## Token Source
+## Theme Switching
 
-All tokens are sourced from the Hearst Design System API:
-`https://figma-connector.kubeprod.hearstapps.com/token-studio/tokens`
+Themes are applied via the `data-theme` attribute on the `<html>` element:
 
-The resolved values are stored in `src/lib/designTokens.ts`.
+```tsx
+// Available themes:
+// - car-and-driver (default)
+// - esquire
+// - cosmopolitan
+// - good-housekeeping
+// - harpers-bazaar
+// - elle
+// - delish
+// - mens-health
+// - womens-health
+// - popular-mechanics
+
+<html data-theme="esquire">
+```
+
+When using theme-aware colors (`bg-primary`, `text-accent`, etc.), they automatically update based on the active theme.
+
+## Legacy: designTokens.ts
+
+The `@/lib/designTokens` file still exists for reference and backward compatibility, but **prefer Tailwind classes** for new code. The CSS variables in `globals.css` are the single source of truth.
+
+## Utility: cn() function
+
+Always use the `cn()` utility from `@/lib/utils` for conditional class merging:
+
+```tsx
+import { cn } from '@/lib/utils';
+
+<div className={cn(
+  "base-classes",
+  isActive && "active-classes",
+  className // allow override from props
+)}>
+```

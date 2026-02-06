@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { colors, spacing, font, typography, elevation, border } from '@/lib/designTokens';
 
 // Quick Stats Card
 interface StatCardProps {
@@ -13,25 +12,15 @@ interface StatCardProps {
 
 function StatCard({ title, value, description, href }: StatCardProps) {
   return (
-    <Link href={href} style={{ textDecoration: 'none' }}>
-      <div
-        style={{
-          backgroundColor: colors.neutral.lightest,
-          borderRadius: border.radius.lg,
-          padding: spacing.xl,
-          boxShadow: elevation.sm,
-          border: `1px solid ${colors.neutral[300]}`,
-          transition: 'all 0.2s ease',
-          cursor: 'pointer',
-        }}
-      >
-        <p style={{ ...typography.caption.md, color: colors.neutral[600], margin: 0, textTransform: 'uppercase', letterSpacing: 1 }}>
+    <Link href={href} className="no-underline">
+      <div className="bg-neutral-100 rounded-lg p-6 shadow-sm border border-neutral-400 transition-all duration-200 cursor-pointer hover:shadow-md">
+        <p className="text-xs text-neutral-700 m-0 uppercase tracking-wide">
           {title}
         </p>
-        <p style={{ ...typography.display.sm, color: colors.neutral.darkest, margin: `${spacing.xs}px 0` }}>
+        <p className="text-4xl font-bold text-neutral-1000 my-2">
           {value}
         </p>
-        <p style={{ ...typography.body.sm, color: colors.neutral[500], margin: 0 }}>
+        <p className="text-sm text-neutral-600 m-0">
           {description}
         </p>
       </div>
@@ -49,23 +38,13 @@ interface FeatureCardProps {
 
 function FeatureCard({ icon, title, description, href }: FeatureCardProps) {
   return (
-    <Link href={href} style={{ textDecoration: 'none' }}>
-      <div
-        style={{
-          backgroundColor: colors.neutral.lightest,
-          borderRadius: border.radius.lg,
-          padding: spacing.xl,
-          boxShadow: elevation.sm,
-          border: `1px solid ${colors.neutral[300]}`,
-          height: '100%',
-          transition: 'all 0.2s ease',
-        }}
-      >
-        <div style={{ fontSize: 32, marginBottom: spacing.md }}>{icon}</div>
-        <h3 style={{ ...typography.heading.sm, color: colors.neutral.darkest, margin: 0 }}>
+    <Link href={href} className="no-underline">
+      <div className="bg-neutral-100 rounded-lg p-6 shadow-sm border border-neutral-400 h-full transition-all duration-200 hover:shadow-md">
+        <div className="text-[32px] mb-4">{icon}</div>
+        <h3 className="text-lg font-semibold text-neutral-1000 m-0">
           {title}
         </h3>
-        <p style={{ ...typography.body.sm, color: colors.neutral[600], margin: `${spacing.sm}px 0 0` }}>
+        <p className="text-sm text-neutral-700 mt-3 m-0">
           {description}
         </p>
       </div>
@@ -75,29 +54,23 @@ function FeatureCard({ icon, title, description, href }: FeatureCardProps) {
 
 export default function StorybookOverview() {
   return (
-    <div style={{ padding: spacing['3xl'], maxWidth: 1200, margin: '0 auto' }}>
+    <div className="p-12 max-w-[1200px] mx-auto">
       {/* Header */}
-      <div style={{ marginBottom: spacing['3xl'] }}>
-        <h1 style={{ ...typography.display.lg, color: colors.neutral.darkest, margin: 0 }}>
+      <div className="mb-12">
+        <h1 className="text-6xl font-bold text-neutral-1000 m-0">
           Hearst Design System
         </h1>
-        <p style={{ ...typography.body.lg, color: colors.neutral[600], margin: `${spacing.md}px 0 0`, maxWidth: 600 }}>
+        <p className="text-lg text-neutral-700 mt-4 max-w-[600px]">
           A comprehensive design system for building consistent, beautiful interfaces across Hearst digital properties.
         </p>
       </div>
 
       {/* Quick Stats */}
-      <div style={{ marginBottom: spacing['3xl'] }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
           At a Glance
         </h2>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: spacing.lg,
-          }}
-        >
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-5">
           <StatCard
             title="Color Tokens"
             value="60+"
@@ -126,17 +99,11 @@ export default function StorybookOverview() {
       </div>
 
       {/* Features */}
-      <div style={{ marginBottom: spacing['3xl'] }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
           Explore the System
         </h2>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: spacing.lg,
-          }}
-        >
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5">
           <FeatureCard
             icon="🎨"
             title="Colors"
@@ -177,39 +144,22 @@ export default function StorybookOverview() {
       </div>
 
       {/* Getting Started */}
-      <div
-        style={{
-          backgroundColor: colors.neutral.darkest,
-          borderRadius: border.radius.lg,
-          padding: spacing['2xl'],
-          color: colors.neutral.lightest,
-        }}
-      >
-        <h2 style={{ ...typography.heading.lg, margin: 0 }}>
+      <div className="bg-neutral-1000 rounded-lg p-8 text-neutral-100">
+        <h2 className="text-2xl font-bold m-0">
           Getting Started
         </h2>
-        <p style={{ ...typography.body.md, color: colors.neutral[400], margin: `${spacing.md}px 0` }}>
-          Import tokens directly into your components:
+        <p className="text-base text-neutral-500 my-4">
+          Use Tailwind classes with our design tokens:
         </p>
-        <pre
-          style={{
-            backgroundColor: 'rgba(255,255,255,0.1)',
-            borderRadius: border.radius.md,
-            padding: spacing.lg,
-            overflow: 'auto',
-            fontSize: font.size.sm,
-            fontFamily: font.family.mono,
-          }}
-        >
-{`import { colors, spacing, typography } from '@/lib/designTokens';
-
-// Use in your components
-<div style={{
-  color: colors.neutral.darkest,
-  padding: spacing.lg,
-  ...typography.body.md,
-}}>
+        <pre className="bg-white/10 rounded-md p-5 overflow-auto text-sm font-mono">
+{`// Use Tailwind classes with CSS variables
+<div className="text-neutral-1000 p-5 text-base">
   Your content here
+</div>
+
+// Theme-aware colors (change with data-theme)
+<div className="bg-primary text-primary-foreground">
+  Brand colored content
 </div>`}
         </pre>
       </div>

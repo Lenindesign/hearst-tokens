@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode, useState } from 'react';
-import { colors, spacing, font, typography, elevation } from '@/lib/designTokens';
+import { cn } from '@/lib/utils';
 
 // Sidebar Navigation Item
 interface NavItemProps {
@@ -17,18 +17,13 @@ function NavItem({ href, label, isActive, indent = false }: NavItemProps) {
   return (
     <Link
       href={href}
-      style={{
-        display: 'block',
-        padding: `${spacing.xs}px ${spacing.md}px`,
-        paddingLeft: indent ? spacing['2xl'] : spacing.md,
-        fontSize: font.size.sm,
-        fontWeight: isActive ? font.weight.semibold : font.weight.regular,
-        color: isActive ? colors.neutral.darkest : colors.neutral[600],
-        backgroundColor: isActive ? colors.neutral[200] : 'transparent',
-        borderRadius: 6,
-        textDecoration: 'none',
-        transition: 'all 0.15s ease',
-      }}
+      className={cn(
+        "block py-2 px-4 text-sm rounded-md no-underline transition-all duration-150",
+        indent ? "pl-8" : "pl-4",
+        isActive 
+          ? "font-semibold text-neutral-1000 bg-neutral-200" 
+          : "font-normal text-neutral-700 bg-transparent hover:bg-neutral-200/50"
+      )}
     >
       {label}
     </Link>
@@ -46,24 +41,10 @@ function SectionHeader({ title, isOpen, onClick }: SectionHeaderProps) {
   return (
     <button
       onClick={onClick}
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: '100%',
-        padding: `${spacing.xs}px ${spacing.md}px`,
-        fontSize: font.size.xs,
-        fontWeight: font.weight.semibold,
-        color: colors.neutral[600],
-        backgroundColor: 'transparent',
-        border: 'none',
-        cursor: 'pointer',
-        textTransform: 'uppercase',
-        letterSpacing: 1,
-      }}
+      className="flex items-center justify-between w-full py-2 px-4 text-xs font-semibold text-neutral-700 bg-transparent border-none cursor-pointer uppercase tracking-wide"
     >
       {title}
-      <span style={{ transform: isOpen ? 'rotate(90deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }}>
+      <span className={cn("transition-transform duration-200", isOpen ? "rotate-90" : "rotate-0")}>
         ▶
       </span>
     </button>
@@ -116,60 +97,31 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
   ];
 
   const guidePages = [
+    { href: '/storybook/guides/shadcn-theming', label: 'shadcn/ui Multi-Brand Theming' },
     { href: '/storybook/guides/token-pipeline', label: 'Token Pipeline Setup' },
     { href: '/storybook/guides/tailwind-migration', label: 'Tailwind Migration' },
   ];
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: colors.neutral[100] }}>
+    <div className="flex min-h-screen bg-neutral-200">
       {/* Sidebar */}
-      <aside
-        style={{
-          width: 280,
-          backgroundColor: colors.neutral.lightest,
-          borderRight: `1px solid ${colors.neutral[300]}`,
-          display: 'flex',
-          flexDirection: 'column',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          bottom: 0,
-          overflowY: 'auto',
-        }}
-      >
+      <aside className="w-[280px] bg-neutral-100 border-r border-neutral-400 flex flex-col fixed top-0 left-0 bottom-0 overflow-y-auto">
         {/* Logo/Header */}
-        <div
-          style={{
-            padding: spacing.lg,
-            borderBottom: `1px solid ${colors.neutral[300]}`,
-          }}
-        >
-          <Link href="/storybook" style={{ textDecoration: 'none' }}>
-            <h1
-              style={{
-                ...typography.heading.md,
-                color: colors.neutral.darkest,
-                margin: 0,
-              }}
-            >
+        <div className="p-5 border-b border-neutral-400">
+          <Link href="/storybook" className="no-underline">
+            <h1 className="text-xl font-semibold text-neutral-1000 m-0">
               Hearst Design System
             </h1>
-            <p
-              style={{
-                ...typography.caption.md,
-                color: colors.neutral[600],
-                margin: `${spacing.xs}px 0 0`,
-              }}
-            >
+            <p className="text-xs text-neutral-700 mt-2 m-0">
               Tokens & Components
             </p>
           </Link>
         </div>
 
         {/* Navigation */}
-        <nav style={{ flex: 1, padding: `${spacing.md}px 0` }}>
+        <nav className="flex-1 py-4">
           {/* Overview */}
-          <div style={{ marginBottom: spacing.md }}>
+          <div className="mb-4">
             <NavItem
               href="/storybook"
               label="Overview"
@@ -178,14 +130,14 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
           </div>
 
           {/* Tokens Section */}
-          <div style={{ marginBottom: spacing.sm }}>
+          <div className="mb-3">
             <SectionHeader
               title="Design Tokens"
               isOpen={openSections.tokens}
               onClick={() => toggleSection('tokens')}
             />
             {openSections.tokens && (
-              <div style={{ marginTop: spacing['2xs'] }}>
+              <div className="mt-1">
                 {tokenPages.map(page => (
                   <NavItem
                     key={page.href}
@@ -200,14 +152,14 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
           </div>
 
           {/* Components Section */}
-          <div style={{ marginBottom: spacing.sm }}>
+          <div className="mb-3">
             <SectionHeader
               title="Components"
               isOpen={openSections.components}
               onClick={() => toggleSection('components')}
             />
             {openSections.components && (
-              <div style={{ marginTop: spacing['2xs'] }}>
+              <div className="mt-1">
                 {componentPages.map(page => (
                   <NavItem
                     key={page.href}
@@ -222,14 +174,14 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
           </div>
 
           {/* Pages Section */}
-          <div style={{ marginBottom: spacing.sm }}>
+          <div className="mb-3">
             <SectionHeader
               title="Page Examples"
               isOpen={openSections.pages}
               onClick={() => toggleSection('pages')}
             />
             {openSections.pages && (
-              <div style={{ marginTop: spacing['2xs'] }}>
+              <div className="mt-1">
                 {pageExamples.map(page => (
                   <NavItem
                     key={page.href}
@@ -244,14 +196,14 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
           </div>
 
           {/* Guides Section */}
-          <div style={{ marginBottom: spacing.sm }}>
+          <div className="mb-3">
             <SectionHeader
               title="Guides"
               isOpen={openSections.guides}
               onClick={() => toggleSection('guides')}
             />
             {openSections.guides && (
-              <div style={{ marginTop: spacing['2xs'] }}>
+              <div className="mt-1">
                 {guidePages.map(page => (
                   <NavItem
                     key={page.href}
@@ -267,26 +219,15 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
         </nav>
 
         {/* Footer */}
-        <div
-          style={{
-            padding: spacing.md,
-            borderTop: `1px solid ${colors.neutral[300]}`,
-          }}
-        >
-          <p style={{ ...typography.caption.sm, color: colors.neutral[500], margin: 0 }}>
+        <div className="p-4 border-t border-neutral-400">
+          <p className="text-xs text-neutral-600 m-0">
             Version 1.0.0
           </p>
         </div>
       </aside>
 
       {/* Main Content */}
-      <main
-        style={{
-          flex: 1,
-          marginLeft: 280,
-          minHeight: '100vh',
-        }}
-      >
+      <main className="flex-1 ml-[280px] min-h-screen">
         {children}
       </main>
     </div>
