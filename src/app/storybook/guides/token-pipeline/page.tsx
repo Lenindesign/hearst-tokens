@@ -28,17 +28,12 @@ function AudienceCard({
   audience: 'designer' | 'developer' | 'pm';
   children: React.ReactNode;
 }) {
-  const colors = {
-    designer: { bg: 'bg-purple-50', border: 'border-purple-200', badge: 'bg-purple-100 text-purple-700' },
-    developer: { bg: 'bg-blue-50', border: 'border-blue-200', badge: 'bg-blue-100 text-blue-700' },
-    pm: { bg: 'bg-green-50', border: 'border-green-200', badge: 'bg-green-100 text-green-700' },
-  };
   const labels = { designer: 'For Designers', developer: 'For Developers', pm: 'For Product Managers' };
   
   return (
-    <div className={`${colors[audience].bg} ${colors[audience].border} border rounded-lg p-5`}>
+    <div className="bg-neutral-100 border-neutral-400 border rounded-lg p-5">
       <div className="flex items-center gap-2 mb-3">
-        <span className={`${colors[audience].badge} text-xs font-medium px-2 py-1 rounded`}>
+        <span className="bg-neutral-300 text-neutral-800 text-xs font-medium px-2 py-1 rounded">
           {labels[audience]}
         </span>
       </div>
@@ -61,8 +56,8 @@ function PhaseCard({
   children: React.ReactNode;
 }) {
   const statusStyles = {
-    current: 'bg-green-500',
-    next: 'bg-yellow-500',
+    current: 'bg-neutral-900',
+    next: 'bg-neutral-600',
     future: 'bg-neutral-400',
   };
   const statusLabels = {
@@ -120,12 +115,12 @@ function FlowDiagram({ phase }: { phase: 1 | 2 | 3 }) {
           <div key={index} className="flex items-center">
             <div className={`
               px-4 py-3 rounded-lg text-center min-w-[120px]
-              ${item.highlight ? 'bg-blue-600 text-white' : 'bg-white border border-neutral-300'}
+              ${item.highlight ? 'bg-neutral-900 text-white' : 'bg-white border border-neutral-300'}
             `}>
               <div className={`font-semibold text-sm ${item.highlight ? 'text-white' : 'text-neutral-900'}`}>
                 {item.label}
               </div>
-              <div className={`text-xs mt-1 ${item.highlight ? 'text-blue-100' : 'text-neutral-500'}`}>
+              <div className={`text-xs mt-1 ${item.highlight ? 'text-neutral-300' : 'text-neutral-500'}`}>
                 {item.sublabel}
               </div>
             </div>
@@ -329,7 +324,7 @@ function ArticlePage() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5">
-                <div className="w-8 h-8 rounded bg-blue-600 mb-3"></div>
+                <div className="w-8 h-8 rounded bg-neutral-900 mb-3"></div>
                 <h4 className="font-semibold text-neutral-900 m-0 mb-1">Colors</h4>
                 <p className="text-sm text-neutral-600 m-0">Primary: #1B5F8A</p>
                 <p className="text-sm text-neutral-600 m-0">Background: #ffffff</p>
@@ -352,10 +347,10 @@ function ArticlePage() {
               </div>
             </div>
 
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-5">
-              <p className="text-sm text-yellow-800 m-0">
-                <strong>Key Insight:</strong> Instead of a developer writing <code className="bg-yellow-100 px-1 rounded">#1B5F8A</code> in 
-                code, they write <code className="bg-yellow-100 px-1 rounded">var(--primary)</code>. The actual color value 
+            <div className="bg-neutral-200 border border-neutral-400 rounded-lg p-5">
+              <p className="text-sm text-neutral-800 m-0">
+                <strong>Key Insight:</strong> Instead of a developer writing <code className="bg-neutral-300 px-1 rounded">#1B5F8A</code> in 
+                code, they write <code className="bg-neutral-300 px-1 rounded">var(--primary)</code>. The actual color value 
                 comes from the token system, making it easy to change across the entire application.
               </p>
             </div>
@@ -393,8 +388,8 @@ function ArticlePage() {
                 <li>Sync back to Figma via API</li>
                 <li>iOS and Android token files</li>
               </ul>
-              <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-sm text-green-800 m-0">
+              <div className="mt-4 p-4 bg-neutral-200 border border-neutral-400 rounded-lg">
+                <p className="text-sm text-neutral-800 m-0">
                   <strong>Benefits:</strong> Version control, automated builds, single source of truth, 
                   works with CI/CD pipelines, enables AI-assisted token management.
                 </p>
@@ -500,7 +495,7 @@ function ArticlePage() {
               
               <AudienceCard title="Your Workflow" audience="developer">
                 <ul className="list-disc pl-4 space-y-2 m-0">
-                  <li>Use Tailwind classes: <code className="bg-blue-100 px-1 rounded text-xs">bg-primary</code></li>
+                  <li>Use Tailwind classes: <code className="bg-neutral-300 px-1 rounded text-xs">bg-primary</code></li>
                   <li>TypeScript autocomplete for tokens</li>
                   <li>No hardcoded colors or values</li>
                   <li>Components work for all brands</li>
@@ -560,7 +555,7 @@ function ArticlePage() {
               </div>
               
               <div className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-sm shrink-0">✓</div>
+                <div className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-sm shrink-0">✓</div>
                 <div>
                   <h4 className="font-semibold text-neutral-900 m-0">Zero code changes needed</h4>
                   <p className="text-sm text-neutral-600 mt-1">Developers didn't touch any component code. The token system handled everything.</p>
