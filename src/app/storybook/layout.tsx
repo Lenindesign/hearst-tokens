@@ -78,6 +78,7 @@ export default function StorybookLayout({ children }: { children: ReactNode }) {
 
   const componentPages = [
     { href: '/storybook/components/shadcn-demo', label: 'shadcn/ui Components' },
+    { href: '/storybook/components/article-card', label: 'ArticleCard' },
     { href: '/storybook/components/main-navigation', label: 'MainNavigation' },
     { href: '/storybook/components/footer', label: 'Footer' },
     { href: '/storybook/components/big-card', label: 'BigCard' },
