@@ -52,9 +52,9 @@ export function ArticleCard({
   onReadMore,
 }: ArticleCardProps) {
   return (
-    <Card className={cn('overflow-hidden flex flex-col', className)}>
+    <Card className={cn('overflow-hidden flex flex-col h-full', className)}>
       {/* Hero Image */}
-      <div className="relative aspect-[16/9] overflow-hidden">
+      <div className="relative aspect-[16/9] overflow-hidden flex-shrink-0">
         <Image
           src={imageUrl}
           alt={title}
@@ -68,9 +68,9 @@ export function ArticleCard({
       </div>
 
       <CardContent className="flex flex-col flex-1 p-5">
-        {/* Title */}
+        {/* Title - fixed height for 2 lines */}
         <h3 
-          className="text-lg font-bold leading-tight mb-2 line-clamp-2"
+          className="text-lg font-bold leading-tight mb-2 line-clamp-2 min-h-[3.5rem]"
           style={{ 
             color: 'var(--card-foreground)',
             fontFamily: 'var(--font-display, inherit)',
@@ -79,13 +79,16 @@ export function ArticleCard({
           {title}
         </h3>
 
-        {/* Excerpt */}
+        {/* Excerpt - fixed height for 3 lines */}
         <p 
-          className="text-sm mb-4 line-clamp-3 flex-1"
+          className="text-sm mb-4 line-clamp-3 min-h-[3.75rem]"
           style={{ color: 'var(--muted-foreground)' }}
         >
           {excerpt}
         </p>
+
+        {/* Spacer to push author and button to bottom */}
+        <div className="flex-1" />
 
         {/* Author Info */}
         <div className="flex items-center gap-3 mb-4">
@@ -136,7 +139,7 @@ export function ArticleCard({
         {/* Read More Button */}
         <Button 
           variant="default" 
-          className="w-full"
+          className="w-full mt-auto"
           onClick={onReadMore}
           asChild={!!href && href !== '#'}
         >
