@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ArticleCard } from '@/components/ArticleCard';
 import {
   Carousel,
@@ -486,8 +486,28 @@ const themes = [
 ];
 
 export default function TokenPipelinePage() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'demo'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'demo' | 'architecture'>('overview');
   const [demoTheme, setDemoTheme] = useState('car-and-driver');
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isImageModalOpen) {
+        setIsImageModalOpen(false);
+      }
+    };
+    
+    if (isImageModalOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+    
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = ''; // Restore scrolling
+    };
+  }, [isImageModalOpen]);
 
   const tokensJsonExample = `{
   "global": {
@@ -651,6 +671,16 @@ function ArticlePage() {
           }`}
         >
           Technical
+        </button>
+        <button
+          onClick={() => setActiveTab('architecture')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            activeTab === 'architecture'
+              ? 'bg-neutral-900 text-white'
+              : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+          }`}
+        >
+          Architecture
         </button>
       </div>
 
@@ -1277,6 +1307,265 @@ jobs:
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </section>
+        </>
+      )}
+
+      {activeTab === 'architecture' && (
+        <>
+          {/* Architecture - Matryoshka Analogy */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              The Matryoshka Architecture
+            </h2>
+            <p className="text-base text-neutral-700 mb-6">
+              The design token pipeline can be visualized as a Matryoshka (Russian nesting doll), 
+              where each layer wraps and builds upon the previous one. This mental model helps 
+              stakeholders understand how design decisions flow from abstract values to the 
+              final rendered product.
+            </p>
+
+            {/* Matryoshka Image */}
+            <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-6 mb-8">
+              <button 
+                onClick={() => setIsImageModalOpen(true)}
+                className="w-full cursor-zoom-in border-0 p-0 bg-transparent"
+              >
+                <img 
+                  src="https://pub-4345f0f77c424370b4354c6a404ac802.r2.dev/mamushka.jpg"
+                  alt="Matryoshka analogy showing nested layers: CSS Variables, Tailwind CSS, shadcn/ui, HTML Structure, and Final Product"
+                  className="w-full rounded-lg hover:opacity-90 transition-opacity"
+                />
+              </button>
+              <p className="text-sm text-neutral-600 mt-4 text-center m-0">
+                Each layer encapsulates the previous one, creating a clear separation of concerns
+                <br />
+                <span className="text-xs text-neutral-500">(Click image to enlarge)</span>
+              </p>
+            </div>
+
+            {/* Image Modal */}
+            {isImageModalOpen && (
+              <div 
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 sm:p-8"
+                onClick={() => setIsImageModalOpen(false)}
+              >
+                <div className="relative max-w-[95vw] max-h-[95vh]">
+                  <button
+                    onClick={() => setIsImageModalOpen(false)}
+                    className="absolute -top-12 right-0 text-white hover:text-neutral-300 transition-colors bg-transparent border-0 cursor-pointer flex items-center gap-2 text-sm"
+                  >
+                    <span>Close</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                  <img 
+                    src="https://pub-4345f0f77c424370b4354c6a404ac802.r2.dev/mamushka.jpg"
+                    alt="Matryoshka analogy showing nested layers: CSS Variables, Tailwind CSS, shadcn/ui, HTML Structure, and Final Product"
+                    className="max-w-full max-h-[85vh] rounded-lg object-contain"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                  <p className="text-center text-white/70 text-sm mt-4">
+                    Press Escape or click outside to close
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {/* Rationale Section */}
+            <h3 className="text-xl font-semibold text-neutral-1000 mb-4">
+              Why This Analogy Works
+            </h3>
+            <p className="text-base text-neutral-700 mb-6">
+              Just like a Matryoshka doll, where each outer layer contains and depends on the inner layers, 
+              our design system architecture follows the same principle. Changes to an inner layer 
+              automatically propagate outward, while each layer maintains its own responsibility.
+            </p>
+            
+            <div className="space-y-4 mb-8">
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-lg shrink-0">1</div>
+                  <div>
+                    <h4 className="font-semibold text-neutral-900 m-0 mb-2">CSS Variables (Innermost Layer)</h4>
+                    <p className="text-sm text-neutral-700 m-0">
+                      The core design decisions: colors, spacing, typography, and radii. These are the 
+                      fundamental values that define each brand&apos;s visual identity. Like the smallest 
+                      Matryoshka doll, they are the essential foundation that everything else is built upon.
+                    </p>
+                    <div className="mt-3 bg-neutral-200 rounded p-3 font-mono text-xs">
+                      <code>--primary: #1B5F8A;</code><br />
+                      <code>--radius: 4px;</code><br />
+                      <code>--font-display: &quot;Barlow Condensed&quot;;</code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-lg shrink-0">2</div>
+                  <div>
+                    <h4 className="font-semibold text-neutral-900 m-0 mb-2">Tailwind CSS (Second Layer)</h4>
+                    <p className="text-sm text-neutral-700 m-0">
+                      Wraps CSS variables into utility classes like <code className="bg-neutral-200 px-1 rounded">bg-primary</code>, 
+                      <code className="bg-neutral-200 px-1 rounded">text-foreground</code>, and <code className="bg-neutral-200 px-1 rounded">rounded-md</code>. 
+                      This layer provides a consistent API for developers to access design tokens without 
+                      writing raw CSS.
+                    </p>
+                    <div className="mt-3 bg-neutral-200 rounded p-3 font-mono text-xs">
+                      <code>className=&quot;bg-primary text-primary-foreground rounded-md&quot;</code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-lg shrink-0">3</div>
+                  <div>
+                    <h4 className="font-semibold text-neutral-900 m-0 mb-2">shadcn/ui Components (Third Layer)</h4>
+                    <p className="text-sm text-neutral-700 m-0">
+                      Pre-built, accessible components (Button, Card, Badge) that use Tailwind classes internally. 
+                      Developers work with semantic components rather than raw HTML, ensuring consistency 
+                      and accessibility across all brands.
+                    </p>
+                    <div className="mt-3 bg-neutral-200 rounded p-3 font-mono text-xs">
+                      <code>&lt;Button variant=&quot;default&quot;&gt;Click Me&lt;/Button&gt;</code><br />
+                      <code>&lt;Card&gt;&lt;CardContent&gt;...&lt;/CardContent&gt;&lt;/Card&gt;</code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-lg shrink-0">4</div>
+                  <div>
+                    <h4 className="font-semibold text-neutral-900 m-0 mb-2">Composite Components (Fourth Layer)</h4>
+                    <p className="text-sm text-neutral-700 m-0">
+                      Business-specific components like ArticleCard, NewsletterPromo, and FeedBlock that 
+                      compose multiple shadcn primitives. These represent the actual UI patterns used 
+                      across Hearst properties.
+                    </p>
+                    <div className="mt-3 bg-neutral-200 rounded p-3 font-mono text-xs">
+                      <code>&lt;ArticleCard title=&quot;...&quot; category=&quot;...&quot; /&gt;</code><br />
+                      <code>&lt;NewsletterPromo brand=&quot;cosmopolitan&quot; /&gt;</code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-lg shrink-0">5</div>
+                  <div>
+                    <h4 className="font-semibold text-neutral-900 m-0 mb-2">Final Product (Outermost Layer)</h4>
+                    <p className="text-sm text-neutral-700 m-0">
+                      The rendered website that users see. When the <code className="bg-neutral-200 px-1 rounded">data-theme</code> attribute 
+                      is set, the CSS cascade flows from the innermost layer outward, applying the correct 
+                      brand styling to every component automatically.
+                    </p>
+                    <div className="mt-3 bg-neutral-200 rounded p-3 font-mono text-xs">
+                      <code>&lt;html data-theme=&quot;car-and-driver&quot;&gt;</code><br />
+                      <code>&nbsp;&nbsp;&lt;HomePage /&gt; {/* All components themed */}</code><br />
+                      <code>&lt;/html&gt;</code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* The Power of Nesting */}
+            <h3 className="text-xl font-semibold text-neutral-1000 mb-4">
+              The Power of Nesting
+            </h3>
+            <div className="bg-neutral-200 border border-neutral-400 rounded-lg p-6 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0 mb-3">Change Propagation</h4>
+                  <p className="text-sm text-neutral-700 m-0 mb-3">
+                    When you change an inner layer, all outer layers automatically reflect that change:
+                  </p>
+                  <ul className="text-sm text-neutral-700 list-disc pl-5 space-y-1 m-0">
+                    <li>Change <code className="bg-neutral-300 px-1 rounded">--primary</code> color</li>
+                    <li>Tailwind&apos;s <code className="bg-neutral-300 px-1 rounded">bg-primary</code> updates</li>
+                    <li>Button component reflects new color</li>
+                    <li>ArticleCard&apos;s CTA button changes</li>
+                    <li>Entire site updates instantly</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0 mb-3">Isolation of Concerns</h4>
+                  <p className="text-sm text-neutral-700 m-0 mb-3">
+                    Each layer has a single responsibility:
+                  </p>
+                  <ul className="text-sm text-neutral-700 list-disc pl-5 space-y-1 m-0">
+                    <li><strong>CSS Variables:</strong> Store values</li>
+                    <li><strong>Tailwind:</strong> Provide utility API</li>
+                    <li><strong>shadcn:</strong> Handle accessibility</li>
+                    <li><strong>Composites:</strong> Business logic</li>
+                    <li><strong>Product:</strong> User experience</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Key Benefits */}
+            <div className="bg-neutral-900 rounded-lg p-8 text-neutral-100">
+              <h3 className="text-xl font-bold m-0 mb-4">Key Benefits of the Matryoshka Architecture</h3>
+              <ul className="text-base text-neutral-300 m-0 pl-5 space-y-2">
+                <li><strong className="text-white">Predictable Changes:</strong> Modify an inner layer, know exactly what will be affected</li>
+                <li><strong className="text-white">Easy Debugging:</strong> Issues can be traced to a specific layer</li>
+                <li><strong className="text-white">Team Scalability:</strong> Different teams can own different layers</li>
+                <li><strong className="text-white">Brand Flexibility:</strong> Swap the innermost CSS variables to completely re-theme</li>
+                <li><strong className="text-white">Reduced Complexity:</strong> Each layer only needs to understand its immediate inner layer</li>
+                <li><strong className="text-white">Consistent Output:</strong> Same component code produces brand-appropriate results</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Practical Application */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              Practical Application
+            </h2>
+            <p className="text-base text-neutral-700 mb-6">
+              Here&apos;s how the Matryoshka architecture applies to a real component in our system:
+            </p>
+
+            <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-6">
+              <h4 className="font-semibold text-neutral-900 m-0 mb-4">ArticleCard: Layer by Layer</h4>
+              
+              <div className="space-y-3">
+                <div className="flex items-center gap-3 p-3 bg-white rounded border border-neutral-300">
+                  <span className="w-6 h-6 rounded-full bg-neutral-800 text-white flex items-center justify-center text-xs font-bold">1</span>
+                  <span className="text-sm"><strong>CSS Variable:</strong> <code className="bg-neutral-200 px-1 rounded">--primary: #1B5F8A</code></span>
+                </div>
+                <div className="flex justify-center text-neutral-400">↓</div>
+                <div className="flex items-center gap-3 p-3 bg-white rounded border border-neutral-300">
+                  <span className="w-6 h-6 rounded-full bg-neutral-700 text-white flex items-center justify-center text-xs font-bold">2</span>
+                  <span className="text-sm"><strong>Tailwind:</strong> <code className="bg-neutral-200 px-1 rounded">bg-primary</code> resolves to <code className="bg-neutral-200 px-1 rounded">background-color: var(--primary)</code></span>
+                </div>
+                <div className="flex justify-center text-neutral-400">↓</div>
+                <div className="flex items-center gap-3 p-3 bg-white rounded border border-neutral-300">
+                  <span className="w-6 h-6 rounded-full bg-neutral-600 text-white flex items-center justify-center text-xs font-bold">3</span>
+                  <span className="text-sm"><strong>shadcn Button:</strong> Uses <code className="bg-neutral-200 px-1 rounded">bg-primary</code> in its default variant</span>
+                </div>
+                <div className="flex justify-center text-neutral-400">↓</div>
+                <div className="flex items-center gap-3 p-3 bg-white rounded border border-neutral-300">
+                  <span className="w-6 h-6 rounded-full bg-neutral-500 text-white flex items-center justify-center text-xs font-bold">4</span>
+                  <span className="text-sm"><strong>ArticleCard:</strong> Renders <code className="bg-neutral-200 px-1 rounded">&lt;Button&gt;SHOP NEW&lt;/Button&gt;</code></span>
+                </div>
+                <div className="flex justify-center text-neutral-400">↓</div>
+                <div className="flex items-center gap-3 p-3 bg-white rounded border border-neutral-300">
+                  <span className="w-6 h-6 rounded-full bg-neutral-400 text-white flex items-center justify-center text-xs font-bold">5</span>
+                  <span className="text-sm"><strong>Final:</strong> User sees a blue &quot;SHOP NEW&quot; button on Car and Driver</span>
+                </div>
+              </div>
             </div>
           </section>
         </>
