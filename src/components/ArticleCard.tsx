@@ -67,10 +67,10 @@ export function ArticleCard({
         </div>
       </div>
 
-      <CardContent className="flex flex-col flex-1 p-5">
-        {/* Title - fixed height for 2 lines */}
+      <CardContent className="flex flex-col flex-1 p-4 sm:p-5">
+        {/* Title - responsive height for 2-3 lines */}
         <h3 
-          className="text-lg font-bold leading-tight mb-2 line-clamp-2 min-h-[3.5rem]"
+          className="text-base sm:text-lg font-bold leading-snug mb-2 line-clamp-3 sm:line-clamp-2 min-h-[4.5rem] sm:min-h-[3.5rem]"
           style={{ 
             color: 'var(--card-foreground)',
             fontFamily: 'var(--font-display, inherit)',
@@ -79,9 +79,9 @@ export function ArticleCard({
           {title}
         </h3>
 
-        {/* Excerpt - fixed height for 3 lines */}
+        {/* Excerpt - responsive height for 2-3 lines */}
         <p 
-          className="text-sm mb-4 line-clamp-3 min-h-[3.75rem]"
+          className="text-sm mb-4 line-clamp-2 sm:line-clamp-3 min-h-[2.5rem] sm:min-h-[3.75rem]"
           style={{ color: 'var(--muted-foreground)' }}
         >
           {excerpt}
