@@ -215,6 +215,7 @@ const CarouselPrevious = React.forwardRef<
       style={{
         backgroundColor: 'var(--background)',
         border: '1px solid var(--border)',
+        borderRadius: '9999px',
         ...style,
       }}
       disabled={!canScrollPrev}
@@ -249,6 +250,7 @@ const CarouselNext = React.forwardRef<
       style={{
         backgroundColor: 'var(--background)',
         border: '1px solid var(--border)',
+        borderRadius: '9999px',
         ...style,
       }}
       disabled={!canScrollNext}
