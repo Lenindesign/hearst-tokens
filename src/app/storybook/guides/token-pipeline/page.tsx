@@ -1,652 +1,751 @@
 'use client';
 
-import { colors, spacing, typography, border, font } from '@/lib/designTokens';
+import { useState } from 'react';
 
 // Code Block Component
 function CodeBlock({ code, title }: { code: string; title?: string }) {
   return (
-    <div
-      style={{
-        backgroundColor: '#1e1e1e',
-        borderRadius: border.radius.lg,
-        overflow: 'hidden',
-        marginBottom: spacing.lg,
-      }}
-    >
+    <div className="bg-[#1e1e1e] rounded-lg overflow-hidden mb-5">
       {title && (
-        <div
-          style={{
-            padding: `${spacing.sm}px ${spacing.md}px`,
-            backgroundColor: '#2d2d2d',
-            borderBottom: '1px solid #3d3d3d',
-          }}
-        >
-          <span
-            style={{
-              fontFamily: 'monospace',
-              fontSize: font.size.sm,
-              color: '#9d9d9d',
-            }}
-          >
-            {title}
-          </span>
+        <div className="px-4 py-3 bg-[#2d2d2d] border-b border-[#3d3d3d]">
+          <span className="font-mono text-sm text-[#9d9d9d]">{title}</span>
         </div>
       )}
-      <pre
-        style={{
-          margin: 0,
-          padding: spacing.lg,
-          overflow: 'auto',
-          fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace',
-          fontSize: 13,
-          lineHeight: 1.6,
-          color: '#d4d4d4',
-        }}
-      >
+      <pre className="m-0 p-5 overflow-auto font-mono text-[13px] leading-relaxed text-[#d4d4d4]">
         <code>{code}</code>
       </pre>
     </div>
   );
 }
 
-// Note Box Component
-function NoteBox({ children, title }: { children: React.ReactNode; title?: string }) {
+// Info Card for different audiences
+function AudienceCard({ 
+  title, 
+  audience, 
+  children 
+}: { 
+  title: string; 
+  audience: 'designer' | 'developer' | 'pm';
+  children: React.ReactNode;
+}) {
+  const colors = {
+    designer: { bg: 'bg-purple-50', border: 'border-purple-200', badge: 'bg-purple-100 text-purple-700' },
+    developer: { bg: 'bg-blue-50', border: 'border-blue-200', badge: 'bg-blue-100 text-blue-700' },
+    pm: { bg: 'bg-green-50', border: 'border-green-200', badge: 'bg-green-100 text-green-700' },
+  };
+  const labels = { designer: 'For Designers', developer: 'For Developers', pm: 'For Product Managers' };
+  
   return (
-    <div
-      style={{
-        backgroundColor: colors.neutral[100],
-        borderLeft: `3px solid ${colors.neutral[400]}`,
-        borderRadius: border.radius.md,
-        padding: spacing.lg,
-        marginBottom: spacing.lg,
-      }}
-    >
-      {title && (
-        <div style={{ ...typography.body.md, fontWeight: font.weight.semibold, color: colors.neutral.darkest, marginBottom: spacing.xs }}>
-          {title}
-        </div>
-      )}
-      <div style={{ ...typography.body.md, color: colors.neutral[700] }}>{children}</div>
+    <div className={`${colors[audience].bg} ${colors[audience].border} border rounded-lg p-5`}>
+      <div className="flex items-center gap-2 mb-3">
+        <span className={`${colors[audience].badge} text-xs font-medium px-2 py-1 rounded`}>
+          {labels[audience]}
+        </span>
+      </div>
+      <h4 className="text-base font-semibold text-neutral-900 m-0 mb-2">{title}</h4>
+      <div className="text-sm text-neutral-700">{children}</div>
     </div>
   );
 }
 
-// Flow Diagram Component
-function FlowDiagram() {
-  const boxStyle = {
-    backgroundColor: colors.neutral.lightest,
-    border: `1px solid ${colors.neutral[300]}`,
-    borderRadius: border.radius.md,
-    padding: spacing.lg,
-    textAlign: 'center' as const,
-    minWidth: 150,
+// Phase Card Component
+function PhaseCard({ 
+  phase, 
+  title, 
+  status,
+  children 
+}: { 
+  phase: number; 
+  title: string; 
+  status: 'current' | 'next' | 'future';
+  children: React.ReactNode;
+}) {
+  const statusStyles = {
+    current: 'bg-green-500',
+    next: 'bg-yellow-500',
+    future: 'bg-neutral-400',
   };
-
-  const arrowStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: colors.neutral[400],
-    fontSize: 20,
-    padding: `0 ${spacing.sm}px`,
+  const statusLabels = {
+    current: 'Current State',
+    next: 'Next Step',
+    future: 'Future Goal',
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: colors.neutral[100],
-        borderRadius: border.radius.lg,
-        padding: spacing.xl,
-        marginBottom: spacing.xl,
-        overflowX: 'auto',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: spacing.xs,
-          flexWrap: 'wrap',
-        }}
-      >
-        <div style={boxStyle}>
-          <div style={{ ...typography.body.md, fontWeight: font.weight.semibold, color: colors.neutral.darkest }}>
-            Figma + Token Studio
+    <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-6 mb-5">
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-lg">
+            {phase}
           </div>
-          <div style={{ ...typography.caption.sm, color: colors.neutral[600], marginTop: spacing['2xs'] }}>
-            Design tokens source
-          </div>
+          <h3 className="text-xl font-bold text-neutral-900 m-0">{title}</h3>
         </div>
+        <span className={`${statusStyles[status]} text-white text-xs font-medium px-3 py-1 rounded-full`}>
+          {statusLabels[status]}
+        </span>
+      </div>
+      <div className="text-base text-neutral-700">{children}</div>
+    </div>
+  );
+}
 
-        <div style={arrowStyle}>→</div>
+// Visual Flow Diagram
+function FlowDiagram({ phase }: { phase: 1 | 2 | 3 }) {
+  type FlowItem = { label: string; sublabel: string; active: boolean; highlight?: boolean };
+  
+  const phases: Record<1 | 2 | 3, FlowItem[]> = {
+    1: [
+      { label: 'Figma', sublabel: 'Design tokens', active: true },
+      { label: 'Manual Export', sublabel: 'Copy values', active: true },
+      { label: 'Code Files', sublabel: 'globals.css', active: true },
+    ],
+    2: [
+      { label: 'Figma', sublabel: 'Design tokens', active: true },
+      { label: 'tokens.json', sublabel: 'Single source', active: true, highlight: true },
+      { label: 'Build Process', sublabel: 'Style Dictionary', active: true },
+      { label: 'All Outputs', sublabel: 'CSS, TS, Figma', active: true },
+    ],
+    3: [
+      { label: 'tokens.json', sublabel: 'Git versioned', active: true, highlight: true },
+      { label: 'AI Assistant', sublabel: 'Validates & suggests', active: true },
+      { label: 'Auto Deploy', sublabel: 'CI/CD pipeline', active: true },
+      { label: 'All Platforms', sublabel: 'Web, iOS, Android', active: true },
+    ],
+  };
 
-        <div style={boxStyle}>
-          <div style={{ ...typography.body.md, fontWeight: font.weight.semibold, color: colors.neutral.darkest }}>
-            GitHub Sync
+  return (
+    <div className="bg-neutral-200 rounded-lg p-6 mb-5 overflow-x-auto">
+      <div className="flex items-center justify-center gap-2 min-w-max">
+        {phases[phase].map((item, index) => (
+          <div key={index} className="flex items-center">
+            <div className={`
+              px-4 py-3 rounded-lg text-center min-w-[120px]
+              ${item.highlight ? 'bg-blue-600 text-white' : 'bg-white border border-neutral-300'}
+            `}>
+              <div className={`font-semibold text-sm ${item.highlight ? 'text-white' : 'text-neutral-900'}`}>
+                {item.label}
+              </div>
+              <div className={`text-xs mt-1 ${item.highlight ? 'text-blue-100' : 'text-neutral-500'}`}>
+                {item.sublabel}
+              </div>
+            </div>
+            {index < phases[phase].length - 1 && (
+              <div className="text-neutral-400 text-xl px-2">→</div>
+            )}
           </div>
-          <div style={{ ...typography.caption.sm, color: colors.neutral[600], marginTop: spacing['2xs'] }}>
-            Auto-push JSON
-          </div>
-        </div>
-
-        <div style={arrowStyle}>→</div>
-
-        <div style={boxStyle}>
-          <div style={{ ...typography.body.md, fontWeight: font.weight.semibold, color: colors.neutral.darkest }}>
-            Style Dictionary
-          </div>
-          <div style={{ ...typography.caption.sm, color: colors.neutral[600], marginTop: spacing['2xs'] }}>
-            Transform tokens
-          </div>
-        </div>
-
-        <div style={arrowStyle}>→</div>
-
-        <div style={boxStyle}>
-          <div style={{ ...typography.body.md, fontWeight: font.weight.semibold, color: colors.neutral.darkest }}>
-            CSS Variables
-          </div>
-          <div style={{ ...typography.caption.sm, color: colors.neutral[600], marginTop: spacing['2xs'] }}>
-            Runtime theming
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
 }
 
-// Summary Table Component
-function SummaryTable() {
-  const rows = [
-    { tool: 'Token Studio', purpose: 'Design tokens live in Figma' },
-    { tool: 'GitHub Sync', purpose: 'Auto-push token JSON to repo' },
-    { tool: 'Style Dictionary', purpose: 'Transform JSON to CSS/TypeScript' },
-    { tool: '@tokens-studio/sd-transforms', purpose: 'Handle Token Studio format' },
-    { tool: 'GitHub Action', purpose: 'Auto-rebuild when tokens change' },
-    { tool: 'CSS Variables', purpose: 'Runtime theming for shadcn/ui' },
-  ];
-
-  return (
-    <div
-      style={{
-        backgroundColor: colors.neutral.lightest,
-        borderRadius: border.radius.lg,
-        border: `1px solid ${colors.neutral[300]}`,
-        overflow: 'hidden',
-        marginBottom: spacing.xl,
-      }}
-    >
-      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-        <thead>
-          <tr style={{ backgroundColor: colors.neutral[200] }}>
-            <th
-              style={{
-                ...typography.body.md,
-                fontWeight: font.weight.semibold,
-                color: colors.neutral.darkest,
-                padding: spacing.md,
-                textAlign: 'left',
-                borderBottom: `1px solid ${colors.neutral[300]}`,
-              }}
-            >
-              Tool
-            </th>
-            <th
-              style={{
-                ...typography.body.md,
-                fontWeight: font.weight.semibold,
-                color: colors.neutral.darkest,
-                padding: spacing.md,
-                textAlign: 'left',
-                borderBottom: `1px solid ${colors.neutral[300]}`,
-              }}
-            >
-              Purpose
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, index) => (
-            <tr key={row.tool} style={{ backgroundColor: index % 2 === 0 ? colors.neutral.lightest : colors.neutral[100] }}>
-              <td
-                style={{
-                  ...typography.body.md,
-                  fontWeight: font.weight.medium,
-                  color: colors.neutral.darkest,
-                  padding: spacing.md,
-                  borderBottom: `1px solid ${colors.neutral[200]}`,
-                }}
-              >
-                {row.tool}
-              </td>
-              <td
-                style={{
-                  ...typography.body.md,
-                  color: colors.neutral[700],
-                  padding: spacing.md,
-                  borderBottom: `1px solid ${colors.neutral[200]}`,
-                }}
-              >
-                {row.purpose}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
-// File Structure Component
-function FileStructure() {
-  const structure = `tokens/                          Output:
-├── colors.json       ──────▶    src/app/tokens.css (CSS variables)
-├── spacing.json      ──────▶    src/lib/tokens.ts (TypeScript)
-├── typography.json   ──────▶    tailwind theme values
-└── brands/
-    ├── car-and-driver.json
-    ├── esquire.json
-    ├── cosmopolitan.json
-    ├── elle.json
-    └── ...`;
-
-  return (
-    <div
-      style={{
-        backgroundColor: '#1e1e1e',
-        borderRadius: border.radius.lg,
-        padding: spacing.xl,
-        marginBottom: spacing.xl,
-        fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Monaco, Consolas, monospace',
-        fontSize: 13,
-        lineHeight: 1.8,
-        color: '#4ec9b0',
-        whiteSpace: 'pre',
-        overflow: 'auto',
-      }}
-    >
-      {structure}
-    </div>
-  );
-}
-
-// Step Card Component
-function StepCard({ number, title, children }: { number: number; title: string; children: React.ReactNode }) {
-  return (
-    <div
-      style={{
-        backgroundColor: colors.neutral.lightest,
-        borderRadius: border.radius.lg,
-        border: `1px solid ${colors.neutral[300]}`,
-        padding: spacing.xl,
-        marginBottom: spacing.lg,
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', gap: spacing.md, marginBottom: spacing.lg }}>
-        <div
-          style={{
-            width: 32,
-            height: 32,
-            borderRadius: '50%',
-            backgroundColor: colors.neutral.darkest,
-            color: colors.neutral.lightest,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontWeight: font.weight.semibold,
-            fontSize: font.size.md,
-          }}
-        >
-          {number}
-        </div>
-        <h3 style={{ ...typography.heading.sm, color: colors.neutral.darkest, margin: 0 }}>{title}</h3>
-      </div>
-      <div style={{ ...typography.body.md, color: colors.neutral[700] }}>{children}</div>
-    </div>
-  );
-}
-
-// Main Page Component
 export default function TokenPipelinePage() {
-  const styleDictionaryConfig = `// style-dictionary.config.js
-const { registerTransforms } = require('@tokens-studio/sd-transforms');
+  const [activeTab, setActiveTab] = useState<'overview' | 'technical'>('overview');
+
+  const tokensJsonExample = `{
+  "global": {
+    "colors": {
+      "neutral": {
+        "100": { "value": "#ffffff", "type": "color" },
+        "200": { "value": "#f5f5f5", "type": "color" },
+        "900": { "value": "#222222", "type": "color" }
+      }
+    },
+    "spacing": {
+      "sm": { "value": "12px", "type": "dimension" },
+      "md": { "value": "16px", "type": "dimension" },
+      "lg": { "value": "24px", "type": "dimension" }
+    },
+    "radius": {
+      "sm": { "value": "4px", "type": "dimension" },
+      "md": { "value": "8px", "type": "dimension" }
+    }
+  },
+  "brands": {
+    "car-and-driver": {
+      "colors": {
+        "primary": { "value": "#1B5F8A", "type": "color" },
+        "accent": { "value": "#DBCA8B", "type": "color" }
+      },
+      "radius": { "value": "0px", "type": "dimension" },
+      "font": {
+        "display": { "value": "Barlow Condensed", "type": "fontFamily" }
+      }
+    },
+    "cosmopolitan": {
+      "colors": {
+        "primary": { "value": "#d70000", "type": "color" },
+        "accent": { "value": "#ff69b4", "type": "color" }
+      },
+      "radius": { "value": "8px", "type": "dimension" },
+      "font": {
+        "display": { "value": "Playfair Display", "type": "fontFamily" }
+      }
+    }
+  }
+}`;
+
+  const cssOutputExample = `/* Generated automatically from tokens.json */
+
+/* Global tokens (shared by all brands) */
+:root {
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #f5f5f5;
+  --color-neutral-900: #222222;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+}
+
+/* Car & Driver theme */
+[data-theme="car-and-driver"] {
+  --primary: #1B5F8A;
+  --accent: #DBCA8B;
+  --radius: 0px;
+  --font-display: "Barlow Condensed", sans-serif;
+}
+
+/* Cosmopolitan theme */
+[data-theme="cosmopolitan"] {
+  --primary: #d70000;
+  --accent: #ff69b4;
+  --radius: 8px;
+  --font-display: "Playfair Display", serif;
+}`;
+
+  const styleDictionaryConfig = `// build-tokens.js
 const StyleDictionary = require('style-dictionary');
 
-// Register Token Studio transforms
-registerTransforms(StyleDictionary);
-
-// Define your brands
-const brands = [
-  'car-and-driver',
-  'esquire', 
-  'cosmopolitan',
-  'elle',
-  'harpers-bazaar',
-  'mens-health',
-  'womens-health',
-  'road-and-track',
-  'country-living',
-  'good-housekeeping'
-];
-
-// Base config for shared tokens
-const baseConfig = {
-  source: ['tokens/core/**/*.json'],
+// Read tokens.json and generate outputs
+StyleDictionary.extend({
+  source: ['tokens.json'],
   platforms: {
     css: {
-      transformGroup: 'tokens-studio',
+      transformGroup: 'css',
       buildPath: 'src/app/',
       files: [{
-        destination: 'tokens-base.css',
-        format: 'css/variables',
-        selector: ':root'
+        destination: 'generated-tokens.css',
+        format: 'css/variables'
       }]
     },
-    ts: {
-      transformGroup: 'tokens-studio',
+    typescript: {
+      transformGroup: 'js',
       buildPath: 'src/lib/',
       files: [{
-        destination: 'tokens.ts',
+        destination: 'generated-tokens.ts',
         format: 'javascript/es6'
       }]
     }
   }
-};
+}).buildAllPlatforms();`;
 
-// Brand-specific configs
-const brandConfigs = brands.map(brand => ({
-  source: [
-    'tokens/core/**/*.json',
-    \`tokens/brands/\${brand}/**/*.json\`
-  ],
-  platforms: {
-    css: {
-      transformGroup: 'tokens-studio',
-      buildPath: 'src/app/',
-      files: [{
-        destination: \`tokens-\${brand}.css\`,
-        format: 'css/variables',
-        selector: \`[data-theme="\${brand}"]\`
-      }]
-    }
-  }
-}));
+  const componentExample = `// A shadcn/ui Button - works with ANY brand automatically
+import { Button } from '@/components/ui/button';
 
-module.exports = [baseConfig, ...brandConfigs];`;
-
-  const tokenStudioJson = `// tokens/core/colors.json
-{
-  "colors": {
-    "neutral": {
-      "100": {
-        "value": "#f5f5f5",
-        "type": "color"
-      },
-      "900": {
-        "value": "#222222",
-        "type": "color"
-      }
-    }
-  }
+function ArticlePage() {
+  return (
+    <article>
+      <h1 className="text-foreground">Article Title</h1>
+      <p className="text-muted-foreground">Article content...</p>
+      
+      {/* This button automatically uses the correct brand colors */}
+      <Button>Read More</Button>
+    </article>
+  );
 }
 
-// tokens/brands/car-and-driver/colors.json
-{
-  "colors": {
-    "primary": {
-      "value": "#1B5F8A",
-      "type": "color"
-    },
-    "secondary": {
-      "value": "#E31837",
-      "type": "color"
-    }
+// At runtime:
+// - Car & Driver: Blue button, sharp corners
+// - Cosmopolitan: Red button, rounded corners
+// - No code changes needed!`;
+
+  return (
+    <div className="p-12 max-w-[1000px] mx-auto">
+      {/* Header */}
+      <div className="mb-12 border-b border-neutral-400 pb-6">
+        <p className="text-xs text-neutral-600 m-0 uppercase tracking-wide">Guide</p>
+        <h1 className="text-5xl font-bold text-neutral-1000 mt-2 m-0">
+          Design Token Pipeline
+        </h1>
+        <p className="text-lg text-neutral-700 mt-4 max-w-[800px]">
+          Understanding how design tokens flow from Figma to production code, and why 
+          a JSON-based single source of truth enables scalable multi-brand design systems.
+        </p>
+      </div>
+
+      {/* Audience Tabs */}
+      <div className="flex gap-2 mb-8">
+        <button
+          onClick={() => setActiveTab('overview')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            activeTab === 'overview'
+              ? 'bg-neutral-900 text-white'
+              : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+          }`}
+        >
+          Overview (All Audiences)
+        </button>
+        <button
+          onClick={() => setActiveTab('technical')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            activeTab === 'technical'
+              ? 'bg-neutral-900 text-white'
+              : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+          }`}
+        >
+          Technical Implementation
+        </button>
+      </div>
+
+      {activeTab === 'overview' && (
+        <>
+          {/* The Big Picture */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              The Big Picture
+            </h2>
+            <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-6 mb-6">
+              <p className="text-base text-neutral-700 m-0">
+                <strong>The Problem:</strong> Hearst has 10+ brands (Car & Driver, Esquire, Cosmopolitan, etc.), 
+                each with unique colors, fonts, and styles. Maintaining consistency across all brands while 
+                allowing each to have its own personality is challenging.
+              </p>
+              <p className="text-base text-neutral-700 mt-4 m-0">
+                <strong>The Solution:</strong> A centralized token system where design decisions are defined once 
+                and automatically distributed to all platforms (web, iOS, Android) and all brands.
+              </p>
+            </div>
+          </section>
+
+          {/* What Are Design Tokens */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              What Are Design Tokens?
+            </h2>
+            <p className="text-base text-neutral-700 mb-5">
+              Design tokens are the smallest pieces of your design system - the fundamental values that 
+              define how things look. Think of them as design decisions stored as data.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5">
+                <div className="w-8 h-8 rounded bg-blue-600 mb-3"></div>
+                <h4 className="font-semibold text-neutral-900 m-0 mb-1">Colors</h4>
+                <p className="text-sm text-neutral-600 m-0">Primary: #1B5F8A</p>
+                <p className="text-sm text-neutral-600 m-0">Background: #ffffff</p>
+              </div>
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5">
+                <div className="flex gap-1 mb-3">
+                  <div className="w-2 h-8 bg-neutral-400 rounded"></div>
+                  <div className="w-4 h-8 bg-neutral-400 rounded"></div>
+                  <div className="w-6 h-8 bg-neutral-400 rounded"></div>
+                </div>
+                <h4 className="font-semibold text-neutral-900 m-0 mb-1">Spacing</h4>
+                <p className="text-sm text-neutral-600 m-0">Small: 12px</p>
+                <p className="text-sm text-neutral-600 m-0">Medium: 16px</p>
+              </div>
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5">
+                <div className="text-2xl font-bold mb-3">Aa</div>
+                <h4 className="font-semibold text-neutral-900 m-0 mb-1">Typography</h4>
+                <p className="text-sm text-neutral-600 m-0">Font: Inter</p>
+                <p className="text-sm text-neutral-600 m-0">Size: 16px</p>
+              </div>
+            </div>
+
+            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-5">
+              <p className="text-sm text-yellow-800 m-0">
+                <strong>Key Insight:</strong> Instead of a developer writing <code className="bg-yellow-100 px-1 rounded">#1B5F8A</code> in 
+                code, they write <code className="bg-yellow-100 px-1 rounded">var(--primary)</code>. The actual color value 
+                comes from the token system, making it easy to change across the entire application.
+              </p>
+            </div>
+          </section>
+
+          {/* The Three Phases */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              Evolution of the Token Pipeline
+            </h2>
+
+            <PhaseCard phase={1} title="Figma as Source (Current)" status="current">
+              <FlowDiagram phase={1} />
+              <p className="mb-4">
+                Designers create tokens in Figma. When changes are needed, someone manually copies 
+                values from Figma into code files. This works but has limitations:
+              </p>
+              <ul className="list-disc pl-5 space-y-1 text-neutral-600">
+                <li>Manual process is slow and error-prone</li>
+                <li>No version history for token changes</li>
+                <li>Hard to track what changed and when</li>
+                <li>Developers and designers can get out of sync</li>
+              </ul>
+            </PhaseCard>
+
+            <PhaseCard phase={2} title="JSON as Single Source of Truth (Recommended)" status="next">
+              <FlowDiagram phase={2} />
+              <p className="mb-4">
+                A JSON file in the code repository becomes the single source of truth. 
+                A build process automatically generates all outputs:
+              </p>
+              <ul className="list-disc pl-5 space-y-1 text-neutral-600">
+                <li>CSS variables for web (Tailwind/shadcn)</li>
+                <li>TypeScript constants for type-safe access</li>
+                <li>Sync back to Figma via API</li>
+                <li>iOS and Android token files</li>
+              </ul>
+              <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                <p className="text-sm text-green-800 m-0">
+                  <strong>Benefits:</strong> Version control, automated builds, single source of truth, 
+                  works with CI/CD pipelines, enables AI-assisted token management.
+                </p>
+              </div>
+            </PhaseCard>
+
+            <PhaseCard phase={3} title="AI-Enhanced Token Management (Future)" status="future">
+              <FlowDiagram phase={3} />
+              <p className="mb-4">
+                AI assistants can help manage tokens by:
+              </p>
+              <ul className="list-disc pl-5 space-y-1 text-neutral-600">
+                <li>Validating accessibility (contrast ratios)</li>
+                <li>Suggesting new brand themes from a primary color</li>
+                <li>Detecting inconsistencies across brands</li>
+                <li>Generating documentation automatically</li>
+                <li>Proposing token optimizations</li>
+              </ul>
+            </PhaseCard>
+          </section>
+
+          {/* How It Connects */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              How Everything Connects
+            </h2>
+            
+            <div className="bg-neutral-900 text-neutral-100 rounded-lg p-6 mb-6 font-mono text-sm overflow-x-auto">
+              <pre className="m-0 whitespace-pre">{`
+┌─────────────────────────────────────────────────────────────────┐
+│                        tokens.json                              │
+│                   (Single Source of Truth)                      │
+│                                                                 │
+│  Contains: Colors, Spacing, Typography, Border Radius           │
+│  Per-brand overrides: Car&Driver, Esquire, Cosmo, etc.         │
+└─────────────────────────────────┬───────────────────────────────┘
+                                  │
+                                  ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                     Build Process                               │
+│                  (Style Dictionary)                             │
+│                                                                 │
+│  Transforms JSON into platform-specific formats                 │
+└───────┬─────────────────┬─────────────────┬─────────────────────┘
+        │                 │                 │
+        ▼                 ▼                 ▼
+┌───────────────┐ ┌───────────────┐ ┌───────────────┐
+│  globals.css  │ │  tokens.ts    │ │  Figma Sync   │
+│               │ │               │ │               │
+│ CSS Variables │ │ TypeScript    │ │ Push to Figma │
+│ for Tailwind  │ │ Constants     │ │ Variables API │
+└───────┬───────┘ └───────────────┘ └───────────────┘
+        │
+        ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      Tailwind CSS                               │
+│                                                                 │
+│  @theme { --color-primary: var(--primary); }                   │
+│                                                                 │
+│  Makes CSS variables available as utility classes:              │
+│  bg-primary, text-foreground, rounded-md, p-4, etc.            │
+└─────────────────────────────────┬───────────────────────────────┘
+                                  │
+                                  ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      shadcn/ui Components                       │
+│                                                                 │
+│  <Button className="bg-primary rounded-md">                    │
+│                                                                 │
+│  Components use Tailwind classes that reference CSS variables.  │
+│  They automatically adapt to any brand theme!                   │
+└─────────────────────────────────┬───────────────────────────────┘
+                                  │
+                                  ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                         Runtime                                 │
+│                                                                 │
+│  <html data-theme="cosmopolitan">                              │
+│                                                                 │
+│  CSS cascade applies the correct brand's variables.             │
+│  All components instantly reflect the brand's look.             │
+└─────────────────────────────────────────────────────────────────┘
+`}</pre>
+            </div>
+          </section>
+
+          {/* What This Means For Each Role */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              What This Means For You
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <AudienceCard title="Your Workflow" audience="designer">
+                <ul className="list-disc pl-4 space-y-2 m-0">
+                  <li>Continue designing in Figma as usual</li>
+                  <li>Token changes sync automatically to code</li>
+                  <li>See your changes live in Storybook</li>
+                  <li>No need to hand off hex codes manually</li>
+                  <li>Version history tracks all changes</li>
+                </ul>
+              </AudienceCard>
+              
+              <AudienceCard title="Your Workflow" audience="developer">
+                <ul className="list-disc pl-4 space-y-2 m-0">
+                  <li>Use Tailwind classes: <code className="bg-blue-100 px-1 rounded text-xs">bg-primary</code></li>
+                  <li>TypeScript autocomplete for tokens</li>
+                  <li>No hardcoded colors or values</li>
+                  <li>Components work for all brands</li>
+                  <li>Build process handles transformations</li>
+                </ul>
+              </AudienceCard>
+              
+              <AudienceCard title="Your Benefits" audience="pm">
+                <ul className="list-disc pl-4 space-y-2 m-0">
+                  <li>Faster design-to-dev handoff</li>
+                  <li>Consistent brand experience</li>
+                  <li>Easy to add new brands</li>
+                  <li>Reduced QA for styling issues</li>
+                  <li>Clear audit trail of changes</li>
+                </ul>
+              </AudienceCard>
+            </div>
+          </section>
+
+          {/* Practical Example */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              Practical Example: Adding a New Brand Color
+            </h2>
+            
+            <div className="space-y-4">
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-sm shrink-0">1</div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0">Designer updates tokens.json</h4>
+                  <p className="text-sm text-neutral-600 mt-1">Change Cosmopolitan's primary color from #d70000 to #e60012</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-sm shrink-0">2</div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0">Commit triggers build</h4>
+                  <p className="text-sm text-neutral-600 mt-1">GitHub Action runs Style Dictionary automatically</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-sm shrink-0">3</div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0">CSS variables update</h4>
+                  <p className="text-sm text-neutral-600 mt-1">globals.css now has <code className="bg-neutral-200 px-1 rounded">--primary: #e60012</code> for Cosmopolitan</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-sm shrink-0">4</div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0">All components update</h4>
+                  <p className="text-sm text-neutral-600 mt-1">Every Button, Card, and component using <code className="bg-neutral-200 px-1 rounded">bg-primary</code> now shows the new color</p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4">
+                <div className="w-8 h-8 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-sm shrink-0">✓</div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0">Zero code changes needed</h4>
+                  <p className="text-sm text-neutral-600 mt-1">Developers didn't touch any component code. The token system handled everything.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Key Takeaways */}
+          <section className="bg-neutral-900 rounded-lg p-8 text-neutral-100">
+            <h2 className="text-2xl font-bold m-0 mb-4">Key Takeaways</h2>
+            <ul className="text-base text-neutral-300 m-0 pl-5 space-y-2">
+              <li><strong className="text-white">Single Source of Truth:</strong> tokens.json contains all design decisions</li>
+              <li><strong className="text-white">Automated Pipeline:</strong> Changes flow automatically from tokens to code</li>
+              <li><strong className="text-white">Multi-Brand Support:</strong> One codebase serves all Hearst brands</li>
+              <li><strong className="text-white">No Manual Sync:</strong> Designers and developers always have the same values</li>
+              <li><strong className="text-white">Version Controlled:</strong> Every token change is tracked in git history</li>
+              <li><strong className="text-white">Platform Agnostic:</strong> Same tokens can output to web, iOS, Android</li>
+            </ul>
+          </section>
+        </>
+      )}
+
+      {activeTab === 'technical' && (
+        <>
+          {/* Technical Implementation */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              Technical Implementation
+            </h2>
+            <p className="text-base text-neutral-700 mb-6">
+              This section covers the technical details for developers setting up the token pipeline.
+            </p>
+
+            {/* tokens.json Structure */}
+            <h3 className="text-lg font-semibold text-neutral-1000 mb-3">
+              1. Token JSON Structure
+            </h3>
+            <p className="text-base text-neutral-700 mb-4">
+              The tokens.json file contains global tokens (shared by all brands) and brand-specific overrides:
+            </p>
+            <CodeBlock code={tokensJsonExample} title="tokens.json" />
+
+            {/* Style Dictionary Config */}
+            <h3 className="text-lg font-semibold text-neutral-1000 mb-3 mt-8">
+              2. Style Dictionary Configuration
+            </h3>
+            <p className="text-base text-neutral-700 mb-4">
+              Style Dictionary transforms the JSON into platform-specific outputs:
+            </p>
+            <CodeBlock code={styleDictionaryConfig} title="build-tokens.js" />
+
+            {/* Generated CSS */}
+            <h3 className="text-lg font-semibold text-neutral-1000 mb-3 mt-8">
+              3. Generated CSS Output
+            </h3>
+            <p className="text-base text-neutral-700 mb-4">
+              The build process generates CSS variables with brand-specific selectors:
+            </p>
+            <CodeBlock code={cssOutputExample} title="generated-tokens.css (output)" />
+
+            {/* Component Usage */}
+            <h3 className="text-lg font-semibold text-neutral-1000 mb-3 mt-8">
+              4. Component Usage
+            </h3>
+            <p className="text-base text-neutral-700 mb-4">
+              shadcn/ui components use CSS variables via Tailwind classes. They automatically 
+              adapt to whichever brand theme is active:
+            </p>
+            <CodeBlock code={componentExample} title="Using themed components" />
+
+            {/* Package.json Scripts */}
+            <h3 className="text-lg font-semibold text-neutral-1000 mb-3 mt-8">
+              5. Build Scripts
+            </h3>
+            <p className="text-base text-neutral-700 mb-4">
+              Add these scripts to your package.json:
+            </p>
+            <CodeBlock 
+              code={`{
+  "scripts": {
+    "build:tokens": "node build-tokens.js",
+    "build": "npm run build:tokens && next build",
+    "dev": "npm run build:tokens && next dev"
   }
-}`;
+}`} 
+              title="package.json" 
+            />
 
-  const cssOutput = `/* src/app/tokens-base.css */
-:root {
-  --colors-neutral-100: #f5f5f5;
-  --colors-neutral-900: #222222;
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  /* ... */
-}
-
-/* src/app/tokens-car-and-driver.css */
-[data-theme="car-and-driver"] {
-  --colors-primary: #1B5F8A;
-  --colors-secondary: #E31837;
-  --font-family-heading: 'Barlow Condensed', sans-serif;
-  /* ... */
-}
-
-/* src/app/tokens-esquire.css */
-[data-theme="esquire"] {
-  --colors-primary: #000000;
-  --colors-secondary: #C41230;
-  /* ... */
-}`;
-
-  const shadcnMapping = `// In style-dictionary.config.js
-StyleDictionary.registerFormat({
-  name: 'css/shadcn',
-  formatter: function({ dictionary }) {
-    const mappings = {
-      'colors.primary': '--primary',
-      'colors.neutral.100': '--background',
-      'colors.neutral.900': '--foreground',
-      'colors.neutral.200': '--muted',
-      'colors.neutral.300': '--border',
-      'colors.neutral.400': '--muted-foreground',
-      'border.radius.md': '--radius',
-    };
-    
-    let output = '';
-    dictionary.allTokens.forEach(token => {
-      const shadcnVar = mappings[token.path.join('.')];
-      if (shadcnVar) {
-        output += \`  \${shadcnVar}: \${token.value};\\n\`;
-      }
-      // Also output the original variable
-      output += \`  --\${token.path.join('-')}: \${token.value};\\n\`;
-    });
-    
-    return output;
-  }
-});`;
-
-  const githubAction = `# .github/workflows/build-tokens.yml
-name: Build Tokens
+            {/* GitHub Action */}
+            <h3 className="text-lg font-semibold text-neutral-1000 mb-3 mt-8">
+              6. CI/CD Integration (GitHub Actions)
+            </h3>
+            <p className="text-base text-neutral-700 mb-4">
+              Automatically rebuild tokens when the JSON file changes:
+            </p>
+            <CodeBlock 
+              code={`name: Build Tokens
 
 on:
   push:
     paths:
-      - 'tokens/**'
+      - 'tokens.json'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
-      - name: Install dependencies
-        run: npm ci
-        
-      - name: Build tokens
-        run: npm run build:tokens
-        
-      - name: Commit changes
+      - run: npm ci
+      - run: npm run build:tokens
+      - name: Commit generated files
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add src/app/tokens*.css src/lib/tokens.ts
-          git diff --staged --quiet || git commit -m "chore: rebuild tokens"
-          git push`;
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          git add src/
+          git diff --staged --quiet || git commit -m "chore: regenerate tokens"
+          git push`} 
+              title=".github/workflows/build-tokens.yml" 
+            />
 
-  return (
-    <div style={{ padding: spacing['3xl'], maxWidth: 900, margin: '0 auto' }}>
-      {/* Header */}
-      <div style={{ marginBottom: spacing['3xl'], borderBottom: `1px solid ${colors.neutral[300]}`, paddingBottom: spacing.xl }}>
-        <p style={{ ...typography.caption.md, color: colors.neutral[500], margin: 0, textTransform: 'uppercase', letterSpacing: 1 }}>
-          Guide
-        </p>
-        <h1 style={{ ...typography.display.md, color: colors.neutral.darkest, margin: `${spacing.sm}px 0 0` }}>
-          Token Pipeline Setup
-        </h1>
-        <p style={{ ...typography.body.lg, color: colors.neutral[600], margin: `${spacing.md}px 0 0`, maxWidth: 700 }}>
-          Set up an automated pipeline that syncs design tokens from Figma (via Token Studio) 
-          directly into your codebase using Style Dictionary and GitHub Actions.
-        </p>
-      </div>
+            {/* Dependencies */}
+            <h3 className="text-lg font-semibold text-neutral-1000 mb-3 mt-8">
+              7. Required Dependencies
+            </h3>
+            <CodeBlock 
+              code={`npm install style-dictionary @tokens-studio/sd-transforms`} 
+              title="Installation" 
+            />
+          </section>
 
-      {/* Overview */}
-      <section style={{ marginBottom: spacing['3xl'] }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
-          Overview
-        </h2>
-        <FlowDiagram />
-        <NoteBox title="Why automate?">
-          With 10+ Hearst brands, manual token updates are error-prone and time-consuming. 
-          This pipeline ensures designers can update tokens in Figma and see changes reflected in code automatically.
-        </NoteBox>
-      </section>
-
-      {/* File Structure */}
-      <section style={{ marginBottom: spacing['3xl'] }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
-          File Structure
-        </h2>
-        <p style={{ ...typography.body.md, color: colors.neutral[700], marginBottom: spacing.lg }}>
-          Style Dictionary takes token JSON files as input and transforms them into multiple output formats 
-          (CSS, TypeScript, iOS, Android, etc.) based on a configuration file.
-        </p>
-        <FileStructure />
-      </section>
-
-      {/* Setup Steps */}
-      <section style={{ marginBottom: spacing['3xl'] }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.xl }}>
-          Setup Steps
-        </h2>
-
-        <StepCard number={1} title="Enable GitHub Sync in Token Studio">
-          <ol style={{ margin: 0, paddingLeft: spacing.xl, display: 'flex', flexDirection: 'column', gap: spacing.sm }}>
-            <li>In Figma, open the <strong>Token Studio</strong> plugin</li>
-            <li>Go to <strong>Settings → Sync Providers</strong></li>
-            <li>Click <strong>Add GitHub</strong> and authorize with your GitHub account</li>
-            <li>Configure the sync settings:
-              <ul style={{ marginTop: spacing.xs }}>
-                <li><strong>Repository:</strong> <code style={{ backgroundColor: colors.neutral[200], padding: '2px 6px', borderRadius: 4 }}>Lenindesign/hearst-tokens</code></li>
-                <li><strong>Branch:</strong> <code style={{ backgroundColor: colors.neutral[200], padding: '2px 6px', borderRadius: 4 }}>main</code> (or a dedicated <code style={{ backgroundColor: colors.neutral[200], padding: '2px 6px', borderRadius: 4 }}>tokens</code> branch)</li>
-                <li><strong>File path:</strong> <code style={{ backgroundColor: colors.neutral[200], padding: '2px 6px', borderRadius: 4 }}>tokens/</code></li>
-              </ul>
-            </li>
-            <li>Use <strong>Push/Pull</strong> to sync tokens whenever you save</li>
-          </ol>
-        </StepCard>
-
-        <StepCard number={2} title="Install Dependencies">
-          <p style={{ marginBottom: spacing.md }}>Add Style Dictionary and the Token Studio transforms to your project:</p>
-          <CodeBlock code="npm install style-dictionary @tokens-studio/sd-transforms" />
-        </StepCard>
-
-        <StepCard number={3} title="Create Style Dictionary Config">
-          <p style={{ marginBottom: spacing.md }}>
-            Create a configuration file that defines how tokens are transformed and where they&apos;re output:
-          </p>
-          <CodeBlock code={styleDictionaryConfig} title="style-dictionary.config.js" />
-        </StepCard>
-
-        <StepCard number={4} title="Add Build Script">
-          <p style={{ marginBottom: spacing.md }}>Add a script to your <code style={{ backgroundColor: colors.neutral[200], padding: '2px 6px', borderRadius: 4 }}>package.json</code>:</p>
-          <CodeBlock
-            code={`{
-  "scripts": {
-    "build:tokens": "style-dictionary build",
-    "build": "npm run build:tokens && next build"
-  }
-}`}
-            title="package.json"
-          />
-        </StepCard>
-
-        <StepCard number={5} title="Set Up GitHub Action">
-          <p style={{ marginBottom: spacing.md }}>
-            Create a GitHub Action that automatically rebuilds tokens when the <code style={{ backgroundColor: colors.neutral[200], padding: '2px 6px', borderRadius: 4 }}>tokens/</code> folder changes:
-          </p>
-          <CodeBlock code={githubAction} title=".github/workflows/build-tokens.yml" />
-        </StepCard>
-      </section>
-
-      {/* Token Studio JSON Structure */}
-      <section style={{ marginBottom: spacing['3xl'] }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
-          Token Studio JSON Structure
-        </h2>
-        <p style={{ ...typography.body.md, color: colors.neutral[700], marginBottom: spacing.lg }}>
-          Token Studio exports tokens in a specific JSON format. Here&apos;s how to structure your core and brand-specific tokens:
-        </p>
-        <CodeBlock code={tokenStudioJson} title="Token JSON Examples" />
-      </section>
-
-      {/* CSS Output */}
-      <section style={{ marginBottom: spacing['3xl'] }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
-          Generated CSS Output
-        </h2>
-        <p style={{ ...typography.body.md, color: colors.neutral[700], marginBottom: spacing.lg }}>
-          Style Dictionary generates CSS variables that can be used for runtime theming. Each brand gets its own 
-          selector using the <code style={{ backgroundColor: colors.neutral[200], padding: '2px 6px', borderRadius: 4 }}>data-theme</code> attribute:
-        </p>
-        <CodeBlock code={cssOutput} title="Generated CSS Variables" />
-      </section>
-
-      {/* shadcn/ui Mapping */}
-      <section style={{ marginBottom: spacing['3xl'] }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
-          Mapping to shadcn/ui Variables
-        </h2>
-        <p style={{ ...typography.body.md, color: colors.neutral[700], marginBottom: spacing.lg }}>
-          shadcn/ui expects specific CSS variable names. Create a custom format to map your Figma tokens to these:
-        </p>
-        <CodeBlock code={shadcnMapping} title="Custom shadcn Format" />
-        
-        <NoteBox title="Variable Mapping">
-          This ensures your design tokens from Figma automatically work with 
-          shadcn/ui components without manual intervention.
-        </NoteBox>
-      </section>
-
-      {/* Summary Table */}
-      <section style={{ marginBottom: spacing['3xl'] }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
-          Summary
-        </h2>
-        <SummaryTable />
-      </section>
-
-      {/* Benefits */}
-      <section style={{ marginBottom: spacing.xl }}>
-        <h2 style={{ ...typography.heading.lg, color: colors.neutral.darkest, marginBottom: spacing.lg }}>
-          Benefits
-        </h2>
-        <ul style={{ ...typography.body.md, color: colors.neutral[700], margin: 0, paddingLeft: spacing.xl, display: 'flex', flexDirection: 'column', gap: spacing.sm }}>
-          <li><strong>Single Source of Truth</strong> — Figma is the source, code is always in sync</li>
-          <li><strong>Type Safety</strong> — Generated TypeScript means autocomplete and compile-time checks</li>
-          <li><strong>Multi-brand Support</strong> — Style Dictionary outputs per-brand CSS variable sets</li>
-          <li><strong>shadcn/ui Compatible</strong> — Output matches the variables shadcn expects</li>
-          <li><strong>No Manual Work</strong> — Designer saves in Figma, tokens appear in code</li>
-          <li><strong>Reduced Errors</strong> — Automation eliminates human error in token updates</li>
-        </ul>
-      </section>
+          {/* Tools Summary */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              Tools Summary
+            </h2>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse bg-neutral-100 rounded-lg overflow-hidden">
+                <thead>
+                  <tr className="bg-neutral-200">
+                    <th className="text-left p-4 font-semibold text-neutral-900">Tool</th>
+                    <th className="text-left p-4 font-semibold text-neutral-900">Purpose</th>
+                    <th className="text-left p-4 font-semibold text-neutral-900">When It Runs</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t border-neutral-300">
+                    <td className="p-4 font-medium">tokens.json</td>
+                    <td className="p-4 text-neutral-700">Single source of truth for all design values</td>
+                    <td className="p-4 text-neutral-600">Edited manually or via Figma sync</td>
+                  </tr>
+                  <tr className="border-t border-neutral-300 bg-neutral-200/50">
+                    <td className="p-4 font-medium">Style Dictionary</td>
+                    <td className="p-4 text-neutral-700">Transforms JSON to CSS, TypeScript, etc.</td>
+                    <td className="p-4 text-neutral-600">Build time (npm run build:tokens)</td>
+                  </tr>
+                  <tr className="border-t border-neutral-300">
+                    <td className="p-4 font-medium">CSS Variables</td>
+                    <td className="p-4 text-neutral-700">Runtime theming via data-theme attribute</td>
+                    <td className="p-4 text-neutral-600">Runtime (browser)</td>
+                  </tr>
+                  <tr className="border-t border-neutral-300 bg-neutral-200/50">
+                    <td className="p-4 font-medium">Tailwind CSS</td>
+                    <td className="p-4 text-neutral-700">Utility classes that reference CSS variables</td>
+                    <td className="p-4 text-neutral-600">Build time (CSS compilation)</td>
+                  </tr>
+                  <tr className="border-t border-neutral-300">
+                    <td className="p-4 font-medium">shadcn/ui</td>
+                    <td className="p-4 text-neutral-700">Components using Tailwind + CSS variables</td>
+                    <td className="p-4 text-neutral-600">Runtime (React components)</td>
+                  </tr>
+                  <tr className="border-t border-neutral-300 bg-neutral-200/50">
+                    <td className="p-4 font-medium">GitHub Actions</td>
+                    <td className="p-4 text-neutral-700">Auto-rebuild when tokens.json changes</td>
+                    <td className="p-4 text-neutral-600">On git push</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </>
+      )}
     </div>
   );
 }
