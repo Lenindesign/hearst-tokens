@@ -68,9 +68,9 @@ export function ArticleCard({
       </div>
 
       <CardContent className="flex flex-col flex-1 p-4 sm:p-5">
-        {/* Title - responsive height for 2-3 lines */}
+        {/* Title - no truncation, always fully readable */}
         <h3 
-          className="text-base sm:text-lg font-bold leading-snug mb-2 line-clamp-3 sm:line-clamp-2 min-h-[4.5rem] sm:min-h-[3.5rem]"
+          className="text-base sm:text-lg font-bold leading-snug mb-2"
           style={{ 
             color: 'var(--card-foreground)',
             fontFamily: 'var(--font-display, inherit)',
@@ -79,9 +79,9 @@ export function ArticleCard({
           {title}
         </h3>
 
-        {/* Excerpt - responsive height for 2-3 lines */}
+        {/* Excerpt - no truncation, always fully readable */}
         <p 
-          className="text-sm mb-4 line-clamp-2 sm:line-clamp-3 min-h-[2.5rem] sm:min-h-[3.75rem]"
+          className="text-sm mb-4"
           style={{ color: 'var(--muted-foreground)' }}
         >
           {excerpt}
