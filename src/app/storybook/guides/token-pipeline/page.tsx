@@ -956,32 +956,55 @@ function ArticlePage() {
             {/* Carousel Preview */}
             <div 
               data-theme={demoTheme}
-              className="rounded-lg p-8 mb-6"
+              className="rounded-lg p-4 sm:p-8 mb-6"
               style={{ backgroundColor: 'var(--background)' }}
             >
-              <h3 
-                className="text-lg font-semibold mb-4"
-                style={{ color: 'var(--foreground)' }}
-              >
-                Article Carousel (5 Cards)
-              </h3>
+              <div className="flex items-center justify-between mb-4">
+                <h3 
+                  className="text-lg font-semibold"
+                  style={{ color: 'var(--foreground)' }}
+                >
+                  Article Carousel (5 Cards)
+                </h3>
+                <p 
+                  className="text-xs sm:hidden"
+                  style={{ color: 'var(--muted-foreground)' }}
+                >
+                  Swipe to browse
+                </p>
+              </div>
               <Carousel
                 opts={{
                   align: "start",
                   loop: true,
+                  dragFree: true,
+                  containScroll: "trimSnaps",
                 }}
-                className="w-full"
+                className="w-full touch-pan-y"
               >
-                <CarouselContent className="-ml-4">
+                <CarouselContent className="-ml-3 sm:-ml-4">
                   {demoArticles[demoTheme].map((article, index) => (
-                    <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                    <CarouselItem 
+                      key={index} 
+                      className="pl-3 sm:pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
+                    >
                       <ArticleCard {...article} />
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-2" />
-                <CarouselNext className="right-2" />
+                <CarouselPrevious className="hidden sm:flex left-2" />
+                <CarouselNext className="hidden sm:flex right-2" />
               </Carousel>
+              {/* Mobile dots indicator */}
+              <div className="flex justify-center gap-1.5 mt-4 sm:hidden">
+                {demoArticles[demoTheme].map((_, index) => (
+                  <div 
+                    key={index}
+                    className="w-2 h-2 rounded-full"
+                    style={{ backgroundColor: 'var(--muted-foreground)', opacity: 0.3 }}
+                  />
+                ))}
+              </div>
             </div>
 
             {/* What's Happening */}

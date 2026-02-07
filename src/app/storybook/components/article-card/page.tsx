@@ -2,6 +2,13 @@
 
 import { useState } from 'react';
 import { ArticleCard } from '@/components/ArticleCard';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
 // Article type
 type Article = {
@@ -301,15 +308,55 @@ export default function ArticleCardPage() {
         {/* Preview Area */}
         <div 
           data-theme={activeTheme}
-          className="rounded-lg p-8"
+          className="rounded-lg p-4 sm:p-8"
           style={{ backgroundColor: 'var(--background)' }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(brandArticles[activeTheme] || sampleArticles).map((article, index) => (
-              <ArticleCard
-                key={`${activeTheme}-${index}`}
-                {...article}
-                onReadMore={() => alert(`Clicked: ${article.title}`)}
+          <div className="flex items-center justify-between mb-4 sm:hidden">
+            <p 
+              className="text-sm font-medium"
+              style={{ color: 'var(--foreground)' }}
+            >
+              {(brandArticles[activeTheme] || sampleArticles).length} Articles
+            </p>
+            <p 
+              className="text-xs"
+              style={{ color: 'var(--muted-foreground)' }}
+            >
+              Swipe to browse
+            </p>
+          </div>
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+              dragFree: true,
+              containScroll: "trimSnaps",
+            }}
+            className="w-full touch-pan-y"
+          >
+            <CarouselContent className="-ml-3 sm:-ml-4">
+              {(brandArticles[activeTheme] || sampleArticles).map((article, index) => (
+                <CarouselItem 
+                  key={`${activeTheme}-${index}`}
+                  className="pl-3 sm:pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
+                >
+                  <ArticleCard
+                    {...article}
+                    onReadMore={() => alert(`Clicked: ${article.title}`)}
+                  />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex left-2" />
+            <CarouselNext className="hidden sm:flex right-2" />
+          </Carousel>
+          {/* Mobile dots indicator */}
+          <div className="flex justify-center gap-1.5 mt-4 sm:hidden">
+            {(brandArticles[activeTheme] || sampleArticles).slice(0, 5).map((_, index) => (
+              <div 
+                key={index}
+                className="w-2 h-2 rounded-full"
+                style={{ backgroundColor: 'var(--muted-foreground)', opacity: 0.3 }}
               />
             ))}
           </div>
