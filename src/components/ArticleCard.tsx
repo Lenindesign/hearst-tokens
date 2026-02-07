@@ -26,6 +26,8 @@ export interface ArticleCardProps {
   readTime?: string;
   /** Link to full article */
   href?: string;
+  /** Custom CTA button text (default: "Read More") */
+  ctaText?: string;
   /** Additional CSS classes */
   className?: string;
   /** Click handler for the Read More button */
@@ -48,6 +50,7 @@ export function ArticleCard({
   date,
   readTime,
   href = '#',
+  ctaText = 'Read More',
   className,
   onReadMore,
 }: ArticleCardProps) {
@@ -136,7 +139,7 @@ export function ArticleCard({
           </div>
         </div>
 
-        {/* Read More Button */}
+        {/* CTA Button */}
         <Button 
           variant="default" 
           className="w-full mt-auto"
@@ -144,9 +147,9 @@ export function ArticleCard({
           asChild={!!href && href !== '#'}
         >
           {href && href !== '#' ? (
-            <a href={href}>Read More</a>
+            <a href={href}>{ctaText}</a>
           ) : (
-            <span>Read More</span>
+            <span>{ctaText}</span>
           )}
         </Button>
       </CardContent>

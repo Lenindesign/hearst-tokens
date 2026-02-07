@@ -142,8 +142,21 @@ function FlowDiagram({ phase }: { phase: 1 | 2 | 3 }) {
   );
 }
 
+// Article type with optional ctaText
+type Article = {
+  title: string;
+  excerpt: string;
+  category: string;
+  imageUrl: string;
+  author: string;
+  authorAvatar: string;
+  date: string;
+  readTime: string;
+  ctaText?: string;
+};
+
 // Brand-specific demo articles (5 per brand for carousel)
-const demoArticles: Record<string, { title: string; excerpt: string; category: string; imageUrl: string; author: string; authorAvatar: string; date: string; readTime: string }[]> = {
+const demoArticles: Record<string, Article[]> = {
   'car-and-driver': [
     {
       title: 'The 2026 Porsche 911 GT3 RS Is the Ultimate Track Weapon',
@@ -154,6 +167,7 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       authorAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 4, 2026',
       readTime: '8 min read',
+      ctaText: 'SHOP NOW',
     },
     {
       title: 'BMW M3 vs Mercedes-AMG C63: The Ultimate Showdown',
@@ -164,6 +178,7 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       authorAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 3, 2026',
       readTime: '12 min read',
+      ctaText: 'SHOP NOW',
     },
     {
       title: 'Electric Trucks Are Finally Ready for Real Work',
@@ -174,6 +189,7 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 2, 2026',
       readTime: '7 min read',
+      ctaText: 'SHOP NOW',
     },
     {
       title: 'The Best Sports Cars Under $50,000 in 2026',
@@ -184,6 +200,7 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       authorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 1, 2026',
       readTime: '10 min read',
+      ctaText: 'SHOP NOW',
     },
     {
       title: 'How Hyundai Became a Performance Powerhouse',
@@ -194,6 +211,7 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       authorAvatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
       date: 'Jan 31, 2026',
       readTime: '9 min read',
+      ctaText: 'SHOP NOW',
     },
   ],
   'esquire': [
