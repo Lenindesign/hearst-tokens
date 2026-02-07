@@ -498,7 +498,7 @@ const brandLogos: Record<string, string> = {
 };
 
 export default function TokenPipelinePage() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'demo' | 'architecture'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'demo' | 'architecture' | 'articles'>('overview');
   const [demoTheme, setDemoTheme] = useState('car-and-driver');
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
@@ -693,6 +693,16 @@ function ArticlePage() {
           }`}
         >
           Architecture
+        </button>
+        <button
+          onClick={() => setActiveTab('articles')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            activeTab === 'articles'
+              ? 'bg-neutral-900 text-white'
+              : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+          }`}
+        >
+          Articles
         </button>
       </div>
 
@@ -1965,6 +1975,80 @@ jobs:
                   <span className="text-sm"><strong>Final:</strong> User sees a blue &quot;SHOP NEW&quot; button on Car and Driver</span>
                 </div>
               </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {activeTab === 'articles' && (
+        <>
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              Article Carousels by Brand
+            </h2>
+            <p className="text-base text-neutral-700 mb-8">
+              Each brand renders the same ArticleCard component with its own theme tokens applied automatically via <code className="bg-neutral-300 px-1.5 py-0.5 rounded text-sm">data-theme</code>. Same code, six distinct experiences.
+            </p>
+
+            <div className="space-y-10">
+              {themes.map((theme) => (
+                <div
+                  key={theme.id}
+                  data-theme={theme.id}
+                  className="rounded-lg p-4 sm:py-8 sm:px-0 bg-white"
+                >
+                  <div className="flex items-center gap-4 mb-4 sm:px-8">
+                    {brandLogos[theme.id] && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={brandLogos[theme.id]}
+                        alt={theme.name}
+                        className="h-5 sm:h-6 w-auto"
+                      />
+                    )}
+                    <h3
+                      className="text-sm font-semibold m-0"
+                      style={{ color: 'var(--foreground)' }}
+                    >
+                      {theme.name}
+                    </h3>
+                  </div>
+                  <div className="sm:px-8">
+                    <Carousel
+                      opts={{
+                        align: 'start',
+                        loop: true,
+                        dragFree: true,
+                        containScroll: 'trimSnaps',
+                      }}
+                      className="w-full touch-pan-y"
+                    >
+                      <CarouselContent className="-ml-3 sm:-ml-4">
+                        {demoArticles[theme.id].map((article, index) => (
+                          <CarouselItem
+                            key={index}
+                            className="pl-3 sm:pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
+                          >
+                            <ArticleCard {...article} />
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious className="hidden sm:flex" />
+                      <CarouselNext className="hidden sm:flex" />
+                    </Carousel>
+                  </div>
+                  {/* Mobile dots indicator */}
+                  <div className="flex justify-center gap-1.5 mt-4 sm:hidden">
+                    {demoArticles[theme.id].map((_, index) => (
+                      <div
+                        key={index}
+                        className="w-2 h-2 rounded-full"
+                        style={{ backgroundColor: 'var(--muted-foreground)', opacity: 0.3 }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
         </>
