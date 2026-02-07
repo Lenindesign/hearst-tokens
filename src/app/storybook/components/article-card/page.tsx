@@ -3,36 +3,197 @@
 import { useState } from 'react';
 import { ArticleCard } from '@/components/ArticleCard';
 
-// Sample article data
-const sampleArticles = [
-  {
-    title: 'The 2026 Porsche 911 GT3 RS Is the Ultimate Track Weapon',
-    excerpt: 'With 518 horsepower and aerodynamics borrowed from motorsport, the new GT3 RS sets a new benchmark for road-legal track cars.',
-    category: 'First Drive',
-    imageUrl: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=450&fit=crop',
-    author: 'John Smith',
-    date: 'Feb 4, 2026',
-    readTime: '8 min read',
-  },
-  {
-    title: '10 Spring Fashion Trends You Need to Know About',
-    excerpt: 'From bold colors to sustainable fabrics, these are the trends that will define the season according to top designers.',
-    category: 'Style',
-    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=450&fit=crop',
-    author: 'Emma Johnson',
-    date: 'Feb 3, 2026',
-    readTime: '5 min read',
-  },
-  {
-    title: 'The Science Behind Better Sleep: What Experts Say',
-    excerpt: 'New research reveals surprising insights about sleep cycles and how small changes can dramatically improve your rest.',
-    category: 'Wellness',
-    imageUrl: 'https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=800&h=450&fit=crop',
-    author: 'Dr. Sarah Chen',
-    date: 'Feb 2, 2026',
-    readTime: '6 min read',
-  },
-];
+// Article type
+type Article = {
+  title: string;
+  excerpt: string;
+  category: string;
+  imageUrl: string;
+  author: string;
+  date: string;
+  readTime: string;
+};
+
+// Brand-specific article data
+const brandArticles: Record<string, Article[]> = {
+  'car-and-driver': [
+    {
+      title: 'The 2026 Porsche 911 GT3 RS Is the Ultimate Track Weapon',
+      excerpt: 'With 518 horsepower and aerodynamics borrowed from motorsport, the new GT3 RS sets a new benchmark for road-legal track cars.',
+      category: 'First Drive',
+      imageUrl: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=450&fit=crop',
+      author: 'John Smith',
+      date: 'Feb 4, 2026',
+      readTime: '8 min read',
+    },
+    {
+      title: 'BMW M3 vs Mercedes-AMG C63: The Ultimate Showdown',
+      excerpt: 'We put two of the most iconic sport sedans head-to-head on track and street to find out which deserves your money.',
+      category: 'Comparison Test',
+      imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=450&fit=crop',
+      author: 'Mike Rodriguez',
+      date: 'Feb 3, 2026',
+      readTime: '12 min read',
+    },
+    {
+      title: 'Electric Trucks Are Finally Ready for Real Work',
+      excerpt: 'After years of promises, the latest electric pickups can actually tow, haul, and work as hard as their gas-powered rivals.',
+      category: 'Technology',
+      imageUrl: 'https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=800&h=450&fit=crop',
+      author: 'Sarah Mitchell',
+      date: 'Feb 2, 2026',
+      readTime: '7 min read',
+    },
+  ],
+  'esquire': [
+    {
+      title: 'The New Rules of Power Dressing in 2026',
+      excerpt: 'Forget everything you knew about suits. The modern professional wardrobe is being redefined by a new generation of designers.',
+      category: 'Style',
+      imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop',
+      author: 'James Crawford',
+      date: 'Feb 4, 2026',
+      readTime: '6 min read',
+    },
+    {
+      title: 'Inside the Mind of Hollywood\'s Most Reclusive Director',
+      excerpt: 'After a decade of silence, the filmmaker behind some of cinema\'s greatest works finally opens up about art, legacy, and regret.',
+      category: 'Interview',
+      imageUrl: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=450&fit=crop',
+      author: 'David Chen',
+      date: 'Feb 3, 2026',
+      readTime: '15 min read',
+    },
+    {
+      title: 'The Whiskey That\'s Worth the 20-Year Wait',
+      excerpt: 'A rare Japanese single malt finally hits American shores. We traveled to Kyoto to understand why collectors are obsessed.',
+      category: 'Drinks',
+      imageUrl: 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=800&h=450&fit=crop',
+      author: 'Robert Hayes',
+      date: 'Feb 2, 2026',
+      readTime: '8 min read',
+    },
+  ],
+  'cosmopolitan': [
+    {
+      title: '15 Date Night Looks That Will Make Them Stare',
+      excerpt: 'From bold reds to unexpected textures, these outfits are guaranteed to turn heads and boost your confidence.',
+      category: 'Fashion',
+      imageUrl: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=450&fit=crop',
+      author: 'Jessica Park',
+      date: 'Feb 4, 2026',
+      readTime: '5 min read',
+    },
+    {
+      title: 'The Relationship Green Flags You Might Be Missing',
+      excerpt: 'We asked therapists to share the subtle signs that your partner is actually a keeper. Number 7 will surprise you.',
+      category: 'Love',
+      imageUrl: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=450&fit=crop',
+      author: 'Dr. Amanda Lee',
+      date: 'Feb 3, 2026',
+      readTime: '7 min read',
+    },
+    {
+      title: 'The Skincare Ingredient Dermatologists Are Obsessed With',
+      excerpt: 'Move over retinol. This powerhouse ingredient is changing everything we know about anti-aging skincare.',
+      category: 'Beauty',
+      imageUrl: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=800&h=450&fit=crop',
+      author: 'Michelle Torres',
+      date: 'Feb 2, 2026',
+      readTime: '6 min read',
+    },
+  ],
+  'good-housekeeping': [
+    {
+      title: '25 Easy Weeknight Dinners the Whole Family Will Love',
+      excerpt: 'These simple, nutritious recipes take 30 minutes or less and are kid-approved. Your meal planning just got easier.',
+      category: 'Recipes',
+      imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&h=450&fit=crop',
+      author: 'Martha Williams',
+      date: 'Feb 4, 2026',
+      readTime: '10 min read',
+    },
+    {
+      title: 'The Spring Cleaning Checklist You Actually Need',
+      excerpt: 'Our experts break down exactly what to clean, when, and how. Plus, the products that make it all easier.',
+      category: 'Home',
+      imageUrl: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=450&fit=crop',
+      author: 'Susan Baker',
+      date: 'Feb 3, 2026',
+      readTime: '8 min read',
+    },
+    {
+      title: 'Best Air Fryers of 2026: Tested by Our Kitchen Lab',
+      excerpt: 'We cooked over 200 batches of fries, chicken, and vegetables to find the air fryers that actually deliver.',
+      category: 'Product Reviews',
+      imageUrl: 'https://images.unsplash.com/photo-1585325701165-351af916e581?w=800&h=450&fit=crop',
+      author: 'Test Kitchen Team',
+      date: 'Feb 2, 2026',
+      readTime: '12 min read',
+    },
+  ],
+  'harpers-bazaar': [
+    {
+      title: 'The Designers Redefining Haute Couture',
+      excerpt: 'A new wave of visionaries is bringing fresh perspectives to fashion\'s most exclusive realm. Meet the names to know.',
+      category: 'Fashion',
+      imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=450&fit=crop',
+      author: 'Victoria Laurent',
+      date: 'Feb 4, 2026',
+      readTime: '9 min read',
+    },
+    {
+      title: 'Inside the World\'s Most Exclusive Art Collection',
+      excerpt: 'A rare glimpse into a private collection that rivals major museums, curated over three generations of passionate collectors.',
+      category: 'Culture',
+      imageUrl: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=800&h=450&fit=crop',
+      author: 'Alexandra Moore',
+      date: 'Feb 3, 2026',
+      readTime: '11 min read',
+    },
+    {
+      title: 'The Jewelry Trends That Will Define This Year',
+      excerpt: 'From sculptural gold to meaningful gemstones, these are the pieces fashion insiders are investing in now.',
+      category: 'Accessories',
+      imageUrl: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=450&fit=crop',
+      author: 'Sophie Chen',
+      date: 'Feb 2, 2026',
+      readTime: '6 min read',
+    },
+  ],
+  'elle': [
+    {
+      title: 'The Rise of Quiet Luxury: Less Logo, More Impact',
+      excerpt: 'Why the fashion world is embracing understated elegance and what it means for your wardrobe this season.',
+      category: 'Trends',
+      imageUrl: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=450&fit=crop',
+      author: 'Nina Patel',
+      date: 'Feb 4, 2026',
+      readTime: '7 min read',
+    },
+    {
+      title: 'Meet the Women Changing the Tech Industry',
+      excerpt: 'These founders, engineers, and executives are breaking barriers and building the future. Their advice for the next generation.',
+      category: 'Women in Tech',
+      imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=450&fit=crop',
+      author: 'Rachel Kim',
+      date: 'Feb 3, 2026',
+      readTime: '10 min read',
+    },
+    {
+      title: 'The Wellness Rituals That Actually Work',
+      excerpt: 'We cut through the noise to find the self-care practices backed by science. Your morning routine is about to change.',
+      category: 'Wellness',
+      imageUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=450&fit=crop',
+      author: 'Dr. Emily Walsh',
+      date: 'Feb 2, 2026',
+      readTime: '8 min read',
+    },
+  ],
+};
+
+// Default articles (fallback)
+const sampleArticles = brandArticles['car-and-driver'];
 
 const themes = [
   { id: 'car-and-driver', name: 'Car and Driver' },
@@ -125,9 +286,9 @@ export default function ArticleCardPage() {
           style={{ backgroundColor: 'var(--background)' }}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {sampleArticles.map((article, index) => (
+            {(brandArticles[activeTheme] || sampleArticles).map((article, index) => (
               <ArticleCard
-                key={index}
+                key={`${activeTheme}-${index}`}
                 {...article}
                 onReadMore={() => alert(`Clicked: ${article.title}`)}
               />
