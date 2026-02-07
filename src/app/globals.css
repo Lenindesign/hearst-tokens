@@ -118,9 +118,17 @@
   --font-display-weight: 700;
   --font-serif: var(--font-lora), Lora, Georgia, serif;
   
+  /* Article Card */
+  --article-card-title-size: 18px;
+  
   /* Button */
   --button-text-transform: uppercase;
   --button-font-size: 14px;
+}
+
+/* Non-Car-and-Driver themes: larger card title */
+[data-theme]:not([data-theme="car-and-driver"]) {
+  --article-card-title-size: 22px;
 }
 
 /* ============================================

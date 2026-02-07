@@ -165,7 +165,7 @@ const demoArticles: Record<string, Article[]> = {
       title: 'The 2026 Porsche 911 GT3 RS Is the Ultimate Track Weapon',
       excerpt: 'With 518 horsepower and aerodynamics borrowed from motorsport, the new GT3 RS sets a new benchmark.',
       category: 'First Drive',
-      imageUrl: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=450&fit=crop',
+      imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/2025-porsche-911-gt3-rs-manthey-racing1-6740bdc5bdc0c.jpg?crop=0.921045192035863xw:1xh;center,top&resize=980:*',
       author: 'John Smith',
       authorAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 4, 2026',
@@ -176,7 +176,7 @@ const demoArticles: Record<string, Article[]> = {
       title: 'BMW M3 vs Mercedes-AMG C63: The Ultimate Showdown',
       excerpt: 'We put two of the most iconic sport sedans head-to-head on track and street.',
       category: 'Comparison',
-      imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=450&fit=crop',
+      imageUrl: '/images/bmw-m3-comparison.png',
       author: 'Mike Rodriguez',
       authorAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 3, 2026',
@@ -187,7 +187,7 @@ const demoArticles: Record<string, Article[]> = {
       title: 'Electric Trucks Are Finally Ready for Real Work',
       excerpt: 'The latest electric pickups can actually tow, haul, and work as hard as gas rivals.',
       category: 'Technology',
-      imageUrl: 'https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=800&h=450&fit=crop',
+      imageUrl: '/images/gmc-electric-truck.png',
       author: 'Sarah Mitchell',
       authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 2, 2026',
@@ -222,7 +222,7 @@ const demoArticles: Record<string, Article[]> = {
       title: 'The New Rules of Power Dressing in 2026',
       excerpt: 'Forget everything you knew about suits. The modern professional wardrobe is being redefined.',
       category: 'Style',
-      imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop',
+      imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/1-indexl-696fbe91e1e15.jpg',
       author: 'James Crawford',
       authorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 4, 2026',
@@ -232,7 +232,7 @@ const demoArticles: Record<string, Article[]> = {
       title: 'Inside the Mind of Hollywood\'s Most Reclusive Director',
       excerpt: 'After a decade of silence, the filmmaker finally opens up about art and legacy.',
       category: 'Interview',
-      imageUrl: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=450&fit=crop',
+      imageUrl: 'https://pub-4345f0f77c424370b4354c6a404ac802.r2.dev/jason.jpg',
       author: 'David Chen',
       authorAvatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 3, 2026',
@@ -291,10 +291,10 @@ const demoArticles: Record<string, Article[]> = {
       readTime: '7 min read',
     },
     {
-      title: 'The Skincare Ingredient Dermatologists Are Obsessed With',
-      excerpt: 'Move over retinol. This powerhouse ingredient is changing everything.',
+      title: 'Sydney Sweeney Created This Moment. But Does It Belong to Her?',
+      excerpt: 'The actor is selling underwear, not ideology—at least, that\'s the plan.',
       category: 'Beauty',
-      imageUrl: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=800&h=450&fit=crop',
+      imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/f4eb21d0-0fc4-494d-ac4c-13b6eebbac5f.jpg',
       author: 'Michelle Torres',
       authorAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 2, 2026',
@@ -375,10 +375,10 @@ const demoArticles: Record<string, Article[]> = {
   ],
   'harpers-bazaar': [
     {
-      title: 'The Designers Redefining Haute Couture',
+      title: 'Kaia Gerber Returns the Gaze',
       excerpt: 'A new wave of visionaries is bringing fresh perspectives to fashion\'s most exclusive realm.',
       category: 'Fashion',
-      imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=450&fit=crop',
+      imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/93277-lro-harpersbazaar-127-07-v5-digital-wm-695fe8db77cbd.jpg?resize=2048:*',
       author: 'Victoria Laurent',
       authorAvatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 4, 2026',
@@ -440,7 +440,7 @@ const demoArticles: Record<string, Article[]> = {
       title: 'Meet the Women Changing the Tech Industry',
       excerpt: 'These founders and executives are breaking barriers and building the future.',
       category: 'Women in Tech',
-      imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=450&fit=crop',
+      imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/e0b52490-554a-4925-97b0-bfbd3f64df32.jpg?crop=1xw:0.748175182482xh;center,top',
       author: 'Rachel Kim',
       authorAvatar: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 3, 2026',
@@ -1016,7 +1016,7 @@ function ArticlePage() {
             {/* Carousel Preview */}
             <div 
               data-theme={demoTheme}
-              className="rounded-lg p-4 sm:p-8 mb-6"
+              className="rounded-lg p-4 sm:py-8 sm:px-0 mb-6"
               style={{ backgroundColor: 'var(--background)' }}
             >
               <div className="flex items-start justify-center mb-4 gap-0 flex-wrap">
@@ -1043,28 +1043,30 @@ function ArticlePage() {
                   Swipe to browse
                 </p>
               </div>
-              <Carousel
-                opts={{
-                  align: "start",
-                  loop: true,
-                  dragFree: true,
-                  containScroll: "trimSnaps",
-                }}
-                className="w-full touch-pan-y"
-              >
-                <CarouselContent className="-ml-3 sm:-ml-4">
-                  {demoArticles[demoTheme].map((article, index) => (
-                    <CarouselItem 
-                      key={index} 
-                      className="pl-3 sm:pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
-                    >
-                      <ArticleCard {...article} />
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden sm:flex left-2" />
-                <CarouselNext className="hidden sm:flex right-2" />
-              </Carousel>
+              <div className="sm:px-8">
+                <Carousel
+                  opts={{
+                    align: "start",
+                    loop: true,
+                    dragFree: true,
+                    containScroll: "trimSnaps",
+                  }}
+                  className="w-full touch-pan-y"
+                >
+                  <CarouselContent className="-ml-3 sm:-ml-4">
+                    {demoArticles[demoTheme].map((article, index) => (
+                      <CarouselItem 
+                        key={index} 
+                        className="pl-3 sm:pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
+                      >
+                        <ArticleCard {...article} />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="hidden sm:flex" />
+                  <CarouselNext className="hidden sm:flex" />
+                </Carousel>
+              </div>
               {/* Mobile dots indicator */}
               <div className="flex justify-center gap-1.5 mt-4 sm:hidden">
                 {demoArticles[demoTheme].map((_, index) => (

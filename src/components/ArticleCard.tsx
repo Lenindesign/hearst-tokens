@@ -73,7 +73,7 @@ export function ArticleCard({
       <CardContent className="flex flex-col flex-1 p-4 sm:p-5">
         {/* Title - no truncation, always fully readable */}
         <h3 
-          className="text-base sm:text-lg leading-snug mb-2"
+          className="text-base sm:text-[length:var(--article-card-title-size,22px)] leading-[1.2] mb-2"
           style={{ 
             color: 'var(--card-foreground)',
             fontFamily: 'var(--font-display, inherit)',
