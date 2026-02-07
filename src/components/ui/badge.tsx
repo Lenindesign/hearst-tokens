@@ -43,8 +43,8 @@ function getVariantStyles(variant: string | null | undefined): React.CSSProperti
       }
     default: // 'default'
       return {
-        backgroundColor: 'var(--primary)',
-        color: 'var(--primary-foreground)',
+        backgroundColor: 'var(--accent)',
+        color: 'var(--accent-foreground)',
         border: '1px solid transparent',
       }
   }
