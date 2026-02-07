@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ArticleCard } from '@/components/ArticleCard';
 
 // Code Block Component
 function CodeBlock({ code, title }: { code: string; title?: string }) {
@@ -134,8 +135,94 @@ function FlowDiagram({ phase }: { phase: 1 | 2 | 3 }) {
   );
 }
 
+// Brand-specific demo articles
+const demoArticles: Record<string, { title: string; excerpt: string; category: string; imageUrl: string; author: string; authorAvatar: string; date: string; readTime: string }[]> = {
+  'car-and-driver': [
+    {
+      title: 'The 2026 Porsche 911 GT3 RS Is the Ultimate Track Weapon',
+      excerpt: 'With 518 horsepower and aerodynamics borrowed from motorsport, the new GT3 RS sets a new benchmark.',
+      category: 'First Drive',
+      imageUrl: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=800&h=450&fit=crop',
+      author: 'John Smith',
+      authorAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 4, 2026',
+      readTime: '8 min read',
+    },
+  ],
+  'esquire': [
+    {
+      title: 'The New Rules of Power Dressing in 2026',
+      excerpt: 'Forget everything you knew about suits. The modern professional wardrobe is being redefined.',
+      category: 'Style',
+      imageUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=450&fit=crop',
+      author: 'James Crawford',
+      authorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 4, 2026',
+      readTime: '6 min read',
+    },
+  ],
+  'cosmopolitan': [
+    {
+      title: '15 Date Night Looks That Will Make Them Stare',
+      excerpt: 'From bold reds to unexpected textures, these outfits are guaranteed to turn heads.',
+      category: 'Fashion',
+      imageUrl: 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&h=450&fit=crop',
+      author: 'Jessica Park',
+      authorAvatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 4, 2026',
+      readTime: '5 min read',
+    },
+  ],
+  'good-housekeeping': [
+    {
+      title: '25 Easy Weeknight Dinners the Whole Family Will Love',
+      excerpt: 'These simple, nutritious recipes take 30 minutes or less and are kid-approved.',
+      category: 'Recipes',
+      imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&h=450&fit=crop',
+      author: 'Martha Williams',
+      authorAvatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 4, 2026',
+      readTime: '10 min read',
+    },
+  ],
+  'harpers-bazaar': [
+    {
+      title: 'The Designers Redefining Haute Couture',
+      excerpt: 'A new wave of visionaries is bringing fresh perspectives to fashion\'s most exclusive realm.',
+      category: 'Fashion',
+      imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=450&fit=crop',
+      author: 'Victoria Laurent',
+      authorAvatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 4, 2026',
+      readTime: '9 min read',
+    },
+  ],
+  'elle': [
+    {
+      title: 'The Rise of Quiet Luxury: Less Logo, More Impact',
+      excerpt: 'Why the fashion world is embracing understated elegance and what it means for your wardrobe.',
+      category: 'Trends',
+      imageUrl: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=450&fit=crop',
+      author: 'Nina Patel',
+      authorAvatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 4, 2026',
+      readTime: '7 min read',
+    },
+  ],
+};
+
+const themes = [
+  { id: 'car-and-driver', name: 'Car and Driver' },
+  { id: 'esquire', name: 'Esquire' },
+  { id: 'cosmopolitan', name: 'Cosmopolitan' },
+  { id: 'good-housekeeping', name: 'Good Housekeeping' },
+  { id: 'harpers-bazaar', name: "Harper's Bazaar" },
+  { id: 'elle', name: 'Elle' },
+];
+
 export default function TokenPipelinePage() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'technical'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'demo'>('overview');
+  const [demoTheme, setDemoTheme] = useState('car-and-driver');
 
   const tokensJsonExample = `{
   "global": {
@@ -278,7 +365,17 @@ function ArticlePage() {
               : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
           }`}
         >
-          Overview (All Audiences)
+          Overview
+        </button>
+        <button
+          onClick={() => setActiveTab('demo')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            activeTab === 'demo'
+              ? 'bg-neutral-900 text-white'
+              : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+          }`}
+        >
+          Live Demo
         </button>
         <button
           onClick={() => setActiveTab('technical')}
@@ -288,7 +385,7 @@ function ArticlePage() {
               : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
           }`}
         >
-          Technical Implementation
+          Technical
         </button>
       </div>
 
@@ -574,6 +671,141 @@ function ArticlePage() {
               <li><strong className="text-white">No Manual Sync:</strong> Designers and developers always have the same values</li>
               <li><strong className="text-white">Version Controlled:</strong> Every token change is tracked in git history</li>
               <li><strong className="text-white">Platform Agnostic:</strong> Same tokens can output to web, iOS, Android</li>
+            </ul>
+          </section>
+        </>
+      )}
+
+      {activeTab === 'demo' && (
+        <>
+          {/* Live Demo Section */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              See the Token Pipeline in Action
+            </h2>
+            <p className="text-base text-neutral-700 mb-6">
+              This ArticleCard component is built with shadcn/ui primitives (Card, Badge, Button) and 
+              uses CSS variables for all styling. Switch between brands to see how the same component 
+              automatically adapts - no code changes required.
+            </p>
+
+            {/* Theme Switcher */}
+            <div className="flex flex-wrap gap-2 mb-6">
+              {themes.map((theme) => (
+                <button
+                  key={theme.id}
+                  onClick={() => setDemoTheme(theme.id)}
+                  className={`px-4 py-2 rounded text-sm font-medium transition-all ${
+                    demoTheme === theme.id
+                      ? 'bg-neutral-900 text-white'
+                      : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+                  }`}
+                >
+                  {theme.name}
+                </button>
+              ))}
+            </div>
+
+            {/* Live Preview */}
+            <div 
+              data-theme={demoTheme}
+              className="rounded-lg p-8 mb-6"
+              style={{ backgroundColor: 'var(--background)' }}
+            >
+              <div className="max-w-sm mx-auto">
+                <ArticleCard {...demoArticles[demoTheme][0]} />
+              </div>
+            </div>
+
+            {/* What's Happening */}
+            <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-neutral-900 m-0 mb-4">What&apos;s Happening Behind the Scenes</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <h4 className="font-medium text-neutral-900 m-0 mb-2">The Component Code (unchanged)</h4>
+                  <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-xs text-[#d4d4d4]">
+                    <div><span className="text-[#569cd6]">{'<Card>'}</span></div>
+                    <div className="pl-4"><span className="text-[#569cd6]">{'<Badge>'}</span><span className="text-[#ce9178]">{'{category}'}</span><span className="text-[#569cd6]">{'</Badge>'}</span></div>
+                    <div className="pl-4"><span className="text-[#569cd6]">{'<h3>'}</span><span className="text-[#ce9178]">{'{title}'}</span><span className="text-[#569cd6]">{'</h3>'}</span></div>
+                    <div className="pl-4"><span className="text-[#569cd6]">{'<Button>'}</span>Read More<span className="text-[#569cd6]">{'</Button>'}</span></div>
+                    <div><span className="text-[#569cd6]">{'</Card>'}</span></div>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-medium text-neutral-900 m-0 mb-2">CSS Variables (per brand)</h4>
+                  <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-xs text-[#d4d4d4]">
+                    <div><span className="text-[#6a9955]">/* {demoTheme} */</span></div>
+                    <div><span className="text-[#9cdcfe]">--primary</span>: <span className="text-[#ce9178]">{demoTheme === 'car-and-driver' ? '#1B5F8A' : demoTheme === 'cosmopolitan' ? '#d70000' : demoTheme === 'esquire' ? '#15263d' : demoTheme === 'harpers-bazaar' || demoTheme === 'elle' ? '#000000' : '#c41230'}</span>;</div>
+                    <div><span className="text-[#9cdcfe]">--radius</span>: <span className="text-[#ce9178]">{demoTheme === 'car-and-driver' || demoTheme === 'harpers-bazaar' || demoTheme === 'elle' ? '0px' : demoTheme === 'esquire' ? '4px' : '8px'}</span>;</div>
+                    <div><span className="text-[#9cdcfe]">--background</span>: <span className="text-[#ce9178]">{demoTheme === 'esquire' ? '#f5f6f8' : '#ffffff'}</span>;</div>
+                  </div>
+                </div>
+              </div>
+              <p className="text-sm text-neutral-600 mt-4 m-0">
+                The component code stays exactly the same. Only the CSS variables change based on the 
+                <code className="bg-neutral-200 px-1 mx-1 rounded">data-theme</code> attribute.
+              </p>
+            </div>
+          </section>
+
+          {/* Token Flow Visualization */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
+              How Tokens Flow to This Component
+            </h2>
+            
+            <div className="space-y-4">
+              <div className="flex items-start gap-4 p-4 bg-neutral-100 border border-neutral-400 rounded-lg">
+                <div className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-sm shrink-0">1</div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0">tokens.json defines brand values</h4>
+                  <p className="text-sm text-neutral-600 mt-1 m-0">
+                    <code className="bg-neutral-200 px-1 rounded">car-and-driver.primary: #1B5F8A</code>
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4 p-4 bg-neutral-100 border border-neutral-400 rounded-lg">
+                <div className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-sm shrink-0">2</div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0">Style Dictionary generates CSS</h4>
+                  <p className="text-sm text-neutral-600 mt-1 m-0">
+                    <code className="bg-neutral-200 px-1 rounded">[data-theme=&quot;car-and-driver&quot;] {'{'} --primary: #1B5F8A {'}'}</code>
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4 p-4 bg-neutral-100 border border-neutral-400 rounded-lg">
+                <div className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-sm shrink-0">3</div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0">shadcn Button uses the variable</h4>
+                  <p className="text-sm text-neutral-600 mt-1 m-0">
+                    <code className="bg-neutral-200 px-1 rounded">background-color: var(--primary)</code>
+                  </p>
+                </div>
+              </div>
+              
+              <div className="flex items-start gap-4 p-4 bg-neutral-100 border border-neutral-400 rounded-lg">
+                <div className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-sm shrink-0">4</div>
+                <div>
+                  <h4 className="font-semibold text-neutral-900 m-0">Runtime applies the theme</h4>
+                  <p className="text-sm text-neutral-600 mt-1 m-0">
+                    <code className="bg-neutral-200 px-1 rounded">{'<div data-theme="car-and-driver">'}</code> activates the brand&apos;s CSS
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Key Points */}
+          <section className="bg-neutral-900 rounded-lg p-8 text-neutral-100">
+            <h2 className="text-2xl font-bold m-0 mb-4">Why This Matters</h2>
+            <ul className="text-base text-neutral-300 m-0 pl-5 space-y-2">
+              <li><strong className="text-white">Zero Component Changes:</strong> The ArticleCard code is identical for all brands</li>
+              <li><strong className="text-white">Instant Theming:</strong> Change <code className="bg-neutral-700 px-1 rounded">data-theme</code> and everything updates</li>
+              <li><strong className="text-white">Consistent Experience:</strong> All components using tokens stay in sync</li>
+              <li><strong className="text-white">Easy Brand Updates:</strong> Change a token value, all components reflect it</li>
+              <li><strong className="text-white">Designer Control:</strong> Designers own the token values, developers own the components</li>
             </ul>
           </section>
         </>
