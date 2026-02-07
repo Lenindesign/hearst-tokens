@@ -73,10 +73,11 @@ export function ArticleCard({
       <CardContent className="flex flex-col flex-1 p-4 sm:p-5">
         {/* Title - no truncation, always fully readable */}
         <h3 
-          className="text-base sm:text-lg font-bold leading-snug mb-2"
+          className="text-base sm:text-lg leading-snug mb-2"
           style={{ 
             color: 'var(--card-foreground)',
             fontFamily: 'var(--font-display, inherit)',
+            fontWeight: 'var(--font-display-weight, 700)' as React.CSSProperties['fontWeight'],
           }}
         >
           {title}
@@ -124,14 +125,14 @@ export function ArticleCard({
           {/* Author Name & Date */}
           <div className="flex flex-col min-w-0">
             <span 
-              className="text-sm font-medium truncate"
-              style={{ color: 'var(--card-foreground)' }}
+              className="font-medium truncate uppercase tracking-wide"
+              style={{ color: 'var(--card-foreground)', fontSize: '14px' }}
             >
               {author}
             </span>
             <span 
-              className="text-xs"
-              style={{ color: 'var(--muted-foreground)' }}
+              className="uppercase tracking-wide"
+              style={{ color: 'var(--muted-foreground)', fontSize: '12px' }}
             >
               {date}
               {readTime && ` · ${readTime}`}

@@ -1,7 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ArticleCard } from '@/components/ArticleCard';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import {
   Carousel,
   CarouselContent,
@@ -484,6 +487,15 @@ const themes = [
   { id: 'harpers-bazaar', name: "Harper's Bazaar" },
   { id: 'elle', name: 'Elle' },
 ];
+
+const brandLogos: Record<string, string> = {
+  'car-and-driver': 'https://www.caranddriver.com/_assets/design-tokens/caranddriver/static/images/logos/logo.68b8e69.svg?primary=navLogoColor',
+  'esquire': 'https://www.esquire.com/_assets/design-tokens/esquire/static/images/logos/logo.20861e6.svg?primary=navLogoColor',
+  'cosmopolitan': 'https://www.cosmopolitan.com/_assets/design-tokens/cosmopolitan/static/images/logos/logo.eca17dd.svg?primary=%2523000000',
+  'good-housekeeping': 'https://www.goodhousekeeping.com/_assets/design-tokens/goodhousekeeping/static/images/logos/logo.dc34ecc.svg?primary=navLogoColor',
+  'harpers-bazaar': 'https://www.harpersbazaar.com/_assets/design-tokens/harpersbazaar/static/images/logos/logo.823d7af.svg?primary=%2523000000',
+  'elle': 'https://www.elle.com/_assets/design-tokens/elle/static/images/logos/logo.2856426.svg?primary=navLogoColor',
+};
 
 export default function TokenPipelinePage() {
   const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'demo' | 'architecture'>('overview');
@@ -1007,13 +1019,23 @@ function ArticlePage() {
               className="rounded-lg p-4 sm:p-8 mb-6"
               style={{ backgroundColor: 'var(--background)' }}
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 
-                  className="text-lg font-semibold"
-                  style={{ color: 'var(--foreground)' }}
-                >
-                  Article Carousel (5 Cards)
-                </h3>
+              <div className="flex items-start justify-center mb-4 gap-0 flex-wrap">
+                <div className="flex items-center gap-4">
+                  {brandLogos[demoTheme] && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={brandLogos[demoTheme]}
+                      alt={themes.find(t => t.id === demoTheme)?.name ?? demoTheme}
+                      className="h-5 sm:h-6 w-auto"
+                    />
+                  )}
+                  <h3 
+                    className="flex text-sm font-semibold"
+                    style={{ color: 'var(--foreground)' }}
+                  >
+                    Article Carousel (5 Cards)
+                  </h3>
+                </div>
                 <p 
                   className="text-xs sm:hidden"
                   style={{ color: 'var(--muted-foreground)' }}
@@ -1130,6 +1152,381 @@ function ArticlePage() {
                   <p className="text-sm text-neutral-600 mt-1 m-0">
                     <code className="bg-neutral-200 px-1 rounded">{'<div data-theme="car-and-driver">'}</code> activates the brand&apos;s CSS
                   </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Component Anatomy */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-neutral-1000 mb-2">
+              Component Anatomy
+            </h2>
+            <p className="text-base text-neutral-700 mb-6">
+              A detailed breakdown of every element in the ArticleCard and the Carousel wrapper, with the design tokens and CSS properties that drive each piece.
+            </p>
+
+            {/* --- ArticleCard Anatomy --- */}
+            <h3 className="text-xl font-bold text-neutral-900 mb-4 mt-8">
+              ArticleCard
+            </h3>
+
+            <div className="space-y-4 mb-10" data-theme={demoTheme}>
+              {/* 1. Card Container */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold">1</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">Card Container</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      The outer wrapper built on the <code className="bg-neutral-300 px-1 rounded text-xs">Card</code> shadcn/ui primitive. Provides the surface, border, and elevation.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">background: var(--card)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">border: 1px solid var(--border)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">border-radius: var(--radius)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">shadow</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center justify-center">
+                  <div className="w-full h-[80px] shadow" style={{ backgroundColor: 'var(--card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)' }}>
+                    <div className="h-full flex items-center justify-center text-xs" style={{ color: 'var(--muted-foreground)' }}>Card Surface</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2. Hero Image */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold">2</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">Hero Image</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      A 16:9 responsive image area using Next.js <code className="bg-neutral-300 px-1 rounded text-xs">Image</code> with object-fit cover. Includes a hover zoom transition.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">aspect-ratio: 16/9</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">object-fit: cover</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">hover: scale(1.05)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">transition: 300ms</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center justify-center">
+                  <div className="relative w-full aspect-[16/9] overflow-hidden" style={{ borderRadius: 'var(--radius)' }}>
+                    <Image src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=400&h=225&fit=crop" alt="Sample hero" fill className="object-cover transition-transform duration-300 hover:scale-105" />
+                  </div>
+                </div>
+              </div>
+
+              {/* 3. Category Badge */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold">3</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">Category Badge</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      Positioned absolutely over the top-left corner of the hero image. Uses the <code className="bg-neutral-300 px-1 rounded text-xs">Badge</code> shadcn/ui primitive with accent colors.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">background: var(--accent)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">color: var(--accent-foreground)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">border-radius: var(--radius)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-size: 12px</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-weight: 600</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center justify-center gap-2">
+                  <Badge>First Drive</Badge>
+                  <Badge>Recipes</Badge>
+                </div>
+              </div>
+
+              {/* 4. Title */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold">4</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">Title</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      The article headline. Uses the brand&apos;s display font and weight, making this one of the most visually distinct elements across themes.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-family: var(--font-display)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-weight: var(--font-display-weight)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">color: var(--card-foreground)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-size: 16px / 18px (sm)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">line-height: snug</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center">
+                  <h3 className="text-lg leading-snug m-0" style={{ color: 'var(--card-foreground)', fontFamily: 'var(--font-display, inherit)', fontWeight: 'var(--font-display-weight, 700)' as React.CSSProperties['fontWeight'] }}>
+                    The 2026 Porsche 911 GT3 RS
+                  </h3>
+                </div>
+              </div>
+
+              {/* 5. Excerpt */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold">5</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">Excerpt</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      A short description of the article content. Uses the muted foreground color for visual hierarchy.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">color: var(--muted-foreground)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-size: 14px</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">margin-bottom: 16px</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center">
+                  <p className="text-sm m-0" style={{ color: 'var(--muted-foreground)' }}>With 518 horsepower and aerodynamics borrowed from motorsport...</p>
+                </div>
+              </div>
+
+              {/* 6. Author Avatar */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold">6</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">Author Avatar</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      A 32&times;32 circular image. Falls back to a styled initials placeholder using the brand&apos;s primary color palette.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">width/height: 32px</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">border-radius: full</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">fallback bg: var(--primary)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">fallback color: var(--primary-foreground)</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center justify-center gap-3">
+                  <div className="w-8 h-8 rounded-full overflow-hidden flex-shrink-0" style={{ backgroundColor: 'var(--muted)' }}>
+                    <Image src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" alt="Photo avatar" width={32} height={32} className="object-cover w-full h-full" />
+                  </div>
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold flex-shrink-0" style={{ backgroundColor: 'var(--primary)', color: 'var(--primary-foreground)' }}>JS</div>
+                  <span className="text-xs text-neutral-600">Photo &amp; Fallback</span>
+                </div>
+              </div>
+
+              {/* 7. Author Name */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold">7</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">Author Name</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      Displayed in uppercase with wide tracking. Truncates with ellipsis when the card is narrow.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">color: var(--card-foreground)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-size: 14px</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-weight: 500</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">text-transform: uppercase</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">letter-spacing: wide</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">overflow: truncate</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center">
+                  <span className="font-medium uppercase tracking-wide" style={{ color: 'var(--card-foreground)', fontSize: '14px' }}>John Smith</span>
+                </div>
+              </div>
+
+              {/* 8. Date & Read Time */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold">8</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">Date &amp; Read Time</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      Publication date and optional reading time, separated by a middle dot. Smallest text in the card for clear hierarchy.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">color: var(--muted-foreground)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-size: 12px</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">text-transform: uppercase</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">letter-spacing: wide</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center">
+                  <span className="uppercase tracking-wide" style={{ color: 'var(--muted-foreground)', fontSize: '12px' }}>Feb 4, 2026 &middot; 8 min read</span>
+                </div>
+              </div>
+
+              {/* 9. CTA Button */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-900 text-white text-sm font-bold">9</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">CTA Button</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      Full-width call-to-action at the bottom of the card. Uses the <code className="bg-neutral-300 px-1 rounded text-xs">Button</code> shadcn/ui primitive.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">background: var(--primary)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">color: var(--primary-foreground)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">border-radius: var(--radius)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">text-transform: var(--button-text-transform)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-size: var(--button-font-size)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">font-weight: 700</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center justify-center">
+                  <Button variant="default" className="w-full"><span>Read More</span></Button>
+                </div>
+              </div>
+            </div>
+
+            {/* --- Carousel Anatomy --- */}
+            <h3 className="text-xl font-bold text-neutral-900 mb-4 mt-10">Carousel</h3>
+            <p className="text-sm text-neutral-700 mb-4">
+              The Carousel wraps the ArticleCards in a horizontally scrollable, swipeable container powered by <code className="bg-neutral-300 px-1 rounded text-xs">embla-carousel-react</code>.
+            </p>
+
+            <div className="space-y-4" data-theme={demoTheme}>
+              {/* A. Carousel */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 text-white text-sm font-bold">A</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">Carousel</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      The root wrapper. Sets up the Embla carousel context with options for alignment, looping, and drag behavior.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">align: start</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">loop: true</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">dragFree: true</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">containScroll: trimSnaps</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center justify-center">
+                  <div className="w-full h-[52px] border-2 border-dashed border-neutral-500 rounded-lg flex items-center justify-center overflow-hidden">
+                    <div className="flex gap-1.5 px-2">
+                      <div className="w-10 h-8 rounded bg-neutral-400 flex-shrink-0" />
+                      <div className="w-10 h-8 rounded bg-neutral-400 flex-shrink-0" />
+                      <div className="w-10 h-8 rounded bg-neutral-400 flex-shrink-0" />
+                      <div className="w-5 h-8 rounded bg-neutral-400/50 flex-shrink-0" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* B. CarouselContent */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 text-white text-sm font-bold">B</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">CarouselContent</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      The scrollable track. A flex row with negative left margin to create consistent gutters between items.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">display: flex</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">margin-left: -12px / -16px (sm)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">cursor: grab</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center justify-center">
+                  <div className="w-full flex gap-2 cursor-grab">
+                    <div className="flex-1 h-8 rounded bg-neutral-400 flex items-center justify-center text-[9px] text-neutral-100 font-mono">flex</div>
+                    <div className="flex-1 h-8 rounded bg-neutral-400 flex items-center justify-center text-[9px] text-neutral-100 font-mono">flex</div>
+                    <div className="flex-1 h-8 rounded bg-neutral-400 flex items-center justify-center text-[9px] text-neutral-100 font-mono">flex</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* C. CarouselItem */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 text-white text-sm font-bold">C</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">CarouselItem</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      Each slide slot. Uses responsive flex-basis to show different numbers of cards at each breakpoint.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">padding-left: 12px / 16px (sm)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">basis: 85% (mobile)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">basis: 50% (sm)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">basis: 33.3% (lg)</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center justify-center">
+                  <div className="w-full flex gap-1">
+                    <div className="basis-1/3 flex-shrink-0"><div className="h-10 rounded border-2 border-neutral-900 bg-neutral-300 flex items-center justify-center text-[9px] font-mono text-neutral-800">33%</div></div>
+                    <div className="basis-1/3 flex-shrink-0"><div className="h-10 rounded border border-dashed border-neutral-500 bg-neutral-200 flex items-center justify-center text-[9px] font-mono text-neutral-600">33%</div></div>
+                    <div className="basis-1/3 flex-shrink-0"><div className="h-10 rounded border border-dashed border-neutral-500 bg-neutral-200 flex items-center justify-center text-[9px] font-mono text-neutral-600">33%</div></div>
+                  </div>
+                </div>
+              </div>
+
+              {/* D. Navigation Arrows */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 text-white text-sm font-bold">D</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">CarouselPrevious / CarouselNext</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      Arrow navigation buttons positioned on the left and right edges. Hidden on mobile, visible from <code className="bg-neutral-300 px-1 rounded text-xs">sm</code> up.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">display: hidden / flex (sm+)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">variant: outline</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">size: icon</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">border-radius: full</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center justify-center gap-3">
+                  <Button variant="outline" size="icon" className="h-9 w-9 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </Button>
+                  <Button variant="outline" size="icon" className="h-9 w-9 rounded-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                  </Button>
+                </div>
+              </div>
+
+              {/* E. Mobile Dots */}
+              <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-5 flex flex-col lg:flex-row gap-5">
+                <div className="flex gap-4 flex-1 min-w-0">
+                  <div className="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 text-white text-sm font-bold">E</div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-neutral-1000 m-0 text-base">Mobile Dot Indicators</h4>
+                    <p className="text-sm text-neutral-700 mt-1 mb-2">
+                      Pagination dots shown only on mobile screens to indicate how many slides exist.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">display: flex / hidden (sm+)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">width/height: 8px</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">border-radius: full</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">color: var(--muted-foreground)</span>
+                      <span className="inline-flex items-center bg-neutral-200 text-xs font-mono px-2 py-1 rounded">opacity: 0.3</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-shrink-0 w-full lg:w-[200px] flex items-center justify-center">
+                  <div className="flex gap-1.5">
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--muted-foreground)', opacity: 0.8 }} />
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--muted-foreground)', opacity: 0.3 }} />
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--muted-foreground)', opacity: 0.3 }} />
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--muted-foreground)', opacity: 0.3 }} />
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--muted-foreground)', opacity: 0.3 }} />
+                  </div>
                 </div>
               </div>
             </div>

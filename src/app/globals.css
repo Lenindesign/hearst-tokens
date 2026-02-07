@@ -1,6 +1,41 @@
 @import "tailwindcss";
 
 /* ============================================
+   WEB FONT DECLARATIONS
+   ============================================ */
+@font-face {
+  font-family: "ModernMT Pro";
+  src: url("https://www.elle.com/_assets/design-tokens/elle/static/fonts/ModernMTPro-Extended.69f5635.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ModernMT Pro";
+  src: url("https://www.elle.com/_assets/design-tokens/elle/static/fonts/ModernMTPro-ExtendedItalic.099844f.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NewParisTextBook";
+  src: url("https://www.harpersbazaar.com/_assets/design-tokens/harpersbazaar/static/fonts/NewParisText-Book.62ee35f.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ChronicleDisplay";
+  src: url("https://www.cosmopolitan.com/_assets/design-tokens/cosmopolitan/static/fonts/ChronicleDisplay_normal_normal_600.bd7a1b4.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================
    SHADCN/UI + HEARST MULTI-BRAND THEME SYSTEM
    ============================================
    
@@ -79,8 +114,13 @@
   
   /* Typography */
   --font-primary: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: var(--font-barlow-condensed), "Barlow Condensed", sans-serif;
+  --font-display: var(--font-inter), Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display-weight: 700;
   --font-serif: var(--font-lora), Lora, Georgia, serif;
+  
+  /* Button */
+  --button-text-transform: uppercase;
+  --button-font-size: 14px;
 }
 
 /* ============================================
@@ -123,7 +163,8 @@
   --brand-red: #e00b00;
   
   --font-primary: "Chronicle SSm", Georgia, serif;
-  --font-display: "Chronicle Display", Georgia, serif;
+  --font-display: "Lausanne", -apple-system, sans-serif;
+  --font-display-weight: 400;
   --font-serif: "Chronicle SSm", Georgia, serif;
 }
 
@@ -167,7 +208,8 @@
   --brand-red: #d70000;
   
   --font-primary: "Helvetica Neue", -apple-system, sans-serif;
-  --font-display: "Playfair Display", Georgia, serif;
+  --font-display: "ChronicleDisplay", "Chronicle Display", Georgia, serif;
+  --font-display-weight: 600;
   --font-serif: Georgia, serif;
 }
 
@@ -211,7 +253,8 @@
   --brand-red: #d24432;
   
   --font-primary: "Proxima Nova", -apple-system, sans-serif;
-  --font-display: "Proxima Nova", -apple-system, sans-serif;
+  --font-display: var(--font-barlow-semi-condensed), "Barlow Semi Condensed", -apple-system, sans-serif;
+  --font-display-weight: 600;
   --font-serif: Georgia, serif;
 }
 
@@ -255,7 +298,8 @@
   --brand-red: #ff0000;
   
   --font-primary: "Didot", "Playfair Display", Georgia, serif;
-  --font-display: "Didot", Georgia, serif;
+  --font-display: "NewParisTextBook", "Didot", Georgia, serif;
+  --font-display-weight: 400;
   --font-serif: "Didot", Georgia, serif;
 }
 
@@ -299,7 +343,8 @@
   --brand-red: #d70000;
   
   --font-primary: "Didot", Georgia, serif;
-  --font-display: "Didot", Georgia, serif;
+  --font-display: "ModernMT Pro", "Didot", Georgia, serif;
+  --font-display-weight: 400;
   --font-serif: "Didot", Georgia, serif;
 }
 

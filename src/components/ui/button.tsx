@@ -82,7 +82,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         style={{
-          borderRadius: 'var(--radius)',
+          borderRadius: 'var(--button-border-radius, var(--radius))',
+          textTransform: 'var(--button-text-transform, none)' as React.CSSProperties['textTransform'],
+          fontSize: 'var(--button-font-size)',
           ...variantStyles,
           ...style,
         }}

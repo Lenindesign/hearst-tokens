@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Barlow_Condensed, Lora } from "next/font/google";
+import { Inter, Barlow_Condensed, Barlow_Semi_Condensed, Lora } from "next/font/google";
 import "./globals.css";
 
 // Load Google Fonts for Car and Driver theme
@@ -15,6 +15,13 @@ const barlowCondensed = Barlow_Condensed({
   display: "swap",
   variable: "--font-barlow-condensed",
   weight: ["400", "500", "600", "700", "800"],
+});
+
+const barlowSemiCondensed = Barlow_Semi_Condensed({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-barlow-semi-condensed",
+  weight: ["400", "500", "600", "700"],
 });
 
 const lora = Lora({
@@ -36,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${barlowCondensed.variable} ${lora.variable}`}>
+    <html lang="en" className={`${inter.variable} ${barlowCondensed.variable} ${barlowSemiCondensed.variable} ${lora.variable}`}>
       <body className="antialiased">
         {children}
       </body>
