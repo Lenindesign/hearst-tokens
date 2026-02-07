@@ -534,7 +534,7 @@ export default function TokenPipelinePage() {
         "primary": { "value": "#1B5F8A", "type": "color" },
         "accent": { "value": "#DBCA8B", "type": "color" }
       },
-      "radius": { "value": "0px", "type": "dimension" },
+      "radius": { "value": "4px", "type": "dimension" },
       "font": {
         "display": { "value": "Barlow Condensed", "type": "fontFamily" }
       }
@@ -568,7 +568,7 @@ export default function TokenPipelinePage() {
 [data-theme="car-and-driver"] {
   --primary: #1B5F8A;
   --accent: #DBCA8B;
-  --radius: 0px;
+  --radius: 4px;
   --font-display: "Barlow Condensed", sans-serif;
 }
 
@@ -622,7 +622,7 @@ function ArticlePage() {
 }
 
 // At runtime:
-// - Car & Driver: Blue button, sharp corners
+// - Car & Driver: Blue button, slightly rounded (4px)
 // - Cosmopolitan: Red button, rounded corners
 // - No code changes needed!`;
 
@@ -1073,9 +1073,9 @@ function ArticlePage() {
                   <h4 className="font-medium text-neutral-900 m-0 mb-2">CSS Variables (per brand)</h4>
                   <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-xs text-[#d4d4d4]">
                     <div><span className="text-[#6a9955]">/* {demoTheme} */</span></div>
-                    <div><span className="text-[#9cdcfe]">--primary</span>: <span className="text-[#ce9178]">{demoTheme === 'car-and-driver' ? '#1B5F8A' : demoTheme === 'cosmopolitan' ? '#d70000' : demoTheme === 'esquire' ? '#15263d' : demoTheme === 'harpers-bazaar' || demoTheme === 'elle' ? '#000000' : '#c41230'}</span>;</div>
-                    <div><span className="text-[#9cdcfe]">--radius</span>: <span className="text-[#ce9178]">{demoTheme === 'harpers-bazaar' || demoTheme === 'elle' ? '0px' : demoTheme === 'car-and-driver' || demoTheme === 'esquire' ? '4px' : '8px'}</span>;</div>
-                    <div><span className="text-[#9cdcfe]">--background</span>: <span className="text-[#ce9178]">{demoTheme === 'esquire' ? '#f5f6f8' : '#ffffff'}</span>;</div>
+                    <div><span className="text-[#9cdcfe]">--primary</span>: <span className="text-[#ce9178]">{demoTheme === 'car-and-driver' ? '#1B5F8A' : demoTheme === 'cosmopolitan' ? '#d70000' : demoTheme === 'esquire' ? '#15263d' : demoTheme === 'harpers-bazaar' || demoTheme === 'elle' ? '#000000' : '#198294'}</span>;</div>
+                    <div><span className="text-[#9cdcfe]">--radius</span>: <span className="text-[#ce9178]">{demoTheme === 'harpers-bazaar' || demoTheme === 'elle' || demoTheme === 'esquire' ? '0px' : demoTheme === 'car-and-driver' ? '4px' : '8px'}</span>;</div>
+                    <div><span className="text-[#9cdcfe]">--background</span>: <span className="text-[#ce9178]">{demoTheme === 'car-and-driver' ? '#ffffff' : demoTheme === 'esquire' ? '#f5f6f8' : demoTheme === 'cosmopolitan' ? '#fef7f9' : '#f5f5f5'}</span>;</div>
                   </div>
                 </div>
               </div>
