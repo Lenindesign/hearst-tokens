@@ -2,6 +2,13 @@
 
 import { useState } from 'react';
 import { ArticleCard } from '@/components/ArticleCard';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 
 // Code Block Component
 function CodeBlock({ code, title }: { code: string; title?: string }) {
@@ -135,7 +142,7 @@ function FlowDiagram({ phase }: { phase: 1 | 2 | 3 }) {
   );
 }
 
-// Brand-specific demo articles
+// Brand-specific demo articles (5 per brand for carousel)
 const demoArticles: Record<string, { title: string; excerpt: string; category: string; imageUrl: string; author: string; authorAvatar: string; date: string; readTime: string }[]> = {
   'car-and-driver': [
     {
@@ -147,6 +154,46 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       authorAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 4, 2026',
       readTime: '8 min read',
+    },
+    {
+      title: 'BMW M3 vs Mercedes-AMG C63: The Ultimate Showdown',
+      excerpt: 'We put two of the most iconic sport sedans head-to-head on track and street.',
+      category: 'Comparison',
+      imageUrl: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&h=450&fit=crop',
+      author: 'Mike Rodriguez',
+      authorAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 3, 2026',
+      readTime: '12 min read',
+    },
+    {
+      title: 'Electric Trucks Are Finally Ready for Real Work',
+      excerpt: 'The latest electric pickups can actually tow, haul, and work as hard as gas rivals.',
+      category: 'Technology',
+      imageUrl: 'https://images.unsplash.com/photo-1559416523-140ddc3d238c?w=800&h=450&fit=crop',
+      author: 'Sarah Mitchell',
+      authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 2, 2026',
+      readTime: '7 min read',
+    },
+    {
+      title: 'The Best Sports Cars Under $50,000 in 2026',
+      excerpt: 'You don\'t need to spend a fortune to have fun behind the wheel.',
+      category: 'Buyer\'s Guide',
+      imageUrl: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&h=450&fit=crop',
+      author: 'Chris Taylor',
+      authorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 1, 2026',
+      readTime: '10 min read',
+    },
+    {
+      title: 'How Hyundai Became a Performance Powerhouse',
+      excerpt: 'From economy cars to track-ready N models, the Korean brand\'s transformation is complete.',
+      category: 'Feature',
+      imageUrl: 'https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=450&fit=crop',
+      author: 'Amanda Chen',
+      authorAvatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+      date: 'Jan 31, 2026',
+      readTime: '9 min read',
     },
   ],
   'esquire': [
@@ -160,6 +207,46 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       date: 'Feb 4, 2026',
       readTime: '6 min read',
     },
+    {
+      title: 'Inside the Mind of Hollywood\'s Most Reclusive Director',
+      excerpt: 'After a decade of silence, the filmmaker finally opens up about art and legacy.',
+      category: 'Interview',
+      imageUrl: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&h=450&fit=crop',
+      author: 'David Chen',
+      authorAvatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 3, 2026',
+      readTime: '15 min read',
+    },
+    {
+      title: 'The Whiskey That\'s Worth the 20-Year Wait',
+      excerpt: 'A rare Japanese single malt finally hits American shores.',
+      category: 'Drinks',
+      imageUrl: 'https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=800&h=450&fit=crop',
+      author: 'Robert Hayes',
+      authorAvatar: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 2, 2026',
+      readTime: '8 min read',
+    },
+    {
+      title: 'The Watch Collection Every Man Should Start With',
+      excerpt: 'Five timepieces that form the foundation of a serious collection.',
+      category: 'Watches',
+      imageUrl: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=800&h=450&fit=crop',
+      author: 'Michael Torres',
+      authorAvatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 1, 2026',
+      readTime: '7 min read',
+    },
+    {
+      title: 'Why Every Man Needs a Good Tailor',
+      excerpt: 'The difference between looking good and looking great is in the details.',
+      category: 'Style',
+      imageUrl: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=800&h=450&fit=crop',
+      author: 'William Park',
+      authorAvatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face',
+      date: 'Jan 31, 2026',
+      readTime: '5 min read',
+    },
   ],
   'cosmopolitan': [
     {
@@ -171,6 +258,46 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       authorAvatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 4, 2026',
       readTime: '5 min read',
+    },
+    {
+      title: 'The Relationship Green Flags You Might Be Missing',
+      excerpt: 'Therapists share the subtle signs that your partner is actually a keeper.',
+      category: 'Love',
+      imageUrl: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=450&fit=crop',
+      author: 'Dr. Amanda Lee',
+      authorAvatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 3, 2026',
+      readTime: '7 min read',
+    },
+    {
+      title: 'The Skincare Ingredient Dermatologists Are Obsessed With',
+      excerpt: 'Move over retinol. This powerhouse ingredient is changing everything.',
+      category: 'Beauty',
+      imageUrl: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?w=800&h=450&fit=crop',
+      author: 'Michelle Torres',
+      authorAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 2, 2026',
+      readTime: '6 min read',
+    },
+    {
+      title: 'How to Finally Get Over Your Ex (For Real This Time)',
+      excerpt: 'Science-backed strategies for moving on and finding yourself again.',
+      category: 'Relationships',
+      imageUrl: 'https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=800&h=450&fit=crop',
+      author: 'Sarah Kim',
+      authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 1, 2026',
+      readTime: '8 min read',
+    },
+    {
+      title: 'The Best Hair Colors for Your Skin Tone',
+      excerpt: 'Find your perfect shade with our comprehensive guide.',
+      category: 'Hair',
+      imageUrl: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&h=450&fit=crop',
+      author: 'Emma Johnson',
+      authorAvatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face',
+      date: 'Jan 31, 2026',
+      readTime: '6 min read',
     },
   ],
   'good-housekeeping': [
@@ -184,6 +311,46 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       date: 'Feb 4, 2026',
       readTime: '10 min read',
     },
+    {
+      title: 'The Spring Cleaning Checklist You Actually Need',
+      excerpt: 'Our experts break down exactly what to clean, when, and how.',
+      category: 'Home',
+      imageUrl: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=450&fit=crop',
+      author: 'Susan Baker',
+      authorAvatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 3, 2026',
+      readTime: '8 min read',
+    },
+    {
+      title: 'Best Air Fryers of 2026: Tested by Our Kitchen Lab',
+      excerpt: 'We cooked over 200 batches to find the air fryers that actually deliver.',
+      category: 'Reviews',
+      imageUrl: 'https://images.unsplash.com/photo-1585325701165-351af916e581?w=800&h=450&fit=crop',
+      author: 'Test Kitchen',
+      authorAvatar: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 2, 2026',
+      readTime: '12 min read',
+    },
+    {
+      title: 'How to Organize Your Pantry Like a Pro',
+      excerpt: 'Simple systems that will transform your kitchen storage.',
+      category: 'Organization',
+      imageUrl: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=450&fit=crop',
+      author: 'Linda Chen',
+      authorAvatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 1, 2026',
+      readTime: '7 min read',
+    },
+    {
+      title: 'The Best Plants for Every Room in Your Home',
+      excerpt: 'Bring life to your space with these easy-care houseplants.',
+      category: 'Gardening',
+      imageUrl: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=450&fit=crop',
+      author: 'Nancy Green',
+      authorAvatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&h=100&fit=crop&crop=face',
+      date: 'Jan 31, 2026',
+      readTime: '6 min read',
+    },
   ],
   'harpers-bazaar': [
     {
@@ -196,6 +363,46 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       date: 'Feb 4, 2026',
       readTime: '9 min read',
     },
+    {
+      title: 'Inside the World\'s Most Exclusive Art Collection',
+      excerpt: 'A rare glimpse into a private collection that rivals major museums.',
+      category: 'Culture',
+      imageUrl: 'https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=800&h=450&fit=crop',
+      author: 'Alexandra Moore',
+      authorAvatar: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 3, 2026',
+      readTime: '11 min read',
+    },
+    {
+      title: 'The Jewelry Trends That Will Define This Year',
+      excerpt: 'From sculptural gold to meaningful gemstones, these are the pieces to invest in.',
+      category: 'Accessories',
+      imageUrl: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=450&fit=crop',
+      author: 'Sophie Chen',
+      authorAvatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 2, 2026',
+      readTime: '6 min read',
+    },
+    {
+      title: 'The Supermodels Who Changed Fashion Forever',
+      excerpt: 'A look back at the icons who defined an era.',
+      category: 'Icons',
+      imageUrl: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&h=450&fit=crop',
+      author: 'Diana Ross',
+      authorAvatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 1, 2026',
+      readTime: '10 min read',
+    },
+    {
+      title: 'The Most Anticipated Fashion Collaborations of 2026',
+      excerpt: 'Designer partnerships that are set to shake up the industry.',
+      category: 'News',
+      imageUrl: 'https://images.unsplash.com/photo-1445205170230-053b83016050?w=800&h=450&fit=crop',
+      author: 'Claire Bennett',
+      authorAvatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop&crop=face',
+      date: 'Jan 31, 2026',
+      readTime: '7 min read',
+    },
   ],
   'elle': [
     {
@@ -207,6 +414,46 @@ const demoArticles: Record<string, { title: string; excerpt: string; category: s
       authorAvatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 4, 2026',
       readTime: '7 min read',
+    },
+    {
+      title: 'Meet the Women Changing the Tech Industry',
+      excerpt: 'These founders and executives are breaking barriers and building the future.',
+      category: 'Women in Tech',
+      imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=450&fit=crop',
+      author: 'Rachel Kim',
+      authorAvatar: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 3, 2026',
+      readTime: '10 min read',
+    },
+    {
+      title: 'The Wellness Rituals That Actually Work',
+      excerpt: 'We cut through the noise to find the self-care practices backed by science.',
+      category: 'Wellness',
+      imageUrl: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=450&fit=crop',
+      author: 'Dr. Emily Walsh',
+      authorAvatar: 'https://images.unsplash.com/photo-1546961342-ea5f71b193f3?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 2, 2026',
+      readTime: '8 min read',
+    },
+    {
+      title: 'The Capsule Wardrobe Guide for 2026',
+      excerpt: 'Build a versatile closet with just 30 essential pieces.',
+      category: 'Style',
+      imageUrl: 'https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&h=450&fit=crop',
+      author: 'Olivia Chen',
+      authorAvatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face',
+      date: 'Feb 1, 2026',
+      readTime: '9 min read',
+    },
+    {
+      title: 'How to Build Your Personal Brand in 2026',
+      excerpt: 'Expert tips for standing out in a crowded digital landscape.',
+      category: 'Career',
+      imageUrl: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=450&fit=crop',
+      author: 'Maya Johnson',
+      authorAvatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=100&h=100&fit=crop&crop=face',
+      date: 'Jan 31, 2026',
+      readTime: '6 min read',
     },
   ],
 };
@@ -706,15 +953,35 @@ function ArticlePage() {
               ))}
             </div>
 
-            {/* Live Preview */}
+            {/* Carousel Preview */}
             <div 
               data-theme={demoTheme}
               className="rounded-lg p-8 mb-6"
               style={{ backgroundColor: 'var(--background)' }}
             >
-              <div className="max-w-sm mx-auto">
-                <ArticleCard {...demoArticles[demoTheme][0]} />
-              </div>
+              <h3 
+                className="text-lg font-semibold mb-4"
+                style={{ color: 'var(--foreground)' }}
+              >
+                Article Carousel (5 Cards)
+              </h3>
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+                className="w-full"
+              >
+                <CarouselContent className="-ml-4">
+                  {demoArticles[demoTheme].map((article, index) => (
+                    <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                      <ArticleCard {...article} />
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-2" />
+                <CarouselNext className="right-2" />
+              </Carousel>
             </div>
 
             {/* What's Happening */}
