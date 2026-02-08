@@ -548,7 +548,7 @@ export default function TokenPipelinePage() {
       },
       "radius": { "value": "4px", "type": "dimension" },
       "font": {
-        "display": { "value": "Barlow Condensed", "type": "fontFamily" }
+        "display": { "value": "Inter", "type": "fontFamily" }
       }
     },
     "cosmopolitan": {
@@ -558,7 +558,7 @@ export default function TokenPipelinePage() {
       },
       "radius": { "value": "8px", "type": "dimension" },
       "font": {
-        "display": { "value": "Playfair Display", "type": "fontFamily" }
+        "display": { "value": "ChronicleDisplay", "type": "fontFamily" }
       }
     }
   }
@@ -581,7 +581,7 @@ export default function TokenPipelinePage() {
   --primary: #1B5F8A;
   --accent: #DBCA8B;
   --radius: 4px;
-  --font-display: "Barlow Condensed", sans-serif;
+  --font-display: Inter, sans-serif;
 }
 
 /* Cosmopolitan theme */
@@ -589,7 +589,7 @@ export default function TokenPipelinePage() {
   --primary: #d70000;
   --accent: #ff69b4;
   --radius: 8px;
-  --font-display: "Playfair Display", serif;
+  --font-display: "ChronicleDisplay", serif;
 }`;
 
   const styleDictionaryConfig = `// build-tokens.js
@@ -1866,7 +1866,7 @@ jobs:
                     <div className="mt-3 bg-neutral-200 rounded p-3 font-mono text-xs">
                       <code>--primary: #1B5F8A;</code><br />
                       <code>--radius: 4px;</code><br />
-                      <code>--font-display: &quot;Barlow Condensed&quot;;</code>
+                      <code>--font-display: Inter, sans-serif;</code>
                     </div>
                   </div>
                 </div>
@@ -2440,10 +2440,10 @@ jobs:
                 </div>
               </div>
               <div className="flex items-center gap-3 p-5 bg-neutral-200 rounded-lg">
-                <div className="w-10 h-10 rounded-md flex-shrink-0 bg-neutral-900 text-white flex items-center justify-center font-display text-lg font-bold">Aa</div>
+                <div className="w-10 h-10 rounded-md flex-shrink-0 bg-neutral-900 text-white flex items-center justify-center font-sans text-lg font-bold">Aa</div>
                 <div>
                   <p className="text-sm font-bold text-neutral-900 m-0">Font Token</p>
-                  <p className="text-sm text-neutral-600 m-0">Barlow Condensed — Car and Driver&apos;s display font</p>
+                  <p className="text-sm text-neutral-600 m-0">Inter — Car and Driver&apos;s display font</p>
                 </div>
               </div>
             </div>
@@ -2475,7 +2475,7 @@ jobs:
                       </div>
                       <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
                         <span className="text-[#569cd6]">FONT</span><br/>
-                        <span className="text-[#ce9178]">_font.family.barlow-condensed</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#b5cea8]">&quot;Barlow Condensed&quot;</span>
+                        <span className="text-[#ce9178]">_font.family.inter</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#b5cea8]">&quot;Inter&quot;</span>
                       </div>
                     </div>
                     <p className="text-sm text-neutral-500 m-0 mt-2">
@@ -2510,9 +2510,9 @@ jobs:
                       <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
                         <span className="text-[#569cd6]">FONT</span><br/>
                         <span className="text-[#9d9d9d]">// Car and Driver</span><br/>
-                        <span className="text-[#ce9178]">font.family.display</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_font.family.barlow-condensed}'}</span><br/>
-                        <span className="text-[#9d9d9d]">// Esquire</span><br/>
-                        <span className="text-[#ce9178]">font.family.display</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_font.family.chronicle}'}</span>
+                        <span className="text-[#ce9178]">font.family.display</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_font.family.inter}'}</span><br/>
+                        <span className="text-[#9d9d9d]">// Good Housekeeping</span><br/>
+                        <span className="text-[#ce9178]">font.family.display</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_font.family.barlow-semi-condensed}'}</span>
                       </div>
                     </div>
                     <p className="text-sm text-neutral-500 m-0 mt-2">
@@ -2546,7 +2546,7 @@ jobs:
                       <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
                         <span className="text-[#569cd6]">FONT</span><br/>
                         <span className="text-[#d7ba7d]">:root</span> <span className="text-[#d4d4d4]">{'{'}</span><br/>
-                        <span className="text-[#d4d4d4]">{'  '}</span><span className="text-[#9cdcfe]">--font-display</span><span className="text-[#d4d4d4]">:</span> <span className="text-[#b5cea8]">&quot;Barlow Condensed&quot;</span><span className="text-[#d4d4d4]">;</span><br/>
+                        <span className="text-[#d4d4d4]">{'  '}</span><span className="text-[#9cdcfe]">--font-display</span><span className="text-[#d4d4d4]">:</span> <span className="text-[#b5cea8]">Inter, sans-serif</span><span className="text-[#d4d4d4]">;</span><br/>
                         <span className="text-[#d4d4d4]">{'}'}</span>
                       </div>
                     </div>
@@ -2578,7 +2578,7 @@ jobs:
                       <span className="text-[#d4d4d4]">&lt;/button&gt;</span>
                     </div>
                     <p className="text-sm text-neutral-500 m-0 mt-2">
-                      <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">bg-primary</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">var(--primary)</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">#1B5F8A</code> &nbsp;|&nbsp; <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">font-display</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">var(--font-display)</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">Barlow Condensed</code>
+                      <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">bg-primary</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">var(--primary)</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">#1B5F8A</code> &nbsp;|&nbsp; <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">font-display</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">var(--font-display)</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">Inter</code>
                     </p>
                   </div>
                 </div>
@@ -2640,8 +2640,8 @@ jobs:
 
   FONT TOKEN:
   _font.family       ──▶ font.family    ──▶ --font-display ──▶ font-display ──▶ headline.font
-   .barlow-condensed      .display                                                nav.font
-   "Barlow Condensed"
+   .inter                  .display                                               nav.font
+   "Inter"
 
   ──────────────────────────────────────────────────────────────────────────────────────────
   What it IS          What it MEANS       How browser        How devs           What it DOES
@@ -2661,14 +2661,14 @@ jobs:
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {[
-                { theme: 'car-and-driver', name: 'Car and Driver', colorPrimitive: '_palette.blue.42', hex: '#1B5F8A', fontPrimitive: '_font.family.barlow-condensed', fontName: 'Barlow Condensed' },
-                { theme: 'cosmopolitan', name: 'Cosmopolitan', colorPrimitive: '_palette.red.48', hex: '#d70000', fontPrimitive: '_font.family.helvetica-neue', fontName: 'Helvetica Neue' },
-                { theme: 'esquire', name: 'Esquire', colorPrimitive: '_palette.blue.9', hex: '#15263d', fontPrimitive: '_font.family.chronicle', fontName: 'Chronicle SSm (Serif)' },
+                { theme: 'car-and-driver', name: 'Car and Driver', colorPrimitive: '_palette.blue.42', hex: '#1B5F8A', fontPrimitive: '_font.family.inter', fontName: 'Inter', fontStyle: { fontFamily: 'var(--font-inter), Inter, sans-serif', fontWeight: 700 } },
+                { theme: 'good-housekeeping', name: 'Good Housekeeping', colorPrimitive: '_palette.teal.31', hex: '#198294', fontPrimitive: '_font.family.barlow-semi-condensed', fontName: 'Barlow Semi Condensed', fontStyle: { fontFamily: 'var(--font-barlow-semi-condensed), "Barlow Semi Condensed", sans-serif', fontWeight: 600 } },
+                { theme: 'harpers-bazaar', name: "Harper's Bazaar", colorPrimitive: '_palette.gray.7', hex: '#000000', fontPrimitive: '_font.family.newparistextbook', fontName: 'NewParisTextBook (Serif)', fontStyle: { fontFamily: '"NewParisTextBook", "Didot", Georgia, serif', fontWeight: 400 } },
               ].map((brand) => (
                 <div key={brand.theme} data-theme={brand.theme} className="bg-background border border-neutral-400 rounded-xl overflow-hidden">
                   <div className="p-5">
                     <p className="text-xs text-muted-foreground uppercase tracking-wide m-0 mb-2">{brand.name}</p>
-                    <h3 className="text-xl font-bold text-foreground font-display m-0 mb-3">2026 Porsche 911 GT3 RS</h3>
+                    <h3 className="text-xl text-foreground m-0 mb-3" style={brand.fontStyle}>2026 Porsche 911 GT3 RS</h3>
                     <button className="w-full px-4 py-2.5 text-sm font-medium bg-primary text-primary-foreground rounded-md">
                       Read Review
                     </button>
@@ -2807,7 +2807,7 @@ jobs:
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 mb-6">
               {[
-                { layer: '1', q: 'What is it?', color: '_palette.blue.42', font: '_font.family.barlow-condensed' },
+                { layer: '1', q: 'What is it?', color: '_palette.blue.42', font: '_font.family.inter' },
                 { layer: '2', q: 'What does it mean?', color: 'palette.primary', font: 'font.family.display' },
                 { layer: '3', q: 'Browser sees?', color: '--primary', font: '--font-display' },
                 { layer: '4', q: 'Devs write?', color: 'bg-primary', font: 'font-display' },
