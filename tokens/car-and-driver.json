@@ -33,7 +33,7 @@
   },
   "typography": {
     "font-primary": { "value": "Inter, -apple-system, BlinkMacSystemFont, sans-serif", "type": "fontFamilies" },
-    "font-display": { "value": "Inter, -apple-system, BlinkMacSystemFont, sans-serif", "type": "fontFamilies" },
+    "font-display": { "value": "Barlow Condensed, -apple-system, sans-serif", "type": "fontFamilies" },
     "font-display-weight": { "value": "700", "type": "fontWeights" },
     "font-serif": { "value": "Lora, Georgia, serif", "type": "fontFamilies" }
   },
