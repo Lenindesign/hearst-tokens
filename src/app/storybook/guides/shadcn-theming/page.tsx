@@ -37,6 +37,8 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from '@/components/ui/context-menu';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 // Resizable removed due to package compatibility issue
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from '@/components/ui/chart';
+import { Bar, BarChart, Line, LineChart, Pie, PieChart, Area, AreaChart, CartesianGrid, XAxis, YAxis, Cell } from 'recharts';
 
 // Code Block Component
 function CodeBlock({ code, title }: { code: string; title?: string }) {
@@ -1496,10 +1498,219 @@ npx shadcn@latest add dialog dropdown-menu tabs
             </div>
           </div>
 
+          {/* ===== CHARTS ===== */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">Charts — Pricing &amp; Data</h2>
+
+            {/* Bar Chart — MSRP Comparison */}
+            <ShowcaseSection title="Bar Chart — MSRP Comparison" description="Compare base pricing across performance models.">
+              <Card>
+                <CardHeader>
+                  <CardTitle>2026 Sports Car MSRP</CardTitle>
+                  <CardDescription>Base manufacturer&apos;s suggested retail price (USD)</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ChartContainer
+                    config={{
+                      msrp: { label: 'MSRP', color: '#1B5F8A' },
+                    }}
+                    className="h-[300px] w-full"
+                  >
+                    <BarChart
+                      data={[
+                        { model: 'Civic Si', msrp: 30800 },
+                        { model: 'GR86', msrp: 32600 },
+                        { model: 'Supra', msrp: 57540 },
+                        { model: 'M3 Comp', msrp: 76900 },
+                        { model: 'AMG C63', msrp: 85500 },
+                        { model: 'Corvette Z06', msrp: 113900 },
+                        { model: '911 GT3 RS', msrp: 223800 },
+                      ]}
+                      margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
+                    >
+                      <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                      <XAxis dataKey="model" tickLine={false} axisLine={false} fontSize={12} />
+                      <YAxis tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} tickLine={false} axisLine={false} fontSize={12} />
+                      <ChartTooltip content={<ChartTooltipContent formatter={(value) => `$${Number(value).toLocaleString()}`} />} />
+                      <Bar dataKey="msrp" fill="#1B5F8A" radius={[2, 2, 0, 0]} />
+                    </BarChart>
+                  </ChartContainer>
+                </CardContent>
+              </Card>
+            </ShowcaseSection>
+
+            {/* Line Chart — Price Trends */}
+            <ShowcaseSection title="Line Chart — Price Trends" description="Track how average new car prices have changed over recent years.">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Average New Car Transaction Price</CardTitle>
+                  <CardDescription>U.S. average in thousands (USD)</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ChartContainer
+                    config={{
+                      sedan: { label: 'Sedan', color: '#1B5F8A' },
+                      suv: { label: 'SUV', color: '#DBCA8B' },
+                      truck: { label: 'Truck', color: '#D2232A' },
+                    }}
+                    className="h-[300px] w-full"
+                  >
+                    <LineChart
+                      data={[
+                        { year: '2020', sedan: 32, suv: 41, truck: 44 },
+                        { year: '2021', sedan: 34, suv: 44, truck: 48 },
+                        { year: '2022', sedan: 37, suv: 48, truck: 53 },
+                        { year: '2023', sedan: 36, suv: 47, truck: 55 },
+                        { year: '2024', sedan: 35, suv: 46, truck: 56 },
+                        { year: '2025', sedan: 36, suv: 48, truck: 58 },
+                        { year: '2026', sedan: 37, suv: 49, truck: 60 },
+                      ]}
+                      margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
+                    >
+                      <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                      <XAxis dataKey="year" tickLine={false} axisLine={false} fontSize={12} />
+                      <YAxis tickFormatter={(v) => `$${v}k`} tickLine={false} axisLine={false} fontSize={12} />
+                      <ChartTooltip content={<ChartTooltipContent formatter={(value) => `$${value}k`} />} />
+                      <ChartLegend content={<ChartLegendContent />} />
+                      <Line type="monotone" dataKey="sedan" stroke="#1B5F8A" strokeWidth={2} dot={{ r: 4 }} />
+                      <Line type="monotone" dataKey="suv" stroke="#DBCA8B" strokeWidth={2} dot={{ r: 4 }} />
+                      <Line type="monotone" dataKey="truck" stroke="#D2232A" strokeWidth={2} dot={{ r: 4 }} />
+                    </LineChart>
+                  </ChartContainer>
+                </CardContent>
+              </Card>
+            </ShowcaseSection>
+
+            {/* Area Chart — EV Adoption */}
+            <ShowcaseSection title="Area Chart — EV Market Share" description="Electric vehicle sales as percentage of total new car sales.">
+              <Card>
+                <CardHeader>
+                  <CardTitle>EV Market Share Growth</CardTitle>
+                  <CardDescription>Percentage of new vehicle sales that are fully electric</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ChartContainer
+                    config={{
+                      ev: { label: 'EV Share %', color: '#1B5F8A' },
+                    }}
+                    className="h-[250px] w-full"
+                  >
+                    <AreaChart
+                      data={[
+                        { year: '2019', ev: 1.8 },
+                        { year: '2020', ev: 2.2 },
+                        { year: '2021', ev: 4.1 },
+                        { year: '2022', ev: 5.9 },
+                        { year: '2023', ev: 7.6 },
+                        { year: '2024', ev: 9.8 },
+                        { year: '2025', ev: 12.4 },
+                        { year: '2026', ev: 15.1 },
+                      ]}
+                      margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
+                    >
+                      <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                      <XAxis dataKey="year" tickLine={false} axisLine={false} fontSize={12} />
+                      <YAxis tickFormatter={(v) => `${v}%`} tickLine={false} axisLine={false} fontSize={12} />
+                      <ChartTooltip content={<ChartTooltipContent formatter={(value) => `${value}%`} />} />
+                      <defs>
+                        <linearGradient id="fillEv" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#1B5F8A" stopOpacity={0.3} />
+                          <stop offset="95%" stopColor="#1B5F8A" stopOpacity={0.02} />
+                        </linearGradient>
+                      </defs>
+                      <Area type="monotone" dataKey="ev" stroke="#1B5F8A" strokeWidth={2} fill="url(#fillEv)" />
+                    </AreaChart>
+                  </ChartContainer>
+                </CardContent>
+              </Card>
+            </ShowcaseSection>
+
+            {/* Pie Chart — Segment Breakdown */}
+            <ShowcaseSection title="Pie Chart — Market Segment Breakdown" description="U.S. new vehicle sales by segment for 2026.">
+              <Card>
+                <CardHeader>
+                  <CardTitle>2026 U.S. Sales by Segment</CardTitle>
+                  <CardDescription>Estimated market share by vehicle type</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ChartContainer
+                    config={{
+                      suv: { label: 'SUV / Crossover', color: '#1B5F8A' },
+                      truck: { label: 'Pickup Truck', color: '#222222' },
+                      sedan: { label: 'Sedan', color: '#DBCA8B' },
+                      ev: { label: 'Electric', color: '#A59143' },
+                      other: { label: 'Other', color: '#D2232A' },
+                    }}
+                    className="h-[300px] w-full"
+                  >
+                    <PieChart>
+                      <ChartTooltip content={<ChartTooltipContent />} />
+                      <ChartLegend content={<ChartLegendContent />} />
+                      <Pie
+                        data={[
+                          { name: 'SUV / Crossover', value: 54, fill: '#1B5F8A' },
+                          { name: 'Pickup Truck', value: 20, fill: '#222222' },
+                          { name: 'Sedan', value: 12, fill: '#DBCA8B' },
+                          { name: 'Electric', value: 9, fill: '#A59143' },
+                          { name: 'Other', value: 5, fill: '#D2232A' },
+                        ]}
+                        dataKey="value"
+                        nameKey="name"
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={100}
+                        strokeWidth={2}
+                        stroke="#fff"
+                      />
+                    </PieChart>
+                  </ChartContainer>
+                </CardContent>
+              </Card>
+            </ShowcaseSection>
+
+            {/* Grouped Bar — Pricing by Segment */}
+            <ShowcaseSection title="Grouped Bar — Average Price by Segment" description="Compare average transaction prices across vehicle segments and powertrains.">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Average Price: ICE vs Electric</CardTitle>
+                  <CardDescription>2026 average transaction price by segment (USD)</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ChartContainer
+                    config={{
+                      ice: { label: 'ICE / Hybrid', color: '#1B5F8A' },
+                      electric: { label: 'Electric', color: '#DBCA8B' },
+                    }}
+                    className="h-[300px] w-full"
+                  >
+                    <BarChart
+                      data={[
+                        { segment: 'Compact', ice: 28500, electric: 34200 },
+                        { segment: 'Midsize', ice: 35800, electric: 42500 },
+                        { segment: 'SUV', ice: 48200, electric: 55800 },
+                        { segment: 'Luxury', ice: 68500, electric: 78300 },
+                        { segment: 'Truck', ice: 58900, electric: 72400 },
+                      ]}
+                      margin={{ top: 5, right: 10, left: 10, bottom: 5 }}
+                    >
+                      <CartesianGrid vertical={false} strokeDasharray="3 3" />
+                      <XAxis dataKey="segment" tickLine={false} axisLine={false} fontSize={12} />
+                      <YAxis tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} tickLine={false} axisLine={false} fontSize={12} />
+                      <ChartTooltip content={<ChartTooltipContent formatter={(value) => `$${Number(value).toLocaleString()}`} />} />
+                      <ChartLegend content={<ChartLegendContent />} />
+                      <Bar dataKey="ice" fill="#1B5F8A" radius={[2, 2, 0, 0]} />
+                      <Bar dataKey="electric" fill="#DBCA8B" radius={[2, 2, 0, 0]} />
+                    </BarChart>
+                  </ChartContainer>
+                </CardContent>
+              </Card>
+            </ShowcaseSection>
+          </div>
+
           {/* Summary */}
           <section className="bg-neutral-900 rounded-lg p-8 text-neutral-100">
             <h2 className="text-2xl font-bold m-0 mb-3">
-              35 Components, 1 Theme
+              35+ Components, 1 Theme
             </h2>
             <p className="text-base text-neutral-400 m-0">
               Every component above is styled entirely through CSS variables. Switch the <code className="text-neutral-300">data-theme</code> attribute and they all update instantly — no code changes, no re-renders.
