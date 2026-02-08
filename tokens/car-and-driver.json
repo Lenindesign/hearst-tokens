@@ -29,8 +29,7 @@
     "red": { "value": "#D2232A", "type": "color" },
     "green": { "value": "#26870D", "type": "color" },
     "dark-gold": { "value": "#A59143", "type": "color" },
-    "light-blue": { "value": "#F1F7F7", "type": "color" },
-    "orange": { "value": "#F7E4CA", "type": "color" }
+    "light-blue": { "value": "#F1F7F7", "type": "color" }
   },
   "typography": {
     "font-primary": { "value": "Inter, -apple-system, BlinkMacSystemFont, sans-serif", "type": "fontFamilies" },
