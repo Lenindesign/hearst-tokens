@@ -9,7 +9,8 @@
     "700": { "value": "#757575", "type": "color" },
     "800": { "value": "#575757", "type": "color" },
     "900": { "value": "#222222", "type": "color" },
-    "1000": { "value": "#121212", "type": "color" }
+    "1000": { "value": "#121212", "type": "color" },
+    "orange": { "value": "#F7E4CA", "type": "color" }
   },
   "spacing": {
     "0": { "value": "0px", "type": "spacing" },
