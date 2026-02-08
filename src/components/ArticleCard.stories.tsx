@@ -19,14 +19,14 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const sampleImage = 'https://hips.hearstapps.com/hmg-prod/images/2025-porsche-911-gt3-rs-101-6724bfa49d1e6.jpg?crop=0.677xw:0.508xh;0.145xw,0.324xh&resize=768:*';
+const sampleImage = 'https://hips.hearstapps.com/hmg-prod/images/2025-porsche-911-gt3-rs-manthey-racing1-6740bdc5bdc0c.jpg?crop=0.921045192035863xw:1xh;center,top&resize=980:*';
 
 export const Default: Story = {
   args: {
     title: 'The 2026 Porsche 911 GT3 RS Is the Ultimate Track Weapon',
     excerpt: 'With 518 horsepower and aerodynamics borrowed from motorsport, the new GT3 RS sets a new benchmark.',
     category: 'First Drive',
-    imageUrl: sampleImage,
+    imageUrl: "https://hearts-tokens.netlify.app/_next/image?url=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod%2Fimages%2F2025-porsche-911-gt3-rs-manthey-racing1-6740bdc5bdc0c.jpg%3Fcrop%3D0.921045192035863xw%3A1xh%3Bcenter%2Ctop%26resize%3D980%3A*&w=3840&q=75",
     author: 'John Pearley Huffman',
     date: 'Jan 15, 2026',
     readTime: '6 min read',
@@ -40,6 +40,7 @@ export const WithoutReadTime: Story = {
     excerpt: 'Rivian\'s entry into the mainstream market starts under $50,000.',
     category: 'News',
     readTime: undefined,
+    imageUrl: "https://hearts-tokens.netlify.app/_next/image?url=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod%2Fimages%2F2025-porsche-911-gt3-rs-manthey-racing1-6740bdc5bdc0c.jpg%3Fcrop%3D0.921045192035863xw%3A1xh%3Bcenter%2Ctop%26resize%3D980%3A*&w=3840&q=75"
   },
 };
 
@@ -76,7 +77,7 @@ export const CardGrid: Story = {
         title="Rivian R2 First Look: A Smaller, More Affordable EV"
         excerpt="Rivian's entry into the mainstream market starts under $50,000."
         category="News"
-        imageUrl="https://hips.hearstapps.com/hmg-prod/images/2025-bmw-m5-110-672b4de988e1d.jpg?crop=0.668xw:0.501xh;0.142xw,0.363xh&resize=768:*"
+        imageUrl="https://hips.hearstapps.com/hmg-prod/images/2026-toyota-gr86-yuzu-special-edition-pr-102-67ed5cc10d1ce.jpg?resize=768:*"
         author="Joey Capparella"
         date="Jan 12, 2026"
       />

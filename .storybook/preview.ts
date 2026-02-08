@@ -25,6 +25,11 @@ const preview: Preview = {
     a11y: {
       test: 'todo',
     },
+    nextjs: {
+      image: {
+        loading: 'eager',
+      },
+    },
     layout: 'padded',
   },
   globalTypes: {

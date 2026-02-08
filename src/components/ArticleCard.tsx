@@ -62,6 +62,7 @@ export function ArticleCard({
           src={imageUrl}
           alt={title}
           fill
+          unoptimized
           className="object-cover transition-transform duration-300 hover:scale-105"
         />
         {/* Category Badge - positioned over image */}
@@ -107,6 +108,7 @@ export function ArticleCard({
                 alt={author}
                 width={32}
                 height={32}
+                unoptimized
                 className="object-cover w-full h-full"
               />
             ) : (
