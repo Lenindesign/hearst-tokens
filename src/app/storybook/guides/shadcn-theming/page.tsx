@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -99,6 +99,53 @@ function ShowcaseSection({ title, description, children }: { title: string; desc
       {!description && <div className="mb-4" />}
       <div className="space-y-4">{children}</div>
     </section>
+  );
+}
+
+// Suspense-style loading demo
+function SuspenseDemo() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  const simulateLoad = () => {
+    setIsLoading(true);
+    setHasLoaded(false);
+    setTimeout(() => {
+      setIsLoading(false);
+      setHasLoaded(true);
+    }, 2000);
+  };
+
+  return (
+    <div className="space-y-4">
+      <div className="flex items-center gap-3">
+        <Button size="sm" variant="outline" onClick={simulateLoad} disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'Simulate Suspense'}
+        </Button>
+        {hasLoaded && <span className="text-xs text-muted-foreground">Content loaded!</span>}
+      </div>
+      <div className="flex items-center space-x-4">
+        {isLoading || !hasLoaded ? (
+          <>
+            <Skeleton className="h-12 w-12 rounded-full" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[250px]" />
+              <Skeleton className="h-4 w-[200px]" />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="h-12 w-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
+              CD
+            </div>
+            <div className="space-y-1">
+              <p className="text-sm font-medium leading-none">Car and Driver</p>
+              <p className="text-sm text-muted-foreground">Automotive journalism since 1955</p>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -822,7 +869,7 @@ npx shadcn@latest add dialog dropdown-menu tabs
             </ShowcaseSection>
 
             <ShowcaseSection title="Separator" description="Visually or semantically separates content.">
-              <div>
+              <div className="bg-card rounded-lg border border-border p-6">
                 <div className="space-y-1">
                   <h4 className="text-sm font-medium leading-none">Car and Driver</h4>
                   <p className="text-sm text-muted-foreground">Automotive journalism since 1955.</p>
@@ -990,12 +1037,26 @@ npx shadcn@latest add dialog dropdown-menu tabs
               </div>
             </ShowcaseSection>
 
-            <ShowcaseSection title="Skeleton" description="Used to show a placeholder while content is loading.">
-              <div className="flex items-center space-x-4">
-                <Skeleton className="h-12 w-12 rounded-full" />
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-[250px]" />
-                  <Skeleton className="h-4 w-[200px]" />
+            <ShowcaseSection title="Skeleton & Suspense" description="Used to show a placeholder while content is loading. Click to simulate a loading state.">
+              <div className="bg-card rounded-lg border border-border p-6 space-y-6">
+                {/* Static skeleton example */}
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wide">Skeleton Placeholder</p>
+                  <div className="flex items-center space-x-4">
+                    <Skeleton className="h-12 w-12 rounded-full" />
+                    <div className="space-y-2">
+                      <Skeleton className="h-4 w-[250px]" />
+                      <Skeleton className="h-4 w-[200px]" />
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
+                {/* Suspense-style loading demo */}
+                <div>
+                  <p className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wide">Suspense Demo</p>
+                  <SuspenseDemo />
                 </div>
               </div>
             </ShowcaseSection>
