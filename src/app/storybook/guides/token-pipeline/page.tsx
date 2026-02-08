@@ -498,7 +498,7 @@ const brandLogos: Record<string, string> = {
 };
 
 export default function TokenPipelinePage() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'demo' | 'architecture' | 'articles'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'demo' | 'architecture' | 'articles' | 'simple'>('overview');
   const [demoTheme, setDemoTheme] = useState('car-and-driver');
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
@@ -704,6 +704,16 @@ function ArticlePage() {
         >
           Articles
         </button>
+        <button
+          onClick={() => setActiveTab('simple')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            activeTab === 'simple'
+              ? 'bg-neutral-900 text-white'
+              : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+          }`}
+        >
+          Explain It Simply
+        </button>
       </div>
 
       {activeTab === 'overview' && (
@@ -877,16 +887,54 @@ function ArticlePage() {
 │  They automatically adapt to any brand theme!                   │
 └─────────────────────────────────┬───────────────────────────────┘
                                   │
-                                  ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                         Runtime                                 │
-│                                                                 │
-│  <html data-theme="cosmopolitan">                              │
-│                                                                 │
-│  CSS cascade applies the correct brand's variables.             │
-│  All components instantly reflect the brand's look.             │
-└─────────────────────────────────────────────────────────────────┘
+                     ┌────────────┴────────────┐
+                     │                         │
+                     ▼                         ▼
+┌──────────────────────────────┐ ┌────────────────────────────────┐
+│          Runtime             │ │     ★ Storybook (this app)     │
+│                              │ │                                │
+│  <html data-theme="cosmo">  │ │  Documents every layer above.  │
+│                              │ │  Previews all 6 brands live.   │
+│  CSS cascade applies the     │ │  Proves tokens → components   │
+│  correct brand variables.    │ │  work end-to-end before code   │
+│  Components instantly        │ │  ever ships to production.     │
+│  reflect the brand's look.   │ │                                │
+└──────────────────────────────┘ │  Acts as the single place      │
+                                 │  where designers, developers,  │
+                                 │  and PMs can verify the system │
+                                 │  is working correctly.         │
+                                 └────────────────────────────────┘
 `}</pre>
+            </div>
+
+            <div className="bg-neutral-100 border border-neutral-400 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-neutral-900 m-0 mb-4">How Storybook Ties It All Together</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white border border-neutral-300 rounded-lg p-4">
+                  <h4 className="text-sm font-semibold text-neutral-900 m-0 mb-2">Visual Proof of the Pipeline</h4>
+                  <p className="text-sm text-neutral-700 m-0">
+                    Storybook renders the actual components with real tokens. If a token is wrong or a component breaks, you see it here first — not in production.
+                  </p>
+                </div>
+                <div className="bg-white border border-neutral-300 rounded-lg p-4">
+                  <h4 className="text-sm font-semibold text-neutral-900 m-0 mb-2">Cross-Brand Testing</h4>
+                  <p className="text-sm text-neutral-700 m-0">
+                    The Articles tab shows all 6 brands side by side. One glance confirms that the same component adapts correctly to every theme.
+                  </p>
+                </div>
+                <div className="bg-white border border-neutral-300 rounded-lg p-4">
+                  <h4 className="text-sm font-semibold text-neutral-900 m-0 mb-2">Living Documentation</h4>
+                  <p className="text-sm text-neutral-700 m-0">
+                    Instead of static specs that go stale, Storybook pulls from the same <code className="bg-neutral-200 px-1 rounded text-xs">globals.css</code> and components that production uses. Docs are always current.
+                  </p>
+                </div>
+                <div className="bg-white border border-neutral-300 rounded-lg p-4">
+                  <h4 className="text-sm font-semibold text-neutral-900 m-0 mb-2">Shared Language for Teams</h4>
+                  <p className="text-sm text-neutral-700 m-0">
+                    Designers, developers, and PMs all reference the same Storybook. It bridges the gap between Figma designs and shipped code.
+                  </p>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -1973,6 +2021,314 @@ jobs:
                 <div className="flex items-center gap-3 p-3 bg-white rounded border border-neutral-300">
                   <span className="w-6 h-6 rounded-full bg-neutral-400 text-white flex items-center justify-center text-xs font-bold">5</span>
                   <span className="text-sm"><strong>Final:</strong> User sees a blue &quot;SHOP NEW&quot; button on Car and Driver</span>
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {activeTab === 'simple' && (
+        <>
+          {/* The Problem */}
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-neutral-1000 mb-6">
+              The Problem We&apos;re Solving
+            </h2>
+            <div className="bg-white border border-neutral-400 rounded-xl p-8 mb-8">
+              <p className="text-xl text-neutral-800 m-0 leading-relaxed">
+                Hearst publishes <strong>10+ brands</strong> — Car and Driver, Esquire, Cosmopolitan, Good Housekeeping, and more. Each brand has its own colors, fonts, and personality. But they all share the same website components (buttons, cards, menus, etc.).
+              </p>
+              <div className="mt-6 p-5 bg-neutral-200 rounded-lg">
+                <p className="text-base text-neutral-700 m-0">
+                  <strong>Without a system:</strong> Every time you build a button, you build it 10 different times — once per brand. Change one thing? You have to change it in 10 places. Things break. Things get inconsistent. Nobody is happy.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* The Analogy */}
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-neutral-1000 mb-6">
+              Think of It Like a Coloring Book
+            </h2>
+            <div className="space-y-6">
+              <div className="bg-white border border-neutral-400 rounded-xl p-8">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 rounded-2xl bg-neutral-900 text-white flex items-center justify-center text-3xl flex-shrink-0">
+                    1
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-2">The Drawing (Component)</h3>
+                    <p className="text-lg text-neutral-700 m-0 leading-relaxed">
+                      We draw a card layout <strong>once</strong>. It has an image area, a title area, an author area, and a button. This is the &quot;coloring book page&quot; — the shape is always the same.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center">
+                <div className="w-0.5 h-8 bg-neutral-400"></div>
+              </div>
+
+              <div className="bg-white border border-neutral-400 rounded-xl p-8">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 rounded-2xl bg-neutral-900 text-white flex items-center justify-center text-3xl flex-shrink-0">
+                    2
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-2">The Crayons (Design Tokens)</h3>
+                    <p className="text-lg text-neutral-700 m-0 leading-relaxed">
+                      Each brand gets its own <strong>box of crayons</strong>. Car and Driver&apos;s box has bold blues and blacks. Cosmopolitan&apos;s box has hot pinks and bright whites. Harper&apos;s Bazaar&apos;s box has elegant black and gold.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-center">
+                <div className="w-0.5 h-8 bg-neutral-400"></div>
+              </div>
+
+              <div className="bg-white border border-neutral-400 rounded-xl p-8">
+                <div className="flex items-start gap-6">
+                  <div className="w-16 h-16 rounded-2xl bg-neutral-900 text-white flex items-center justify-center text-3xl flex-shrink-0">
+                    3
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-2">The Result (Themed UI)</h3>
+                    <p className="text-lg text-neutral-700 m-0 leading-relaxed">
+                      Same drawing + different crayons = <strong>completely different look</strong>. The drawing doesn&apos;t change. You just swap the crayon box. That&apos;s the entire idea.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Live proof */}
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-neutral-1000 mb-6">
+              See It for Yourself
+            </h2>
+            <p className="text-lg text-neutral-700 mb-6">
+              Here&apos;s the <strong>exact same card</strong> colored by three different brand crayon boxes:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              {[
+                { id: 'car-and-driver', name: 'Car and Driver' },
+                { id: 'cosmopolitan', name: 'Cosmopolitan' },
+                { id: 'harpers-bazaar', name: "Harper's Bazaar" },
+              ].map((theme) => (
+                <div
+                  key={theme.id}
+                  data-theme={theme.id}
+                  className="rounded-xl overflow-hidden"
+                  style={{ backgroundColor: 'var(--background)' }}
+                >
+                  <div className="p-4 pb-2 flex items-center gap-3">
+                    {brandLogos[theme.id] && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={brandLogos[theme.id]}
+                        alt={theme.name}
+                        className="h-4 w-auto"
+                      />
+                    )}
+                  </div>
+                  <div className="px-3 pb-4">
+                    <ArticleCard {...demoArticles[theme.id][0]} />
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="bg-neutral-900 text-white rounded-xl p-6">
+              <p className="text-lg m-0 text-center leading-relaxed">
+                Zero code was changed between these three. <strong>Only the crayon box (theme) switched.</strong>
+              </p>
+            </div>
+          </section>
+
+          {/* The Pipeline in 4 steps */}
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-neutral-1000 mb-6">
+              The Pipeline in 4 Steps
+            </h2>
+            <p className="text-lg text-neutral-700 mb-8">
+              Here&apos;s how design decisions travel from a designer&apos;s head all the way to your screen:
+            </p>
+
+            <div className="space-y-0">
+              {/* Step 1 */}
+              <div className="relative bg-white border border-neutral-400 rounded-t-xl p-8">
+                <div className="flex items-start gap-5">
+                  <div className="w-14 h-14 rounded-full bg-neutral-900 text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
+                    1
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-1">Decide</h3>
+                    <p className="text-sm text-neutral-500 m-0 mb-3 uppercase tracking-wider font-medium">Designer + PM</p>
+                    <p className="text-base text-neutral-700 m-0 leading-relaxed">
+                      &quot;Car and Driver&apos;s primary button should be <strong>blue (#1B5F8A)</strong>. Cosmopolitan&apos;s should be <strong>pink (#E91E8C)</strong>.&quot;
+                    </p>
+                    <p className="text-base text-neutral-700 m-0 mt-2 leading-relaxed">
+                      These decisions get written down in a <strong>single file</strong> called <code className="bg-neutral-200 px-1.5 py-0.5 rounded text-sm">globals.css</code>. Think of it as the master recipe book.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <div className="flex justify-center -my-px">
+                <div className="w-12 h-8 bg-neutral-900 flex items-center justify-center">
+                  <span className="text-white text-lg">▼</span>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="relative bg-white border border-neutral-400 p-8">
+                <div className="flex items-start gap-5">
+                  <div className="w-14 h-14 rounded-full bg-neutral-800 text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
+                    2
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-1">Name It</h3>
+                    <p className="text-sm text-neutral-500 m-0 mb-3 uppercase tracking-wider font-medium">Design System</p>
+                    <p className="text-base text-neutral-700 m-0 leading-relaxed">
+                      Instead of saying &quot;use #1B5F8A&quot;, we give it a <strong>name</strong>: <code className="bg-neutral-200 px-1.5 py-0.5 rounded text-sm">--primary</code>.
+                    </p>
+                    <p className="text-base text-neutral-700 m-0 mt-2 leading-relaxed">
+                      Now the button just says &quot;use the primary color&quot;. It doesn&apos;t know or care <em>which</em> blue or pink — it just knows to use whatever &quot;primary&quot; means for the current brand.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <div className="flex justify-center -my-px">
+                <div className="w-12 h-8 bg-neutral-900 flex items-center justify-center">
+                  <span className="text-white text-lg">▼</span>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="relative bg-white border border-neutral-400 p-8">
+                <div className="flex items-start gap-5">
+                  <div className="w-14 h-14 rounded-full bg-neutral-700 text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
+                    3
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-1">Build Once</h3>
+                    <p className="text-sm text-neutral-500 m-0 mb-3 uppercase tracking-wider font-medium">Developer</p>
+                    <p className="text-base text-neutral-700 m-0 leading-relaxed">
+                      The developer builds a Button component <strong>one time</strong>. They write <code className="bg-neutral-200 px-1.5 py-0.5 rounded text-sm">bg-primary</code> instead of <code className="bg-neutral-200 px-1.5 py-0.5 rounded text-sm">bg-blue-600</code>.
+                    </p>
+                    <p className="text-base text-neutral-700 m-0 mt-2 leading-relaxed">
+                      That one button now works for <strong>every brand</strong>. No copying. No 10 versions. Just one.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Arrow */}
+              <div className="flex justify-center -my-px">
+                <div className="w-12 h-8 bg-neutral-900 flex items-center justify-center">
+                  <span className="text-white text-lg">▼</span>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="relative bg-white border border-neutral-400 rounded-b-xl p-8">
+                <div className="flex items-start gap-5">
+                  <div className="w-14 h-14 rounded-full bg-neutral-600 text-white flex items-center justify-center text-xl font-bold flex-shrink-0">
+                    4
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-1">Switch Brands Instantly</h3>
+                    <p className="text-sm text-neutral-500 m-0 mb-3 uppercase tracking-wider font-medium">Automatic</p>
+                    <p className="text-base text-neutral-700 m-0 leading-relaxed">
+                      When someone visits CarAndDriver.com, the site says &quot;use the Car and Driver crayon box.&quot; When they visit Cosmopolitan.com, it says &quot;use the Cosmo crayon box.&quot;
+                    </p>
+                    <p className="text-base text-neutral-700 m-0 mt-2 leading-relaxed">
+                      <strong>The components don&apos;t change. The colors just swap.</strong> That&apos;s the magic.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Why should I care */}
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-neutral-1000 mb-6">
+              Why Should I Care?
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="bg-white border border-neutral-400 rounded-xl p-6">
+                <div className="text-3xl mb-3">🎨</div>
+                <h3 className="text-lg font-bold text-neutral-900 m-0 mb-2">If you&apos;re a Designer</h3>
+                <p className="text-base text-neutral-700 m-0 leading-relaxed">
+                  You change a color in <strong>one place</strong>, and it updates across every page, every component, every brand that uses it. No more &quot;you missed a spot.&quot;
+                </p>
+              </div>
+              <div className="bg-white border border-neutral-400 rounded-xl p-6">
+                <div className="text-3xl mb-3">👩‍💻</div>
+                <h3 className="text-lg font-bold text-neutral-900 m-0 mb-2">If you&apos;re a Developer</h3>
+                <p className="text-base text-neutral-700 m-0 leading-relaxed">
+                  You build a component <strong>once</strong> and it works for all brands. No more copying code or maintaining 10 versions of the same thing.
+                </p>
+              </div>
+              <div className="bg-white border border-neutral-400 rounded-xl p-6">
+                <div className="text-3xl mb-3">📋</div>
+                <h3 className="text-lg font-bold text-neutral-900 m-0 mb-2">If you&apos;re a PM</h3>
+                <p className="text-base text-neutral-700 m-0 leading-relaxed">
+                  New features ship to <strong>all brands at once</strong> instead of one at a time. Less time, less budget, fewer bugs.
+                </p>
+              </div>
+              <div className="bg-white border border-neutral-400 rounded-xl p-6">
+                <div className="text-3xl mb-3">✅</div>
+                <h3 className="text-lg font-bold text-neutral-900 m-0 mb-2">If you&apos;re Anyone Else</h3>
+                <p className="text-base text-neutral-700 m-0 leading-relaxed">
+                  Brands stay consistent. Pages load faster. Updates happen everywhere at once. The websites just <strong>work better</strong>.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* One sentence */}
+          <section className="mb-16">
+            <div className="bg-neutral-900 text-white rounded-xl p-10 text-center">
+              <h2 className="text-2xl font-bold m-0 mb-4">The Whole Idea in One Sentence</h2>
+              <p className="text-xl m-0 leading-relaxed max-w-[700px] mx-auto">
+                We write the <strong>design rules once</strong>, give each brand its <strong>own set of values</strong>, and every component <strong>automatically looks right</strong> — no extra work.
+              </p>
+            </div>
+          </section>
+
+          {/* Where Storybook fits */}
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-neutral-1000 mb-6">
+              Where Does This Storybook Fit In?
+            </h2>
+            <div className="bg-white border border-neutral-400 rounded-xl p-8">
+              <p className="text-lg text-neutral-700 m-0 leading-relaxed mb-6">
+                This Storybook app is the <strong>proof that the system works</strong>. It&apos;s where everyone — designers, developers, PMs — can come to:
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4 p-4 bg-neutral-200 rounded-lg">
+                  <span className="text-xl flex-shrink-0">👀</span>
+                  <p className="text-base text-neutral-700 m-0"><strong>See</strong> every component rendered with real brand tokens — not mockups, the real thing</p>
+                </div>
+                <div className="flex items-start gap-4 p-4 bg-neutral-200 rounded-lg">
+                  <span className="text-xl flex-shrink-0">🔄</span>
+                  <p className="text-base text-neutral-700 m-0"><strong>Switch</strong> between brands instantly to verify everything looks correct</p>
+                </div>
+                <div className="flex items-start gap-4 p-4 bg-neutral-200 rounded-lg">
+                  <span className="text-xl flex-shrink-0">🐛</span>
+                  <p className="text-base text-neutral-700 m-0"><strong>Catch</strong> problems before they ever reach a real website</p>
+                </div>
+                <div className="flex items-start gap-4 p-4 bg-neutral-200 rounded-lg">
+                  <span className="text-xl flex-shrink-0">🤝</span>
+                  <p className="text-base text-neutral-700 m-0"><strong>Agree</strong> on one shared reference so nobody is guessing what something should look like</p>
                 </div>
               </div>
             </div>
