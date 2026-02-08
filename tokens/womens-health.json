@@ -1,0 +1,39 @@
+{
+  "colors": {
+    "background": { "value": "#f8fafc", "type": "color" },
+    "foreground": { "value": "#121212", "type": "color" },
+    "card": { "value": "#ffffff", "type": "color" },
+    "card-foreground": { "value": "#121212", "type": "color" },
+    "popover": { "value": "#ffffff", "type": "color" },
+    "popover-foreground": { "value": "#121212", "type": "color" },
+    "primary": { "value": "#1d4ed8", "type": "color" },
+    "primary-foreground": { "value": "#ffffff", "type": "color" },
+    "secondary": { "value": "#f8fafc", "type": "color" },
+    "secondary-foreground": { "value": "#121212", "type": "color" },
+    "muted": { "value": "#f8fafc", "type": "color" },
+    "muted-foreground": { "value": "#757575", "type": "color" },
+    "accent": { "value": "#14b8a6", "type": "color" },
+    "accent-foreground": { "value": "#ffffff", "type": "color" },
+    "destructive": { "value": "#ef4444", "type": "color" },
+    "destructive-foreground": { "value": "#ffffff", "type": "color" },
+    "border": { "value": "#d6d6d6", "type": "color" },
+    "input": { "value": "#d6d6d6", "type": "color" },
+    "ring": { "value": "#1d4ed8", "type": "color" }
+  },
+  "brand": {
+    "dark": { "value": "#121212", "type": "color" },
+    "blue": { "value": "#1d4ed8", "type": "color" },
+    "gold": { "value": "#ebff7c", "type": "color" },
+    "red": { "value": "#ef4444", "type": "color" }
+  },
+  "typography": {
+    "font-primary": { "value": "Proxima Nova, -apple-system, sans-serif", "type": "fontFamilies" },
+    "font-display": { "value": "Proxima Nova, -apple-system, sans-serif", "type": "fontFamilies" },
+    "font-display-weight": { "value": "700", "type": "fontWeights" },
+    "font-serif": { "value": "Georgia, serif", "type": "fontFamilies" }
+  },
+  "component": {
+    "radius": { "value": "8px", "type": "borderRadius" },
+    "article-card-title-size": { "value": "22px", "type": "fontSizes" }
+  }
+}

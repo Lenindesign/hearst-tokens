@@ -1,0 +1,15 @@
+{
+  "tokenSetOrder": [
+    "global",
+    "car-and-driver",
+    "esquire",
+    "cosmopolitan",
+    "good-housekeeping",
+    "harpers-bazaar",
+    "elle",
+    "delish",
+    "mens-health",
+    "womens-health",
+    "popular-mechanics"
+  ]
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "car-and-driver-theme",
+    "name": "Car and Driver",
+    "selectedTokenSets": {
+      "global": "source",
+      "car-and-driver": "enabled"
+    },
+    "group": "Hearst Brands"
+  },
+  {
+    "id": "esquire-theme",
+    "name": "Esquire",
+    "selectedTokenSets": {
+      "global": "source",
+      "esquire": "enabled"
+    },
+    "group": "Hearst Brands"
+  },
+  {
+    "id": "cosmopolitan-theme",
+    "name": "Cosmopolitan",
+    "selectedTokenSets": {
+      "global": "source",
+      "cosmopolitan": "enabled"
+    },
+    "group": "Hearst Brands"
+  },
+  {
+    "id": "good-housekeeping-theme",
+    "name": "Good Housekeeping",
+    "selectedTokenSets": {
+      "global": "source",
+      "good-housekeeping": "enabled"
+    },
+    "group": "Hearst Brands"
+  },
+  {
+    "id": "harpers-bazaar-theme",
+    "name": "Harper's Bazaar",
+    "selectedTokenSets": {
+      "global": "source",
+      "harpers-bazaar": "enabled"
+    },
+    "group": "Hearst Brands"
+  },
+  {
+    "id": "elle-theme",
+    "name": "Elle",
+    "selectedTokenSets": {
+      "global": "source",
+      "elle": "enabled"
+    },
+    "group": "Hearst Brands"
+  },
+  {
+    "id": "delish-theme",
+    "name": "Delish",
+    "selectedTokenSets": {
+      "global": "source",
+      "delish": "enabled"
+    },
+    "group": "Hearst Brands"
+  },
+  {
+    "id": "mens-health-theme",
+    "name": "Men's Health",
+    "selectedTokenSets": {
+      "global": "source",
+      "mens-health": "enabled"
+    },
+    "group": "Hearst Brands"
+  },
+  {
+    "id": "womens-health-theme",
+    "name": "Women's Health",
+    "selectedTokenSets": {
+      "global": "source",
+      "womens-health": "enabled"
+    },
+    "group": "Hearst Brands"
+  },
+  {
+    "id": "popular-mechanics-theme",
+    "name": "Popular Mechanics",
+    "selectedTokenSets": {
+      "global": "source",
+      "popular-mechanics": "enabled"
+    },
+    "group": "Hearst Brands"
+  }
+]

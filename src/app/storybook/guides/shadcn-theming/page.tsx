@@ -36,7 +36,7 @@ import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, Me
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
 import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from '@/components/ui/context-menu';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-// Resizable removed due to package compatibility issue
+import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@/components/ui/resizable';
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from '@/components/ui/chart';
 import { Bar, BarChart, Line, LineChart, Pie, PieChart, Area, AreaChart, CartesianGrid, XAxis, YAxis, Cell } from 'recharts';
 
@@ -841,17 +841,19 @@ npx shadcn@latest add dialog dropdown-menu tabs
             </ShowcaseSection>
 
             <ShowcaseSection title="Resizable" description="Accessible resizable panel groups and layouts.">
-              <div className="flex max-w-md rounded-lg border overflow-hidden">
-                <div className="flex-1 flex h-[120px] items-center justify-center p-6 border-r">
-                  <span className="font-semibold">Panel A</span>
-                </div>
-                <div className="w-2 bg-border flex items-center justify-center cursor-col-resize">
-                  <div className="w-1 h-8 rounded-full bg-muted-foreground/30" />
-                </div>
-                <div className="flex-1 flex h-[120px] items-center justify-center p-6">
-                  <span className="font-semibold">Panel B</span>
-                </div>
-              </div>
+              <ResizablePanelGroup orientation="horizontal" className="max-w-md rounded-lg border">
+                <ResizablePanel defaultSize={50}>
+                  <div className="flex h-[120px] items-center justify-center p-6">
+                    <span className="font-semibold">Panel A</span>
+                  </div>
+                </ResizablePanel>
+                <ResizableHandle withHandle />
+                <ResizablePanel defaultSize={50}>
+                  <div className="flex h-[120px] items-center justify-center p-6">
+                    <span className="font-semibold">Panel B</span>
+                  </div>
+                </ResizablePanel>
+              </ResizablePanelGroup>
             </ShowcaseSection>
           </div>
 

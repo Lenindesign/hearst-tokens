@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated tokens CSS (regenerated from /tokens by build:tokens)
+src/app/tokens-generated.css

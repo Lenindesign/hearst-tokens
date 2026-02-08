@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "storybook": "next dev"
+    "storybook": "next dev",
+    "build:tokens": "node scripts/build-tokens.mjs",
+    "prebuild": "node scripts/build-tokens.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
