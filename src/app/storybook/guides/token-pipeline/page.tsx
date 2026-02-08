@@ -2050,7 +2050,7 @@ jobs:
           {/* The Analogy */}
           <section className="mb-16">
             <h2 className="text-3xl font-bold text-neutral-1000 mb-6">
-              Think of It Like a Coloring Book
+              Think of It Like a Restaurant Franchise
             </h2>
             <div className="space-y-6">
               <div className="bg-white border border-neutral-400 rounded-xl p-8">
@@ -2059,9 +2059,9 @@ jobs:
                     1
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-2">The Drawing (Component)</h3>
+                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-2">The Floor Plan (Component)</h3>
                     <p className="text-lg text-neutral-700 m-0 leading-relaxed">
-                      We draw a card layout <strong>once</strong>. It has an image area, a title area, an author area, and a button. This is the &quot;coloring book page&quot; — the shape is always the same.
+                      Every location shares the <strong>same layout</strong> — a kitchen, a dining area, a bar, a front entrance. The architecture is built <strong>once</strong> and reused everywhere. That&apos;s the component.
                     </p>
                   </div>
                 </div>
@@ -2077,9 +2077,9 @@ jobs:
                     2
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-2">The Crayons (Design Tokens)</h3>
+                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-2">The Interior Design (Design Tokens)</h3>
                     <p className="text-lg text-neutral-700 m-0 leading-relaxed">
-                      Each brand gets its own <strong>box of crayons</strong>. Car and Driver&apos;s box has bold blues and blacks. Cosmopolitan&apos;s box has hot pinks and bright whites. Harper&apos;s Bazaar&apos;s box has elegant black and gold.
+                      Each location gets its own <strong>style guide</strong> — the paint colors, the furniture, the lighting, the signage. Car and Driver&apos;s location feels bold and industrial. Cosmopolitan&apos;s is vibrant and energetic. Harper&apos;s Bazaar&apos;s is refined and luxurious.
                     </p>
                   </div>
                 </div>
@@ -2095,9 +2095,9 @@ jobs:
                     3
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-2">The Result (Themed UI)</h3>
+                    <h3 className="text-xl font-bold text-neutral-900 m-0 mb-2">The Result (Branded Experience)</h3>
                     <p className="text-lg text-neutral-700 m-0 leading-relaxed">
-                      Same drawing + different crayons = <strong>completely different look</strong>. The drawing doesn&apos;t change. You just swap the crayon box. That&apos;s the entire idea.
+                      Same floor plan + different interior design = <strong>completely different experience</strong>. You don&apos;t rebuild the restaurant. You just swap the style guide. That&apos;s the entire idea.
                     </p>
                   </div>
                 </div>
@@ -2111,7 +2111,7 @@ jobs:
               See It for Yourself
             </h2>
             <p className="text-lg text-neutral-700 mb-6">
-              Here&apos;s the <strong>exact same card</strong> colored by three different brand crayon boxes:
+              Here&apos;s the <strong>exact same card</strong> styled by three different brand identities:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {[
@@ -2143,7 +2143,7 @@ jobs:
             </div>
             <div className="bg-neutral-900 text-white rounded-xl p-6">
               <p className="text-lg m-0 text-center leading-relaxed">
-                Zero code was changed between these three. <strong>Only the crayon box (theme) switched.</strong>
+                Zero code was changed between these three. <strong>Only the style guide (theme) switched.</strong>
               </p>
             </div>
           </section>
@@ -2246,7 +2246,7 @@ jobs:
                     <h3 className="text-xl font-bold text-neutral-900 m-0 mb-1">Switch Brands Instantly</h3>
                     <p className="text-sm text-neutral-500 m-0 mb-3 uppercase tracking-wider font-medium">Automatic</p>
                     <p className="text-base text-neutral-700 m-0 leading-relaxed">
-                      When someone visits CarAndDriver.com, the site says &quot;use the Car and Driver crayon box.&quot; When they visit Cosmopolitan.com, it says &quot;use the Cosmo crayon box.&quot;
+                      When someone visits CarAndDriver.com, the site loads the Car and Driver style guide. When they visit Cosmopolitan.com, it loads the Cosmo style guide.
                     </p>
                     <p className="text-base text-neutral-700 m-0 mt-2 leading-relaxed">
                       <strong>The components don&apos;t change. The colors just swap.</strong> That&apos;s the magic.
@@ -2264,28 +2264,28 @@ jobs:
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="bg-white border border-neutral-400 rounded-xl p-6">
-                <div className="text-3xl mb-3">🎨</div>
+                <div className="w-10 h-10 rounded-lg bg-neutral-900 text-white flex items-center justify-center font-bold text-sm mb-3">Des</div>
                 <h3 className="text-lg font-bold text-neutral-900 m-0 mb-2">If you&apos;re a Designer</h3>
                 <p className="text-base text-neutral-700 m-0 leading-relaxed">
                   You change a color in <strong>one place</strong>, and it updates across every page, every component, every brand that uses it. No more &quot;you missed a spot.&quot;
                 </p>
               </div>
               <div className="bg-white border border-neutral-400 rounded-xl p-6">
-                <div className="text-3xl mb-3">👩‍💻</div>
+                <div className="w-10 h-10 rounded-lg bg-neutral-900 text-white flex items-center justify-center font-bold text-sm mb-3">Dev</div>
                 <h3 className="text-lg font-bold text-neutral-900 m-0 mb-2">If you&apos;re a Developer</h3>
                 <p className="text-base text-neutral-700 m-0 leading-relaxed">
                   You build a component <strong>once</strong> and it works for all brands. No more copying code or maintaining 10 versions of the same thing.
                 </p>
               </div>
               <div className="bg-white border border-neutral-400 rounded-xl p-6">
-                <div className="text-3xl mb-3">📋</div>
+                <div className="w-10 h-10 rounded-lg bg-neutral-900 text-white flex items-center justify-center font-bold text-sm mb-3">PM</div>
                 <h3 className="text-lg font-bold text-neutral-900 m-0 mb-2">If you&apos;re a PM</h3>
                 <p className="text-base text-neutral-700 m-0 leading-relaxed">
                   New features ship to <strong>all brands at once</strong> instead of one at a time. Less time, less budget, fewer bugs.
                 </p>
               </div>
               <div className="bg-white border border-neutral-400 rounded-xl p-6">
-                <div className="text-3xl mb-3">✅</div>
+                <div className="w-10 h-10 rounded-lg bg-neutral-900 text-white flex items-center justify-center font-bold text-sm mb-3">All</div>
                 <h3 className="text-lg font-bold text-neutral-900 m-0 mb-2">If you&apos;re Anyone Else</h3>
                 <p className="text-base text-neutral-700 m-0 leading-relaxed">
                   Brands stay consistent. Pages load faster. Updates happen everywhere at once. The websites just <strong>work better</strong>.
@@ -2315,19 +2315,19 @@ jobs:
               </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-4 p-4 bg-neutral-200 rounded-lg">
-                  <span className="text-xl flex-shrink-0">👀</span>
+                  <span className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">1</span>
                   <p className="text-base text-neutral-700 m-0"><strong>See</strong> every component rendered with real brand tokens — not mockups, the real thing</p>
                 </div>
                 <div className="flex items-start gap-4 p-4 bg-neutral-200 rounded-lg">
-                  <span className="text-xl flex-shrink-0">🔄</span>
+                  <span className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">2</span>
                   <p className="text-base text-neutral-700 m-0"><strong>Switch</strong> between brands instantly to verify everything looks correct</p>
                 </div>
                 <div className="flex items-start gap-4 p-4 bg-neutral-200 rounded-lg">
-                  <span className="text-xl flex-shrink-0">🐛</span>
+                  <span className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">3</span>
                   <p className="text-base text-neutral-700 m-0"><strong>Catch</strong> problems before they ever reach a real website</p>
                 </div>
                 <div className="flex items-start gap-4 p-4 bg-neutral-200 rounded-lg">
-                  <span className="text-xl flex-shrink-0">🤝</span>
+                  <span className="w-8 h-8 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold text-xs flex-shrink-0">4</span>
                   <p className="text-base text-neutral-700 m-0"><strong>Agree</strong> on one shared reference so nobody is guessing what something should look like</p>
                 </div>
               </div>
