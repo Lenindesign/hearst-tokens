@@ -62,6 +62,9 @@ export const CustomCTA: Story = {
 };
 
 export const CardGrid: Story = {
+  args: {
+    ...Default.args!,
+  },
   render: () => (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1000px]">
       <ArticleCard

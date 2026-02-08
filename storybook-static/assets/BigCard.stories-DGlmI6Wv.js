@@ -1,0 +1,34 @@
+import{j as e}from"./jsx-runtime-DFUhlNad.js";import{c as g}from"./utils-CDN07tui.js";import"./iframe-BuOWRVK8.js";import"./preload-helper-PPVm8Dsz.js";function u({src:a,alt:o="",sectionLabel:s}){return e.jsxs("div",{className:"relative w-full",children:[e.jsx("div",{className:"w-full h-[457px] overflow-hidden",children:a?e.jsx("img",{src:a,alt:o,className:"w-full h-full object-cover"}):e.jsx("div",{className:"w-full h-full bg-neutral-200",style:{backgroundImage:`
+                linear-gradient(45deg, #d5d5d5 25%, transparent 25%),
+                linear-gradient(-45deg, #d5d5d5 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #d5d5d5 75%),
+                linear-gradient(-45deg, transparent 75%, #d5d5d5 75%)
+              `,backgroundSize:"20px 20px",backgroundPosition:"0 0, 0 10px, 10px -10px, -10px 0px"}})}),s&&e.jsx("div",{className:"absolute bottom-0 left-0 inline-flex items-center p-2 bg-accent",children:e.jsx("span",{className:"font-display text-base font-medium tracking-wide leading-none text-neutral-900 uppercase",children:s})})]})}function p({imageSrc:a,imageAlt:o,eyebrow:s="FEATURED",title:d="2026 Pilot Does Just Enough to Stay Afloat",description:l="The upgraded Pilot's extra equipment and freshened look help it remain a solid, if unexciting, choice in this competitive segment.",author:c="Reviewed By Joey Capparella",showDescription:m=!0,className:h}){return e.jsxs("div",{className:g("flex flex-col gap-4 w-full",h),children:[e.jsx(u,{src:a,alt:o,sectionLabel:s}),e.jsxs("div",{className:"flex flex-col gap-2 w-full",children:[e.jsx("div",{className:"flex items-center justify-center pb-1",children:e.jsx("span",{className:"font-sans text-5xl font-extrabold leading-none text-neutral-900 w-full",children:d})}),e.jsxs("div",{className:"flex flex-col gap-4 w-full",children:[m&&l&&e.jsx("div",{className:"flex items-center justify-center",children:e.jsx("span",{className:"font-sans text-[22px] font-normal leading-relaxed text-neutral-900 w-full",children:l})}),c&&e.jsxs("div",{className:"flex items-center gap-2 h-4",children:[e.jsx("div",{className:"w-4 h-4 rounded-full bg-blue-500 flex items-center justify-center",children:e.jsx("svg",{width:"10",height:"10",viewBox:"0 0 24 24",fill:"white",children:e.jsx("path",{d:"M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"})})}),e.jsx("span",{className:"font-sans text-xs font-medium leading-normal text-neutral-900",children:c})]})]})]})]})}p.__docgenInfo={description:"",methods:[],displayName:"BigCard",props:{imageSrc:{required:!1,tsType:{name:"string"},description:""},imageAlt:{required:!1,tsType:{name:"string"},description:""},eyebrow:{required:!1,tsType:{name:"string"},description:"",defaultValue:{value:"'FEATURED'",computed:!1}},title:{required:!1,tsType:{name:"string"},description:"",defaultValue:{value:"'2026 Pilot Does Just Enough to Stay Afloat'",computed:!1}},description:{required:!1,tsType:{name:"string"},description:"",defaultValue:{value:`"The upgraded Pilot's extra equipment and freshened look help it remain a solid, if unexciting, choice in this competitive segment."`,computed:!1}},author:{required:!1,tsType:{name:"string"},description:"",defaultValue:{value:"'Reviewed By Joey Capparella'",computed:!1}},showDescription:{required:!1,tsType:{name:"boolean"},description:"",defaultValue:{value:"true",computed:!1}},className:{required:!1,tsType:{name:"string"},description:""}}};const F={title:"Components/BigCard",component:p,parameters:{layout:"padded"},tags:["autodocs"]},t={args:{eyebrow:"FEATURED",title:"2026 Pilot Does Just Enough to Stay Afloat",description:"The upgraded Pilot's extra equipment and freshened look help it remain a solid, if unexciting, choice in this competitive segment.",author:"Reviewed By Joey Capparella",showDescription:!0,imageSrc:"https://hearts-tokens.netlify.app/_next/image?url=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod%2Fimages%2F2025-porsche-911-gt3-rs-manthey-racing1-6740bdc5bdc0c.jpg%3Fcrop%3D0.921045192035863xw%3A1xh%3Bcenter%2Ctop%26resize%3D980%3A*&w=3840&q=75"}},r={args:{...t.args,imageSrc:"https://hearts-tokens.netlify.app/_next/image?url=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod%2Fimages%2F2025-porsche-911-gt3-rs-manthey-racing1-6740bdc5bdc0c.jpg%3Fcrop%3D0.921045192035863xw%3A1xh%3Bcenter%2Ctop%26resize%3D980%3A*&w=3840&q=75",imageAlt:"Porsche 911 GT3 RS",title:"The 2026 Porsche 911 GT3 RS Redefines What a Track Car Can Be",eyebrow:"FIRST DRIVE"}},i={args:{...t.args,showDescription:!1}},n={args:{...t.args,className:"max-w-[600px]",imageSrc:"https://hearts-tokens.netlify.app/_next/image?url=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod%2Fimages%2F2025-porsche-911-gt3-rs-manthey-racing1-6740bdc5bdc0c.jpg%3Fcrop%3D0.921045192035863xw%3A1xh%3Bcenter%2Ctop%26resize%3D980%3A*&w=3840&q=75"}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    eyebrow: 'FEATURED',
+    title: '2026 Pilot Does Just Enough to Stay Afloat',
+    description: "The upgraded Pilot's extra equipment and freshened look help it remain a solid, if unexciting, choice in this competitive segment.",
+    author: 'Reviewed By Joey Capparella',
+    showDescription: true,
+    imageSrc: "https://hearts-tokens.netlify.app/_next/image?url=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod%2Fimages%2F2025-porsche-911-gt3-rs-manthey-racing1-6740bdc5bdc0c.jpg%3Fcrop%3D0.921045192035863xw%3A1xh%3Bcenter%2Ctop%26resize%3D980%3A*&w=3840&q=75"
+  }
+}`,...t.parameters?.docs?.source}}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {
+    ...Default.args,
+    imageSrc: "https://hearts-tokens.netlify.app/_next/image?url=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod%2Fimages%2F2025-porsche-911-gt3-rs-manthey-racing1-6740bdc5bdc0c.jpg%3Fcrop%3D0.921045192035863xw%3A1xh%3Bcenter%2Ctop%26resize%3D980%3A*&w=3840&q=75",
+    imageAlt: 'Porsche 911 GT3 RS',
+    title: 'The 2026 Porsche 911 GT3 RS Redefines What a Track Car Can Be',
+    eyebrow: 'FIRST DRIVE'
+  }
+}`,...r.parameters?.docs?.source}}};i.parameters={...i.parameters,docs:{...i.parameters?.docs,source:{originalSource:`{
+  args: {
+    ...Default.args,
+    showDescription: false
+  }
+}`,...i.parameters?.docs?.source}}};n.parameters={...n.parameters,docs:{...n.parameters?.docs,source:{originalSource:`{
+  args: {
+    ...Default.args,
+    className: 'max-w-[600px]',
+    imageSrc: "https://hearts-tokens.netlify.app/_next/image?url=https%3A%2F%2Fhips.hearstapps.com%2Fhmg-prod%2Fimages%2F2025-porsche-911-gt3-rs-manthey-racing1-6740bdc5bdc0c.jpg%3Fcrop%3D0.921045192035863xw%3A1xh%3Bcenter%2Ctop%26resize%3D980%3A*&w=3840&q=75"
+  }
+}`,...n.parameters?.docs?.source}}};const D=["Default","WithImage","NoDescription","ConstrainedWidth"];export{n as ConstrainedWidth,t as Default,i as NoDescription,r as WithImage,D as __namedExportsOrder,F as default};
