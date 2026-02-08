@@ -198,7 +198,7 @@ const demoArticles: Record<string, Article[]> = {
       title: 'The Best Sports Cars Under $50,000 in 2026',
       excerpt: 'You don\'t need to spend a fortune to have fun behind the wheel.',
       category: 'Buyer\'s Guide',
-      imageUrl: 'https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&h=450&fit=crop',
+      imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/2026-toyota-gr86-yuzu-special-edition-pr-102-67ed5cc10d1ce.jpg',
       author: 'Chris Taylor',
       authorAvatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face',
       date: 'Feb 1, 2026',
@@ -209,7 +209,7 @@ const demoArticles: Record<string, Article[]> = {
       title: 'How Hyundai Became a Performance Powerhouse',
       excerpt: 'From economy cars to track-ready N models, the Korean brand\'s transformation is complete.',
       category: 'Feature',
-      imageUrl: 'https://images.unsplash.com/photo-1619682817481-e994891cd1f5?w=800&h=450&fit=crop',
+      imageUrl: 'https://hips.hearstapps.com/hmg-prod/images/large-50504-hyundaimotorsnbrandunveilstworollinglabconceptssignalinghigh-performancevisionforelectrificationera-64022c1e8f358.jpg?crop=1xw:1xh;center,top',
       author: 'Amanda Chen',
       authorAvatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face',
       date: 'Jan 31, 2026',
@@ -2429,241 +2429,138 @@ jobs:
               How Many Names Can a Token Have?
             </h2>
             <p className="text-lg text-neutral-700 mb-6">
-              Every design value — a color, a font, a spacing unit — flows through <strong>five layers</strong> in our system. At each layer it gets a different name, each serving a different purpose. Let&apos;s trace both a <strong>color</strong> and a <strong>font</strong> to see how.
+              A design value flows through <strong>4 layers</strong> in our system. Each layer gives it a different name for a different audience. Let&apos;s trace a <strong>color</strong> and a <strong>font</strong> through the chain.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex items-center gap-3 p-5 bg-neutral-200 rounded-lg">
-                <div className="w-10 h-10 rounded-md flex-shrink-0" style={{ backgroundColor: '#1B5F8A' }} />
-                <div>
-                  <p className="text-sm font-bold text-neutral-900 m-0">Color Token</p>
-                  <p className="text-sm text-neutral-600 m-0">#1B5F8A — Car and Driver&apos;s primary blue</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 p-5 bg-neutral-200 rounded-lg">
-                <div className="w-10 h-10 rounded-md flex-shrink-0 bg-neutral-900 text-white flex items-center justify-center font-sans text-lg font-bold">Aa</div>
-                <div>
-                  <p className="text-sm font-bold text-neutral-900 m-0">Font Token</p>
-                  <p className="text-sm text-neutral-600 m-0">Inter — Car and Driver&apos;s display font</p>
-                </div>
-              </div>
-            </div>
           </section>
 
-          {/* The 5 Layers */}
+          {/* The 4 Layers — compact table */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-neutral-1000 mb-6">
-              The 5 Layers of Token Naming
+              The 4 Layers
             </h2>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse bg-white rounded-xl overflow-hidden text-sm border border-neutral-400">
+                <thead>
+                  <tr className="bg-neutral-900 text-white">
+                    <th className="text-left p-4 font-semibold w-[40px]">#</th>
+                    <th className="text-left p-4 font-semibold">Layer</th>
+                    <th className="text-left p-4 font-semibold">Question</th>
+                    <th className="text-left p-4 font-semibold">Color Example</th>
+                    <th className="text-left p-4 font-semibold">Font Example</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t border-neutral-300">
+                    <td className="p-4 font-bold text-neutral-900">1</td>
+                    <td className="p-4">
+                      <span className="font-bold text-neutral-900">Primitive</span>
+                      <p className="text-xs text-neutral-500 m-0 mt-0.5">The raw value</p>
+                    </td>
+                    <td className="p-4 text-neutral-600">What is it?</td>
+                    <td className="p-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 rounded-sm flex-shrink-0 border border-neutral-300" style={{ backgroundColor: '#1B5F8A' }} />
+                        <code className="text-xs">_palette.blue.42</code>
+                      </div>
+                    </td>
+                    <td className="p-4"><code className="text-xs">_font.family.inter</code></td>
+                  </tr>
+                  <tr className="border-t border-neutral-300 bg-neutral-100/50">
+                    <td className="p-4 font-bold text-neutral-900">2</td>
+                    <td className="p-4">
+                      <span className="font-bold text-neutral-900">Alias</span>
+                      <p className="text-xs text-neutral-500 m-0 mt-0.5">Brand meaning</p>
+                    </td>
+                    <td className="p-4 text-neutral-600">What does it mean?</td>
+                    <td className="p-4"><code className="text-xs">palette.primary</code></td>
+                    <td className="p-4"><code className="text-xs">font.family.display</code></td>
+                  </tr>
+                  <tr className="border-t border-neutral-300">
+                    <td className="p-4 font-bold text-neutral-900">3</td>
+                    <td className="p-4">
+                      <span className="font-bold text-neutral-900">CSS Variable</span>
+                      <p className="text-xs text-neutral-500 m-0 mt-0.5">Browser runtime</p>
+                    </td>
+                    <td className="p-4 text-neutral-600">How does the browser see it?</td>
+                    <td className="p-4"><code className="text-xs">--primary</code></td>
+                    <td className="p-4"><code className="text-xs">--font-display</code></td>
+                  </tr>
+                  <tr className="border-t border-neutral-300 bg-neutral-100/50">
+                    <td className="p-4 font-bold text-neutral-900">4</td>
+                    <td className="p-4">
+                      <span className="font-bold text-neutral-900">Tailwind Class</span>
+                      <p className="text-xs text-neutral-500 m-0 mt-0.5">Developer API</p>
+                    </td>
+                    <td className="p-4 text-neutral-600">How do devs write it?</td>
+                    <td className="p-4"><code className="text-xs">bg-primary</code></td>
+                    <td className="p-4"><code className="text-xs">font-display</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
 
-            <div className="space-y-4">
-              {/* Layer 1 — Primitive */}
-              <div className="bg-white border border-neutral-400 rounded-xl p-6">
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-xl bg-neutral-900 text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">1</div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-neutral-900 m-0">Primitive Token</h3>
-                      <span className="bg-neutral-200 text-neutral-700 text-xs font-medium px-2 py-0.5 rounded">What it IS</span>
-                    </div>
-                    <p className="text-base text-neutral-700 m-0 mb-3">
-                      The raw value with a name that describes <strong>what it literally is</strong> — no meaning attached.
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
-                        <span className="text-[#569cd6]">COLOR</span><br/>
-                        <span className="text-[#ce9178]">_palette.blue.42</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#b5cea8]">#1B5F8A</span>
-                      </div>
-                      <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
-                        <span className="text-[#569cd6]">FONT</span><br/>
-                        <span className="text-[#ce9178]">_font.family.inter</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#b5cea8]">&quot;Inter&quot;</span>
-                      </div>
-                    </div>
-                    <p className="text-sm text-neutral-500 m-0 mt-2">
-                      Color: named by hue + lightness. Font: named by the typeface itself. Both are shared across all brands.
-                    </p>
-                  </div>
+            {/* How each layer connects */}
+            <div className="mt-6 bg-neutral-100 border border-neutral-400 rounded-xl p-5 overflow-x-auto">
+              <p className="text-xs font-bold text-neutral-500 uppercase tracking-wider m-0 mb-3">Full chain</p>
+              <div className="flex items-center gap-2 font-mono text-sm text-neutral-800 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-sm flex-shrink-0" style={{ backgroundColor: '#1B5F8A' }} />
+                  <code className="bg-white border border-neutral-300 px-2 py-1 rounded text-xs">_palette.blue.42</code>
                 </div>
+                <span className="text-neutral-400">--&gt;</span>
+                <code className="bg-white border border-neutral-300 px-2 py-1 rounded text-xs">palette.primary</code>
+                <span className="text-neutral-400">--&gt;</span>
+                <code className="bg-white border border-neutral-300 px-2 py-1 rounded text-xs">--primary</code>
+                <span className="text-neutral-400">--&gt;</span>
+                <code className="bg-white border border-neutral-300 px-2 py-1 rounded text-xs font-bold">bg-primary</code>
               </div>
-
-              <div className="flex justify-center"><div className="w-0.5 h-6 bg-neutral-400"></div></div>
-
-              {/* Layer 2 — Alias */}
-              <div className="bg-white border border-neutral-400 rounded-xl p-6">
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-xl bg-neutral-900 text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">2</div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-neutral-900 m-0">Alias Token</h3>
-                      <span className="bg-neutral-200 text-neutral-700 text-xs font-medium px-2 py-0.5 rounded">What it MEANS for this brand</span>
-                    </div>
-                    <p className="text-base text-neutral-700 m-0 mb-3">
-                      Each brand picks primitives and gives them a <strong>semantic role</strong>. This is where brands diverge — different colors, different fonts.
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
-                        <span className="text-[#569cd6]">COLOR</span><br/>
-                        <span className="text-[#9d9d9d]">// Car and Driver</span><br/>
-                        <span className="text-[#ce9178]">palette.primary</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_palette.blue.42}'}</span><br/>
-                        <span className="text-[#9d9d9d]">// Cosmopolitan</span><br/>
-                        <span className="text-[#ce9178]">palette.primary</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_palette.red.48}'}</span>
-                      </div>
-                      <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
-                        <span className="text-[#569cd6]">FONT</span><br/>
-                        <span className="text-[#9d9d9d]">// Car and Driver</span><br/>
-                        <span className="text-[#ce9178]">font.family.display</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_font.family.inter}'}</span><br/>
-                        <span className="text-[#9d9d9d]">// Good Housekeeping</span><br/>
-                        <span className="text-[#ce9178]">font.family.display</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_font.family.barlow-semi-condensed}'}</span>
-                      </div>
-                    </div>
-                    <p className="text-sm text-neutral-500 m-0 mt-2">
-                      Same name (<code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">palette.primary</code>, <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">font.family.display</code>), different value per brand.
-                    </p>
-                  </div>
+              <div className="flex items-center gap-2 font-mono text-sm text-neutral-800 mt-2 flex-wrap">
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 rounded-sm flex-shrink-0 bg-neutral-800 text-white text-[8px] flex items-center justify-center font-bold">A</div>
+                  <code className="bg-white border border-neutral-300 px-2 py-1 rounded text-xs">_font.family.inter</code>
                 </div>
-              </div>
-
-              <div className="flex justify-center"><div className="w-0.5 h-6 bg-neutral-400"></div></div>
-
-              {/* Layer 3 — CSS Variable */}
-              <div className="bg-white border border-neutral-400 rounded-xl p-6">
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-xl bg-neutral-900 text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">3</div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-neutral-900 m-0">CSS Variable</h3>
-                      <span className="bg-neutral-200 text-neutral-700 text-xs font-medium px-2 py-0.5 rounded">How the BROWSER sees it</span>
-                    </div>
-                    <p className="text-base text-neutral-700 m-0 mb-3">
-                      Alias tokens get compiled into CSS custom properties. Change <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">data-theme</code> and all variables update — colors and fonts alike.
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
-                        <span className="text-[#569cd6]">COLOR</span><br/>
-                        <span className="text-[#d7ba7d]">:root</span> <span className="text-[#d4d4d4]">{'{'}</span><br/>
-                        <span className="text-[#d4d4d4]">{'  '}</span><span className="text-[#9cdcfe]">--primary</span><span className="text-[#d4d4d4]">:</span> <span className="text-[#b5cea8]">#1B5F8A</span><span className="text-[#d4d4d4]">;</span><br/>
-                        <span className="text-[#d4d4d4]">{'}'}</span>
-                      </div>
-                      <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
-                        <span className="text-[#569cd6]">FONT</span><br/>
-                        <span className="text-[#d7ba7d]">:root</span> <span className="text-[#d4d4d4]">{'{'}</span><br/>
-                        <span className="text-[#d4d4d4]">{'  '}</span><span className="text-[#9cdcfe]">--font-display</span><span className="text-[#d4d4d4]">:</span> <span className="text-[#b5cea8]">Inter, sans-serif</span><span className="text-[#d4d4d4]">;</span><br/>
-                        <span className="text-[#d4d4d4]">{'}'}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-center"><div className="w-0.5 h-6 bg-neutral-400"></div></div>
-
-              {/* Layer 4 — Tailwind Class */}
-              <div className="bg-white border border-neutral-400 rounded-xl p-6">
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-xl bg-neutral-900 text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">4</div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-neutral-900 m-0">Tailwind Class</h3>
-                      <span className="bg-neutral-200 text-neutral-700 text-xs font-medium px-2 py-0.5 rounded">How DEVELOPERS write it</span>
-                    </div>
-                    <p className="text-base text-neutral-700 m-0 mb-3">
-                      Tailwind reads CSS variables and exposes them as utility classes. Developers never touch hex values or font strings — they write readable class names.
-                    </p>
-                    <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
-                      <span className="text-[#9d9d9d]">// Both color and font in one component</span><br/>
-                      <span className="text-[#d4d4d4]">&lt;h2 className=&quot;</span><span className="text-[#ce9178]">text-primary font-display</span><span className="text-[#d4d4d4]">&quot;&gt;</span><br/>
-                      <span className="text-[#d4d4d4]">{'  '}2026 Porsche 911 GT3 RS Review</span><br/>
-                      <span className="text-[#d4d4d4]">&lt;/h2&gt;</span><br/>
-                      <span className="text-[#d4d4d4]">&lt;button className=&quot;</span><span className="text-[#ce9178]">bg-primary text-primary-foreground</span><span className="text-[#d4d4d4]">&quot;&gt;</span><br/>
-                      <span className="text-[#d4d4d4]">{'  '}Read Review</span><br/>
-                      <span className="text-[#d4d4d4]">&lt;/button&gt;</span>
-                    </div>
-                    <p className="text-sm text-neutral-500 m-0 mt-2">
-                      <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">bg-primary</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">var(--primary)</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">#1B5F8A</code> &nbsp;|&nbsp; <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">font-display</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">var(--font-display)</code> → <code className="bg-neutral-200 px-1 py-0.5 rounded text-xs">Inter</code>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-center"><div className="w-0.5 h-6 bg-neutral-400"></div></div>
-
-              {/* Layer 5 — Component Token */}
-              <div className="bg-white border border-neutral-400 rounded-xl p-6">
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-xl bg-neutral-900 text-white flex items-center justify-center text-2xl font-bold flex-shrink-0">5</div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h3 className="text-xl font-bold text-neutral-900 m-0">Component Token</h3>
-                      <span className="bg-neutral-200 text-neutral-700 text-xs font-medium px-2 py-0.5 rounded">What it DOES</span>
-                    </div>
-                    <p className="text-base text-neutral-700 m-0 mb-3">
-                      The most specific layer — names what a value <strong>does</strong> in a particular component. This layer is optional but powerful for large systems.
-                    </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
-                        <span className="text-[#569cd6]">COLOR</span><br/>
-                        <span className="text-[#ce9178]">component.button.bg.default</span><br/>
-                        <span className="text-[#d4d4d4]">{'  '}→</span> <span className="text-[#4ec9b0]">{'{palette.primary}'}</span><br/>
-                        <span className="text-[#ce9178]">component.link.color</span><br/>
-                        <span className="text-[#d4d4d4]">{'  '}→</span> <span className="text-[#4ec9b0]">{'{palette.primary}'}</span>
-                      </div>
-                      <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
-                        <span className="text-[#569cd6]">FONT</span><br/>
-                        <span className="text-[#ce9178]">component.headline.font</span><br/>
-                        <span className="text-[#d4d4d4]">{'  '}→</span> <span className="text-[#4ec9b0]">{'{font.family.display}'}</span><br/>
-                        <span className="text-[#ce9178]">component.nav.font</span><br/>
-                        <span className="text-[#d4d4d4]">{'  '}→</span> <span className="text-[#4ec9b0]">{'{font.family.display}'}</span>
-                      </div>
-                    </div>
-                    <p className="text-sm text-neutral-500 m-0 mt-2">
-                      Multiple component tokens can point to the same alias. Change the alias, and every headline, every nav, every button updates.
-                    </p>
-                  </div>
-                </div>
+                <span className="text-neutral-400">--&gt;</span>
+                <code className="bg-white border border-neutral-300 px-2 py-1 rounded text-xs">font.family.display</code>
+                <span className="text-neutral-400">--&gt;</span>
+                <code className="bg-white border border-neutral-300 px-2 py-1 rounded text-xs">--font-display</code>
+                <span className="text-neutral-400">--&gt;</span>
+                <code className="bg-white border border-neutral-300 px-2 py-1 rounded text-xs font-bold">font-display</code>
               </div>
             </div>
-          </section>
 
-          {/* Full Chain Diagram */}
-          <section className="mb-12">
-            <h2 className="text-2xl font-bold text-neutral-1000 mb-6">
-              The Complete Chain — Color vs Font
-            </h2>
-            <div className="bg-neutral-100 border border-neutral-400 rounded-xl p-6 overflow-x-auto">
-              <pre className="m-0 font-mono text-sm leading-relaxed text-neutral-800 whitespace-pre">
-{`  Layer 1              Layer 2              Layer 3             Layer 4            Layer 5
-  PRIMITIVE            ALIAS                CSS VARIABLE        TAILWIND           COMPONENT TOKEN
-  ─────────            ─────                ────────────        ────────           ───────────────
-
-  COLOR TOKEN:
-  _palette.blue.42 ──▶ palette.primary ──▶ --primary ──▶ bg-primary ──▶ button.bg.default
-      "#1B5F8A"                                                           link.color
-
-  FONT TOKEN:
-  _font.family       ──▶ font.family    ──▶ --font-display ──▶ font-display ──▶ headline.font
-   .inter                  .display                                               nav.font
-   "Inter"
-
-  ──────────────────────────────────────────────────────────────────────────────────────────
-  What it IS          What it MEANS       How browser        How devs           What it DOES
-  (raw value)         (role in brand)     renders it         write it           (specific usage)`}
-              </pre>
+            {/* Layer 2 detail — the key layer */}
+            <div className="mt-6 p-5 bg-white border border-neutral-400 rounded-xl">
+              <h3 className="text-base font-bold text-neutral-900 m-0 mb-2">Layer 2 is where brands diverge</h3>
+              <p className="text-sm text-neutral-600 m-0 mb-3">The same alias name points to a different primitive per brand:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
+                  <span className="text-[#569cd6]">COLOR — palette.primary</span><br/>
+                  <span className="text-[#9d9d9d]">Car &amp; Driver</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_palette.blue.42}'}</span><br/>
+                  <span className="text-[#9d9d9d]">Cosmopolitan</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_palette.red.48}'}</span>
+                </div>
+                <div className="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm">
+                  <span className="text-[#569cd6]">FONT — font.family.display</span><br/>
+                  <span className="text-[#9d9d9d]">Car &amp; Driver</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_font.family.inter}'}</span><br/>
+                  <span className="text-[#9d9d9d]">Good Housekeeping</span> <span className="text-[#d4d4d4]">→</span> <span className="text-[#4ec9b0]">{'{_font.family.barlow-semi-condensed}'}</span>
+                </div>
+              </div>
             </div>
           </section>
 
           {/* Practical Example — 3 brands */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-neutral-1000 mb-4">
-              Practical Example: Same Code, Three Brands
+              Same Code, Three Brands
             </h2>
             <p className="text-base text-neutral-700 mb-6">
-              Here&apos;s the exact same headline + button. The code is identical — both the <strong>color</strong> and <strong>font</strong> token chains resolve differently per brand.
+              Identical markup — both color and font chains resolve differently per brand.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               {[
-                { theme: 'car-and-driver', name: 'Car and Driver', colorPrimitive: '_palette.blue.42', hex: '#1B5F8A', fontPrimitive: '_font.family.inter', fontName: 'Inter', fontStyle: { fontFamily: 'var(--font-inter), Inter, sans-serif', fontWeight: 700 } },
-                { theme: 'good-housekeeping', name: 'Good Housekeeping', colorPrimitive: '_palette.teal.31', hex: '#198294', fontPrimitive: '_font.family.barlow-semi-condensed', fontName: 'Barlow Semi Condensed', fontStyle: { fontFamily: 'var(--font-barlow-semi-condensed), "Barlow Semi Condensed", sans-serif', fontWeight: 600 } },
-                { theme: 'harpers-bazaar', name: "Harper's Bazaar", colorPrimitive: '_palette.gray.7', hex: '#000000', fontPrimitive: '_font.family.newparistextbook', fontName: 'NewParisTextBook (Serif)', fontStyle: { fontFamily: '"NewParisTextBook", "Didot", Georgia, serif', fontWeight: 400 } },
+                { theme: 'car-and-driver', name: 'Car and Driver', hex: '#1B5F8A', fontName: 'Inter', fontStyle: { fontFamily: 'var(--font-inter), Inter, sans-serif', fontWeight: 700 } },
+                { theme: 'good-housekeeping', name: 'Good Housekeeping', hex: '#198294', fontName: 'Barlow Semi Condensed', fontStyle: { fontFamily: 'var(--font-barlow-semi-condensed), "Barlow Semi Condensed", sans-serif', fontWeight: 600 } },
+                { theme: 'harpers-bazaar', name: "Harper's Bazaar", hex: '#000000', fontName: 'NewParisTextBook', fontStyle: { fontFamily: '"NewParisTextBook", "Didot", Georgia, serif', fontWeight: 400 } },
               ].map((brand) => (
                 <div key={brand.theme} data-theme={brand.theme} className="bg-background border border-neutral-400 rounded-xl overflow-hidden">
                   <div className="p-5">
@@ -2673,30 +2570,16 @@ jobs:
                       Read Review
                     </button>
                   </div>
-                  <div className="bg-neutral-100 border-t border-neutral-300 p-4">
-                    <div className="grid grid-cols-2 gap-3">
+                  <div className="bg-neutral-100 border-t border-neutral-300 p-3">
+                    <div className="grid grid-cols-2 gap-2 text-[10px]">
                       <div>
-                        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider m-0 mb-1">Color Chain</p>
-                        <div className="flex items-center gap-1.5 mb-1">
+                        <div className="flex items-center gap-1.5">
                           <div className="w-3 h-3 rounded-sm flex-shrink-0 border border-neutral-300" style={{ backgroundColor: brand.hex }} />
-                          <code className="text-[10px] text-neutral-700">{brand.hex}</code>
+                          <span className="font-bold text-neutral-600">Color: {brand.hex}</span>
                         </div>
-                        <p className="text-[10px] text-neutral-500 m-0 font-mono leading-relaxed">
-                          L1: {brand.colorPrimitive}<br/>
-                          L2: palette.primary<br/>
-                          L3: --primary<br/>
-                          L4: bg-primary
-                        </p>
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider m-0 mb-1">Font Chain</p>
-                        <p className="text-[10px] text-neutral-700 m-0 mb-1 font-medium">{brand.fontName}</p>
-                        <p className="text-[10px] text-neutral-500 m-0 font-mono leading-relaxed">
-                          L1: {brand.fontPrimitive}<br/>
-                          L2: font.family.display<br/>
-                          L3: --font-display<br/>
-                          L4: font-display
-                        </p>
+                        <span className="font-bold text-neutral-600">Font: {brand.fontName}</span>
                       </div>
                     </div>
                   </div>
@@ -2714,7 +2597,7 @@ jobs:
           {/* Why layers matter */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-neutral-1000 mb-6">
-              Why Each Layer Matters
+              Why Layers Matter
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div className="bg-white border border-neutral-400 rounded-xl p-6">
@@ -2726,7 +2609,6 @@ jobs:
                 <ul className="text-sm text-neutral-600 m-0 pl-4 space-y-1">
                   <li>Change requires editing every component</li>
                   <li>No way to swap brands</li>
-                  <li>Designer changes don&apos;t flow to code</li>
                   <li>10 brands = 10x the work</li>
                 </ul>
               </div>
@@ -2737,16 +2619,15 @@ jobs:
                   <span className="text-[#d4d4d4]">&lt;button className=&quot;bg-primary&quot;&gt;</span>
                 </div>
                 <ul className="text-sm text-neutral-600 m-0 pl-4 space-y-1">
-                  <li>Change a primitive → all brands update</li>
-                  <li>Change an alias → one brand updates</li>
-                  <li>Designers edit tokens, code stays the same</li>
+                  <li>Change a primitive — all brands update</li>
+                  <li>Change an alias — one brand updates</li>
                   <li>10 brands = same amount of work</li>
                 </ul>
               </div>
             </div>
           </section>
 
-          {/* Who names what */}
+          {/* Who owns what */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-neutral-1000 mb-6">
               Who Owns Each Layer?
@@ -2756,7 +2637,7 @@ jobs:
                 <thead>
                   <tr className="bg-neutral-200">
                     <th className="text-left p-3 font-semibold text-neutral-900">Layer</th>
-                    <th className="text-left p-3 font-semibold text-neutral-900">Example Name</th>
+                    <th className="text-left p-3 font-semibold text-neutral-900">Example</th>
                     <th className="text-left p-3 font-semibold text-neutral-900">Owned By</th>
                     <th className="text-left p-3 font-semibold text-neutral-900">Stored In</th>
                   </tr>
@@ -2784,53 +2665,50 @@ jobs:
                     <td className="p-3 font-medium">4. Tailwind Class</td>
                     <td className="p-3 font-mono text-xs">bg-primary</td>
                     <td className="p-3">Developers</td>
-                    <td className="p-3">tailwind.config.ts</td>
-                  </tr>
-                  <tr className="border-t border-neutral-300">
-                    <td className="p-3 font-medium">5. Component Token</td>
-                    <td className="p-3 font-mono text-xs">button.bg.default</td>
-                    <td className="p-3">Design System Team</td>
-                    <td className="p-3">Tokens Studio / Figma</td>
+                    <td className="p-3">Tailwind config</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </section>
 
+          {/* Optional Layer 5 */}
+          <section className="mb-12">
+            <div className="p-6 bg-neutral-200 border border-neutral-400 rounded-xl">
+              <h3 className="text-base font-bold text-neutral-900 m-0 mb-2">Optional: Layer 5 — Component Tokens</h3>
+              <p className="text-sm text-neutral-700 m-0 mb-3">
+                Enterprise-scale systems (Salesforce Lightning, Adobe Spectrum, IBM Carbon) add a fifth layer that names what a value <strong>does</strong> in a specific component. For example, <code className="bg-neutral-300 px-1 py-0.5 rounded text-xs">button.bg.default</code> or <code className="bg-neutral-300 px-1 py-0.5 rounded text-xs">headline.font</code>. This lets you decouple components from aliases — useful when you have 50+ components and want to change one without affecting others.
+              </p>
+              <p className="text-sm text-neutral-500 m-0">
+                Our system currently uses 4 layers. Component tokens can be added later as the system scales.
+              </p>
+            </div>
+          </section>
+
           {/* Summary */}
           <section className="bg-neutral-1000 rounded-lg p-8 text-neutral-100">
             <h2 className="text-2xl font-bold m-0 mb-3">
-              One Value, Five Names — Any Token Type
+              One Value, Four Names
             </h2>
             <p className="text-base text-neutral-400 m-0 mb-4">
-              Whether it&apos;s a color, a font, a spacing value, or a border radius — every token flows through the same five layers:
+              Every token — color, font, spacing, radius — follows the same path:
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-5 gap-3 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 mb-6">
               {[
-                { layer: '1', q: 'What is it?', color: '_palette.blue.42', font: '_font.family.inter' },
-                { layer: '2', q: 'What does it mean?', color: 'palette.primary', font: 'font.family.display' },
-                { layer: '3', q: 'Browser sees?', color: '--primary', font: '--font-display' },
-                { layer: '4', q: 'Devs write?', color: 'bg-primary', font: 'font-display' },
-                { layer: '5', q: 'What does it do?', color: 'button.bg', font: 'headline.font' },
+                { layer: '1', q: 'What is it?', ex: '_palette.blue.42' },
+                { layer: '2', q: 'What does it mean?', ex: 'palette.primary' },
+                { layer: '3', q: 'Browser sees?', ex: '--primary' },
+                { layer: '4', q: 'Devs write?', ex: 'bg-primary' },
               ].map((item) => (
-                <div key={item.layer} className="bg-neutral-800 rounded-lg p-3 text-center">
+                <div key={item.layer} className="bg-neutral-800 rounded-lg p-4 text-center">
                   <div className="text-xs text-neutral-500 mb-1">Layer {item.layer}</div>
                   <div className="text-sm font-bold text-neutral-100 mb-2">{item.q}</div>
-                  <div className="space-y-1">
-                    <div className="flex items-center justify-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: '#1B5F8A' }} />
-                      <code className="text-[10px] text-neutral-400">{item.color}</code>
-                    </div>
-                    <div className="flex items-center justify-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-neutral-500 flex-shrink-0" />
-                      <code className="text-[10px] text-neutral-400">{item.font}</code>
-                    </div>
-                  </div>
+                  <code className="text-xs text-neutral-400">{item.ex}</code>
                 </div>
               ))}
             </div>
             <p className="text-sm text-neutral-500 m-0">
-              The pattern is universal. Colors, fonts, spacing, radius, shadows — they all follow the same path from raw value to final usage.
+              The pattern is universal across all token types. Add a 5th layer (component tokens) when you need it — not before.
             </p>
           </section>
         </>

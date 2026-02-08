@@ -125,14 +125,14 @@ export function ArticleCard({
           {/* Author Name & Date */}
           <div className="flex flex-col min-w-0">
             <span 
-              className="font-medium truncate uppercase tracking-wide"
-              style={{ color: 'var(--card-foreground)', fontSize: '14px' }}
+              className="font-bold truncate uppercase tracking-wide"
+              style={{ color: 'var(--card-foreground)', fontSize: '12px' }}
             >
               {author}
             </span>
             <span 
               className="uppercase tracking-wide"
-              style={{ color: 'var(--muted-foreground)', fontSize: '12px' }}
+              style={{ color: 'var(--muted-foreground)', fontSize: '10px' }}
             >
               {date}
               {readTime && ` · ${readTime}`}
@@ -143,7 +143,7 @@ export function ArticleCard({
         {/* CTA Button */}
         <Button 
           variant="default" 
-          className="w-full mt-auto"
+          className="w-full mt-auto font-bold"
           onClick={onReadMore}
           asChild={!!href && href !== '#'}
         >
