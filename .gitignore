@@ -42,3 +42,9 @@ next-env.d.ts
 
 # generated tokens CSS (regenerated from /tokens by build:tokens)
 src/app/tokens-generated.css
+
+# netlify
+.netlify
+
+# storybook
+storybook-static
