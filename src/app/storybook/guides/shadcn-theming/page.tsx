@@ -2,8 +2,41 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Slider } from '@/components/ui/slider';
+import { Switch } from '@/components/ui/switch';
+import { Textarea } from '@/components/ui/textarea';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Progress } from '@/components/ui/progress';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Toggle } from '@/components/ui/toggle';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Separator } from '@/components/ui/separator';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarTrigger } from '@/components/ui/menubar';
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from '@/components/ui/navigation-menu';
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuTrigger } from '@/components/ui/context-menu';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
+// Resizable removed due to package compatibility issue
 
 // Code Block Component
 function CodeBlock({ code, title }: { code: string; title?: string }) {
@@ -55,8 +88,24 @@ function InfoCard({ title, children }: { title: string; children: React.ReactNod
   );
 }
 
+// Section wrapper for showcase
+function ShowcaseSection({ title, description, children }: { title: string; description?: string; children: React.ReactNode }) {
+  return (
+    <section className="mb-10">
+      <h3 className="text-xl font-bold text-foreground m-0 mb-1">{title}</h3>
+      {description && <p className="text-sm text-muted-foreground m-0 mb-4">{description}</p>}
+      {!description && <div className="mb-4" />}
+      <div className="space-y-4">{children}</div>
+    </section>
+  );
+}
+
 export default function ShadcnThemingGuidePage() {
   const [selectedTheme, setSelectedTheme] = useState('car-and-driver');
+  const [activeTab, setActiveTab] = useState<'guide' | 'showcase'>('guide');
+  const [sliderValue, setSliderValue] = useState([33]);
+  const [progressValue, setProgressValue] = useState(66);
+  const [collapsibleOpen, setCollapsibleOpen] = useState(false);
 
   const themes = [
     { id: 'car-and-driver', name: 'Car and Driver', primary: '#1B5F8A' },
@@ -252,17 +301,39 @@ type Theme = 'car-and-driver' | 'esquire' | 'new-brand';
   return (
     <div className="p-12 max-w-[900px] mx-auto">
       {/* Header */}
-      <div className="mb-12 border-b border-neutral-400 pb-6">
+      <div className="mb-8 border-b border-neutral-400 pb-6">
         <p className="text-xs text-neutral-600 m-0 uppercase tracking-wide">Guide</p>
         <h1 className="text-5xl font-bold text-neutral-1000 mt-2 m-0">
           shadcn/ui Multi-Brand Theming
         </h1>
         <p className="text-lg text-neutral-700 mt-4 max-w-[700px]">
-          Learn how to create shadcn/ui components that automatically adapt to each Hearst brand's 
+          Learn how to create shadcn/ui components that automatically adapt to each Hearst brand&apos;s 
           unique visual identity using CSS variables and our theming system.
         </p>
       </div>
 
+      {/* Tab Navigation */}
+      <div className="flex gap-2 mb-10 border-b border-neutral-400 pb-0">
+        {[
+          { id: 'guide' as const, label: 'Guide' },
+          { id: 'showcase' as const, label: 'Component Showcase' },
+        ].map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`px-4 py-2.5 text-sm font-medium border-b-2 transition-colors -mb-px ${
+              activeTab === tab.id
+                ? 'border-neutral-900 text-neutral-900'
+                : 'border-transparent text-neutral-500 hover:text-neutral-700'
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {activeTab === 'guide' && (
+      <>
       {/* Why shadcn/ui */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold text-neutral-1000 mb-5">
@@ -691,12 +762,751 @@ npx shadcn@latest add dialog dropdown-menu tabs
         </h2>
         <ul className="text-base text-neutral-400 m-0 pl-5 space-y-2">
           <li>Use CSS variables (<code className="text-neutral-300">var(--primary)</code>) instead of hardcoded colors</li>
-          <li>Define brand themes using <code className="text-neutral-300">[data-theme="brand-name"]</code> selectors</li>
+          <li>Define brand themes using <code className="text-neutral-300">[data-theme=&quot;brand-name&quot;]</code> selectors</li>
           <li>shadcn/ui components automatically adapt when you follow this pattern</li>
           <li>Adding a new brand = adding CSS variables (no component changes)</li>
           <li>Theme switching is instant and requires no JavaScript re-renders</li>
         </ul>
       </section>
+      </>
+      )}
+
+      {/* ========== COMPONENT SHOWCASE TAB ========== */}
+      {activeTab === 'showcase' && (
+        <div data-theme="car-and-driver">
+          <div className="mb-10">
+            <h2 className="text-3xl font-bold text-foreground m-0 mb-2">
+              Car and Driver Component Showcase
+            </h2>
+            <p className="text-base text-muted-foreground m-0">
+              Every shadcn/ui component below is styled using Car and Driver&apos;s design tokens — bold blues, sharp corners, condensed type.
+            </p>
+            <div className="flex items-center gap-3 mt-4">
+              <div className="w-5 h-5 rounded-sm" style={{ backgroundColor: '#1B5F8A' }} />
+              <div className="w-5 h-5 rounded-sm" style={{ backgroundColor: '#222222' }} />
+              <div className="w-5 h-5 rounded-sm" style={{ backgroundColor: '#DBCA8B' }} />
+              <div className="w-5 h-5 rounded-sm" style={{ backgroundColor: '#D2232A' }} />
+              <div className="w-5 h-5 rounded-sm border" style={{ backgroundColor: '#F5F5F5' }} />
+              <span className="text-xs text-muted-foreground ml-2">Car and Driver palette</span>
+            </div>
+          </div>
+
+          <Separator className="mb-10" />
+
+          {/* ===== LAYOUT ===== */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">Layout</h2>
+
+            <ShowcaseSection title="Aspect Ratio" description="Displays content within a desired ratio.">
+              <div className="w-[300px]">
+                <AspectRatio ratio={16 / 9} className="bg-muted rounded-md overflow-hidden">
+                  <div className="flex items-center justify-center h-full bg-primary/10 text-primary font-semibold text-sm">
+                    16:9 Aspect Ratio
+                  </div>
+                </AspectRatio>
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Scroll Area" description="Augments native scroll functionality for custom, cross-browser styling.">
+              <ScrollArea className="h-[200px] w-full rounded-md border p-4">
+                <div className="space-y-4">
+                  {Array.from({ length: 20 }, (_, i) => (
+                    <div key={i} className="text-sm text-foreground">
+                      Article headline {i + 1} — The latest automotive news from the track
+                    </div>
+                  ))}
+                </div>
+              </ScrollArea>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Separator" description="Visually or semantically separates content.">
+              <div>
+                <div className="space-y-1">
+                  <h4 className="text-sm font-medium leading-none">Car and Driver</h4>
+                  <p className="text-sm text-muted-foreground">Automotive journalism since 1955.</p>
+                </div>
+                <Separator className="my-4" />
+                <div className="flex h-5 items-center space-x-4 text-sm">
+                  <div>Reviews</div>
+                  <Separator orientation="vertical" />
+                  <div>News</div>
+                  <Separator orientation="vertical" />
+                  <div>Features</div>
+                  <Separator orientation="vertical" />
+                  <div>Best Cars</div>
+                </div>
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Resizable" description="Accessible resizable panel groups and layouts.">
+              <div className="flex max-w-md rounded-lg border overflow-hidden">
+                <div className="flex-1 flex h-[120px] items-center justify-center p-6 border-r">
+                  <span className="font-semibold">Panel A</span>
+                </div>
+                <div className="w-2 bg-border flex items-center justify-center cursor-col-resize">
+                  <div className="w-1 h-8 rounded-full bg-muted-foreground/30" />
+                </div>
+                <div className="flex-1 flex h-[120px] items-center justify-center p-6">
+                  <span className="font-semibold">Panel B</span>
+                </div>
+              </div>
+            </ShowcaseSection>
+          </div>
+
+          {/* ===== FORMS ===== */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">Forms</h2>
+
+            <ShowcaseSection title="Checkbox" description="A control that allows selecting multiple options.">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="terms" defaultChecked />
+                  <Label htmlFor="terms">Accept terms and conditions</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="news" />
+                  <Label htmlFor="news">Subscribe to Car and Driver newsletter</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="disabled" disabled />
+                  <Label htmlFor="disabled" className="opacity-50">Disabled option</Label>
+                </div>
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Label" description="Renders an accessible label associated with controls.">
+              <div className="grid w-full max-w-sm gap-1.5">
+                <Label htmlFor="email-label">Email</Label>
+                <Input type="email" id="email-label" placeholder="editor@caranddriver.com" />
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Input" description="Text input for forms.">
+              <div className="grid w-full max-w-sm gap-4">
+                <Input placeholder="Default input" />
+                <Input type="email" placeholder="Email" />
+                <Input disabled placeholder="Disabled" />
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Radio Group" description="A set of checkable buttons where only one can be checked at a time.">
+              <RadioGroup defaultValue="performance">
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="performance" id="r1" />
+                  <Label htmlFor="r1">Performance</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="luxury" id="r2" />
+                  <Label htmlFor="r2">Luxury</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="electric" id="r3" />
+                  <Label htmlFor="r3">Electric</Label>
+                </div>
+              </RadioGroup>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Select" description="Displays a list of options for the user to pick from.">
+              <Select>
+                <SelectTrigger className="w-[280px]">
+                  <SelectValue placeholder="Select a vehicle type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="sedan">Sedan</SelectItem>
+                  <SelectItem value="suv">SUV</SelectItem>
+                  <SelectItem value="truck">Truck</SelectItem>
+                  <SelectItem value="coupe">Coupe</SelectItem>
+                  <SelectItem value="convertible">Convertible</SelectItem>
+                </SelectContent>
+              </Select>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Slider" description="An input where the user selects a value from within a given range.">
+              <div className="w-full max-w-sm space-y-2">
+                <Label>Horsepower: {sliderValue[0] * 10}</Label>
+                <Slider
+                  value={sliderValue}
+                  onValueChange={setSliderValue}
+                  max={100}
+                  step={1}
+                />
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Switch" description="A control that allows toggling between checked and not checked.">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <Switch id="dark-mode" />
+                  <Label htmlFor="dark-mode">Dark Mode</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Switch id="notifications" defaultChecked />
+                  <Label htmlFor="notifications">Push Notifications</Label>
+                </div>
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Textarea" description="A multi-line text input.">
+              <Textarea placeholder="Write your review of the 2026 Porsche 911 GT3 RS..." className="max-w-lg" />
+            </ShowcaseSection>
+          </div>
+
+          {/* ===== DATA DISPLAY ===== */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">Data Display</h2>
+
+            <ShowcaseSection title="Avatar" description="An image element with a fallback for representing the user.">
+              <div className="flex gap-4 items-center">
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" alt="Editor" />
+                  <AvatarFallback>ED</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarFallback>CD</AvatarFallback>
+                </Avatar>
+                <Avatar>
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Badge" description="Displays a badge or a component that looks like a badge.">
+              <div className="flex flex-wrap gap-2">
+                <Badge>Default</Badge>
+                <Badge variant="secondary">Secondary</Badge>
+                <Badge variant="outline">Outline</Badge>
+                <Badge variant="destructive">Destructive</Badge>
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Progress" description="Displays an indicator showing the completion progress of a task.">
+              <div className="w-full max-w-md space-y-3">
+                <Progress value={progressValue} />
+                <p className="text-sm text-muted-foreground">{progressValue}% complete</p>
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Skeleton" description="Used to show a placeholder while content is loading.">
+              <div className="flex items-center space-x-4">
+                <Skeleton className="h-12 w-12 rounded-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-[250px]" />
+                  <Skeleton className="h-4 w-[200px]" />
+                </div>
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Table" description="A responsive table component.">
+              <Table>
+                <TableCaption>2026 Performance Car Comparison</TableCaption>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Model</TableHead>
+                    <TableHead>HP</TableHead>
+                    <TableHead>0-60 mph</TableHead>
+                    <TableHead className="text-right">MSRP</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell className="font-medium">Porsche 911 GT3 RS</TableCell>
+                    <TableCell>518</TableCell>
+                    <TableCell>3.0s</TableCell>
+                    <TableCell className="text-right">$223,800</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">BMW M3 Competition</TableCell>
+                    <TableCell>503</TableCell>
+                    <TableCell>3.4s</TableCell>
+                    <TableCell className="text-right">$76,900</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">Mercedes-AMG C63 S</TableCell>
+                    <TableCell>671</TableCell>
+                    <TableCell>3.3s</TableCell>
+                    <TableCell className="text-right">$85,500</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell className="font-medium">Chevrolet Corvette Z06</TableCell>
+                    <TableCell>670</TableCell>
+                    <TableCell>2.6s</TableCell>
+                    <TableCell className="text-right">$113,900</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Card" description="Displays a card with header, content, and footer.">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>2026 Porsche 911 GT3 RS</CardTitle>
+                    <CardDescription>First Drive Review</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      The GT3 RS continues to push the boundaries of what a road-legal sports car can do on a circuit.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button size="sm">Read Review</Button>
+                  </CardFooter>
+                </Card>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Best SUVs for 2026</CardTitle>
+                    <CardDescription>Buyer&apos;s Guide</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">
+                      From compact crossovers to full-size luxury, our picks for every budget and need.
+                    </p>
+                  </CardContent>
+                  <CardFooter>
+                    <Button variant="outline" size="sm">View List</Button>
+                  </CardFooter>
+                </Card>
+              </div>
+            </ShowcaseSection>
+          </div>
+
+          {/* ===== FEEDBACK ===== */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">Feedback</h2>
+
+            <ShowcaseSection title="Alert" description="Displays a callout for important information.">
+              <div className="space-y-4 max-w-lg">
+                <Alert>
+                  <AlertTitle>New Review Published</AlertTitle>
+                  <AlertDescription>
+                    Your 2026 Corvette Z06 review is now live on the site.
+                  </AlertDescription>
+                </Alert>
+                <Alert variant="destructive">
+                  <AlertTitle>Recall Notice</AlertTitle>
+                  <AlertDescription>
+                    A safety recall has been issued for the 2025 model year.
+                  </AlertDescription>
+                </Alert>
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Alert Dialog" description="A modal dialog that interrupts the user with important content.">
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline">Delete Review</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete your review and remove it from the site.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction>Delete</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Tooltip" description="A popup that displays information related to an element.">
+              <TooltipProvider>
+                <div className="flex gap-4">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button variant="outline">Hover me</Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>This is a tooltip with Car and Driver styling</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              </TooltipProvider>
+            </ShowcaseSection>
+          </div>
+
+          {/* ===== NAVIGATION ===== */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">Navigation</h2>
+
+            <ShowcaseSection title="Breadcrumb" description="Displays the path to the current resource using a hierarchy of links.">
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="#">Home</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="#">Reviews</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink href="#">Sports Cars</BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>Porsche 911 GT3 RS</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Dropdown Menu" description="Displays a menu to the user triggered by a button.">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline">Open Menu</Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56">
+                  <DropdownMenuLabel>Navigation</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Reviews</DropdownMenuItem>
+                  <DropdownMenuItem>News</DropdownMenuItem>
+                  <DropdownMenuItem>Features</DropdownMenuItem>
+                  <DropdownMenuItem>Best Cars Lists</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>My Account</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Menubar" description="A visually persistent menu common in desktop applications.">
+              <Menubar>
+                <MenubarMenu>
+                  <MenubarTrigger>File</MenubarTrigger>
+                  <MenubarContent>
+                    <MenubarItem>New Article</MenubarItem>
+                    <MenubarItem>Open Draft</MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem>Save</MenubarItem>
+                    <MenubarItem>Publish</MenubarItem>
+                  </MenubarContent>
+                </MenubarMenu>
+                <MenubarMenu>
+                  <MenubarTrigger>Edit</MenubarTrigger>
+                  <MenubarContent>
+                    <MenubarItem>Undo</MenubarItem>
+                    <MenubarItem>Redo</MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem>Cut</MenubarItem>
+                    <MenubarItem>Copy</MenubarItem>
+                    <MenubarItem>Paste</MenubarItem>
+                  </MenubarContent>
+                </MenubarMenu>
+                <MenubarMenu>
+                  <MenubarTrigger>View</MenubarTrigger>
+                  <MenubarContent>
+                    <MenubarItem>Preview</MenubarItem>
+                    <MenubarItem>Desktop</MenubarItem>
+                    <MenubarItem>Mobile</MenubarItem>
+                  </MenubarContent>
+                </MenubarMenu>
+              </Menubar>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Navigation Menu" description="A collection of links for navigating websites.">
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Reviews</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="grid gap-3 p-4 w-[400px]">
+                        <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">First Drives</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            Our first impressions from behind the wheel
+                          </p>
+                        </NavigationMenuLink>
+                        <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">Comparison Tests</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            Head-to-head matchups of competing models
+                          </p>
+                        </NavigationMenuLink>
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Best Cars</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <div className="grid gap-3 p-4 w-[400px]">
+                        <NavigationMenuLink className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground">
+                          <div className="text-sm font-medium leading-none">10Best Cars</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            Our annual list of the best vehicles on sale
+                          </p>
+                        </NavigationMenuLink>
+                      </div>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Pagination" description="Pagination with page navigation, previous and next links.">
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious href="#" />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#" isActive>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#">3</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext href="#" />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Tabs" description="A set of layered sections of content, known as tab panels.">
+              <Tabs defaultValue="performance" className="w-full max-w-lg">
+                <TabsList>
+                  <TabsTrigger value="performance">Performance</TabsTrigger>
+                  <TabsTrigger value="specs">Specs</TabsTrigger>
+                  <TabsTrigger value="pricing">Pricing</TabsTrigger>
+                </TabsList>
+                <TabsContent value="performance" className="p-4 border rounded-md mt-2">
+                  <p className="text-sm text-muted-foreground">518 hp flat-six, 3.0s 0-60, 184 mph top speed. The GT3 RS is track-focused but street-legal.</p>
+                </TabsContent>
+                <TabsContent value="specs" className="p-4 border rounded-md mt-2">
+                  <p className="text-sm text-muted-foreground">4.0L flat-six, 7-speed PDK, rear-wheel drive, 3,268 lbs curb weight.</p>
+                </TabsContent>
+                <TabsContent value="pricing" className="p-4 border rounded-md mt-2">
+                  <p className="text-sm text-muted-foreground">Base MSRP: $223,800. Weissach Package adds $31,000. Most examples exceed $280K with options.</p>
+                </TabsContent>
+              </Tabs>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Context Menu" description="Displays a menu at the pointer's position on right-click.">
+              <ContextMenu>
+                <ContextMenuTrigger className="flex h-[100px] w-[250px] items-center justify-center rounded-md border border-dashed text-sm text-muted-foreground">
+                  Right-click here
+                </ContextMenuTrigger>
+                <ContextMenuContent className="w-48">
+                  <ContextMenuItem>Save Article</ContextMenuItem>
+                  <ContextMenuItem>Share</ContextMenuItem>
+                  <ContextMenuItem>Print</ContextMenuItem>
+                  <ContextMenuItem>Report Issue</ContextMenuItem>
+                </ContextMenuContent>
+              </ContextMenu>
+            </ShowcaseSection>
+          </div>
+
+          {/* ===== OVERLAY ===== */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">Overlay</h2>
+
+            <ShowcaseSection title="Dialog" description="A window overlaid on the primary window, rendering content underneath inert.">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button variant="outline">Open Dialog</Button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[425px]">
+                  <DialogHeader>
+                    <DialogTitle>Subscribe to Car and Driver</DialogTitle>
+                    <DialogDescription>
+                      Get unlimited access to reviews, features, and buyer&apos;s guides.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid gap-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input id="name" placeholder="John Doe" />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label htmlFor="sub-email">Email</Label>
+                      <Input id="sub-email" placeholder="john@example.com" />
+                    </div>
+                  </div>
+                  <DialogFooter>
+                    <Button type="submit">Subscribe</Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Sheet" description="Extends the Dialog component to display content that complements the main content.">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline">Open Sheet</Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Article Settings</SheetTitle>
+                    <SheetDescription>
+                      Configure publishing options for this article.
+                    </SheetDescription>
+                  </SheetHeader>
+                  <div className="grid gap-4 py-4">
+                    <div className="grid gap-2">
+                      <Label>Category</Label>
+                      <Input defaultValue="Reviews" />
+                    </div>
+                    <div className="grid gap-2">
+                      <Label>Author</Label>
+                      <Input defaultValue="Car and Driver Staff" />
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Switch id="featured" />
+                      <Label htmlFor="featured">Featured Article</Label>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Hover Card" description="For sighted users to preview content available behind a link.">
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <Button variant="link" className="text-primary">@caranddriver</Button>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80">
+                  <div className="flex justify-between space-x-4">
+                    <Avatar>
+                      <AvatarFallback>CD</AvatarFallback>
+                    </Avatar>
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-semibold">Car and Driver</h4>
+                      <p className="text-sm text-muted-foreground">
+                        Automotive journalism since 1955. Reviews, news, and buyer&apos;s guides.
+                      </p>
+                      <div className="flex items-center pt-2">
+                        <span className="text-xs text-muted-foreground">
+                          Joined December 1955
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Popover" description="Displays rich content in a portal, triggered by a button.">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button variant="outline">Open Popover</Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-80">
+                  <div className="grid gap-4">
+                    <div className="space-y-2">
+                      <h4 className="font-medium leading-none">Filter Results</h4>
+                      <p className="text-sm text-muted-foreground">
+                        Set filters for the vehicle search.
+                      </p>
+                    </div>
+                    <div className="grid gap-2">
+                      <div className="grid grid-cols-3 items-center gap-4">
+                        <Label>Min Price</Label>
+                        <Input className="col-span-2 h-8" defaultValue="$20,000" />
+                      </div>
+                      <div className="grid grid-cols-3 items-center gap-4">
+                        <Label>Max Price</Label>
+                        <Input className="col-span-2 h-8" defaultValue="$80,000" />
+                      </div>
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </ShowcaseSection>
+          </div>
+
+          {/* ===== OTHER ===== */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">Other</h2>
+
+            <ShowcaseSection title="Collapsible" description="An interactive component which expands/collapses a panel.">
+              <Collapsible open={collapsibleOpen} onOpenChange={setCollapsibleOpen} className="w-full max-w-sm space-y-2">
+                <div className="flex items-center justify-between space-x-4">
+                  <h4 className="text-sm font-semibold">3 Related Articles</h4>
+                  <CollapsibleTrigger asChild>
+                    <Button variant="ghost" size="sm">
+                      {collapsibleOpen ? 'Hide' : 'Show'}
+                    </Button>
+                  </CollapsibleTrigger>
+                </div>
+                <div className="rounded-md border px-4 py-3 text-sm">
+                  2026 Porsche 911 GT3 RS First Drive
+                </div>
+                <CollapsibleContent className="space-y-2">
+                  <div className="rounded-md border px-4 py-3 text-sm">
+                    Porsche 911 GT3 vs. BMW M4 CSL Comparison
+                  </div>
+                  <div className="rounded-md border px-4 py-3 text-sm">
+                    Best Sports Cars for 2026
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Toggle" description="A two-state button that can be either on or off.">
+              <div className="flex gap-2">
+                <Toggle aria-label="Toggle bold">
+                  <span className="font-bold">B</span>
+                </Toggle>
+                <Toggle aria-label="Toggle italic">
+                  <span className="italic">I</span>
+                </Toggle>
+                <Toggle aria-label="Toggle underline">
+                  <span className="underline">U</span>
+                </Toggle>
+              </div>
+            </ShowcaseSection>
+
+            <ShowcaseSection title="Toggle Group" description="A set of two-state buttons that can be toggled on or off.">
+              <ToggleGroup type="single" defaultValue="grid">
+                <ToggleGroupItem value="grid" aria-label="Grid view">
+                  Grid
+                </ToggleGroupItem>
+                <ToggleGroupItem value="list" aria-label="List view">
+                  List
+                </ToggleGroupItem>
+                <ToggleGroupItem value="kanban" aria-label="Kanban view">
+                  Kanban
+                </ToggleGroupItem>
+              </ToggleGroup>
+            </ShowcaseSection>
+          </div>
+
+          {/* ===== BUTTONS (all variants) ===== */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-foreground mb-6 pb-2 border-b border-border">Buttons — All Variants</h2>
+            <div className="flex flex-wrap gap-3">
+              <Button>Primary</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+              <Button variant="link">Link</Button>
+              <Button variant="destructive">Destructive</Button>
+            </div>
+            <div className="flex flex-wrap gap-3 mt-4">
+              <Button size="sm">Small</Button>
+              <Button size="default">Default</Button>
+              <Button size="lg">Large</Button>
+            </div>
+          </div>
+
+          {/* Summary */}
+          <section className="bg-neutral-900 rounded-lg p-8 text-neutral-100">
+            <h2 className="text-2xl font-bold m-0 mb-3">
+              35 Components, 1 Theme
+            </h2>
+            <p className="text-base text-neutral-400 m-0">
+              Every component above is styled entirely through CSS variables. Switch the <code className="text-neutral-300">data-theme</code> attribute and they all update instantly — no code changes, no re-renders.
+            </p>
+          </section>
+        </div>
+      )}
     </div>
   );
 }
