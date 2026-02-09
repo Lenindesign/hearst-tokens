@@ -3066,7 +3066,9 @@ jobs:
             <h3 className="text-xl font-bold text-neutral-1000 mb-6">Common Workflows</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="bg-neutral-100 rounded-xl p-6 border border-neutral-400">
-                <div className="text-2xl mb-3">🎨</div>
+                <div className="w-8 h-8 rounded-lg bg-[#A259FF] flex items-center justify-center mb-3">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="17" r="2"/><circle cx="6" cy="12" r="3"/></svg>
+                </div>
                 <h4 className="text-sm font-bold text-neutral-1000 m-0 mb-2">Update a Brand Color</h4>
                 <ol className="text-xs text-neutral-700 m-0 pl-4 space-y-1">
                   <li>Open Token Studio in Figma</li>
@@ -3076,7 +3078,9 @@ jobs:
                 </ol>
               </div>
               <div className="bg-neutral-100 rounded-xl p-6 border border-neutral-400">
-                <div className="text-2xl mb-3">🧩</div>
+                <div className="w-8 h-8 rounded-lg bg-neutral-900 flex items-center justify-center mb-3">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                </div>
                 <h4 className="text-sm font-bold text-neutral-1000 m-0 mb-2">Add a New Component</h4>
                 <ol className="text-xs text-neutral-700 m-0 pl-4 space-y-1">
                   <li>Create component in <code>src/components/</code></li>
@@ -3086,7 +3090,9 @@ jobs:
                 </ol>
               </div>
               <div className="bg-neutral-100 rounded-xl p-6 border border-neutral-400">
-                <div className="text-2xl mb-3">🏷️</div>
+                <div className="w-8 h-8 rounded-lg bg-[#1EA7FD] flex items-center justify-center mb-3">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                </div>
                 <h4 className="text-sm font-bold text-neutral-1000 m-0 mb-2">Add a New Brand</h4>
                 <ol className="text-xs text-neutral-700 m-0 pl-4 space-y-1">
                   <li>Create <code>tokens/brand-name.json</code></li>
