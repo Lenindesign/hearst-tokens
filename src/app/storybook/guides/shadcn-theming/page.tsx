@@ -831,9 +831,12 @@ npx shadcn@latest add dialog dropdown-menu tabs
               Every shadcn/ui component below adapts to the selected brand theme via CSS variables. Switch brands to see the transformation.
             </p>
 
-            {/* Brand Theme Picker */}
-            <div className="mt-6 mb-2">
-              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3 block">Select Brand</span>
+          </div>
+
+          {/* Brand Theme Picker - Sticky */}
+          <div className="sticky top-0 z-50 bg-neutral-100/95 backdrop-blur-sm border-b border-neutral-400 -mx-12 px-12 py-3 mb-8">
+            <div className="flex items-center gap-4">
+              <span className="text-xs font-semibold text-neutral-600 uppercase tracking-wide flex-shrink-0">Brand</span>
               <div className="flex flex-wrap gap-2">
                 {[
                   { id: 'car-and-driver', label: 'Car and Driver' },
@@ -852,8 +855,8 @@ npx shadcn@latest add dialog dropdown-menu tabs
                     onClick={() => setSelectedTheme(brand.id)}
                     className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
                       selectedTheme === brand.id
-                        ? 'bg-primary text-primary-foreground shadow-sm'
-                        : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+                        ? 'bg-neutral-900 text-white shadow-sm'
+                        : 'bg-neutral-300 text-neutral-700 hover:bg-neutral-400'
                     }`}
                   >
                     {brand.label}
