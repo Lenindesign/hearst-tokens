@@ -8,6 +8,20 @@ const meta = {
     layout: 'padded',
   },
   tags: ['autodocs'],
+  argTypes: {
+    eyebrow: {
+      control: 'text',
+      description: 'Newsletter name / brand line shown above the title',
+    },
+    title: {
+      control: 'text',
+      description: 'Main headline for the newsletter promo',
+    },
+    className: {
+      control: 'text',
+      description: 'Additional CSS classes for the wrapper',
+    },
+  },
 } satisfies Meta<typeof NewsletterPromo>;
 
 export default meta;

@@ -9,13 +9,23 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
+    children: {
+      control: 'text',
+      description: 'Button label content',
+    },
     variant: {
       control: 'select',
       options: ['default', 'secondary', 'destructive', 'outline', 'ghost', 'link'],
+      description: 'Visual style variant',
     },
     size: {
       control: 'select',
       options: ['default', 'sm', 'lg', 'icon'],
+      description: 'Button size',
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Disable the button',
     },
   },
 } satisfies Meta<typeof Button>;
@@ -80,6 +90,9 @@ export const Large: Story = {
 };
 
 export const AllVariants: Story = {
+  args: {
+    children: 'Button',
+  },
   render: () => (
     <div className="flex flex-wrap gap-4 items-center">
       <Button variant="default">Default</Button>

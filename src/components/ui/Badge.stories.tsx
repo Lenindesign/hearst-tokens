@@ -9,9 +9,14 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
+    children: {
+      control: 'text',
+      description: 'Badge label content',
+    },
     variant: {
       control: 'select',
       options: ['default', 'secondary', 'destructive', 'outline'],
+      description: 'Visual style variant',
     },
   },
 } satisfies Meta<typeof Badge>;
@@ -47,6 +52,9 @@ export const Outline: Story = {
 };
 
 export const AllVariants: Story = {
+  args: {
+    children: 'Badge',
+  },
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Badge>Default</Badge>
