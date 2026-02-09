@@ -1,39 +1,126 @@
 {
   "colors": {
-    "background": { "value": "#f5f5f5", "type": "color" },
-    "foreground": { "value": "#000000", "type": "color" },
-    "card": { "value": "#ffffff", "type": "color" },
-    "card-foreground": { "value": "#000000", "type": "color" },
-    "popover": { "value": "#ffffff", "type": "color" },
-    "popover-foreground": { "value": "#000000", "type": "color" },
-    "primary": { "value": "#000000", "type": "color" },
-    "primary-foreground": { "value": "#ffffff", "type": "color" },
-    "secondary": { "value": "#f5f5f5", "type": "color" },
-    "secondary-foreground": { "value": "#000000", "type": "color" },
-    "muted": { "value": "#f5f5f5", "type": "color" },
-    "muted-foreground": { "value": "#77747b", "type": "color" },
-    "accent": { "value": "#aa0703", "type": "color" },
-    "accent-foreground": { "value": "#ffffff", "type": "color" },
-    "destructive": { "value": "#ff0000", "type": "color" },
-    "destructive-foreground": { "value": "#ffffff", "type": "color" },
-    "border": { "value": "#d6d6d6", "type": "color" },
-    "input": { "value": "#d6d6d6", "type": "color" },
-    "ring": { "value": "#000000", "type": "color" }
+    "background": {
+      "value": "#f5f5f5",
+      "type": "color"
+    },
+    "foreground": {
+      "value": "#000000",
+      "type": "color"
+    },
+    "card": {
+      "value": "#ffffff",
+      "type": "color"
+    },
+    "card-foreground": {
+      "value": "#000000",
+      "type": "color"
+    },
+    "popover": {
+      "value": "#ffffff",
+      "type": "color"
+    },
+    "popover-foreground": {
+      "value": "#000000",
+      "type": "color"
+    },
+    "primary": {
+      "value": "#000000",
+      "type": "color"
+    },
+    "primary-foreground": {
+      "value": "#ffffff",
+      "type": "color"
+    },
+    "secondary": {
+      "value": "#f5f5f5",
+      "type": "color"
+    },
+    "secondary-foreground": {
+      "value": "#000000",
+      "type": "color"
+    },
+    "muted": {
+      "value": "#f5f5f5",
+      "type": "color"
+    },
+    "muted-foreground": {
+      "value": "#77747b",
+      "type": "color"
+    },
+    "accent": {
+      "value": "#aa0703",
+      "type": "color"
+    },
+    "accent-foreground": {
+      "value": "#ffffff",
+      "type": "color"
+    },
+    "destructive": {
+      "value": "#ff0000",
+      "type": "color"
+    },
+    "destructive-foreground": {
+      "value": "#ffffff",
+      "type": "color"
+    },
+    "border": {
+      "value": "#d6d6d6",
+      "type": "color"
+    },
+    "input": {
+      "value": "#d6d6d6",
+      "type": "color"
+    },
+    "ring": {
+      "value": "#000000",
+      "type": "color"
+    }
   },
   "brand": {
-    "dark": { "value": "#000000", "type": "color" },
-    "blue": { "value": "#000000", "type": "color" },
-    "gold": { "value": "#aa0703", "type": "color" },
-    "red": { "value": "#ff0000", "type": "color" }
+    "dark": {
+      "value": "#000000",
+      "type": "color"
+    },
+    "blue": {
+      "value": "#000000",
+      "type": "color"
+    },
+    "gold": {
+      "value": "#aa0703",
+      "type": "color"
+    },
+    "red": {
+      "value": "#ff0000",
+      "type": "color"
+    }
   },
   "typography": {
-    "font-primary": { "value": "Didot, Playfair Display, Georgia, serif", "type": "fontFamilies" },
-    "font-display": { "value": "NewParisTextBook, Didot, Georgia, serif", "type": "fontFamilies" },
-    "font-display-weight": { "value": "400", "type": "fontWeights" },
-    "font-serif": { "value": "Didot, Georgia, serif", "type": "fontFamilies" }
+    "font-primary": {
+      "value": "Didot, Playfair Display, Georgia, serif",
+      "type": "fontFamilies"
+    },
+    "font-display": {
+      "value": "NewParisTextBook, Didot, Georgia, serif",
+      "type": "fontFamilies"
+    },
+    "font-display-weight": {
+      "value": "400",
+      "type": "fontWeights"
+    },
+    "font-serif": {
+      "value": "Didot, Georgia, serif",
+      "type": "fontFamilies"
+    }
   },
   "component": {
-    "radius": { "value": "0px", "type": "borderRadius" },
-    "article-card-title-size": { "value": "22px", "type": "fontSizes" }
+    "radius": {
+      "value": "0px",
+      "type": "borderRadius"
+    },
+    "article-card-title-size": {
+      "value": "22px",
+      "type": "fontSizes"
+    }
   }
 }
