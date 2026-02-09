@@ -32,6 +32,7 @@ export const Default: Story = {
   args: {
     message: 'Theme changed successfully!',
     isVisible: true,
+    onHide: () => {},
   },
 };
 
@@ -39,6 +40,7 @@ export const LongMessage: Story = {
   args: {
     message: 'Your preferences have been saved. The new theme will be applied across all components in the design system.',
     isVisible: true,
+    onHide: () => {},
   },
 };
 
@@ -46,6 +48,7 @@ export const Hidden: Story = {
   args: {
     message: 'This toast is hidden',
     isVisible: false,
+    onHide: () => {},
   },
 };
 
@@ -53,6 +56,7 @@ export const Interactive: Story = {
   args: {
     message: 'Click the button to show a toast!',
     isVisible: false,
+    onHide: () => {},
   },
   render: function InteractiveToast() {
     const [visible, setVisible] = useState(false);
