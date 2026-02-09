@@ -498,7 +498,7 @@ const brandLogos: Record<string, string> = {
 };
 
 export default function TokenPipelinePage() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'demo' | 'architecture' | 'articles' | 'simple' | 'naming'>('overview');
+  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'demo' | 'architecture' | 'articles' | 'simple' | 'naming' | 'resources'>('overview');
   const [demoTheme, setDemoTheme] = useState('car-and-driver');
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
@@ -723,6 +723,16 @@ function ArticlePage() {
           }`}
         >
           Token Naming
+        </button>
+        <button
+          onClick={() => setActiveTab('resources')}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            activeTab === 'resources'
+              ? 'bg-neutral-900 text-white'
+              : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+          }`}
+        >
+          Resources & Links
         </button>
       </div>
 
@@ -2710,6 +2720,382 @@ jobs:
             <p className="text-sm text-neutral-500 m-0">
               The pattern is universal across all token types. Add a 5th layer (component tokens) when you need it — not before.
             </p>
+          </section>
+        </>
+      )}
+
+      {/* ========== RESOURCES & LINKS TAB ========== */}
+      {activeTab === 'resources' && (
+        <>
+          {/* Hero */}
+          <section className="mb-12">
+            <div className="bg-neutral-900 rounded-xl p-8 text-center">
+              <h2 className="text-3xl font-bold text-white m-0 mb-3">Resources & Links</h2>
+              <p className="text-neutral-400 text-lg m-0 max-w-[600px] mx-auto">
+                Everything you need to work with the Hearst Design System — from design files to code repositories, documentation, and tools.
+              </p>
+            </div>
+          </section>
+
+          {/* Core Tools */}
+          <section className="mb-12">
+            <h3 className="text-xl font-bold text-neutral-1000 mb-6">Core Tools</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a
+                href="https://hearst-storybook.netlify.app/?path=/docs/components-articlecard--docs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#FF4785] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Storybook</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">Interactive component documentation with live controls, theme switching, and design token reference.</p>
+                    <span className="text-xs text-neutral-600 font-mono">hearst-storybook.netlify.app</span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="https://www.figma.com/design/CGeicfEdiNZjkCUoO5a40a/C-D-Component-Library?node-id=1503-1349&t=nS2i11AY3L1fqBHr-1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#A259FF] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 24c2.2 0 4-1.8 4-4v-4H8c-2.2 0-4 1.8-4 4s1.8 4 4 4zm0-20C5.8 4 4 5.8 4 8s1.8 4 4 4h4V4H8zm0-4C5.8 0 4 1.8 4 4s1.8 4 4 4h4V0H8zm8 0h-4v8h4c2.2 0 4-1.8 4-4s-1.8-4-4-4zm0 12c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Figma Component Library</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">The source design file with all components, styles, and brand themes for Car & Driver and other Hearst brands.</p>
+                    <span className="text-xs text-neutral-600 font-mono">figma.com/design/CGeicfEdiNZjkCUoO5a40a</span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="https://github.com/Lenindesign/hearst-tokens/tree/main/tokens"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-neutral-900 flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">GitHub — Token Source of Truth</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">The JSON token files that power every brand theme. This is the single source of truth synced with Figma via Token Studio.</p>
+                    <span className="text-xs text-neutral-600 font-mono">github.com/Lenindesign/hearst-tokens/tokens</span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="https://app.prod.tokens.studio/org/hearst/project/car-and-driver/data/main/tokens/set/car-and-driver"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#1EA7FD] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6m-7-7h6m6 0h6"/><path d="m4.22 4.22 4.24 4.24m7.08 7.08 4.24 4.24m0-15.56-4.24 4.24m-7.08 7.08-4.24 4.24"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Token Studio</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">Manage, edit, and sync design tokens between Figma and code. The bridge between design and development.</p>
+                    <span className="text-xs text-neutral-600 font-mono">app.prod.tokens.studio</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          {/* Developer Resources */}
+          <section className="mb-12">
+            <h3 className="text-xl font-bold text-neutral-1000 mb-6">For Developers</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a
+                href="https://github.com/Lenindesign/hearst-tokens"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-neutral-900 flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">GitHub Repository</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">Full source code — Next.js app, components, Storybook config, token build scripts, and CI/CD setup.</p>
+                    <span className="text-xs text-neutral-600 font-mono">github.com/Lenindesign/hearst-tokens</span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="https://hearts-tokens.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#00C7B7] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Production App (Netlify)</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">The live deployed Next.js application with multi-brand theming, component showcases, and this documentation.</p>
+                    <span className="text-xs text-neutral-600 font-mono">hearts-tokens.netlify.app</span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="https://tailwindcss.com/docs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#06B6D4] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Tailwind CSS Docs</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">Reference for all utility classes used in our components. Our tokens extend Tailwind&apos;s default theme.</p>
+                    <span className="text-xs text-neutral-600 font-mono">tailwindcss.com/docs</span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="https://ui.shadcn.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-neutral-900 flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">shadcn/ui</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">The component library our UI primitives are built on. Copy-paste accessible components styled with our tokens.</p>
+                    <span className="text-xs text-neutral-600 font-mono">ui.shadcn.com</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          {/* Designer Resources */}
+          <section className="mb-12">
+            <h3 className="text-xl font-bold text-neutral-1000 mb-6">For Designers</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a
+                href="https://www.figma.com/design/CGeicfEdiNZjkCUoO5a40a/C-D-Component-Library?node-id=1503-1349&t=nS2i11AY3L1fqBHr-1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#A259FF] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 24c2.2 0 4-1.8 4-4v-4H8c-2.2 0-4 1.8-4 4s1.8 4 4 4zm0-20C5.8 4 4 5.8 4 8s1.8 4 4 4h4V4H8zm0-4C5.8 0 4 1.8 4 4s1.8 4 4 4h4V0H8zm8 0h-4v8h4c2.2 0 4-1.8 4-4s-1.8-4-4-4zm0 12c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Figma — Component Library</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">All components with auto-layout, variants, and token-linked styles. Use this as your starting point for any design work.</p>
+                    <span className="text-xs text-neutral-600 font-mono">C-D Component Library</span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="https://docs.tokens.studio/getting-started"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#1EA7FD] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Token Studio Docs</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">Learn how to use the Token Studio Figma plugin to manage and sync design tokens with our GitHub repository.</p>
+                    <span className="text-xs text-neutral-600 font-mono">docs.tokens.studio</span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="https://hearst-storybook.netlify.app/?path=/docs/tokens-colors--docs"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#FF4785] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="19" cy="17" r="2"/><circle cx="6" cy="12" r="3"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Storybook — Token Reference</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">Browse all available colors, typography, spacing, border radius, and shadow tokens with live theme switching.</p>
+                    <span className="text-xs text-neutral-600 font-mono">hearst-storybook.netlify.app/tokens</span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="https://www.figma.com/community/plugin/843461159747178978/tokens-studio-for-figma"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-neutral-700 flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48 2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48 2.83-2.83"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Token Studio Figma Plugin</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">Install the plugin to connect Figma with our GitHub token repository. Push and pull tokens directly from Figma.</p>
+                    <span className="text-xs text-neutral-600 font-mono">Figma Community Plugin</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          {/* For Product Managers */}
+          <section className="mb-12">
+            <h3 className="text-xl font-bold text-neutral-1000 mb-6">For Product Managers</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <a
+                href="https://hearst-storybook.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#FF4785] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Storybook — Component Catalog</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">Review all available components across brands. Use the theme switcher to see how each brand looks. No code required.</p>
+                    <span className="text-xs text-neutral-600 font-mono">hearst-storybook.netlify.app</span>
+                  </div>
+                </div>
+              </a>
+
+              <a
+                href="https://hearts-tokens.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-neutral-100 rounded-xl p-6 border border-neutral-400 hover:border-neutral-900 transition-all no-underline"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-[#00C7B7] flex items-center justify-center flex-shrink-0">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><path d="M3 3h18v18H3z"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/></svg>
+                  </div>
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-1000 m-0 mb-1 group-hover:text-neutral-900">Live Design System App</h4>
+                    <p className="text-sm text-neutral-700 m-0 mb-2">The full application showcasing the design system in action — homepage layouts, component demos, and brand theming.</p>
+                    <span className="text-xs text-neutral-600 font-mono">hearts-tokens.netlify.app</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </section>
+
+          {/* Quick Reference Table */}
+          <section className="mb-12">
+            <h3 className="text-xl font-bold text-neutral-1000 mb-6">Quick Reference</h3>
+            <div className="bg-neutral-100 rounded-xl border border-neutral-400 overflow-hidden">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-neutral-300">
+                    <th className="text-left p-4 font-semibold text-neutral-1000">What</th>
+                    <th className="text-left p-4 font-semibold text-neutral-1000">Where</th>
+                    <th className="text-left p-4 font-semibold text-neutral-1000">Who</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t border-neutral-400">
+                    <td className="p-4 text-neutral-900 font-medium">Design token JSON files</td>
+                    <td className="p-4"><code className="text-xs bg-neutral-300 px-2 py-1 rounded">tokens/*.json</code> on GitHub</td>
+                    <td className="p-4 text-neutral-700">Developers, Designers (via Token Studio)</td>
+                  </tr>
+                  <tr className="border-t border-neutral-400">
+                    <td className="p-4 text-neutral-900 font-medium">Component source code</td>
+                    <td className="p-4"><code className="text-xs bg-neutral-300 px-2 py-1 rounded">src/components/</code> on GitHub</td>
+                    <td className="p-4 text-neutral-700">Developers</td>
+                  </tr>
+                  <tr className="border-t border-neutral-400">
+                    <td className="p-4 text-neutral-900 font-medium">CSS generation script</td>
+                    <td className="p-4"><code className="text-xs bg-neutral-300 px-2 py-1 rounded">scripts/build-tokens.mjs</code></td>
+                    <td className="p-4 text-neutral-700">Developers</td>
+                  </tr>
+                  <tr className="border-t border-neutral-400">
+                    <td className="p-4 text-neutral-900 font-medium">Component designs</td>
+                    <td className="p-4">Figma Component Library</td>
+                    <td className="p-4 text-neutral-700">Designers, PMs</td>
+                  </tr>
+                  <tr className="border-t border-neutral-400">
+                    <td className="p-4 text-neutral-900 font-medium">Interactive docs</td>
+                    <td className="p-4">Storybook</td>
+                    <td className="p-4 text-neutral-700">Everyone</td>
+                  </tr>
+                  <tr className="border-t border-neutral-400">
+                    <td className="p-4 text-neutral-900 font-medium">Token sync (Figma ↔ Code)</td>
+                    <td className="p-4">Token Studio plugin + GitHub</td>
+                    <td className="p-4 text-neutral-700">Designers, Developers</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          {/* Workflow Cheat Sheet */}
+          <section className="mb-12">
+            <h3 className="text-xl font-bold text-neutral-1000 mb-6">Common Workflows</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="bg-neutral-100 rounded-xl p-6 border border-neutral-400">
+                <div className="text-2xl mb-3">🎨</div>
+                <h4 className="text-sm font-bold text-neutral-1000 m-0 mb-2">Update a Brand Color</h4>
+                <ol className="text-xs text-neutral-700 m-0 pl-4 space-y-1">
+                  <li>Open Token Studio in Figma</li>
+                  <li>Edit the color token value</li>
+                  <li>Push to GitHub from Token Studio</li>
+                  <li>Netlify auto-deploys with new color</li>
+                </ol>
+              </div>
+              <div className="bg-neutral-100 rounded-xl p-6 border border-neutral-400">
+                <div className="text-2xl mb-3">🧩</div>
+                <h4 className="text-sm font-bold text-neutral-1000 m-0 mb-2">Add a New Component</h4>
+                <ol className="text-xs text-neutral-700 m-0 pl-4 space-y-1">
+                  <li>Create component in <code>src/components/</code></li>
+                  <li>Use Tailwind classes with token CSS vars</li>
+                  <li>Add a Storybook story file</li>
+                  <li>Run <code>npm run build-storybook</code> & deploy</li>
+                </ol>
+              </div>
+              <div className="bg-neutral-100 rounded-xl p-6 border border-neutral-400">
+                <div className="text-2xl mb-3">🏷️</div>
+                <h4 className="text-sm font-bold text-neutral-1000 m-0 mb-2">Add a New Brand</h4>
+                <ol className="text-xs text-neutral-700 m-0 pl-4 space-y-1">
+                  <li>Create <code>tokens/brand-name.json</code></li>
+                  <li>Add to <code>$metadata.json</code> & <code>$themes.json</code></li>
+                  <li>Run <code>npm run build:tokens</code></li>
+                  <li>Add theme to Storybook preview.ts</li>
+                </ol>
+              </div>
+            </div>
           </section>
         </>
       )}
