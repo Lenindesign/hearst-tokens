@@ -18,7 +18,8 @@ const meta = {
   argTypes: {
     imageSrc: {
       control: 'select',
-      options: sampleImages,
+      options: Object.keys(sampleImages),
+      mapping: sampleImages,
       description: 'Image source URL. Shows a placeholder when empty.',
     },
     eyebrow: {

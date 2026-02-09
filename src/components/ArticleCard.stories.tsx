@@ -31,7 +31,8 @@ const meta = {
     },
     imageUrl: {
       control: 'select',
-      options: sampleImages,
+      options: Object.keys(sampleImages),
+      mapping: sampleImages,
       description: 'Hero image URL',
     },
     author: {
@@ -77,7 +78,7 @@ export const Default: Story = {
     title: 'The 2026 Porsche 911 GT3 RS Is the Ultimate Track Weapon',
     excerpt: 'With 518 horsepower and aerodynamics borrowed from motorsport, the new GT3 RS sets a new benchmark.',
     category: 'First Drive',
-    imageUrl: sampleImages['Porsche GT3 RS'],
+    imageUrl: "https://hips.hearstapps.com/hmg-prod/images/large-50504-hyundaimotorsnbrandunveilstworollinglabconceptssignalinghigh-performancevisionforelectrificationera-64022c1e8f358.jpg?crop=1xw:1xh;center,top&resize=768:*",
     author: 'John Pearley Huffman',
     date: 'Jan 15, 2026',
     readTime: '6 min read',
