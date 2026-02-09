@@ -822,21 +822,44 @@ npx shadcn@latest add dialog dropdown-menu tabs
 
       {/* ========== COMPONENT SHOWCASE TAB ========== */}
       {activeTab === 'showcase' && (
-        <div data-theme="car-and-driver">
+        <div data-theme={selectedTheme}>
           <div className="mb-10">
             <h2 className="text-3xl font-bold text-foreground m-0 mb-2">
-              Car and Driver Component Showcase
+              Component Showcase
             </h2>
             <p className="text-base text-muted-foreground m-0">
-              Every shadcn/ui component below is styled using Car and Driver&apos;s design tokens — bold blues, sharp corners, condensed type.
+              Every shadcn/ui component below adapts to the selected brand theme via CSS variables. Switch brands to see the transformation.
             </p>
-            <div className="flex items-center gap-3 mt-4">
-              <div className="w-5 h-5 rounded-sm" style={{ backgroundColor: '#1B5F8A' }} />
-              <div className="w-5 h-5 rounded-sm" style={{ backgroundColor: '#222222' }} />
-              <div className="w-5 h-5 rounded-sm" style={{ backgroundColor: '#DBCA8B' }} />
-              <div className="w-5 h-5 rounded-sm" style={{ backgroundColor: '#D2232A' }} />
-              <div className="w-5 h-5 rounded-sm border" style={{ backgroundColor: '#F5F5F5' }} />
-              <span className="text-xs text-muted-foreground ml-2">Car and Driver palette</span>
+
+            {/* Brand Theme Picker */}
+            <div className="mt-6 mb-2">
+              <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-3 block">Select Brand</span>
+              <div className="flex flex-wrap gap-2">
+                {[
+                  { id: 'car-and-driver', label: 'Car and Driver' },
+                  { id: 'esquire', label: 'Esquire' },
+                  { id: 'cosmopolitan', label: 'Cosmopolitan' },
+                  { id: 'good-housekeeping', label: 'Good Housekeeping' },
+                  { id: 'harpers-bazaar', label: "Harper's Bazaar" },
+                  { id: 'elle', label: 'Elle' },
+                  { id: 'delish', label: 'Delish' },
+                  { id: 'mens-health', label: "Men's Health" },
+                  { id: 'womens-health', label: "Women's Health" },
+                  { id: 'popular-mechanics', label: 'Popular Mechanics' },
+                ].map((brand) => (
+                  <button
+                    key={brand.id}
+                    onClick={() => setSelectedTheme(brand.id)}
+                    className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                      selectedTheme === brand.id
+                        ? 'bg-primary text-primary-foreground shadow-sm'
+                        : 'bg-neutral-200 text-neutral-700 hover:bg-neutral-300'
+                    }`}
+                  >
+                    {brand.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -1773,10 +1796,10 @@ npx shadcn@latest add dialog dropdown-menu tabs
           {/* Summary */}
           <section className="bg-neutral-900 rounded-lg p-8 text-neutral-100">
             <h2 className="text-2xl font-bold m-0 mb-3">
-              35+ Components, 1 Theme
+              35+ Components, 10 Brands
             </h2>
             <p className="text-base text-neutral-400 m-0">
-              Every component above is styled entirely through CSS variables. Switch the <code className="text-neutral-300">data-theme</code> attribute and they all update instantly — no code changes, no re-renders.
+              Every component above is styled entirely through CSS variables. Switch brands using the picker above and they all update instantly — no code changes, no re-renders. The same components power Car and Driver, Esquire, Cosmopolitan, and every other Hearst property.
             </p>
           </section>
         </div>
